@@ -1,6 +1,6 @@
 [project]
 name = "fermo_gui"
-version = "1.0.9"
+version = "1.1.0"
 description = "Visalization part of program FERMO"
 requires-python = ">=3.11,<3.12"
 license = {file = "LICENSE.md"}
@@ -25,12 +25,12 @@ dependencies = [
     "celery[redis]==5.2.7",
     "coloredlogs==15.0.1",
     "email-validator==2.1.0.post1",
-    "fermo_core==0.4.3",
+    "fermo_core~=0.5.1",
     "Flask==3.0.1",
     "Flask-WTF==1.2.1",
     "Flask-Mail==0.9.1",
     "gevent==24.2.1",
-    "gunicorn==22.0.0",
+    "gunicorn~=23.0.0",
     "jsonschema==4.19.0",
     "pandas==2.0.3",
     "pydantic==2.5.2",

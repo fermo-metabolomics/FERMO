@@ -10,7 +10,7 @@ fermo_gui/tests/test_fermo_core_manager/results/
 # Flask app
 instance/
 fermo_gui/fermo_gui/upload/*
-!fermo_gui/fermo_gui/upload/example
+!fermo_gui/fermo_gui/upload/example*
 
 # Project files
 .ruff_cache
