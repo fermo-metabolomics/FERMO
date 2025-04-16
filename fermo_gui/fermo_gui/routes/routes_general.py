@@ -1,6 +1,6 @@
-"""Provides Flask Blueprints instances.
+"""Flask routes.
 
-Copyright (c) 2024-present Hannah Esther Augustijn, MSc
+Copyright (c) 2024-present Mitja Maximilian Zdouc, PhD
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,29 +24,39 @@ SOFTWARE.
 from pathlib import Path
 from typing import Union
 
-from flask import Response, current_app, jsonify, redirect, send_file, url_for
+from flask import Response, current_app, jsonify, render_template, send_file
 
 from fermo_gui.routes import bp
 
 
+@bp.route("/")
+def index() -> str:
+    online = current_app.config.get("ONLINE") or False
+    return render_template("index.html", online=online)
+
+
+@bp.route("/about/")
+def about() -> str:
+    return render_template("about.html")
+
+
+@bp.route("/contact/")
+def contact() -> str:
+    return render_template("contact.html")
+
+
 @bp.route("/download/<job_id>/<filename>")
 def download_file(job_id: str, filename: str) -> Union[Response, tuple[Response, int]]:
-    """Render download for given job id and download filename
-
-    Returns:
-        The download file.
-    """
     download_f = (
         Path(current_app.config.get("UPLOAD_FOLDER"))
         .joinpath(job_id)
         .joinpath("results")
         .joinpath(filename)
     )
-    download_f = download_f.resolve()
     if not download_f.exists():
         return jsonify({"error": "File not found"}), 404
 
-    return send_file(download_f, as_attachment=True)
+    return send_file(download_f.resolve(), as_attachment=True)
 
 
 @bp.route("/check_file/<job_id>/<filename>")
@@ -58,7 +68,6 @@ def check_file(job_id: str, filename: str) -> Response:
         .joinpath("results")
         .joinpath(filename)
     )
-    download_f = download_f.resolve()
     if download_f.exists():
         return jsonify({"exists": True})
     else:
