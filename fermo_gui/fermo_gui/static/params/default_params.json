@@ -1,0 +1,113 @@
+{
+    "PeaktableParams": {
+        "format": "mzmine3",
+        "polarity": "positive"
+    },
+    "MsmsParams": {
+        "format": "mgf",
+        "rel_int_from": 0.01
+    },
+    "GroupMetadataParams": {
+        "format": "fermo"
+    },
+    "SpecLibParams": {
+        "format": "mgf"
+    },
+    "MS2QueryResultsParams": {
+        "score_cutoff": 0.7
+    },
+    "AsResultsParams": {
+        "similarity_cutoff": 0.7
+    },
+    "AdductAnnotationParams": {
+        "activate_module": true,
+        "mass_dev_ppm": 10.0
+    },
+    "NeutralLossParams": {
+        "activate_module": true,
+        "mass_dev_ppm": 10.0
+    },
+    "FragmentAnnParams": {
+        "activate_module": true,
+        "mass_dev_ppm": 10.0
+    },
+    "SpecSimNetworkCosineParams": {
+        "activate_module": true,
+        "msms_min_frag_nr": 5,
+        "fragment_tol": 0.1,
+        "score_cutoff": 0.7,
+        "max_nr_links": 10
+    },
+    "SpecSimNetworkDeepscoreParams": {
+        "activate_module": true,
+        "score_cutoff": 0.8,
+        "max_nr_links": 10,
+        "msms_min_frag_nr": 5
+    },
+    "FeatureFilteringParams": {
+        "activate_module": true,
+        "filter_rel_int_range_min": 0.0,
+        "filter_rel_int_range_max": 1.0,
+        "filter_rel_area_range_min": 0.01,
+        "filter_rel_area_range_max": 1.0
+    },
+    "BlankAssignmentParams": {
+        "activate_module": false,
+        "factor": 10,
+        "algorithm": "mean",
+        "value": "area"
+    },
+    "GroupFactAssignmentParams": {
+        "activate_module": false,
+        "algorithm": "mean",
+        "value": "area"
+    },
+    "PhenoQualAssgnParams": {
+        "activate_module": false,
+        "factor": 5,
+        "algorithm": "minmax",
+        "value": "area"
+    },
+    "PhenoQuantPercentAssgnParams": {
+        "activate_module": false,
+        "sample_avg": "mean",
+        "value": "area",
+        "fdr_corr": "bonferroni",
+        "algorithm": "pearson",
+        "p_val_cutoff": 0.05,
+        "coeff_cutoff": 0.7
+    },
+    "PhenoQuantConcAssgnParams": {
+        "activate_module": false,
+        "sample_avg": "mean",
+        "value": "area",
+        "fdr_corr": "bonferroni",
+        "algorithm": "pearson",
+        "p_val_cutoff": 0.05,
+        "coeff_cutoff": 0.7
+    },
+    "SpectralLibMatchingCosineParams": {
+        "activate_module": false,
+        "fragment_tol": 0.1,
+        "min_nr_matched_peaks": 5,
+        "score_cutoff": 0.7,
+        "max_precursor_mass_diff": 600
+    },
+    "SpectralLibMatchingDeepscoreParams": {
+        "activate_module": false,
+        "score_cutoff": 0.8,
+        "max_precursor_mass_diff": 600
+    },
+    "AsKcbCosineMatchingParams": {
+        "activate_module": false,
+        "fragment_tol": 0.1,
+        "min_nr_matched_peaks": 5,
+        "score_cutoff": 0.5,
+        "max_precursor_mass_diff": 600
+    },
+    "AsKcbDeepscoreMatchingParams": {
+        "activate_module": false,
+        "score_cutoff": 0.7,
+        "max_precursor_mass_diff": 600
+    }
+}

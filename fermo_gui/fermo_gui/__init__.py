@@ -22,68 +22,122 @@ SOFTWARE.
 """
 
 import contextlib
+import logging
 import os
+import sys
 from importlib import metadata
-from typing import Optional
+from pathlib import Path
 
+import coloredlogs
 from flask import Flask
+from flask_wtf.csrf import CSRFProtect
 
-from fermo_gui.config.config_celery import configure_celery
-from fermo_gui.config.config_mail import configure_mail
-from fermo_gui.config.extensions import mail
+from fermo_gui.config.extensions import configure_celery, mail
 from fermo_gui.routes import bp
 
 
-def create_app(test_config: Optional[dict] = None) -> Flask:
+def create_app() -> Flask:
     """Factory function for Flask app, automatically detected by Flask.
-
-    Arguments:
-        test_config: mapping of app configuration for testing purposes
 
     Returns:
         An instance of the Flask object
     """
     app = Flask(__name__, instance_relative_config=True)
-    app = configure_app(app, test_config)
-    app = configure_mail(app)
-    app = configure_celery(app)
+    app = configure_app(app)
+    app.url_map.strict_slashes = False
+    verify_defaults(app)
 
-    mail.init_app(app)
-
-    create_instance_path(app)
     register_context_processors(app)
     app.register_blueprint(bp)
+
+    mail.init_app(app)
+    app = configure_celery(app)
+
     return app
 
 
-def configure_app(app: Flask, test_config: Optional[dict] = None) -> Flask:
+def configure_app(app: Flask) -> Flask:
     """Configure the Flask app.
 
     Arguments:
         app: The Flask app instance
-        test_config: mapping of app configuration for testing purposes
     """
+    app = config_logger(app)
+
     app.config["SECRET_KEY"] = "dev"
-    app.config["UPLOAD_FOLDER"] = "fermo_gui/upload/"
+
+    app.config["UPLOAD_FOLDER"] = Path(__file__).parent.joinpath("upload/")
+    app.config["DEFAULTS"] = Path(__file__).parent.joinpath(
+        "static/params/default_params.json"
+    )
     app.config["ALLOWED_EXTENSIONS"] = {"json", "csv", "mgf", "session"}
     app.config["ONLINE"] = False
     app.config["MAX_RUN_TIME"] = None
 
-    if test_config is None:
-        app.config.from_pyfile("config.py", silent=True)
+    config_file = Path(__file__).parent.parent.joinpath("instance/config.py")
+    if config_file.exists():
+        app.config.from_pyfile(config_file)
+        app.logger.info("Successfully loaded configuration from 'config.py'.")
     else:
-        app.config.from_mapping(test_config)
+        app.logger.warning("No 'config.py' file found. Default to dev settings.")
+        app.logger.critical("INSECURE DEV MODE: DO NOT DEPLOY TO PRODUCTION!")
+
+    csrf = CSRFProtect()
+    csrf.init_app(app)
+
     return app
 
 
-def create_instance_path(app: Flask):
-    """Create the instance path for the Flask app if not available.
+def config_logger(app: Flask) -> Flask:
+    """Set up a named logger with nice formatting and attach to app
+
+    Args:
+        app: The Flask app
+
+    Returns:
+        The Flask app with attached logger
+    """
+    for handler in app.logger.handlers[:]:
+        app.logger.removeHandler(handler)
+
+    logger = logging.getLogger("fermo")
+    logger.setLevel(logging.DEBUG)
+
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(logging.DEBUG)
+    console_handler.setFormatter(
+        coloredlogs.ColoredFormatter(
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        )
+    )
+
+    file_handler = logging.FileHandler(
+        Path(__file__).parent.joinpath("app.log"),
+        mode="w",
+    )
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(
+        logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    )
+
+    app.logger.addHandler(console_handler)
+    app.logger.addHandler(file_handler)
+    return app
+
+
+def verify_defaults(app: Flask) -> None:
+    """Verifies that default params are available
 
     Arguments:
-        app: The Flask app instance
+        app: The Flask app
+
+    Raises:
+        RuntimeError: Data not found or empty
     """
-    with contextlib.suppress(OSError):
-        os.makedirs(app.instance_path)
+    if not app.config["DEFAULTS"].exists():
+        message = f"Could not find file '{app.config['DEFAULTS'].resolve()}'."
+        app.logger.critical(message)
+        raise RuntimeError(message)
 
 
 def register_context_processors(app: Flask):

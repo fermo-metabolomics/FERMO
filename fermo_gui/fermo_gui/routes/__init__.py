@@ -30,4 +30,5 @@ from fermo_gui.routes import (
     routes_load_session,
     routes_results,
     routes_start_analysis,
+    routes_submission,
 )

@@ -1,4 +1,4 @@
-"""Sets the Flask mail configuration.
+"""Routes for pages related to data input and processing.
 
 Copyright (c) 2022-present Mitja Maximilian Zdouc, PhD
 
@@ -21,17 +21,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from flask import Flask
+import json
+
+from flask import Response, current_app, render_template, request
+
+from fermo_gui.routes import bp
 
 
-def configure_mail(app: Flask) -> Flask:
-    """Configure email server settings to deliver job notifications
+@bp.route("/analysis/start_analysis/", methods=["GET", "POST"])
+def dispatch() -> str | Response:
+    if request.method == "POST":
+        return request.form.to_dict(flat=False)
 
-    All configs must be read from a config file in an 'instance' folder
+    with open(current_app.config["DEFAULTS"]) as infile:
+        default_params = json.load(infile)
 
-    Arguments:
-        app: The Flask app instance
-    """
-    if app.config.get("ONLINE"):
-        app.config.from_pyfile("config.py", silent=True)
-    return app
+    return render_template("forms.html", params=default_params)

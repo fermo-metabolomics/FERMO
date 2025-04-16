@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="container-fluid">
+      <div class="row my-2 d-flex align-items-center">
+        <div class="col-auto">
+          {% if jobload %}
+            <h1 class="mt-1 mb-3 fw-semibold d-flex justify-content-center">Start analysis</h1>
+            <p class="main-text">Upload your data, set your preferred parameters, and you are good to go!
+            You can also reload the parameter settings of your previous job and use them to run a new analysis.</p>
+          {% else %}
+            <h1 class="lh-2">Loaded parameters of job ID: {{ job_id }}</h1>
+            <p class="main-text">Adjust any parameters and select the "start analysis" button to visualize the results.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+
+
+
+</div>
+{% endblock %}
