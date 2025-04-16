@@ -11,7 +11,18 @@ body {
 /* Footer style elements */
 footer {
   margin-top: auto;
-  font-size: 12px;
+  font-size: 13px;
+}
+
+/* This will remove underline from all links in the footer */
+a:not(.footer a) {
+  text-decoration: none;
+}
+/* Limit the width of the images for screen size scaling */
+.custom-footer-image {
+  width:  100%;
+  max-width:  190px;
+  height: auto; /* Maintain aspect ratio */
 }
 
 /* input forms */
@@ -376,27 +387,4 @@ table th:last-child{
 
 .info-button:hover {
     transform: scale(1.2);
-}
-
-.navbar-custom {
-    background-color: rgb(var(--bs-primary-rgb));
-    color: white;
-}
-
-.navbar-font-size {
-    font-size: 18px;
-}
-
-.icon {
-    width: 20px;
-    height: 20px;
-}
-
-.custom-bold {
-    font-weight: bold;
-}
-
-.custom-link {
-    text-decoration: none;
-    color: rgb(var(--bs-primary-rgb));
 }
