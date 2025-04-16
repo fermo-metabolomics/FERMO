@@ -2,23 +2,84 @@
 
 {% block content %}
 <div class="container my-5">
-  <div class="container-fluid">
-      <div class="row my-2 d-flex align-items-center">
-        <div class="col-auto">
-          {% if jobload %}
-            <h1 class="mt-1 mb-3 fw-semibold d-flex justify-content-center">Start analysis</h1>
-            <p class="main-text">Upload your data, set your preferred parameters, and you are good to go!
-            You can also reload the parameter settings of your previous job and use them to run a new analysis.</p>
-          {% else %}
-            <h1 class="lh-2">Loaded parameters of job ID: {{ job_id }}</h1>
-            <p class="main-text">Adjust any parameters and select the "start analysis" button to visualize the results.</p>
-          {% endif %}
+  <div class="row">
+    <div class="col-auto text-center mx-auto">
+      {% if job_id %}
+        <h1 class="fw-semibold lh-2">Loaded parameters of job ID: {{ job_id }}</h1>
+        <p class="main-text">Adjust any parameters and select the "start analysis" button to visualize the results.</p>
+      {% else %}
+        <h1 class="mt-1 mb-3 fw-semibold d-flex justify-content-center">Start analysis</h1>
+        <p class="main-text">Upload your data, set your preferred parameters, and you are good to go!
+        You can also reload the parameter settings of your previous job and use them to run a new analysis.</p>
+      {% endif %}
+    </div>
+  </div>
+  {% if online %}
+    <div class="mx-4 my-2">
+      <div class="alert alert-light" role="alert">
+        <div class="row">
+          <div class="col-8">
+            <h1 class="alert-heading" style="font-size: 1.4em;">Attention Online Users!</h1>
+          </div>
+          <div class="col-4">
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
         </div>
+        <p><i>FERMO</i> is still in <b>early access</b>,
+          and we have a daily maintenance window from <b>6 AM to 8 AM CEST</b>.<br/>
+          Please note that jobs initiated during this period may not complete successfully.
+          Thank you for your understanding.</p>
+        <hr>
+        <p class="mb-0">Further, the <b>online version of <i>FERMO</i></b> has a few <b>restrictions</b>
+          due to computational restrains:</p>
+        <ul class="lh-base my-2">
+          <li><p>A file size limit of <b>7 MB</b>, with a maximum of <b>3000</b> molecular features in the peaktable.</p></li>
+          <li><p>A maximum total job run time of <b>60 minutes</b>.</p></li>
+          <li><p>The maximum job storage time is limited to <b>30 days</b>. Make sure to <b>download</b> your results!</p></li>
+        </ul>
+        <p>To bypass these restrictions, you can install
+          <a href="https://github.com/fermo-metabolomics/fermo" target="_blank" style="color: #6D757D; text-decoration: underline;"><b><i>FERMO</i> offline</b></a>.</p>
+      </div>
+    </div>
+  {% endif %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="row">
+      <div class="card card-body">
+        <div class="col text-center mx-auto">
+          <h4 class="fw-semibold lh-2">Error during input validation!</h4>
+          <ul class="lh-base list-unstyled">
+          {% for message in messages %}
+              <li><p class="lead mb-1">{{ message }}</p></li>
+          {% endfor %}
+          </ul>
+        </div>
+      </div>
+      </div>
+    {% endif %}
+  {% endwith %}
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="row">
+      <div class="col justify-content-center text-center">
+        <h1 class="mt-1 mb-4 fw-semibold" style="font-size: 1.3em;">Select one of the following options to start your <i>FERMO</i> analysis:</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col btn-group gap-2" role="group" aria-label="Dispatch type group">
+        <input type="radio" class="btn-check" name="btnradio" id="startAnalysis" autocomplete="off">
+        <label class="btn btn-outline-secondary p-2" for="startAnalysis">Start new analysis</label>
+        <input type="radio" class="btn-check" name="btnradio" id="loadParams" autocomplete="off">
+        <label class="btn btn-outline-secondary p-2" for="loadParams">Load parameter settings</label>
+        <input type="radio" class="btn-check" name="btnradio" id="loadSession" autocomplete="off">
+        <label class="btn btn-outline-secondary p-2" for="loadSession">Load results of previous session</label>
       </div>
     </div>
 
+  <!--encapsulate in forms tag, vanilla html/js, without wtforms; add the individual form blocks for load, new, from separate html -->
 
 
 
+  </form>
 </div>
 {% endblock %}

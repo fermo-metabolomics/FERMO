@@ -1,504 +1,504 @@
-2025-04-16 10:36:00,062 - fermo_core - INFO - Started 'fermo_core' v'0.6.1' as CLI.
-2025-04-16 10:36:00,062 - fermo_core - DEBUG - Python version: 3.11.9; System: Linux; System version: #59~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Mar 19 17:07:41 UTC 2;System architecture: 3.11.9
-2025-04-16 10:36:00,068 - fermo_core - INFO - 'ParameterManager': started assignment of user-provided parameters.
-2025-04-16 10:36:00,120 - fermo_core - INFO - 'PeaktableParameters': params validated and assigned.
-2025-04-16 10:36:00,122 - fermo_core - INFO - 'MsmsParameters': params validated and assigned.
-2025-04-16 10:36:00,128 - fermo_core - INFO - 'PhenotypeParameters': params validated and assigned.
-2025-04-16 10:36:00,137 - fermo_core - INFO - 'GroupMetadataParameters': params validated and assigned.
-2025-04-16 10:36:00,138 - fermo_core - INFO - 'SpecLibParameters': params validated and assigned.
-2025-04-16 10:36:00,146 - fermo_core - INFO - 'MS2QueryResultsParameters': params validated and assigned.
-2025-04-16 10:36:00,147 - fermo_core - INFO - 'AsResultsParameters': params validated and assigned.
-2025-04-16 10:36:00,147 - fermo_core - INFO - 'AdductAnnotationParameters': params validated and assigned.
-2025-04-16 10:36:00,147 - fermo_core - INFO - 'NeutralLossParameters': params validated and assigned.
-2025-04-16 10:36:00,147 - fermo_core - INFO - 'FragmentAnnParameters': params validated and assigned.
-2025-04-16 10:36:00,147 - fermo_core - INFO - 'SpecSimNetworkCosineParameters': params validated and assigned.
-2025-04-16 10:36:00,147 - fermo_core - INFO - 'SpecSimNetworkDeepscoreParameters': params validated and assigned.
-2025-04-16 10:36:00,147 - fermo_core - INFO - 'FeatureFilteringParameters': params validated and assigned.
-2025-04-16 10:36:00,147 - fermo_core - INFO - 'BlankAssignmentParameters': params validated and assigned.
-2025-04-16 10:36:00,147 - fermo_core - INFO - 'GroupFactAssignmentParameters': params validated and assigned.
-2025-04-16 10:36:00,147 - fermo_core - INFO - 'PhenoQualAssgnParams': params validated and assigned.
-2025-04-16 10:36:00,148 - fermo_core - INFO - 'PhenoQuantPercentAssgnParams': params validated and assigned.
-2025-04-16 10:36:00,148 - fermo_core - INFO - 'PhenoQuantConcAssgnParams': params validated and assigned.
-2025-04-16 10:36:00,148 - fermo_core - INFO - 'SpectralLibMatchingCosineParameters': params validated and assigned.
-2025-04-16 10:36:00,148 - fermo_core - INFO - 'SpectralLibMatchingDeepscoreParameters': params validated and assigned.
-2025-04-16 10:36:00,148 - fermo_core - INFO - 'AsKcbCosineMatchingParams': params validated and assigned.
-2025-04-16 10:36:00,148 - fermo_core - INFO - 'AsKcbDeepscoreMatchingParams': params validated and assigned.
-2025-04-16 10:36:00,148 - fermo_core - INFO - 'ParameterManager': completed assignment of user-provided parameters.
-2025-04-16 10:36:00,148 - fermo_core - INFO - 'GeneralParser': started file parsing.
-2025-04-16 10:36:00,148 - fermo_core - INFO - 'PeakMzmine3Parser': started parsing MZmine3-style peaktable file 'case_study_peak_table_quant_full.csv'
-2025-04-16 10:36:00,392 - fermo_core - INFO - 'PeakMzmine3Parser': completed parsing MZmine3-style peaktable file 'case_study_peak_table_quant_full.csv'
-2025-04-16 10:36:00,392 - fermo_core - INFO - 'MgfParser': started parsing of MS/MS data-containing file 'case_study_MSMS.mgf'
-2025-04-16 10:36:00,395 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '13': removed MS2 fragments 10 Da around precursor m/z. '1178' fragments remaining (before: '1226').
-2025-04-16 10:36:00,395 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '13': removed 'MS2 fragments with relative intensity lower than '0.01': 1140'. '38' fragments remaining (before: '1178').
-2025-04-16 10:36:00,396 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '126': removed MS2 fragments 10 Da around precursor m/z. '0' fragments remaining (before: '1').
-2025-04-16 10:36:00,396 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '126': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '0' fragments remaining (before: '0').
-2025-04-16 10:36:00,397 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '139': removed MS2 fragments 10 Da around precursor m/z. '9' fragments remaining (before: '10').
-2025-04-16 10:36:00,397 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '139': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '9' fragments remaining (before: '9').
-2025-04-16 10:36:00,397 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '10': removed MS2 fragments 10 Da around precursor m/z. '36' fragments remaining (before: '39').
-2025-04-16 10:36:00,398 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '10': removed 'MS2 fragments with relative intensity lower than '0.01': 20'. '16' fragments remaining (before: '36').
-2025-04-16 10:36:00,398 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '115': removed MS2 fragments 10 Da around precursor m/z. '5' fragments remaining (before: '7').
-2025-04-16 10:36:00,399 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '115': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '5' fragments remaining (before: '5').
-2025-04-16 10:36:00,399 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '11': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '17').
-2025-04-16 10:36:00,400 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '11': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '15' fragments remaining (before: '15').
-2025-04-16 10:36:00,400 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '135': removed MS2 fragments 10 Da around precursor m/z. '2' fragments remaining (before: '4').
-2025-04-16 10:36:00,401 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '135': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '2' fragments remaining (before: '2').
-2025-04-16 10:36:00,401 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '128': removed MS2 fragments 10 Da around precursor m/z. '13' fragments remaining (before: '18').
-2025-04-16 10:36:00,402 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '128': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '13' fragments remaining (before: '13').
-2025-04-16 10:36:00,402 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '66': removed MS2 fragments 10 Da around precursor m/z. '124' fragments remaining (before: '134').
-2025-04-16 10:36:00,403 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '66': removed 'MS2 fragments with relative intensity lower than '0.01': 117'. '7' fragments remaining (before: '124').
-2025-04-16 10:36:00,404 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '104': removed MS2 fragments 10 Da around precursor m/z. '25' fragments remaining (before: '29').
-2025-04-16 10:36:00,404 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '104': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '25' fragments remaining (before: '25').
-2025-04-16 10:36:00,405 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '34': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '17').
-2025-04-16 10:36:00,405 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '34': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '15' fragments remaining (before: '15').
-2025-04-16 10:36:00,406 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '36': removed MS2 fragments 10 Da around precursor m/z. '7' fragments remaining (before: '7').
-2025-04-16 10:36:00,406 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '36': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '7' fragments remaining (before: '7').
-2025-04-16 10:36:00,407 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '37': removed MS2 fragments 10 Da around precursor m/z. '11' fragments remaining (before: '13').
-2025-04-16 10:36:00,407 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '37': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '11' fragments remaining (before: '11').
-2025-04-16 10:36:00,408 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '33': removed MS2 fragments 10 Da around precursor m/z. '10' fragments remaining (before: '11').
-2025-04-16 10:36:00,408 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '33': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '10' fragments remaining (before: '10').
-2025-04-16 10:36:00,409 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '3': removed MS2 fragments 10 Da around precursor m/z. '19' fragments remaining (before: '21').
-2025-04-16 10:36:00,409 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '3': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '19' fragments remaining (before: '19').
-2025-04-16 10:36:00,410 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '64': removed MS2 fragments 10 Da around precursor m/z. '20' fragments remaining (before: '23').
-2025-04-16 10:36:00,411 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '64': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '20' fragments remaining (before: '20').
-2025-04-16 10:36:00,412 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '141': removed MS2 fragments 10 Da around precursor m/z. '19' fragments remaining (before: '22').
-2025-04-16 10:36:00,412 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '141': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '19' fragments remaining (before: '19').
-2025-04-16 10:36:00,413 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '16': removed MS2 fragments 10 Da around precursor m/z. '110' fragments remaining (before: '129').
-2025-04-16 10:36:00,413 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '16': removed 'MS2 fragments with relative intensity lower than '0.01': 70'. '40' fragments remaining (before: '110').
-2025-04-16 10:36:00,414 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '4': removed MS2 fragments 10 Da around precursor m/z. '33' fragments remaining (before: '34').
-2025-04-16 10:36:00,415 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '4': removed 'MS2 fragments with relative intensity lower than '0.01': 1'. '32' fragments remaining (before: '33').
-2025-04-16 10:36:00,415 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '6': removed MS2 fragments 10 Da around precursor m/z. '33' fragments remaining (before: '34').
-2025-04-16 10:36:00,416 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '6': removed 'MS2 fragments with relative intensity lower than '0.01': 1'. '32' fragments remaining (before: '33').
-2025-04-16 10:36:00,416 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '137': removed MS2 fragments 10 Da around precursor m/z. '16' fragments remaining (before: '17').
-2025-04-16 10:36:00,417 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '137': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '16' fragments remaining (before: '16').
-2025-04-16 10:36:00,417 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '1': removed MS2 fragments 10 Da around precursor m/z. '10' fragments remaining (before: '11').
-2025-04-16 10:36:00,418 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '1': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '10' fragments remaining (before: '10').
-2025-04-16 10:36:00,418 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '46': removed MS2 fragments 10 Da around precursor m/z. '47' fragments remaining (before: '55').
-2025-04-16 10:36:00,419 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '46': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '47' fragments remaining (before: '47').
-2025-04-16 10:36:00,420 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '142': removed MS2 fragments 10 Da around precursor m/z. '12' fragments remaining (before: '15').
-2025-04-16 10:36:00,421 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '142': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '12' fragments remaining (before: '12').
-2025-04-16 10:36:00,422 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '19': removed MS2 fragments 10 Da around precursor m/z. '84' fragments remaining (before: '99').
-2025-04-16 10:36:00,422 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '19': removed 'MS2 fragments with relative intensity lower than '0.01': 4'. '80' fragments remaining (before: '84').
-2025-04-16 10:36:00,423 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '63': removed MS2 fragments 10 Da around precursor m/z. '24' fragments remaining (before: '29').
-2025-04-16 10:36:00,423 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '63': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '24' fragments remaining (before: '24').
-2025-04-16 10:36:00,424 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '146': removed MS2 fragments 10 Da around precursor m/z. '73' fragments remaining (before: '96').
-2025-04-16 10:36:00,424 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '146': removed 'MS2 fragments with relative intensity lower than '0.01': 30'. '43' fragments remaining (before: '73').
-2025-04-16 10:36:00,425 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '44': removed MS2 fragments 10 Da around precursor m/z. '13' fragments remaining (before: '18').
-2025-04-16 10:36:00,425 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '44': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '13' fragments remaining (before: '13').
-2025-04-16 10:36:00,426 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '136': removed MS2 fragments 10 Da around precursor m/z. '53' fragments remaining (before: '59').
-2025-04-16 10:36:00,426 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '136': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '53' fragments remaining (before: '53').
-2025-04-16 10:36:00,427 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '43': removed MS2 fragments 10 Da around precursor m/z. '22' fragments remaining (before: '23').
-2025-04-16 10:36:00,427 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '43': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '22' fragments remaining (before: '22').
-2025-04-16 10:36:00,428 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '2': removed MS2 fragments 10 Da around precursor m/z. '4' fragments remaining (before: '5').
-2025-04-16 10:36:00,428 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '2': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '4' fragments remaining (before: '4').
-2025-04-16 10:36:00,429 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '100': removed MS2 fragments 10 Da around precursor m/z. '47' fragments remaining (before: '53').
-2025-04-16 10:36:00,429 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '100': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '47' fragments remaining (before: '47').
-2025-04-16 10:36:00,430 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '17': removed MS2 fragments 10 Da around precursor m/z. '55' fragments remaining (before: '61').
-2025-04-16 10:36:00,430 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '17': removed 'MS2 fragments with relative intensity lower than '0.01': 34'. '21' fragments remaining (before: '55').
-2025-04-16 10:36:00,431 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '56': removed MS2 fragments 10 Da around precursor m/z. '47' fragments remaining (before: '49').
-2025-04-16 10:36:00,431 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '56': removed 'MS2 fragments with relative intensity lower than '0.01': 34'. '13' fragments remaining (before: '47').
-2025-04-16 10:36:00,432 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '7': removed MS2 fragments 10 Da around precursor m/z. '43' fragments remaining (before: '45').
-2025-04-16 10:36:00,432 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '7': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '43' fragments remaining (before: '43').
-2025-04-16 10:36:00,432 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '72': removed MS2 fragments 10 Da around precursor m/z. '7' fragments remaining (before: '8').
-2025-04-16 10:36:00,433 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '72': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '7' fragments remaining (before: '7').
-2025-04-16 10:36:00,433 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '30': removed MS2 fragments 10 Da around precursor m/z. '5' fragments remaining (before: '6').
-2025-04-16 10:36:00,434 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '30': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '5' fragments remaining (before: '5').
-2025-04-16 10:36:00,434 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '148': removed MS2 fragments 10 Da around precursor m/z. '12' fragments remaining (before: '18').
-2025-04-16 10:36:00,435 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '148': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '12' fragments remaining (before: '12').
-2025-04-16 10:36:00,435 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '53': removed MS2 fragments 10 Da around precursor m/z. '22' fragments remaining (before: '22').
-2025-04-16 10:36:00,436 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '53': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '22' fragments remaining (before: '22').
-2025-04-16 10:36:00,436 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '54': removed MS2 fragments 10 Da around precursor m/z. '22' fragments remaining (before: '22').
-2025-04-16 10:36:00,437 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '54': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '22' fragments remaining (before: '22').
-2025-04-16 10:36:00,437 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '138': removed MS2 fragments 10 Da around precursor m/z. '19' fragments remaining (before: '20').
-2025-04-16 10:36:00,438 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '138': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '19' fragments remaining (before: '19').
-2025-04-16 10:36:00,438 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '90': removed MS2 fragments 10 Da around precursor m/z. '32' fragments remaining (before: '37').
-2025-04-16 10:36:00,439 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '90': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '32' fragments remaining (before: '32').
-2025-04-16 10:36:00,439 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '50': removed MS2 fragments 10 Da around precursor m/z. '17' fragments remaining (before: '18').
-2025-04-16 10:36:00,440 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '50': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '17' fragments remaining (before: '17').
-2025-04-16 10:36:00,441 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '23': removed MS2 fragments 10 Da around precursor m/z. '6' fragments remaining (before: '8').
-2025-04-16 10:36:00,441 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '23': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '6' fragments remaining (before: '6').
-2025-04-16 10:36:00,442 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '75': removed MS2 fragments 10 Da around precursor m/z. '48' fragments remaining (before: '51').
-2025-04-16 10:36:00,443 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '75': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '48' fragments remaining (before: '48').
-2025-04-16 10:36:00,444 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '147': removed MS2 fragments 10 Da around precursor m/z. '17' fragments remaining (before: '20').
-2025-04-16 10:36:00,445 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '147': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '17' fragments remaining (before: '17').
-2025-04-16 10:36:00,446 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '149': removed MS2 fragments 10 Da around precursor m/z. '21' fragments remaining (before: '26').
-2025-04-16 10:36:00,446 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '149': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '21' fragments remaining (before: '21').
-2025-04-16 10:36:00,447 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '116': removed MS2 fragments 10 Da around precursor m/z. '43' fragments remaining (before: '45').
-2025-04-16 10:36:00,448 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '116': removed 'MS2 fragments with relative intensity lower than '0.01': 4'. '39' fragments remaining (before: '43').
-2025-04-16 10:36:00,448 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '40': removed MS2 fragments 10 Da around precursor m/z. '40' fragments remaining (before: '42').
-2025-04-16 10:36:00,449 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '40': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '40' fragments remaining (before: '40').
-2025-04-16 10:36:00,449 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '124': removed MS2 fragments 10 Da around precursor m/z. '142' fragments remaining (before: '151').
-2025-04-16 10:36:00,450 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '124': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '142' fragments remaining (before: '142').
-2025-04-16 10:36:00,451 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '9': removed MS2 fragments 10 Da around precursor m/z. '168' fragments remaining (before: '177').
-2025-04-16 10:36:00,451 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '9': removed 'MS2 fragments with relative intensity lower than '0.01': 160'. '8' fragments remaining (before: '168').
-2025-04-16 10:36:00,452 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '31': removed MS2 fragments 10 Da around precursor m/z. '19' fragments remaining (before: '22').
-2025-04-16 10:36:00,452 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '31': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '19' fragments remaining (before: '19').
-2025-04-16 10:36:00,453 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '103': removed MS2 fragments 10 Da around precursor m/z. '68' fragments remaining (before: '72').
-2025-04-16 10:36:00,453 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '103': removed 'MS2 fragments with relative intensity lower than '0.01': 52'. '16' fragments remaining (before: '68').
-2025-04-16 10:36:00,454 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '32': removed MS2 fragments 10 Da around precursor m/z. '12' fragments remaining (before: '15').
-2025-04-16 10:36:00,454 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '32': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '12' fragments remaining (before: '12').
-2025-04-16 10:36:00,454 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '67': removed MS2 fragments 10 Da around precursor m/z. '58' fragments remaining (before: '62').
-2025-04-16 10:36:00,455 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '67': removed 'MS2 fragments with relative intensity lower than '0.01': 30'. '28' fragments remaining (before: '58').
-2025-04-16 10:36:00,456 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '38': removed MS2 fragments 10 Da around precursor m/z. '58' fragments remaining (before: '59').
-2025-04-16 10:36:00,456 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '38': removed 'MS2 fragments with relative intensity lower than '0.01': 19'. '39' fragments remaining (before: '58').
-2025-04-16 10:36:00,457 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '122': removed MS2 fragments 10 Da around precursor m/z. '51' fragments remaining (before: '51').
-2025-04-16 10:36:00,457 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '122': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '51' fragments remaining (before: '51').
-2025-04-16 10:36:00,458 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '48': removed MS2 fragments 10 Da around precursor m/z. '13' fragments remaining (before: '13').
-2025-04-16 10:36:00,458 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '48': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '13' fragments remaining (before: '13').
-2025-04-16 10:36:00,459 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '140': removed MS2 fragments 10 Da around precursor m/z. '210' fragments remaining (before: '214').
-2025-04-16 10:36:00,459 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '140': removed 'MS2 fragments with relative intensity lower than '0.01': 205'. '5' fragments remaining (before: '210').
-2025-04-16 10:36:00,460 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '65': removed MS2 fragments 10 Da around precursor m/z. '123' fragments remaining (before: '124').
-2025-04-16 10:36:00,460 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '65': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '123' fragments remaining (before: '123').
-2025-04-16 10:36:00,461 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '5': removed MS2 fragments 10 Da around precursor m/z. '123' fragments remaining (before: '124').
-2025-04-16 10:36:00,461 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '5': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '123' fragments remaining (before: '123').
-2025-04-16 10:36:00,462 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '133': removed MS2 fragments 10 Da around precursor m/z. '12' fragments remaining (before: '14').
-2025-04-16 10:36:00,462 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '133': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '12' fragments remaining (before: '12').
-2025-04-16 10:36:00,463 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '143': removed MS2 fragments 10 Da around precursor m/z. '155' fragments remaining (before: '157').
-2025-04-16 10:36:00,463 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '143': removed 'MS2 fragments with relative intensity lower than '0.01': 149'. '6' fragments remaining (before: '155').
-2025-04-16 10:36:00,464 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '131': removed MS2 fragments 10 Da around precursor m/z. '7' fragments remaining (before: '10').
-2025-04-16 10:36:00,464 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '131': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '7' fragments remaining (before: '7').
-2025-04-16 10:36:00,465 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '88': removed MS2 fragments 10 Da around precursor m/z. '121' fragments remaining (before: '124').
-2025-04-16 10:36:00,465 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '88': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '121' fragments remaining (before: '121').
-2025-04-16 10:36:00,466 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '45': removed MS2 fragments 10 Da around precursor m/z. '70' fragments remaining (before: '71').
-2025-04-16 10:36:00,466 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '45': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '70' fragments remaining (before: '70').
-2025-04-16 10:36:00,467 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '89': removed MS2 fragments 10 Da around precursor m/z. '111' fragments remaining (before: '115').
-2025-04-16 10:36:00,467 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '89': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '111' fragments remaining (before: '111').
-2025-04-16 10:36:00,468 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '134': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '15').
-2025-04-16 10:36:00,468 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '134': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '15' fragments remaining (before: '15').
-2025-04-16 10:36:00,469 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '132': removed MS2 fragments 10 Da around precursor m/z. '19' fragments remaining (before: '19').
-2025-04-16 10:36:00,469 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '132': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '19' fragments remaining (before: '19').
-2025-04-16 10:36:00,470 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '125': removed MS2 fragments 10 Da around precursor m/z. '81' fragments remaining (before: '83').
-2025-04-16 10:36:00,470 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '125': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '81' fragments remaining (before: '81').
-2025-04-16 10:36:00,471 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '144': removed MS2 fragments 10 Da around precursor m/z. '82' fragments remaining (before: '84').
-2025-04-16 10:36:00,471 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '144': removed 'MS2 fragments with relative intensity lower than '0.01': 78'. '4' fragments remaining (before: '82').
-2025-04-16 10:36:00,472 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '94': removed MS2 fragments 10 Da around precursor m/z. '33' fragments remaining (before: '38').
-2025-04-16 10:36:00,472 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '94': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '33' fragments remaining (before: '33').
-2025-04-16 10:36:00,473 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '101': removed MS2 fragments 10 Da around precursor m/z. '9' fragments remaining (before: '9').
-2025-04-16 10:36:00,473 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '101': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '9' fragments remaining (before: '9').
-2025-04-16 10:36:00,474 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '129': removed MS2 fragments 10 Da around precursor m/z. '7' fragments remaining (before: '7').
-2025-04-16 10:36:00,474 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '129': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '7' fragments remaining (before: '7').
-2025-04-16 10:36:00,475 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '145': removed MS2 fragments 10 Da around precursor m/z. '53' fragments remaining (before: '53').
-2025-04-16 10:36:00,476 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '145': removed 'MS2 fragments with relative intensity lower than '0.01': 48'. '5' fragments remaining (before: '53').
-2025-04-16 10:36:00,476 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '95': removed MS2 fragments 10 Da around precursor m/z. '83' fragments remaining (before: '90').
-2025-04-16 10:36:00,477 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '95': removed 'MS2 fragments with relative intensity lower than '0.01': 66'. '17' fragments remaining (before: '83').
-2025-04-16 10:36:00,477 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '154': removed MS2 fragments 10 Da around precursor m/z. '11' fragments remaining (before: '11').
-2025-04-16 10:36:00,478 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '154': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '11' fragments remaining (before: '11').
-2025-04-16 10:36:00,478 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '108': removed MS2 fragments 10 Da around precursor m/z. '14' fragments remaining (before: '14').
-2025-04-16 10:36:00,479 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '108': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '14' fragments remaining (before: '14').
-2025-04-16 10:36:00,479 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '110': removed MS2 fragments 10 Da around precursor m/z. '10' fragments remaining (before: '11').
-2025-04-16 10:36:00,480 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '110': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '10' fragments remaining (before: '10').
-2025-04-16 10:36:00,480 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '102': removed MS2 fragments 10 Da around precursor m/z. '14' fragments remaining (before: '14').
-2025-04-16 10:36:00,481 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '102': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '14' fragments remaining (before: '14').
-2025-04-16 10:36:00,482 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '130': removed MS2 fragments 10 Da around precursor m/z. '4' fragments remaining (before: '5').
-2025-04-16 10:36:00,482 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '130': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '4' fragments remaining (before: '4').
-2025-04-16 10:36:00,483 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '107': removed MS2 fragments 10 Da around precursor m/z. '8' fragments remaining (before: '8').
-2025-04-16 10:36:00,483 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '107': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '8' fragments remaining (before: '8').
-2025-04-16 10:36:00,484 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '42': removed MS2 fragments 10 Da around precursor m/z. '54' fragments remaining (before: '54').
-2025-04-16 10:36:00,485 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '42': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '54' fragments remaining (before: '54').
-2025-04-16 10:36:00,486 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '109': removed MS2 fragments 10 Da around precursor m/z. '8' fragments remaining (before: '9').
-2025-04-16 10:36:00,487 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '109': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '8' fragments remaining (before: '8').
-2025-04-16 10:36:00,487 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '118': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '16').
-2025-04-16 10:36:00,488 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '118': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '15' fragments remaining (before: '15').
-2025-04-16 10:36:00,489 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '157': removed MS2 fragments 10 Da around precursor m/z. '72' fragments remaining (before: '77').
-2025-04-16 10:36:00,489 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '157': removed 'MS2 fragments with relative intensity lower than '0.01': 63'. '9' fragments remaining (before: '72').
-2025-04-16 10:36:00,490 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '57': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '17').
-2025-04-16 10:36:00,490 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '57': removed 'MS2 fragments with relative intensity lower than '0.01': 4'. '11' fragments remaining (before: '15').
-2025-04-16 10:36:00,491 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '158': removed MS2 fragments 10 Da around precursor m/z. '68' fragments remaining (before: '73').
-2025-04-16 10:36:00,491 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '158': removed 'MS2 fragments with relative intensity lower than '0.01': 58'. '10' fragments remaining (before: '68').
-2025-04-16 10:36:00,492 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '52': removed MS2 fragments 10 Da around precursor m/z. '39' fragments remaining (before: '46').
-2025-04-16 10:36:00,492 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '52': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '39' fragments remaining (before: '39').
-2025-04-16 10:36:00,493 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '123': removed MS2 fragments 10 Da around precursor m/z. '38' fragments remaining (before: '40').
-2025-04-16 10:36:00,494 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '123': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '38' fragments remaining (before: '38').
-2025-04-16 10:36:00,495 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '120': removed MS2 fragments 10 Da around precursor m/z. '10' fragments remaining (before: '11').
-2025-04-16 10:36:00,496 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '120': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '10' fragments remaining (before: '10').
-2025-04-16 10:36:00,496 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '8': removed MS2 fragments 10 Da around precursor m/z. '254' fragments remaining (before: '265').
-2025-04-16 10:36:00,497 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '8': removed 'MS2 fragments with relative intensity lower than '0.01': 119'. '135' fragments remaining (before: '254').
-2025-04-16 10:36:00,498 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '121': removed MS2 fragments 10 Da around precursor m/z. '84' fragments remaining (before: '85').
-2025-04-16 10:36:00,498 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '121': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '84' fragments remaining (before: '84').
-2025-04-16 10:36:00,499 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '49': removed MS2 fragments 10 Da around precursor m/z. '22' fragments remaining (before: '23').
-2025-04-16 10:36:00,499 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '49': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '22' fragments remaining (before: '22').
-2025-04-16 10:36:00,500 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '51': removed MS2 fragments 10 Da around precursor m/z. '43' fragments remaining (before: '45').
-2025-04-16 10:36:00,500 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '51': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '43' fragments remaining (before: '43').
-2025-04-16 10:36:00,501 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '150': removed MS2 fragments 10 Da around precursor m/z. '27' fragments remaining (before: '31').
-2025-04-16 10:36:00,501 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '150': removed 'MS2 fragments with relative intensity lower than '0.01': 17'. '10' fragments remaining (before: '27').
-2025-04-16 10:36:00,502 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '153': removed MS2 fragments 10 Da around precursor m/z. '213' fragments remaining (before: '234').
-2025-04-16 10:36:00,502 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '153': removed 'MS2 fragments with relative intensity lower than '0.01': 205'. '8' fragments remaining (before: '213').
-2025-04-16 10:36:00,504 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '155': removed MS2 fragments 10 Da around precursor m/z. '213' fragments remaining (before: '234').
-2025-04-16 10:36:00,505 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '155': removed 'MS2 fragments with relative intensity lower than '0.01': 205'. '8' fragments remaining (before: '213').
-2025-04-16 10:36:00,506 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '159': removed MS2 fragments 10 Da around precursor m/z. '54' fragments remaining (before: '62').
-2025-04-16 10:36:00,506 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '159': removed 'MS2 fragments with relative intensity lower than '0.01': 42'. '12' fragments remaining (before: '54').
-2025-04-16 10:36:00,507 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '62': removed MS2 fragments 10 Da around precursor m/z. '23' fragments remaining (before: '24').
-2025-04-16 10:36:00,508 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '62': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '23' fragments remaining (before: '23').
-2025-04-16 10:36:00,508 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '152': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '16').
-2025-04-16 10:36:00,509 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '152': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '15' fragments remaining (before: '15').
-2025-04-16 10:36:00,509 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '35': removed MS2 fragments 10 Da around precursor m/z. '89' fragments remaining (before: '92').
-2025-04-16 10:36:00,510 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '35': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '89' fragments remaining (before: '89').
-2025-04-16 10:36:00,511 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '127': removed MS2 fragments 10 Da around precursor m/z. '99' fragments remaining (before: '100').
-2025-04-16 10:36:00,511 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '127': removed 'MS2 fragments with relative intensity lower than '0.01': 23'. '76' fragments remaining (before: '99').
-2025-04-16 10:36:00,512 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '71': removed MS2 fragments 10 Da around precursor m/z. '143' fragments remaining (before: '148').
-2025-04-16 10:36:00,512 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '71': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '143' fragments remaining (before: '143').
-2025-04-16 10:36:00,513 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '69': removed MS2 fragments 10 Da around precursor m/z. '84' fragments remaining (before: '91').
-2025-04-16 10:36:00,513 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '69': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '84' fragments remaining (before: '84').
-2025-04-16 10:36:00,514 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '70': removed MS2 fragments 10 Da around precursor m/z. '236' fragments remaining (before: '257').
-2025-04-16 10:36:00,515 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '70': removed 'MS2 fragments with relative intensity lower than '0.01': 207'. '29' fragments remaining (before: '236').
-2025-04-16 10:36:00,516 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '14': removed MS2 fragments 10 Da around precursor m/z. '182' fragments remaining (before: '200').
-2025-04-16 10:36:00,516 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '14': removed 'MS2 fragments with relative intensity lower than '0.01': 150'. '32' fragments remaining (before: '182').
-2025-04-16 10:36:00,517 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '12': removed MS2 fragments 10 Da around precursor m/z. '598' fragments remaining (before: '639').
-2025-04-16 10:36:00,518 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '12': removed 'MS2 fragments with relative intensity lower than '0.01': 563'. '35' fragments remaining (before: '598').
-2025-04-16 10:36:00,518 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '91': removed MS2 fragments 10 Da around precursor m/z. '93' fragments remaining (before: '98').
-2025-04-16 10:36:00,519 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '91': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '93' fragments remaining (before: '93').
-2025-04-16 10:36:00,520 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '92': removed MS2 fragments 10 Da around precursor m/z. '93' fragments remaining (before: '98').
-2025-04-16 10:36:00,520 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '92': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '93' fragments remaining (before: '93').
-2025-04-16 10:36:00,522 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '15': removed MS2 fragments 10 Da around precursor m/z. '412' fragments remaining (before: '439').
-2025-04-16 10:36:00,523 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '15': removed 'MS2 fragments with relative intensity lower than '0.01': 380'. '32' fragments remaining (before: '412').
-2025-04-16 10:36:00,525 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '93': removed MS2 fragments 10 Da around precursor m/z. '57' fragments remaining (before: '61').
-2025-04-16 10:36:00,525 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '93': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '57' fragments remaining (before: '57').
-2025-04-16 10:36:00,526 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '74': removed MS2 fragments 10 Da around precursor m/z. '107' fragments remaining (before: '112').
-2025-04-16 10:36:00,527 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '74': removed 'MS2 fragments with relative intensity lower than '0.01': 63'. '44' fragments remaining (before: '107').
-2025-04-16 10:36:00,527 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '96': removed MS2 fragments 10 Da around precursor m/z. '146' fragments remaining (before: '155').
-2025-04-16 10:36:00,528 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '96': removed 'MS2 fragments with relative intensity lower than '0.01': 71'. '75' fragments remaining (before: '146').
-2025-04-16 10:36:00,528 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '68': removed MS2 fragments 10 Da around precursor m/z. '131' fragments remaining (before: '137').
-2025-04-16 10:36:00,529 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '68': removed 'MS2 fragments with relative intensity lower than '0.01': 19'. '112' fragments remaining (before: '131').
-2025-04-16 10:36:00,530 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '151': removed MS2 fragments 10 Da around precursor m/z. '39' fragments remaining (before: '40').
-2025-04-16 10:36:00,530 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '151': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '39' fragments remaining (before: '39').
-2025-04-16 10:36:00,531 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '97': removed MS2 fragments 10 Da around precursor m/z. '141' fragments remaining (before: '145').
-2025-04-16 10:36:00,531 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '97': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '141' fragments remaining (before: '141').
-2025-04-16 10:36:00,532 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '113': removed MS2 fragments 10 Da around precursor m/z. '77' fragments remaining (before: '85').
-2025-04-16 10:36:00,532 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '113': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '77' fragments remaining (before: '77').
-2025-04-16 10:36:00,533 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '98': removed MS2 fragments 10 Da around precursor m/z. '62' fragments remaining (before: '65').
-2025-04-16 10:36:00,533 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '98': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '62' fragments remaining (before: '62').
-2025-04-16 10:36:00,534 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '112': removed MS2 fragments 10 Da around precursor m/z. '158' fragments remaining (before: '168').
-2025-04-16 10:36:00,534 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '112': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '158' fragments remaining (before: '158').
-2025-04-16 10:36:00,535 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '114': removed MS2 fragments 10 Da around precursor m/z. '44' fragments remaining (before: '48').
-2025-04-16 10:36:00,535 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '114': removed 'MS2 fragments with relative intensity lower than '0.01': 33'. '11' fragments remaining (before: '44').
-2025-04-16 10:36:00,536 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '78': removed MS2 fragments 10 Da around precursor m/z. '301' fragments remaining (before: '304').
-2025-04-16 10:36:00,537 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '78': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '301' fragments remaining (before: '301').
-2025-04-16 10:36:00,538 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '77': removed MS2 fragments 10 Da around precursor m/z. '137' fragments remaining (before: '138').
-2025-04-16 10:36:00,538 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '77': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '137' fragments remaining (before: '137').
-2025-04-16 10:36:00,540 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '79': removed MS2 fragments 10 Da around precursor m/z. '279' fragments remaining (before: '280').
-2025-04-16 10:36:00,540 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '79': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '279' fragments remaining (before: '279').
-2025-04-16 10:36:00,541 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '22': removed MS2 fragments 10 Da around precursor m/z. '205' fragments remaining (before: '205').
-2025-04-16 10:36:00,542 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '22': removed 'MS2 fragments with relative intensity lower than '0.01': 66'. '139' fragments remaining (before: '205').
-2025-04-16 10:36:00,543 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '76': removed MS2 fragments 10 Da around precursor m/z. '341' fragments remaining (before: '346').
-2025-04-16 10:36:00,543 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '76': removed 'MS2 fragments with relative intensity lower than '0.01': 27'. '314' fragments remaining (before: '341').
-2025-04-16 10:36:00,544 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '84': removed MS2 fragments 10 Da around precursor m/z. '330' fragments remaining (before: '333').
-2025-04-16 10:36:00,544 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '84': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '330' fragments remaining (before: '330').
-2025-04-16 10:36:00,546 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '83': removed MS2 fragments 10 Da around precursor m/z. '1424' fragments remaining (before: '1451').
-2025-04-16 10:36:00,547 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '83': removed 'MS2 fragments with relative intensity lower than '0.01': 1224'. '200' fragments remaining (before: '1424').
-2025-04-16 10:36:00,547 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '85': removed MS2 fragments 10 Da around precursor m/z. '179' fragments remaining (before: '180').
-2025-04-16 10:36:00,548 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '85': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '179' fragments remaining (before: '179').
-2025-04-16 10:36:00,549 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '105': removed MS2 fragments 10 Da around precursor m/z. '243' fragments remaining (before: '246').
-2025-04-16 10:36:00,549 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '105': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '243' fragments remaining (before: '243').
-2025-04-16 10:36:00,550 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '106': removed MS2 fragments 10 Da around precursor m/z. '381' fragments remaining (before: '386').
-2025-04-16 10:36:00,550 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '106': removed 'MS2 fragments with relative intensity lower than '0.01': 27'. '354' fragments remaining (before: '381').
-2025-04-16 10:36:00,551 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '21': removed MS2 fragments 10 Da around precursor m/z. '374' fragments remaining (before: '374').
-2025-04-16 10:36:00,552 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '21': removed 'MS2 fragments with relative intensity lower than '0.01': 270'. '104' fragments remaining (before: '374').
-2025-04-16 10:36:00,553 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '47': removed MS2 fragments 10 Da around precursor m/z. '175' fragments remaining (before: '175').
-2025-04-16 10:36:00,553 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '47': removed 'MS2 fragments with relative intensity lower than '0.01': 23'. '152' fragments remaining (before: '175').
-2025-04-16 10:36:00,554 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '20': removed MS2 fragments 10 Da around precursor m/z. '497' fragments remaining (before: '498').
-2025-04-16 10:36:00,555 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '20': removed 'MS2 fragments with relative intensity lower than '0.01': 404'. '93' fragments remaining (before: '497').
-2025-04-16 10:36:00,556 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '55': removed MS2 fragments 10 Da around precursor m/z. '172' fragments remaining (before: '172').
-2025-04-16 10:36:00,556 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '55': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '172' fragments remaining (before: '172').
-2025-04-16 10:36:00,557 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '18': removed MS2 fragments 10 Da around precursor m/z. '233' fragments remaining (before: '235').
-2025-04-16 10:36:00,558 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '18': removed 'MS2 fragments with relative intensity lower than '0.01': 40'. '193' fragments remaining (before: '233').
-2025-04-16 10:36:00,558 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '156': removed MS2 fragments 10 Da around precursor m/z. '123' fragments remaining (before: '127').
-2025-04-16 10:36:00,559 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '156': removed 'MS2 fragments with relative intensity lower than '0.01': 112'. '11' fragments remaining (before: '123').
-2025-04-16 10:36:00,560 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '41': removed MS2 fragments 10 Da around precursor m/z. '279' fragments remaining (before: '279').
-2025-04-16 10:36:00,560 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '41': removed 'MS2 fragments with relative intensity lower than '0.01': 130'. '149' fragments remaining (before: '279').
-2025-04-16 10:36:00,561 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '73': removed MS2 fragments 10 Da around precursor m/z. '122' fragments remaining (before: '123').
-2025-04-16 10:36:00,561 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '73': removed 'MS2 fragments with relative intensity lower than '0.01': 111'. '11' fragments remaining (before: '122').
-2025-04-16 10:36:00,563 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '39': removed MS2 fragments 10 Da around precursor m/z. '286' fragments remaining (before: '286').
-2025-04-16 10:36:00,563 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '39': removed 'MS2 fragments with relative intensity lower than '0.01': 158'. '128' fragments remaining (before: '286').
-2025-04-16 10:36:00,565 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '82': removed MS2 fragments 10 Da around precursor m/z. '309' fragments remaining (before: '318').
-2025-04-16 10:36:00,566 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '82': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '309' fragments remaining (before: '309').
-2025-04-16 10:36:00,566 - fermo_core - INFO - 'MgfParser': completed parsing of MS/MS data-containing file 'case_study_MSMS.mgf'
-2025-04-16 10:36:00,567 - fermo_core - INFO - 'MetadataFermoParser': started parsing fermo-style group metadata file.
-2025-04-16 10:36:00,570 - fermo_core - DEBUG - 'MetadataFermoParser': Samples marked as 'BLANK' detected. The following samples will not partake in group comparisons: D3_H3_mod.mzXML'
-2025-04-16 10:36:00,573 - fermo_core - INFO - 'MetadataFermoParser': completed parsing fermo-style group metadata file.
-2025-04-16 10:36:00,574 - fermo_core - INFO - 'PhenotypeParser': started parsing phenotype data file.
-2025-04-16 10:36:00,574 - fermo_core - INFO - 'PhenotypeParser': completed parsing phenotype data file.
-2025-04-16 10:36:00,574 - fermo_core - INFO - 'SpecLibMgfParser': started parsing of spectral library files 'spec_lib'
-2025-04-16 10:36:00,605 - fermo_core - INFO - 'SpecLibMgfParser': completed parsing of spectral library files 'spec_lib'
-2025-04-16 10:36:00,606 - fermo_core - INFO - 'GeneralParser': completed file parsing.
-2025-04-16 10:36:00,606 - fermo_core - INFO - 'AnalysisManager': started analysis steps.
-2025-04-16 10:36:00,606 - fermo_core - INFO - 'FeatureFilter': started filtering of molecular features.
-2025-04-16 10:36:00,606 - fermo_core - INFO - 'FeatureFilter': started filtering for relative intensity.
-2025-04-16 10:36:00,606 - fermo_core - INFO - 'FeatureFilter': completed filtering for relative intensity.
-2025-04-16 10:36:00,606 - fermo_core - INFO - 'FeatureFilter': started filtering for relative area.
-2025-04-16 10:36:00,607 - fermo_core - INFO - 'FeatureFilter': completed filtering for relative area.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '11' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '30' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '32' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '33' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '34' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '35' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '36' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '38' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '39' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '40' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '42' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '43' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '45' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,607 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '47' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '49' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '50' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '51' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '53' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '55' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '62' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '63' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '64' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '67' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '68' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '69' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '71' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '72' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '73' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '74' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '75' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '77' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '80' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '84' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '85' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '88' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '89' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '90' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '91' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '92' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '93' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '94' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '98' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,608 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '104' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '112' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '113' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '114' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '115' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '116' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '117' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '118' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '120' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '123' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '124' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '126' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '127' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '128' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '129' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '130' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '131' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '133' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '134' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '135' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '136' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '137' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '138' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '139' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '141' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '142' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '144' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '145' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '147' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '151' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '156' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '157' filtered from analysis run: outside filter settings.
-2025-04-16 10:36:00,609 - fermo_core - INFO - 'FeatureFilter': completed filtering of molecular features.
-2025-04-16 10:36:00,610 - fermo_core - INFO - 'BlankAssigner': started blank assignment.
-2025-04-16 10:36:00,610 - fermo_core - INFO - 'BlankAssigner': completed blank assignment.
-2025-04-16 10:36:00,611 - fermo_core - INFO - 'GroupAssigner': started group assignment.
-2025-04-16 10:36:00,611 - fermo_core - INFO - 'GroupAssigner': completed group assignment.
-2025-04-16 10:36:00,611 - fermo_core - INFO - 'GroupFactorAssigner': started group factor (fold) assignment.
-2025-04-16 10:36:00,613 - fermo_core - INFO - 'GroupFactorAssigner': completed group factor (fold) assignment.
-2025-04-16 10:36:00,613 - fermo_core - INFO - 'PhenotypeManager': started analysis steps.
-2025-04-16 10:36:00,613 - fermo_core - INFO - 'PhenotypeManager': started qualitative phenotype data analysis.
-2025-04-16 10:36:00,614 - fermo_core - INFO - 'PhenotypeManager': completed qualitative phenotype data analysis.
-2025-04-16 10:36:00,614 - fermo_core - INFO - 'PhenotypeManager': completed analysis steps.
-2025-04-16 10:36:00,614 - fermo_core - INFO - 'SimNetworksManager': started analysis steps.
-2025-04-16 10:36:00,614 - fermo_core - INFO - 'SimNetworksManager/ModCosineNetworker': started calculation
-2025-04-16 10:36:00,614 - fermo_core - DEBUG - 'SimNetworksManager': feature ID '2' filtered from spectral similarity networking: min. nr. of MS/MS fragments lower than required by parameter 'msms_min_frag_nr' ('4' < '5').
-2025-04-16 10:36:03,745 - fermo_core - INFO - 'SimNetworksManager/ModCosineNetworker': completed calculation
-2025-04-16 10:36:03,745 - fermo_core - INFO - 'SimNetworksManager/Ms2deepscoreNetworker': started calculation.
-2025-04-16 10:36:03,747 - fermo_core - DEBUG - 'SimNetworksManager': feature ID '2' filtered from spectral similarity networking: min. nr. of MS/MS fragments lower than required by parameter 'msms_min_frag_nr' ('4' < '5').
-2025-04-16 10:36:12,359 - fermo_core - INFO - 'SimNetworksManager/Ms2deepscoreNetworker': completed calculation
-2025-04-16 10:36:12,360 - fermo_core - INFO - 'SimNetworksManager': completed analysis steps.
-2025-04-16 10:36:12,360 - fermo_core - INFO - 'AnnotationManager': started analysis steps.
-2025-04-16 10:36:12,360 - fermo_core - INFO - 'AnnotationManager': started matching of features against a user-provided spectral library using the modified cosine algorithm.
-2025-04-16 10:36:12,362 - fermo_core - INFO - 'AnnotationManager/ModCosAnnotator': Started modified cosine library matching algorithm 
-2025-04-16 10:36:12,806 - fermo_core - INFO - 'AnnotationManager': completed matching of features against a user-provided spectral library using the modified cosine algorithm.
-2025-04-16 10:36:12,806 - fermo_core - INFO - 'AnnotationManager': started matching of features against a user-provided spectral library using the ms2deepscore algorithm.
-2025-04-16 10:36:13,427 - fermo_core - INFO - 'AnnotationManager/Ms2deepscoreAnnotator': Started ms2deepscore library matching 
-2025-04-16 10:36:19,138 - fermo_core - INFO - 'AnnotationManager': completed matching of features against a user-provided spectral library using the ms2deepscore algorithm.
-2025-04-16 10:36:19,138 - fermo_core - INFO - 'AnnotationManager': started feature adduct annotation.
-2025-04-16 10:36:19,138 - fermo_core - INFO - 'AnnotationManager/AdductAnnotator': positive ion mode detected. Attempt to annotate for positive ion mode adducts.
-2025-04-16 10:36:19,182 - fermo_core - INFO - 'AnnotationManager': completed feature adduct annotation.
-2025-04-16 10:36:19,182 - fermo_core - INFO - 'AnnotationManager': started feature neutral loss annotation.
-2025-04-16 10:36:19,188 - fermo_core - INFO - 'AnnotationManager/NeutralLossAnnotator': positive ion mode detected. Attempt to annotate for positive ion mode neutral losses.
-2025-04-16 10:36:23,908 - fermo_core - INFO - 'AnnotationManager': completed feature neutral loss annotation.
-2025-04-16 10:36:23,909 - fermo_core - INFO - 'AnnotationManager': started feature fragment annotation.
-2025-04-16 10:36:23,914 - fermo_core - INFO - 'AnnotationManager/FragmentAnnotator': positive ion mode detected. Attempt to annotate for positive ion mode fragments.
-2025-04-16 10:36:28,216 - fermo_core - INFO - 'AnnotationManager': completed feature fragment annotation.
-2025-04-16 10:36:28,216 - fermo_core - INFO - 'AnnotationManager': started annotation from existing Mzmine peaktable.
-2025-04-16 10:36:28,216 - fermo_core - INFO - 'MzmineAnnParser': Start analysis
-2025-04-16 10:36:28,228 - fermo_core - INFO - 'MzmineAnnParser': did not detect optional annotation columns '('ion_identities:ion_identities', 'spectral_db_matches:spectral_db_matches')' - SKIP
-2025-04-16 10:36:28,228 - fermo_core - INFO - 'AnnotationManager': completed annotation from existing Mzmine peaktable.
-2025-04-16 10:36:28,228 - fermo_core - INFO - 'AnnotationManager': started annotation from existing MS2Query results.
-2025-04-16 10:36:28,237 - fermo_core - INFO - 'AnnotationManager': completed annotation from existing MS2Query results.
-2025-04-16 10:36:28,237 - fermo_core - INFO - 'AnnotationManager': started antiSMASH KnownClusterBlast modified cosine annotation.
-2025-04-16 10:36:28,288 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c4' - SKIP
-2025-04-16 10:36:28,289 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000009.1_c1' - SKIP
-2025-04-16 10:36:28,328 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c5' - SKIP
-2025-04-16 10:36:28,342 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000003.1_c1' - SKIP
-2025-04-16 10:36:28,355 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c1' - SKIP
-2025-04-16 10:36:28,355 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c3' - SKIP
-2025-04-16 10:36:35,119 - fermo_core - INFO - 'AnnotationManager/ModCosAnnotator': Started modified cosine library matching algorithm 
-2025-04-16 10:36:35,576 - fermo_core - INFO - 'AnnotationManager': completed antiSMASH KnownClusterBlast modified cosine annotation.
-2025-04-16 10:36:35,576 - fermo_core - INFO - 'AnnotationManager': started antiSMASH KnownClusterBlast MS2DeepScore annotation.
-2025-04-16 10:36:35,623 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c4' - SKIP
-2025-04-16 10:36:35,624 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000009.1_c1' - SKIP
-2025-04-16 10:36:35,660 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c5' - SKIP
-2025-04-16 10:36:35,670 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000003.1_c1' - SKIP
-2025-04-16 10:36:35,684 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c1' - SKIP
-2025-04-16 10:36:35,684 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c3' - SKIP
-2025-04-16 10:36:42,974 - fermo_core - INFO - 'AnnotationManager/Ms2deepscoreAnnotator': Started ms2deepscore library matching 
-2025-04-16 10:36:49,027 - fermo_core - INFO - 'AnnotationManager': completed antiSMASH KnownClusterBlast MS2DeepScore annotation.
-2025-04-16 10:36:49,027 - fermo_core - INFO - 'AnnotationManager': completed analysis steps.
-2025-04-16 10:36:49,027 - fermo_core - INFO - 'ScoreAssigner': started score assignment.
-2025-04-16 10:36:49,029 - fermo_core - INFO - 'ScoreAssigner': completed score assignment.
-2025-04-16 10:36:49,029 - fermo_core - INFO - 'ChromTraceCalculator': started calculating pseudo-chromatogram traces.
-2025-04-16 10:36:49,030 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '1' in sample '5440_5439_mod.mzXML': 'rt_left_fwhm' '1.78' is < 'rt_begin' '1.79'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,030 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5432_5431_mod2.mzXML': 'rt_left_fwhm' '1.9899999999999998' is < 'rt_begin' '2.02'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,031 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5425_5426_mod.mzXML': 'rt_left_fwhm' '2.005' is < 'rt_begin' '2.01'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,031 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '2' in sample '5434_5433_mod.mzXML': 'rt_right_fwhm' '2.035' is > 'rt_end' '2.03'. Setting 'rt_right_fwhm' to 'rt_end'.
-2025-04-16 10:36:49,031 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5434_5433_mod.mzXML': 'rt_left_fwhm' '2.02' is < 'rt_begin' '2.03'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,031 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '44' in sample '5434_5433_mod.mzXML': 'rt_left_fwhm' '11.805' is < 'rt_begin' '11.81'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,031 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '13' in sample '5450_5449_mod.mzXML': 'rt_left_fwhm' '9.425' is < 'rt_begin' '9.47'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,032 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5444_5443_mod.mzXML': 'rt_left_fwhm' '2.0149999999999997' is < 'rt_begin' '2.05'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,032 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '46' in sample '5444_5443_mod.mzXML': 'rt_left_fwhm' '13.184999999999999' is < 'rt_begin' '13.22'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,033 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5452_5451_mod.mzXML': 'rt_left_fwhm' '1.9899999999999998' is < 'rt_begin' '2.03'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,034 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '106' in sample '5452_5451_mod.mzXML': 'rt_left_fwhm' '15.32' is < 'rt_begin' '15.38'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,034 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '110' in sample '5452_5451_mod.mzXML': 'rt_left_fwhm' '18.35' is < 'rt_begin' '18.36'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,034 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5446_5445_mod.mzXML': 'rt_left_fwhm' '2.005' is < 'rt_begin' '2.01'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,035 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '44' in sample '5456_5455_mod.mzXML': 'rt_left_fwhm' '11.8' is < 'rt_begin' '11.82'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,036 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5458_5457_mod.mzXML': 'rt_left_fwhm' '2.02' is < 'rt_begin' '2.03'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,036 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '65' in sample '5458_5457_mod.mzXML': 'rt_left_fwhm' '5.44' is < 'rt_begin' '5.45'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,036 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '148' in sample 'D3_H3_mod.mzXML': 'rt_left_fwhm' '12.58' is < 'rt_begin' '12.59'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,036 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '149' in sample 'D3_H3_mod.mzXML': 'rt_left_fwhm' '14.025' is < 'rt_begin' '14.03'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,037 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample 'D3_H3_mod.mzXML': 'rt_left_fwhm' '1.9500000000000002' is < 'rt_begin' '2.04'. Setting 'rt_left_fwhm' to 'rt_begin'.
-2025-04-16 10:36:49,037 - fermo_core - INFO - 'ChromTraceCalculator': completed calculating pseudo-chromatogram traces.
-2025-04-16 10:36:49,037 - fermo_core - INFO - 'AnalysisManager': completed analysis steps.
-2025-04-16 10:36:49,039 - fermo_core - DEBUG - 'ExportManager': started export of 'fermo.session.json'.
-2025-04-16 10:36:49,112 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/Development/fermo_core/example_data/results/out.fermo.session.json'.
-2025-04-16 10:36:49,112 - fermo_core - DEBUG - 'ExportManager': completed export of 'fermo.session.json'.
-2025-04-16 10:36:49,113 - fermo_core - DEBUG - 'ExportManager': started export of 'fermo.full.csv/fermo.abbrev.csv'.
-2025-04-16 10:36:49,167 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/Development/fermo_core/example_data/results/out.fermo.full.csv'.
-2025-04-16 10:36:49,167 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/Development/fermo_core/example_data/results/out.fermo.abbrev.csv'.
-2025-04-16 10:36:49,168 - fermo_core - DEBUG - 'ExportManager': completed export of 'fermo.full.csv/fermo.abbrev.csv'.
-2025-04-16 10:36:49,168 - fermo_core - DEBUG - 'ExportManager': started export of '.graphml'.
-2025-04-16 10:36:49,175 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/Development/fermo_core/example_data/results/out.fermo.modified_cosine.graphml'.
-2025-04-16 10:36:49,177 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/Development/fermo_core/example_data/results/out.fermo.ms2deepscore.graphml'.
-2025-04-16 10:36:49,177 - fermo_core - DEBUG - 'ExportManager': completed export of '.graphml'.
-2025-04-16 10:36:49,177 - fermo_core - DEBUG - 'ExportManager': started export of 'summary.txt'.
-2025-04-16 10:36:49,177 - fermo_core - DEBUG - 'SummaryWriter': Started summary: files
-2025-04-16 10:36:49,177 - fermo_core - DEBUG - 'SummaryWriter': Completed summary: files
-2025-04-16 10:36:49,178 - fermo_core - DEBUG - 'SummaryWriter': Started summary: analysis modules
-2025-04-16 10:36:49,178 - fermo_core - DEBUG - 'SummaryWriter': Completed summary: analysis modules
-2025-04-16 10:36:49,178 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/Development/fermo_core/example_data/results/out.fermo.summary.txt'.
-2025-04-16 10:36:49,178 - fermo_core - DEBUG - 'ExportManager': completed export of 'summary.txt'.
-2025-04-16 10:36:49,178 - fermo_core - INFO - 'main': completed all steps - DONE
+2025-04-16 13:53:36,132 - fermo_core - INFO - Started 'fermo_core' v'0.6.3' as CLI.
+2025-04-16 13:53:36,132 - fermo_core - DEBUG - Python version: 3.11.9; System: Linux; System version: #59~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Mar 19 17:07:41 UTC 2;System architecture: 3.11.9
+2025-04-16 13:53:36,137 - fermo_core - INFO - 'ParameterManager': started assignment of user-provided parameters.
+2025-04-16 13:53:36,186 - fermo_core - INFO - 'PeaktableParameters': params validated and assigned.
+2025-04-16 13:53:36,188 - fermo_core - INFO - 'MsmsParameters': params validated and assigned.
+2025-04-16 13:53:36,198 - fermo_core - INFO - 'PhenotypeParameters': params validated and assigned.
+2025-04-16 13:53:36,205 - fermo_core - INFO - 'GroupMetadataParameters': params validated and assigned.
+2025-04-16 13:53:36,206 - fermo_core - INFO - 'SpecLibParameters': params validated and assigned.
+2025-04-16 13:53:36,216 - fermo_core - INFO - 'MS2QueryResultsParameters': params validated and assigned.
+2025-04-16 13:53:36,216 - fermo_core - INFO - 'AsResultsParameters': params validated and assigned.
+2025-04-16 13:53:36,217 - fermo_core - INFO - 'AdductAnnotationParameters': params validated and assigned.
+2025-04-16 13:53:36,217 - fermo_core - INFO - 'NeutralLossParameters': params validated and assigned.
+2025-04-16 13:53:36,217 - fermo_core - INFO - 'FragmentAnnParameters': params validated and assigned.
+2025-04-16 13:53:36,217 - fermo_core - INFO - 'SpecSimNetworkCosineParameters': params validated and assigned.
+2025-04-16 13:53:36,217 - fermo_core - INFO - 'SpecSimNetworkDeepscoreParameters': params validated and assigned.
+2025-04-16 13:53:36,218 - fermo_core - INFO - 'FeatureFilteringParameters': params validated and assigned.
+2025-04-16 13:53:36,218 - fermo_core - INFO - 'BlankAssignmentParameters': params validated and assigned.
+2025-04-16 13:53:36,218 - fermo_core - INFO - 'GroupFactAssignmentParameters': params validated and assigned.
+2025-04-16 13:53:36,218 - fermo_core - INFO - 'PhenoQualAssgnParameters': params validated and assigned.
+2025-04-16 13:53:36,218 - fermo_core - INFO - 'PhenoQuantPercentAssgnParameters': params validated and assigned.
+2025-04-16 13:53:36,218 - fermo_core - INFO - 'PhenoQuantConcAssgnParameters': params validated and assigned.
+2025-04-16 13:53:36,218 - fermo_core - INFO - 'SpectralLibMatchingCosineParameters': params validated and assigned.
+2025-04-16 13:53:36,218 - fermo_core - INFO - 'SpectralLibMatchingDeepscoreParameters': params validated and assigned.
+2025-04-16 13:53:36,218 - fermo_core - INFO - 'AsKcbCosineMatchingParameters': params validated and assigned.
+2025-04-16 13:53:36,218 - fermo_core - INFO - 'AsKcbDeepscoreMatchingParameters': params validated and assigned.
+2025-04-16 13:53:36,219 - fermo_core - INFO - 'ParameterManager': completed assignment of user-provided parameters.
+2025-04-16 13:53:36,219 - fermo_core - INFO - 'GeneralParser': started file parsing.
+2025-04-16 13:53:36,219 - fermo_core - INFO - 'PeakMzmine3Parser': started parsing MZmine3-style peaktable file 'case_study_peak_table_quant_full.csv'
+2025-04-16 13:53:36,454 - fermo_core - INFO - 'PeakMzmine3Parser': completed parsing MZmine3-style peaktable file 'case_study_peak_table_quant_full.csv'
+2025-04-16 13:53:36,454 - fermo_core - INFO - 'MgfParser': started parsing of MS/MS data-containing file 'case_study_MSMS.mgf'
+2025-04-16 13:53:36,456 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '13': removed MS2 fragments 10 Da around precursor m/z. '1178' fragments remaining (before: '1226').
+2025-04-16 13:53:36,457 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '13': removed 'MS2 fragments with relative intensity lower than '0.01': 1140'. '38' fragments remaining (before: '1178').
+2025-04-16 13:53:36,458 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '126': removed MS2 fragments 10 Da around precursor m/z. '0' fragments remaining (before: '1').
+2025-04-16 13:53:36,458 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '126': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '0' fragments remaining (before: '0').
+2025-04-16 13:53:36,458 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '139': removed MS2 fragments 10 Da around precursor m/z. '9' fragments remaining (before: '10').
+2025-04-16 13:53:36,459 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '139': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '9' fragments remaining (before: '9').
+2025-04-16 13:53:36,459 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '10': removed MS2 fragments 10 Da around precursor m/z. '36' fragments remaining (before: '39').
+2025-04-16 13:53:36,460 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '10': removed 'MS2 fragments with relative intensity lower than '0.01': 20'. '16' fragments remaining (before: '36').
+2025-04-16 13:53:36,460 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '115': removed MS2 fragments 10 Da around precursor m/z. '5' fragments remaining (before: '7').
+2025-04-16 13:53:36,461 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '115': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '5' fragments remaining (before: '5').
+2025-04-16 13:53:36,461 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '11': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '17').
+2025-04-16 13:53:36,462 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '11': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '15' fragments remaining (before: '15').
+2025-04-16 13:53:36,462 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '135': removed MS2 fragments 10 Da around precursor m/z. '2' fragments remaining (before: '4').
+2025-04-16 13:53:36,462 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '135': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '2' fragments remaining (before: '2').
+2025-04-16 13:53:36,463 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '128': removed MS2 fragments 10 Da around precursor m/z. '13' fragments remaining (before: '18').
+2025-04-16 13:53:36,463 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '128': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '13' fragments remaining (before: '13').
+2025-04-16 13:53:36,464 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '66': removed MS2 fragments 10 Da around precursor m/z. '124' fragments remaining (before: '134').
+2025-04-16 13:53:36,464 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '66': removed 'MS2 fragments with relative intensity lower than '0.01': 117'. '7' fragments remaining (before: '124').
+2025-04-16 13:53:36,465 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '104': removed MS2 fragments 10 Da around precursor m/z. '25' fragments remaining (before: '29').
+2025-04-16 13:53:36,465 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '104': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '25' fragments remaining (before: '25').
+2025-04-16 13:53:36,466 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '34': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '17').
+2025-04-16 13:53:36,466 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '34': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '15' fragments remaining (before: '15').
+2025-04-16 13:53:36,467 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '36': removed MS2 fragments 10 Da around precursor m/z. '7' fragments remaining (before: '7').
+2025-04-16 13:53:36,467 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '36': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '7' fragments remaining (before: '7').
+2025-04-16 13:53:36,468 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '37': removed MS2 fragments 10 Da around precursor m/z. '11' fragments remaining (before: '13').
+2025-04-16 13:53:36,468 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '37': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '11' fragments remaining (before: '11').
+2025-04-16 13:53:36,469 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '33': removed MS2 fragments 10 Da around precursor m/z. '10' fragments remaining (before: '11').
+2025-04-16 13:53:36,469 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '33': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '10' fragments remaining (before: '10').
+2025-04-16 13:53:36,471 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '3': removed MS2 fragments 10 Da around precursor m/z. '19' fragments remaining (before: '21').
+2025-04-16 13:53:36,472 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '3': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '19' fragments remaining (before: '19').
+2025-04-16 13:53:36,473 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '64': removed MS2 fragments 10 Da around precursor m/z. '20' fragments remaining (before: '23').
+2025-04-16 13:53:36,474 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '64': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '20' fragments remaining (before: '20').
+2025-04-16 13:53:36,475 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '141': removed MS2 fragments 10 Da around precursor m/z. '19' fragments remaining (before: '22').
+2025-04-16 13:53:36,476 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '141': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '19' fragments remaining (before: '19').
+2025-04-16 13:53:36,477 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '16': removed MS2 fragments 10 Da around precursor m/z. '110' fragments remaining (before: '129').
+2025-04-16 13:53:36,478 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '16': removed 'MS2 fragments with relative intensity lower than '0.01': 70'. '40' fragments remaining (before: '110').
+2025-04-16 13:53:36,479 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '4': removed MS2 fragments 10 Da around precursor m/z. '33' fragments remaining (before: '34').
+2025-04-16 13:53:36,479 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '4': removed 'MS2 fragments with relative intensity lower than '0.01': 1'. '32' fragments remaining (before: '33').
+2025-04-16 13:53:36,480 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '6': removed MS2 fragments 10 Da around precursor m/z. '33' fragments remaining (before: '34').
+2025-04-16 13:53:36,480 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '6': removed 'MS2 fragments with relative intensity lower than '0.01': 1'. '32' fragments remaining (before: '33').
+2025-04-16 13:53:36,481 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '137': removed MS2 fragments 10 Da around precursor m/z. '16' fragments remaining (before: '17').
+2025-04-16 13:53:36,481 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '137': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '16' fragments remaining (before: '16').
+2025-04-16 13:53:36,482 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '1': removed MS2 fragments 10 Da around precursor m/z. '10' fragments remaining (before: '11').
+2025-04-16 13:53:36,482 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '1': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '10' fragments remaining (before: '10').
+2025-04-16 13:53:36,483 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '46': removed MS2 fragments 10 Da around precursor m/z. '47' fragments remaining (before: '55').
+2025-04-16 13:53:36,483 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '46': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '47' fragments remaining (before: '47').
+2025-04-16 13:53:36,484 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '142': removed MS2 fragments 10 Da around precursor m/z. '12' fragments remaining (before: '15').
+2025-04-16 13:53:36,484 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '142': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '12' fragments remaining (before: '12').
+2025-04-16 13:53:36,485 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '19': removed MS2 fragments 10 Da around precursor m/z. '84' fragments remaining (before: '99').
+2025-04-16 13:53:36,485 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '19': removed 'MS2 fragments with relative intensity lower than '0.01': 4'. '80' fragments remaining (before: '84').
+2025-04-16 13:53:36,486 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '63': removed MS2 fragments 10 Da around precursor m/z. '24' fragments remaining (before: '29').
+2025-04-16 13:53:36,486 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '63': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '24' fragments remaining (before: '24').
+2025-04-16 13:53:36,487 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '146': removed MS2 fragments 10 Da around precursor m/z. '73' fragments remaining (before: '96').
+2025-04-16 13:53:36,487 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '146': removed 'MS2 fragments with relative intensity lower than '0.01': 30'. '43' fragments remaining (before: '73').
+2025-04-16 13:53:36,488 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '44': removed MS2 fragments 10 Da around precursor m/z. '13' fragments remaining (before: '18').
+2025-04-16 13:53:36,488 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '44': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '13' fragments remaining (before: '13').
+2025-04-16 13:53:36,489 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '136': removed MS2 fragments 10 Da around precursor m/z. '53' fragments remaining (before: '59').
+2025-04-16 13:53:36,489 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '136': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '53' fragments remaining (before: '53').
+2025-04-16 13:53:36,490 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '43': removed MS2 fragments 10 Da around precursor m/z. '22' fragments remaining (before: '23').
+2025-04-16 13:53:36,490 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '43': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '22' fragments remaining (before: '22').
+2025-04-16 13:53:36,491 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '2': removed MS2 fragments 10 Da around precursor m/z. '4' fragments remaining (before: '5').
+2025-04-16 13:53:36,491 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '2': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '4' fragments remaining (before: '4').
+2025-04-16 13:53:36,492 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '100': removed MS2 fragments 10 Da around precursor m/z. '47' fragments remaining (before: '53').
+2025-04-16 13:53:36,492 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '100': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '47' fragments remaining (before: '47').
+2025-04-16 13:53:36,493 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '17': removed MS2 fragments 10 Da around precursor m/z. '55' fragments remaining (before: '61').
+2025-04-16 13:53:36,493 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '17': removed 'MS2 fragments with relative intensity lower than '0.01': 34'. '21' fragments remaining (before: '55').
+2025-04-16 13:53:36,494 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '56': removed MS2 fragments 10 Da around precursor m/z. '47' fragments remaining (before: '49').
+2025-04-16 13:53:36,494 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '56': removed 'MS2 fragments with relative intensity lower than '0.01': 34'. '13' fragments remaining (before: '47').
+2025-04-16 13:53:36,495 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '7': removed MS2 fragments 10 Da around precursor m/z. '43' fragments remaining (before: '45').
+2025-04-16 13:53:36,495 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '7': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '43' fragments remaining (before: '43').
+2025-04-16 13:53:36,496 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '72': removed MS2 fragments 10 Da around precursor m/z. '7' fragments remaining (before: '8').
+2025-04-16 13:53:36,496 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '72': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '7' fragments remaining (before: '7').
+2025-04-16 13:53:36,496 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '30': removed MS2 fragments 10 Da around precursor m/z. '5' fragments remaining (before: '6').
+2025-04-16 13:53:36,497 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '30': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '5' fragments remaining (before: '5').
+2025-04-16 13:53:36,497 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '148': removed MS2 fragments 10 Da around precursor m/z. '12' fragments remaining (before: '18').
+2025-04-16 13:53:36,498 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '148': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '12' fragments remaining (before: '12').
+2025-04-16 13:53:36,498 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '53': removed MS2 fragments 10 Da around precursor m/z. '22' fragments remaining (before: '22').
+2025-04-16 13:53:36,499 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '53': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '22' fragments remaining (before: '22').
+2025-04-16 13:53:36,499 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '54': removed MS2 fragments 10 Da around precursor m/z. '22' fragments remaining (before: '22').
+2025-04-16 13:53:36,500 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '54': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '22' fragments remaining (before: '22').
+2025-04-16 13:53:36,500 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '138': removed MS2 fragments 10 Da around precursor m/z. '19' fragments remaining (before: '20').
+2025-04-16 13:53:36,500 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '138': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '19' fragments remaining (before: '19').
+2025-04-16 13:53:36,501 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '90': removed MS2 fragments 10 Da around precursor m/z. '32' fragments remaining (before: '37').
+2025-04-16 13:53:36,501 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '90': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '32' fragments remaining (before: '32').
+2025-04-16 13:53:36,502 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '50': removed MS2 fragments 10 Da around precursor m/z. '17' fragments remaining (before: '18').
+2025-04-16 13:53:36,502 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '50': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '17' fragments remaining (before: '17').
+2025-04-16 13:53:36,503 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '23': removed MS2 fragments 10 Da around precursor m/z. '6' fragments remaining (before: '8').
+2025-04-16 13:53:36,503 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '23': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '6' fragments remaining (before: '6').
+2025-04-16 13:53:36,504 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '75': removed MS2 fragments 10 Da around precursor m/z. '48' fragments remaining (before: '51').
+2025-04-16 13:53:36,504 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '75': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '48' fragments remaining (before: '48').
+2025-04-16 13:53:36,505 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '147': removed MS2 fragments 10 Da around precursor m/z. '17' fragments remaining (before: '20').
+2025-04-16 13:53:36,505 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '147': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '17' fragments remaining (before: '17').
+2025-04-16 13:53:36,505 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '149': removed MS2 fragments 10 Da around precursor m/z. '21' fragments remaining (before: '26').
+2025-04-16 13:53:36,506 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '149': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '21' fragments remaining (before: '21').
+2025-04-16 13:53:36,506 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '116': removed MS2 fragments 10 Da around precursor m/z. '43' fragments remaining (before: '45').
+2025-04-16 13:53:36,507 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '116': removed 'MS2 fragments with relative intensity lower than '0.01': 4'. '39' fragments remaining (before: '43').
+2025-04-16 13:53:36,507 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '40': removed MS2 fragments 10 Da around precursor m/z. '40' fragments remaining (before: '42').
+2025-04-16 13:53:36,508 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '40': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '40' fragments remaining (before: '40').
+2025-04-16 13:53:36,508 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '124': removed MS2 fragments 10 Da around precursor m/z. '142' fragments remaining (before: '151').
+2025-04-16 13:53:36,509 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '124': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '142' fragments remaining (before: '142').
+2025-04-16 13:53:36,509 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '9': removed MS2 fragments 10 Da around precursor m/z. '168' fragments remaining (before: '177').
+2025-04-16 13:53:36,510 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '9': removed 'MS2 fragments with relative intensity lower than '0.01': 160'. '8' fragments remaining (before: '168').
+2025-04-16 13:53:36,510 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '31': removed MS2 fragments 10 Da around precursor m/z. '19' fragments remaining (before: '22').
+2025-04-16 13:53:36,511 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '31': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '19' fragments remaining (before: '19').
+2025-04-16 13:53:36,511 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '103': removed MS2 fragments 10 Da around precursor m/z. '68' fragments remaining (before: '72').
+2025-04-16 13:53:36,512 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '103': removed 'MS2 fragments with relative intensity lower than '0.01': 52'. '16' fragments remaining (before: '68').
+2025-04-16 13:53:36,512 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '32': removed MS2 fragments 10 Da around precursor m/z. '12' fragments remaining (before: '15').
+2025-04-16 13:53:36,513 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '32': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '12' fragments remaining (before: '12').
+2025-04-16 13:53:36,513 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '67': removed MS2 fragments 10 Da around precursor m/z. '58' fragments remaining (before: '62').
+2025-04-16 13:53:36,514 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '67': removed 'MS2 fragments with relative intensity lower than '0.01': 30'. '28' fragments remaining (before: '58').
+2025-04-16 13:53:36,514 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '38': removed MS2 fragments 10 Da around precursor m/z. '58' fragments remaining (before: '59').
+2025-04-16 13:53:36,515 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '38': removed 'MS2 fragments with relative intensity lower than '0.01': 19'. '39' fragments remaining (before: '58').
+2025-04-16 13:53:36,515 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '122': removed MS2 fragments 10 Da around precursor m/z. '51' fragments remaining (before: '51').
+2025-04-16 13:53:36,516 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '122': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '51' fragments remaining (before: '51').
+2025-04-16 13:53:36,516 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '48': removed MS2 fragments 10 Da around precursor m/z. '13' fragments remaining (before: '13').
+2025-04-16 13:53:36,516 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '48': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '13' fragments remaining (before: '13').
+2025-04-16 13:53:36,517 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '140': removed MS2 fragments 10 Da around precursor m/z. '210' fragments remaining (before: '214').
+2025-04-16 13:53:36,518 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '140': removed 'MS2 fragments with relative intensity lower than '0.01': 205'. '5' fragments remaining (before: '210').
+2025-04-16 13:53:36,518 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '65': removed MS2 fragments 10 Da around precursor m/z. '123' fragments remaining (before: '124').
+2025-04-16 13:53:36,519 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '65': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '123' fragments remaining (before: '123').
+2025-04-16 13:53:36,519 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '5': removed MS2 fragments 10 Da around precursor m/z. '123' fragments remaining (before: '124').
+2025-04-16 13:53:36,520 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '5': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '123' fragments remaining (before: '123').
+2025-04-16 13:53:36,520 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '133': removed MS2 fragments 10 Da around precursor m/z. '12' fragments remaining (before: '14').
+2025-04-16 13:53:36,521 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '133': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '12' fragments remaining (before: '12').
+2025-04-16 13:53:36,521 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '143': removed MS2 fragments 10 Da around precursor m/z. '155' fragments remaining (before: '157').
+2025-04-16 13:53:36,522 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '143': removed 'MS2 fragments with relative intensity lower than '0.01': 149'. '6' fragments remaining (before: '155').
+2025-04-16 13:53:36,522 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '131': removed MS2 fragments 10 Da around precursor m/z. '7' fragments remaining (before: '10').
+2025-04-16 13:53:36,522 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '131': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '7' fragments remaining (before: '7').
+2025-04-16 13:53:36,523 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '88': removed MS2 fragments 10 Da around precursor m/z. '121' fragments remaining (before: '124').
+2025-04-16 13:53:36,523 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '88': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '121' fragments remaining (before: '121').
+2025-04-16 13:53:36,524 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '45': removed MS2 fragments 10 Da around precursor m/z. '70' fragments remaining (before: '71').
+2025-04-16 13:53:36,524 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '45': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '70' fragments remaining (before: '70').
+2025-04-16 13:53:36,525 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '89': removed MS2 fragments 10 Da around precursor m/z. '111' fragments remaining (before: '115').
+2025-04-16 13:53:36,525 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '89': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '111' fragments remaining (before: '111').
+2025-04-16 13:53:36,526 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '134': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '15').
+2025-04-16 13:53:36,526 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '134': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '15' fragments remaining (before: '15').
+2025-04-16 13:53:36,527 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '132': removed MS2 fragments 10 Da around precursor m/z. '19' fragments remaining (before: '19').
+2025-04-16 13:53:36,527 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '132': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '19' fragments remaining (before: '19').
+2025-04-16 13:53:36,528 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '125': removed MS2 fragments 10 Da around precursor m/z. '81' fragments remaining (before: '83').
+2025-04-16 13:53:36,528 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '125': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '81' fragments remaining (before: '81').
+2025-04-16 13:53:36,529 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '144': removed MS2 fragments 10 Da around precursor m/z. '82' fragments remaining (before: '84').
+2025-04-16 13:53:36,529 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '144': removed 'MS2 fragments with relative intensity lower than '0.01': 78'. '4' fragments remaining (before: '82').
+2025-04-16 13:53:36,530 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '94': removed MS2 fragments 10 Da around precursor m/z. '33' fragments remaining (before: '38').
+2025-04-16 13:53:36,530 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '94': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '33' fragments remaining (before: '33').
+2025-04-16 13:53:36,531 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '101': removed MS2 fragments 10 Da around precursor m/z. '9' fragments remaining (before: '9').
+2025-04-16 13:53:36,531 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '101': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '9' fragments remaining (before: '9').
+2025-04-16 13:53:36,532 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '129': removed MS2 fragments 10 Da around precursor m/z. '7' fragments remaining (before: '7').
+2025-04-16 13:53:36,532 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '129': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '7' fragments remaining (before: '7').
+2025-04-16 13:53:36,533 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '145': removed MS2 fragments 10 Da around precursor m/z. '53' fragments remaining (before: '53').
+2025-04-16 13:53:36,533 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '145': removed 'MS2 fragments with relative intensity lower than '0.01': 48'. '5' fragments remaining (before: '53').
+2025-04-16 13:53:36,534 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '95': removed MS2 fragments 10 Da around precursor m/z. '83' fragments remaining (before: '90').
+2025-04-16 13:53:36,534 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '95': removed 'MS2 fragments with relative intensity lower than '0.01': 66'. '17' fragments remaining (before: '83').
+2025-04-16 13:53:36,534 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '154': removed MS2 fragments 10 Da around precursor m/z. '11' fragments remaining (before: '11').
+2025-04-16 13:53:36,535 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '154': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '11' fragments remaining (before: '11').
+2025-04-16 13:53:36,535 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '108': removed MS2 fragments 10 Da around precursor m/z. '14' fragments remaining (before: '14').
+2025-04-16 13:53:36,536 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '108': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '14' fragments remaining (before: '14').
+2025-04-16 13:53:36,536 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '110': removed MS2 fragments 10 Da around precursor m/z. '10' fragments remaining (before: '11').
+2025-04-16 13:53:36,537 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '110': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '10' fragments remaining (before: '10').
+2025-04-16 13:53:36,537 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '102': removed MS2 fragments 10 Da around precursor m/z. '14' fragments remaining (before: '14').
+2025-04-16 13:53:36,537 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '102': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '14' fragments remaining (before: '14').
+2025-04-16 13:53:36,538 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '130': removed MS2 fragments 10 Da around precursor m/z. '4' fragments remaining (before: '5').
+2025-04-16 13:53:36,538 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '130': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '4' fragments remaining (before: '4').
+2025-04-16 13:53:36,539 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '107': removed MS2 fragments 10 Da around precursor m/z. '8' fragments remaining (before: '8').
+2025-04-16 13:53:36,539 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '107': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '8' fragments remaining (before: '8').
+2025-04-16 13:53:36,540 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '42': removed MS2 fragments 10 Da around precursor m/z. '54' fragments remaining (before: '54').
+2025-04-16 13:53:36,540 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '42': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '54' fragments remaining (before: '54').
+2025-04-16 13:53:36,541 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '109': removed MS2 fragments 10 Da around precursor m/z. '8' fragments remaining (before: '9').
+2025-04-16 13:53:36,541 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '109': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '8' fragments remaining (before: '8').
+2025-04-16 13:53:36,542 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '118': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '16').
+2025-04-16 13:53:36,542 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '118': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '15' fragments remaining (before: '15').
+2025-04-16 13:53:36,543 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '157': removed MS2 fragments 10 Da around precursor m/z. '72' fragments remaining (before: '77').
+2025-04-16 13:53:36,543 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '157': removed 'MS2 fragments with relative intensity lower than '0.01': 63'. '9' fragments remaining (before: '72').
+2025-04-16 13:53:36,544 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '57': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '17').
+2025-04-16 13:53:36,544 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '57': removed 'MS2 fragments with relative intensity lower than '0.01': 4'. '11' fragments remaining (before: '15').
+2025-04-16 13:53:36,545 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '158': removed MS2 fragments 10 Da around precursor m/z. '68' fragments remaining (before: '73').
+2025-04-16 13:53:36,545 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '158': removed 'MS2 fragments with relative intensity lower than '0.01': 58'. '10' fragments remaining (before: '68').
+2025-04-16 13:53:36,545 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '52': removed MS2 fragments 10 Da around precursor m/z. '39' fragments remaining (before: '46').
+2025-04-16 13:53:36,546 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '52': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '39' fragments remaining (before: '39').
+2025-04-16 13:53:36,546 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '123': removed MS2 fragments 10 Da around precursor m/z. '38' fragments remaining (before: '40').
+2025-04-16 13:53:36,547 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '123': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '38' fragments remaining (before: '38').
+2025-04-16 13:53:36,547 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '120': removed MS2 fragments 10 Da around precursor m/z. '10' fragments remaining (before: '11').
+2025-04-16 13:53:36,548 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '120': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '10' fragments remaining (before: '10').
+2025-04-16 13:53:36,548 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '8': removed MS2 fragments 10 Da around precursor m/z. '254' fragments remaining (before: '265').
+2025-04-16 13:53:36,549 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '8': removed 'MS2 fragments with relative intensity lower than '0.01': 119'. '135' fragments remaining (before: '254').
+2025-04-16 13:53:36,549 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '121': removed MS2 fragments 10 Da around precursor m/z. '84' fragments remaining (before: '85').
+2025-04-16 13:53:36,550 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '121': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '84' fragments remaining (before: '84').
+2025-04-16 13:53:36,551 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '49': removed MS2 fragments 10 Da around precursor m/z. '22' fragments remaining (before: '23').
+2025-04-16 13:53:36,551 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '49': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '22' fragments remaining (before: '22').
+2025-04-16 13:53:36,552 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '51': removed MS2 fragments 10 Da around precursor m/z. '43' fragments remaining (before: '45').
+2025-04-16 13:53:36,552 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '51': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '43' fragments remaining (before: '43').
+2025-04-16 13:53:36,552 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '150': removed MS2 fragments 10 Da around precursor m/z. '27' fragments remaining (before: '31').
+2025-04-16 13:53:36,553 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '150': removed 'MS2 fragments with relative intensity lower than '0.01': 17'. '10' fragments remaining (before: '27').
+2025-04-16 13:53:36,554 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '153': removed MS2 fragments 10 Da around precursor m/z. '213' fragments remaining (before: '234').
+2025-04-16 13:53:36,554 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '153': removed 'MS2 fragments with relative intensity lower than '0.01': 205'. '8' fragments remaining (before: '213').
+2025-04-16 13:53:36,555 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '155': removed MS2 fragments 10 Da around precursor m/z. '213' fragments remaining (before: '234').
+2025-04-16 13:53:36,555 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '155': removed 'MS2 fragments with relative intensity lower than '0.01': 205'. '8' fragments remaining (before: '213').
+2025-04-16 13:53:36,556 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '159': removed MS2 fragments 10 Da around precursor m/z. '54' fragments remaining (before: '62').
+2025-04-16 13:53:36,556 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '159': removed 'MS2 fragments with relative intensity lower than '0.01': 42'. '12' fragments remaining (before: '54').
+2025-04-16 13:53:36,557 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '62': removed MS2 fragments 10 Da around precursor m/z. '23' fragments remaining (before: '24').
+2025-04-16 13:53:36,557 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '62': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '23' fragments remaining (before: '23').
+2025-04-16 13:53:36,558 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '152': removed MS2 fragments 10 Da around precursor m/z. '15' fragments remaining (before: '16').
+2025-04-16 13:53:36,558 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '152': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '15' fragments remaining (before: '15').
+2025-04-16 13:53:36,559 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '35': removed MS2 fragments 10 Da around precursor m/z. '89' fragments remaining (before: '92').
+2025-04-16 13:53:36,559 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '35': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '89' fragments remaining (before: '89').
+2025-04-16 13:53:36,560 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '127': removed MS2 fragments 10 Da around precursor m/z. '99' fragments remaining (before: '100').
+2025-04-16 13:53:36,560 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '127': removed 'MS2 fragments with relative intensity lower than '0.01': 23'. '76' fragments remaining (before: '99').
+2025-04-16 13:53:36,561 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '71': removed MS2 fragments 10 Da around precursor m/z. '143' fragments remaining (before: '148').
+2025-04-16 13:53:36,561 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '71': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '143' fragments remaining (before: '143').
+2025-04-16 13:53:36,562 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '69': removed MS2 fragments 10 Da around precursor m/z. '84' fragments remaining (before: '91').
+2025-04-16 13:53:36,562 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '69': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '84' fragments remaining (before: '84').
+2025-04-16 13:53:36,563 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '70': removed MS2 fragments 10 Da around precursor m/z. '236' fragments remaining (before: '257').
+2025-04-16 13:53:36,563 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '70': removed 'MS2 fragments with relative intensity lower than '0.01': 207'. '29' fragments remaining (before: '236').
+2025-04-16 13:53:36,564 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '14': removed MS2 fragments 10 Da around precursor m/z. '182' fragments remaining (before: '200').
+2025-04-16 13:53:36,564 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '14': removed 'MS2 fragments with relative intensity lower than '0.01': 150'. '32' fragments remaining (before: '182').
+2025-04-16 13:53:36,565 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '12': removed MS2 fragments 10 Da around precursor m/z. '598' fragments remaining (before: '639').
+2025-04-16 13:53:36,566 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '12': removed 'MS2 fragments with relative intensity lower than '0.01': 563'. '35' fragments remaining (before: '598').
+2025-04-16 13:53:36,566 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '91': removed MS2 fragments 10 Da around precursor m/z. '93' fragments remaining (before: '98').
+2025-04-16 13:53:36,567 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '91': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '93' fragments remaining (before: '93').
+2025-04-16 13:53:36,567 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '92': removed MS2 fragments 10 Da around precursor m/z. '93' fragments remaining (before: '98').
+2025-04-16 13:53:36,568 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '92': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '93' fragments remaining (before: '93').
+2025-04-16 13:53:36,569 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '15': removed MS2 fragments 10 Da around precursor m/z. '412' fragments remaining (before: '439').
+2025-04-16 13:53:36,569 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '15': removed 'MS2 fragments with relative intensity lower than '0.01': 380'. '32' fragments remaining (before: '412').
+2025-04-16 13:53:36,570 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '93': removed MS2 fragments 10 Da around precursor m/z. '57' fragments remaining (before: '61').
+2025-04-16 13:53:36,570 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '93': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '57' fragments remaining (before: '57').
+2025-04-16 13:53:36,571 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '74': removed MS2 fragments 10 Da around precursor m/z. '107' fragments remaining (before: '112').
+2025-04-16 13:53:36,571 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '74': removed 'MS2 fragments with relative intensity lower than '0.01': 63'. '44' fragments remaining (before: '107').
+2025-04-16 13:53:36,572 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '96': removed MS2 fragments 10 Da around precursor m/z. '146' fragments remaining (before: '155').
+2025-04-16 13:53:36,572 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '96': removed 'MS2 fragments with relative intensity lower than '0.01': 71'. '75' fragments remaining (before: '146').
+2025-04-16 13:53:36,573 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '68': removed MS2 fragments 10 Da around precursor m/z. '131' fragments remaining (before: '137').
+2025-04-16 13:53:36,573 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '68': removed 'MS2 fragments with relative intensity lower than '0.01': 19'. '112' fragments remaining (before: '131').
+2025-04-16 13:53:36,574 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '151': removed MS2 fragments 10 Da around precursor m/z. '39' fragments remaining (before: '40').
+2025-04-16 13:53:36,574 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '151': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '39' fragments remaining (before: '39').
+2025-04-16 13:53:36,575 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '97': removed MS2 fragments 10 Da around precursor m/z. '141' fragments remaining (before: '145').
+2025-04-16 13:53:36,575 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '97': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '141' fragments remaining (before: '141').
+2025-04-16 13:53:36,576 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '113': removed MS2 fragments 10 Da around precursor m/z. '77' fragments remaining (before: '85').
+2025-04-16 13:53:36,576 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '113': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '77' fragments remaining (before: '77').
+2025-04-16 13:53:36,577 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '98': removed MS2 fragments 10 Da around precursor m/z. '62' fragments remaining (before: '65').
+2025-04-16 13:53:36,577 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '98': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '62' fragments remaining (before: '62').
+2025-04-16 13:53:36,578 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '112': removed MS2 fragments 10 Da around precursor m/z. '158' fragments remaining (before: '168').
+2025-04-16 13:53:36,578 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '112': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '158' fragments remaining (before: '158').
+2025-04-16 13:53:36,579 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '114': removed MS2 fragments 10 Da around precursor m/z. '44' fragments remaining (before: '48').
+2025-04-16 13:53:36,579 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '114': removed 'MS2 fragments with relative intensity lower than '0.01': 33'. '11' fragments remaining (before: '44').
+2025-04-16 13:53:36,580 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '78': removed MS2 fragments 10 Da around precursor m/z. '301' fragments remaining (before: '304').
+2025-04-16 13:53:36,581 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '78': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '301' fragments remaining (before: '301').
+2025-04-16 13:53:36,581 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '77': removed MS2 fragments 10 Da around precursor m/z. '137' fragments remaining (before: '138').
+2025-04-16 13:53:36,582 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '77': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '137' fragments remaining (before: '137').
+2025-04-16 13:53:36,583 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '79': removed MS2 fragments 10 Da around precursor m/z. '279' fragments remaining (before: '280').
+2025-04-16 13:53:36,583 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '79': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '279' fragments remaining (before: '279').
+2025-04-16 13:53:36,584 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '22': removed MS2 fragments 10 Da around precursor m/z. '205' fragments remaining (before: '205').
+2025-04-16 13:53:36,584 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '22': removed 'MS2 fragments with relative intensity lower than '0.01': 66'. '139' fragments remaining (before: '205').
+2025-04-16 13:53:36,585 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '76': removed MS2 fragments 10 Da around precursor m/z. '341' fragments remaining (before: '346').
+2025-04-16 13:53:36,585 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '76': removed 'MS2 fragments with relative intensity lower than '0.01': 27'. '314' fragments remaining (before: '341').
+2025-04-16 13:53:36,586 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '84': removed MS2 fragments 10 Da around precursor m/z. '330' fragments remaining (before: '333').
+2025-04-16 13:53:36,587 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '84': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '330' fragments remaining (before: '330').
+2025-04-16 13:53:36,589 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '83': removed MS2 fragments 10 Da around precursor m/z. '1424' fragments remaining (before: '1451').
+2025-04-16 13:53:36,589 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '83': removed 'MS2 fragments with relative intensity lower than '0.01': 1224'. '200' fragments remaining (before: '1424').
+2025-04-16 13:53:36,590 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '85': removed MS2 fragments 10 Da around precursor m/z. '179' fragments remaining (before: '180').
+2025-04-16 13:53:36,590 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '85': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '179' fragments remaining (before: '179').
+2025-04-16 13:53:36,591 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '105': removed MS2 fragments 10 Da around precursor m/z. '243' fragments remaining (before: '246').
+2025-04-16 13:53:36,592 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '105': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '243' fragments remaining (before: '243').
+2025-04-16 13:53:36,593 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '106': removed MS2 fragments 10 Da around precursor m/z. '381' fragments remaining (before: '386').
+2025-04-16 13:53:36,593 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '106': removed 'MS2 fragments with relative intensity lower than '0.01': 27'. '354' fragments remaining (before: '381').
+2025-04-16 13:53:36,594 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '21': removed MS2 fragments 10 Da around precursor m/z. '374' fragments remaining (before: '374').
+2025-04-16 13:53:36,594 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '21': removed 'MS2 fragments with relative intensity lower than '0.01': 270'. '104' fragments remaining (before: '374').
+2025-04-16 13:53:36,595 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '47': removed MS2 fragments 10 Da around precursor m/z. '175' fragments remaining (before: '175').
+2025-04-16 13:53:36,596 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '47': removed 'MS2 fragments with relative intensity lower than '0.01': 23'. '152' fragments remaining (before: '175').
+2025-04-16 13:53:36,597 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '20': removed MS2 fragments 10 Da around precursor m/z. '497' fragments remaining (before: '498').
+2025-04-16 13:53:36,597 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '20': removed 'MS2 fragments with relative intensity lower than '0.01': 404'. '93' fragments remaining (before: '497').
+2025-04-16 13:53:36,598 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '55': removed MS2 fragments 10 Da around precursor m/z. '172' fragments remaining (before: '172').
+2025-04-16 13:53:36,598 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '55': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '172' fragments remaining (before: '172').
+2025-04-16 13:53:36,599 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '18': removed MS2 fragments 10 Da around precursor m/z. '233' fragments remaining (before: '235').
+2025-04-16 13:53:36,599 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '18': removed 'MS2 fragments with relative intensity lower than '0.01': 40'. '193' fragments remaining (before: '233').
+2025-04-16 13:53:36,600 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '156': removed MS2 fragments 10 Da around precursor m/z. '123' fragments remaining (before: '127').
+2025-04-16 13:53:36,600 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '156': removed 'MS2 fragments with relative intensity lower than '0.01': 112'. '11' fragments remaining (before: '123').
+2025-04-16 13:53:36,601 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '41': removed MS2 fragments 10 Da around precursor m/z. '279' fragments remaining (before: '279').
+2025-04-16 13:53:36,601 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '41': removed 'MS2 fragments with relative intensity lower than '0.01': 130'. '149' fragments remaining (before: '279').
+2025-04-16 13:53:36,602 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '73': removed MS2 fragments 10 Da around precursor m/z. '122' fragments remaining (before: '123').
+2025-04-16 13:53:36,602 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '73': removed 'MS2 fragments with relative intensity lower than '0.01': 111'. '11' fragments remaining (before: '122').
+2025-04-16 13:53:36,603 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '39': removed MS2 fragments 10 Da around precursor m/z. '286' fragments remaining (before: '286').
+2025-04-16 13:53:36,604 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '39': removed 'MS2 fragments with relative intensity lower than '0.01': 158'. '128' fragments remaining (before: '286').
+2025-04-16 13:53:36,605 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '82': removed MS2 fragments 10 Da around precursor m/z. '309' fragments remaining (before: '318').
+2025-04-16 13:53:36,605 - fermo_core - DEBUG - 'UtilityMethodManager': feature id '82': removed 'MS2 fragments with relative intensity lower than '0.01': 0'. '309' fragments remaining (before: '309').
+2025-04-16 13:53:36,605 - fermo_core - INFO - 'MgfParser': completed parsing of MS/MS data-containing file 'case_study_MSMS.mgf'
+2025-04-16 13:53:36,606 - fermo_core - INFO - 'MetadataFermoParser': started parsing fermo-style group metadata file.
+2025-04-16 13:53:36,609 - fermo_core - DEBUG - 'MetadataFermoParser': Samples marked as 'BLANK' detected. The following samples will not partake in group comparisons: D3_H3_mod.mzXML'
+2025-04-16 13:53:36,613 - fermo_core - INFO - 'MetadataFermoParser': completed parsing fermo-style group metadata file.
+2025-04-16 13:53:36,615 - fermo_core - INFO - 'PhenotypeParser': started parsing phenotype data file.
+2025-04-16 13:53:36,616 - fermo_core - INFO - 'PhenotypeParser': completed parsing phenotype data file.
+2025-04-16 13:53:36,616 - fermo_core - INFO - 'SpecLibMgfParser': started parsing of spectral library files 'spec_lib'
+2025-04-16 13:53:36,646 - fermo_core - INFO - 'SpecLibMgfParser': completed parsing of spectral library files 'spec_lib'
+2025-04-16 13:53:36,646 - fermo_core - INFO - 'GeneralParser': completed file parsing.
+2025-04-16 13:53:36,646 - fermo_core - INFO - 'AnalysisManager': started analysis steps.
+2025-04-16 13:53:36,646 - fermo_core - INFO - 'FeatureFilter': started filtering of molecular features.
+2025-04-16 13:53:36,646 - fermo_core - INFO - 'FeatureFilter': started filtering for relative intensity.
+2025-04-16 13:53:36,646 - fermo_core - INFO - 'FeatureFilter': completed filtering for relative intensity.
+2025-04-16 13:53:36,646 - fermo_core - INFO - 'FeatureFilter': started filtering for relative area.
+2025-04-16 13:53:36,647 - fermo_core - INFO - 'FeatureFilter': completed filtering for relative area.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '11' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '30' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '32' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '33' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '34' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '35' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '36' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '38' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '39' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '40' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '42' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '43' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '45' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '47' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '49' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '50' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '51' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '53' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '55' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '62' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,647 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '63' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '64' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '67' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '68' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '69' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '71' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '72' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '73' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '74' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '75' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '77' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '80' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '84' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '85' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '88' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '89' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '90' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '91' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '92' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '93' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '94' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '98' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '104' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '112' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '113' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '114' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '115' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '116' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '117' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '118' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,648 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '120' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '123' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '124' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '126' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '127' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '128' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '129' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '130' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '131' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '133' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '134' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '135' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '136' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '137' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '138' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '139' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '141' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '142' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '144' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '145' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '147' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '151' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '156' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - DEBUG - 'FeatureFilter': feature with ID '157' filtered from analysis run: outside filter settings.
+2025-04-16 13:53:36,649 - fermo_core - INFO - 'FeatureFilter': completed filtering of molecular features.
+2025-04-16 13:53:36,649 - fermo_core - INFO - 'BlankAssigner': started blank assignment.
+2025-04-16 13:53:36,650 - fermo_core - INFO - 'BlankAssigner': completed blank assignment.
+2025-04-16 13:53:36,650 - fermo_core - INFO - 'GroupAssigner': started group assignment.
+2025-04-16 13:53:36,651 - fermo_core - INFO - 'GroupAssigner': completed group assignment.
+2025-04-16 13:53:36,651 - fermo_core - INFO - 'GroupFactorAssigner': started group factor (fold) assignment.
+2025-04-16 13:53:36,655 - fermo_core - INFO - 'GroupFactorAssigner': completed group factor (fold) assignment.
+2025-04-16 13:53:36,655 - fermo_core - INFO - 'PhenotypeManager': started analysis steps.
+2025-04-16 13:53:36,655 - fermo_core - INFO - 'PhenotypeManager': started qualitative phenotype data analysis.
+2025-04-16 13:53:36,656 - fermo_core - INFO - 'PhenotypeManager': completed qualitative phenotype data analysis.
+2025-04-16 13:53:36,656 - fermo_core - INFO - 'PhenotypeManager': completed analysis steps.
+2025-04-16 13:53:36,656 - fermo_core - INFO - 'SimNetworksManager': started analysis steps.
+2025-04-16 13:53:36,656 - fermo_core - INFO - 'SimNetworksManager/ModCosineNetworker': started calculation
+2025-04-16 13:53:36,656 - fermo_core - DEBUG - 'SimNetworksManager': feature ID '2' filtered from spectral similarity networking: min. nr. of MS/MS fragments lower than required by parameter 'msms_min_frag_nr' ('4' < '5').
+2025-04-16 13:53:39,533 - fermo_core - INFO - 'SimNetworksManager/ModCosineNetworker': completed calculation
+2025-04-16 13:53:39,534 - fermo_core - INFO - 'SimNetworksManager/Ms2deepscoreNetworker': started calculation.
+2025-04-16 13:53:39,534 - fermo_core - DEBUG - 'SimNetworksManager': feature ID '2' filtered from spectral similarity networking: min. nr. of MS/MS fragments lower than required by parameter 'msms_min_frag_nr' ('4' < '5').
+2025-04-16 13:53:47,182 - fermo_core - INFO - 'SimNetworksManager/Ms2deepscoreNetworker': completed calculation
+2025-04-16 13:53:47,182 - fermo_core - INFO - 'SimNetworksManager': completed analysis steps.
+2025-04-16 13:53:47,182 - fermo_core - INFO - 'AnnotationManager': started analysis steps.
+2025-04-16 13:53:47,182 - fermo_core - INFO - 'AnnotationManager': started matching of features against a user-provided spectral library using the modified cosine algorithm.
+2025-04-16 13:53:47,184 - fermo_core - INFO - 'AnnotationManager/ModCosAnnotator': Started modified cosine library matching algorithm 
+2025-04-16 13:53:47,601 - fermo_core - INFO - 'AnnotationManager': completed matching of features against a user-provided spectral library using the modified cosine algorithm.
+2025-04-16 13:53:47,602 - fermo_core - INFO - 'AnnotationManager': started matching of features against a user-provided spectral library using the ms2deepscore algorithm.
+2025-04-16 13:53:48,129 - fermo_core - INFO - 'AnnotationManager/Ms2deepscoreAnnotator': Started ms2deepscore library matching 
+2025-04-16 13:53:53,288 - fermo_core - INFO - 'AnnotationManager': completed matching of features against a user-provided spectral library using the ms2deepscore algorithm.
+2025-04-16 13:53:53,288 - fermo_core - INFO - 'AnnotationManager': started feature adduct annotation.
+2025-04-16 13:53:53,288 - fermo_core - INFO - 'AnnotationManager/AdductAnnotator': positive ion mode detected. Attempt to annotate for positive ion mode adducts.
+2025-04-16 13:53:53,335 - fermo_core - INFO - 'AnnotationManager': completed feature adduct annotation.
+2025-04-16 13:53:53,335 - fermo_core - INFO - 'AnnotationManager': started feature neutral loss annotation.
+2025-04-16 13:53:53,340 - fermo_core - INFO - 'AnnotationManager/NeutralLossAnnotator': positive ion mode detected. Attempt to annotate for positive ion mode neutral losses.
+2025-04-16 13:53:57,647 - fermo_core - INFO - 'AnnotationManager': completed feature neutral loss annotation.
+2025-04-16 13:53:57,647 - fermo_core - INFO - 'AnnotationManager': started feature fragment annotation.
+2025-04-16 13:53:57,650 - fermo_core - INFO - 'AnnotationManager/FragmentAnnotator': positive ion mode detected. Attempt to annotate for positive ion mode fragments.
+2025-04-16 13:54:01,495 - fermo_core - INFO - 'AnnotationManager': completed feature fragment annotation.
+2025-04-16 13:54:01,495 - fermo_core - INFO - 'AnnotationManager': started annotation from existing Mzmine peaktable.
+2025-04-16 13:54:01,495 - fermo_core - INFO - 'MzmineAnnParser': Start analysis
+2025-04-16 13:54:01,505 - fermo_core - INFO - 'MzmineAnnParser': did not detect optional annotation columns '('ion_identities:ion_identities', 'spectral_db_matches:spectral_db_matches')' - SKIP
+2025-04-16 13:54:01,505 - fermo_core - INFO - 'AnnotationManager': completed annotation from existing Mzmine peaktable.
+2025-04-16 13:54:01,505 - fermo_core - INFO - 'AnnotationManager': started annotation from existing MS2Query results.
+2025-04-16 13:54:01,516 - fermo_core - INFO - 'AnnotationManager': completed annotation from existing MS2Query results.
+2025-04-16 13:54:01,516 - fermo_core - INFO - 'AnnotationManager': started antiSMASH KnownClusterBlast modified cosine annotation.
+2025-04-16 13:54:01,576 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c4' - SKIP
+2025-04-16 13:54:01,577 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000009.1_c1' - SKIP
+2025-04-16 13:54:01,615 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c5' - SKIP
+2025-04-16 13:54:01,626 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000003.1_c1' - SKIP
+2025-04-16 13:54:01,639 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c1' - SKIP
+2025-04-16 13:54:01,639 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c3' - SKIP
+2025-04-16 13:54:08,089 - fermo_core - INFO - 'AnnotationManager/ModCosAnnotator': Started modified cosine library matching algorithm 
+2025-04-16 13:54:08,514 - fermo_core - INFO - 'AnnotationManager': completed antiSMASH KnownClusterBlast modified cosine annotation.
+2025-04-16 13:54:08,515 - fermo_core - INFO - 'AnnotationManager': started antiSMASH KnownClusterBlast MS2DeepScore annotation.
+2025-04-16 13:54:08,558 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c4' - SKIP
+2025-04-16 13:54:08,559 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000009.1_c1' - SKIP
+2025-04-16 13:54:08,590 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c5' - SKIP
+2025-04-16 13:54:08,601 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000003.1_c1' - SKIP
+2025-04-16 13:54:08,611 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c1' - SKIP
+2025-04-16 13:54:08,611 - fermo_core - DEBUG - 'UtilityMethodManager': no significant KnownClusterBlast matches for region 'JABTEZ010000001.1_c3' - SKIP
+2025-04-16 13:54:15,343 - fermo_core - INFO - 'AnnotationManager/Ms2deepscoreAnnotator': Started ms2deepscore library matching 
+2025-04-16 13:54:21,037 - fermo_core - INFO - 'AnnotationManager': completed antiSMASH KnownClusterBlast MS2DeepScore annotation.
+2025-04-16 13:54:21,037 - fermo_core - INFO - 'AnnotationManager': completed analysis steps.
+2025-04-16 13:54:21,037 - fermo_core - INFO - 'ScoreAssigner': started score assignment.
+2025-04-16 13:54:21,039 - fermo_core - INFO - 'ScoreAssigner': completed score assignment.
+2025-04-16 13:54:21,039 - fermo_core - INFO - 'ChromTraceCalculator': started calculating pseudo-chromatogram traces.
+2025-04-16 13:54:21,039 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '1' in sample '5440_5439_mod.mzXML': 'rt_left_fwhm' '1.78' is < 'rt_begin' '1.79'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,040 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5432_5431_mod2.mzXML': 'rt_left_fwhm' '1.9899999999999998' is < 'rt_begin' '2.02'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,041 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5425_5426_mod.mzXML': 'rt_left_fwhm' '2.005' is < 'rt_begin' '2.01'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,041 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '2' in sample '5434_5433_mod.mzXML': 'rt_right_fwhm' '2.035' is > 'rt_end' '2.03'. Setting 'rt_right_fwhm' to 'rt_end'.
+2025-04-16 13:54:21,041 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5434_5433_mod.mzXML': 'rt_left_fwhm' '2.02' is < 'rt_begin' '2.03'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,041 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '44' in sample '5434_5433_mod.mzXML': 'rt_left_fwhm' '11.805' is < 'rt_begin' '11.81'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,041 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '13' in sample '5450_5449_mod.mzXML': 'rt_left_fwhm' '9.425' is < 'rt_begin' '9.47'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,042 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5444_5443_mod.mzXML': 'rt_left_fwhm' '2.0149999999999997' is < 'rt_begin' '2.05'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,042 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '46' in sample '5444_5443_mod.mzXML': 'rt_left_fwhm' '13.184999999999999' is < 'rt_begin' '13.22'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,042 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5452_5451_mod.mzXML': 'rt_left_fwhm' '1.9899999999999998' is < 'rt_begin' '2.03'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,043 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '106' in sample '5452_5451_mod.mzXML': 'rt_left_fwhm' '15.32' is < 'rt_begin' '15.38'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,043 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '110' in sample '5452_5451_mod.mzXML': 'rt_left_fwhm' '18.35' is < 'rt_begin' '18.36'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,043 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5446_5445_mod.mzXML': 'rt_left_fwhm' '2.005' is < 'rt_begin' '2.01'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,043 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '44' in sample '5456_5455_mod.mzXML': 'rt_left_fwhm' '11.8' is < 'rt_begin' '11.82'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,044 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample '5458_5457_mod.mzXML': 'rt_left_fwhm' '2.02' is < 'rt_begin' '2.03'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,044 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '65' in sample '5458_5457_mod.mzXML': 'rt_left_fwhm' '5.44' is < 'rt_begin' '5.45'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,045 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '148' in sample 'D3_H3_mod.mzXML': 'rt_left_fwhm' '12.58' is < 'rt_begin' '12.59'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,045 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '149' in sample 'D3_H3_mod.mzXML': 'rt_left_fwhm' '14.025' is < 'rt_begin' '14.03'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,045 - fermo_core - DEBUG - 'ChromTraceCalculator': feature '31' in sample 'D3_H3_mod.mzXML': 'rt_left_fwhm' '1.9500000000000002' is < 'rt_begin' '2.04'. Setting 'rt_left_fwhm' to 'rt_begin'.
+2025-04-16 13:54:21,045 - fermo_core - INFO - 'ChromTraceCalculator': completed calculating pseudo-chromatogram traces.
+2025-04-16 13:54:21,045 - fermo_core - INFO - 'AnalysisManager': completed analysis steps.
+2025-04-16 13:54:21,046 - fermo_core - DEBUG - 'ExportManager': started export of 'fermo.session.json'.
+2025-04-16 13:54:21,099 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/mitz/Development/fermo_core/example_data/results/out.fermo.session.json'.
+2025-04-16 13:54:21,100 - fermo_core - DEBUG - 'ExportManager': completed export of 'fermo.session.json'.
+2025-04-16 13:54:21,100 - fermo_core - DEBUG - 'ExportManager': started export of 'fermo.full.csv/fermo.abbrev.csv'.
+2025-04-16 13:54:21,147 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/mitz/Development/fermo_core/example_data/results/out.fermo.full.csv'.
+2025-04-16 13:54:21,147 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/mitz/Development/fermo_core/example_data/results/out.fermo.abbrev.csv'.
+2025-04-16 13:54:21,148 - fermo_core - DEBUG - 'ExportManager': completed export of 'fermo.full.csv/fermo.abbrev.csv'.
+2025-04-16 13:54:21,148 - fermo_core - DEBUG - 'ExportManager': started export of '.graphml'.
+2025-04-16 13:54:21,151 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/mitz/Development/fermo_core/example_data/results/out.fermo.modified_cosine.graphml'.
+2025-04-16 13:54:21,153 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/mitz/Development/fermo_core/example_data/results/out.fermo.ms2deepscore.graphml'.
+2025-04-16 13:54:21,153 - fermo_core - DEBUG - 'ExportManager': completed export of '.graphml'.
+2025-04-16 13:54:21,153 - fermo_core - DEBUG - 'ExportManager': started export of 'summary.txt'.
+2025-04-16 13:54:21,153 - fermo_core - DEBUG - 'SummaryWriter': Started summary: files
+2025-04-16 13:54:21,154 - fermo_core - DEBUG - 'SummaryWriter': Completed summary: files
+2025-04-16 13:54:21,154 - fermo_core - DEBUG - 'SummaryWriter': Started summary: analysis modules
+2025-04-16 13:54:21,154 - fermo_core - DEBUG - 'SummaryWriter': Completed summary: analysis modules
+2025-04-16 13:54:21,154 - fermo_core - INFO - 'ExportManager': Successfully wrote file '/home/mitz/Development/fermo_core/example_data/results/out.fermo.summary.txt'.
+2025-04-16 13:54:21,154 - fermo_core - DEBUG - 'ExportManager': completed export of 'summary.txt'.
+2025-04-16 13:54:21,154 - fermo_core - INFO - 'main': completed all steps - DONE

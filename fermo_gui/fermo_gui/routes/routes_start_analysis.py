@@ -110,8 +110,8 @@ def setup_fermo_run(form: AnalysisForm) -> Union[str, Response]:
     return redirect(url_for("routes.job_submitted", job_id=metadata["job_id"]))
 
 
-@bp.route("/analysis/start_analysis/", methods=["GET", "POST"])
-def start_analysis() -> Union[str, Response]:
+@bp.route("/analysis/start_analysis_old/", methods=["GET", "POST"])
+def start_analysis_old() -> Union[str, Response]:
     """Render start analysis page, get and store data, init analysis.
 
     On POST (form.validate_on_submit()), fermo_core job is started

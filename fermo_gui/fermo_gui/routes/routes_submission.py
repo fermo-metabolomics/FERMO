@@ -28,12 +28,18 @@ from flask import Response, current_app, render_template, request
 from fermo_gui.routes import bp
 
 
-@bp.route("/analysis/start_analysis/", methods=["GET", "POST"])
+@bp.route("/analysis/dispatch/", methods=["GET", "POST"])
 def dispatch() -> str | Response:
+    """Dispatches request for job start, job load, params loading"""
     if request.method == "POST":
         return request.form.to_dict(flat=False)
 
     with open(current_app.config["DEFAULTS"]) as infile:
         default_params = json.load(infile)
 
-    return render_template("forms.html", params=default_params)
+    return render_template(
+        template_name_or_list="forms.html",
+        job_id=None,
+        online=current_app.config.get("ONLINE"),
+        params=default_params,
+    )

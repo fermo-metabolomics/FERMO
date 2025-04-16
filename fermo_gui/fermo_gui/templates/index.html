@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!--    {% if online %}-->
-<!--        <div class="container-fluid my-2 d-flex align-items-center justify-content-center">-->
-<!--            <div class="row">-->
-<!--                <div class="col-auto text-center">-->
-<!--                    <h4 class="fw-semibold lh-2">Due to server maintenance, <i>FERMO</i> will not be available on XXXX, XXXX Xth, XXXX.</h4>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    {% endif %}-->
     <div class="container-xxl bd-gutter">
         <div class="col-md-8 mx-auto text-center">
             <img class="d-none d-sm-block mx-auto my-5" style="max-width: 18vw;" src="{{ url_for('static', filename='/images/Fermo_logo_blue.svg') }}" alt="FERMO logo" >
@@ -19,7 +10,7 @@
                 Select from a wide range of annotation tools. Visualize and prioritize your molecules of interest with the convenient dashboard.
             </p>
             <div class="d-flex flex-column flex-lg-row align-items-md-stretch justify-content-md-center gap-3 mb-5">
-                <a class="btn btn-lg btn-primary d-flex align-items-center justify-content-center fw-semibold" href="{{ url_for('routes.start_analysis') }}">Start Analysis</a>
+                <a class="btn btn-lg btn-primary d-flex align-items-center justify-content-center fw-semibold" href="{{ url_for('routes.dispatch') }}">Start Analysis</a>
                 <a class="btn btn-lg btn-secondary d-flex align-items-center justify-content-center fw-semibold" href="{{ url_for('routes.load_session') }}">Load Session</a>
             </div>
         </div>
