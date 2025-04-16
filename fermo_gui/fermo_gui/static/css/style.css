@@ -36,12 +36,6 @@ footer {
 a:not(.footer a) {
   text-decoration: none;
 }
-/* Limit the width of the images for screen size scaling */
-.custom-footer-image {
-  width:  100%;
-  max-width:  190px;
-  height: auto; /* Maintain aspect ratio */
-}
 
 /* input forms */
 .btn-primary {
