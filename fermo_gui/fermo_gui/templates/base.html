@@ -7,13 +7,14 @@
       <title> {% block title %} FERMO {% endblock %} </title>
       <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body class="d-flex flex-column vh-100">
     {% block header%}
       <header>
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary p-1">
-          <div class="container-fluid px-5" style="font-size: 18px;">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark navbar-custom p-1">
+          <div class="container-fluid navbar-font-size px-5">
             <a class="navbar-brand" href="{{ url_for('routes.index') }}">
               <img src="{{ url_for('static', filename='/images/Fermo_logo.svg') }}"
                    alt="FERMO logo" width="150" height="40">
@@ -34,8 +35,13 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('routes.load_session') }}">Load Session</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('routes.task_result', job_id='example') }}">Example</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Examples</a>
+                  <ul class="dropdown-menu">
+                    <li><span class="dropdown-item"><a class="custom-link" href="{{ url_for('routes.task_result', job_id='example1') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Integrates metabolomics data with antiviral bioactivity."><i>Euphorbia dendroides </i></a><a class="custom-link" href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#euphorbia-dendroides" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click to show more information."><i class="bi bi-info-circle"></i></a></span></li>
+                    <li><span class="dropdown-item"><a class="custom-link" href="{{ url_for('routes.task_result', job_id='example2') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Integrates OSMAC study with antibacterial bioactivity."><i>Streptomyces</i> sp. MBT27 </a><a class="custom-link" href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#streptomyces-sp-mbt27" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click to show more information."><i class="bi bi-info-circle"></i></a></span></li>
+                    <li><span class="dropdown-item"><a class="custom-link" href="{{ url_for('routes.task_result', job_id='example3') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Integrates phylogenetic and antibacterial bioactivity."><i>Planomonospora </i></a><a class="custom-link" href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#planomonospora" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click to show more information."><i class="bi bi-info-circle"></i></a></span></li>
+                  </ul>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('routes.about') }}">About</a>
@@ -44,15 +50,12 @@
                   <a class="nav-link" href="{{ url_for('routes.contact') }}">Contact</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="https://mmzdouc.github.io/fermo_docs/" target="_blank">Help</a>
+                  <a class="nav-link" href="https://fermo-metabolomics.github.io/fermo_docs/" target="_blank">Help</a>
                 </li>
               </ul>
-              <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+              <ul class="navbar-nav flex-row ml-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="https://github.com/mmzdouc/fermo" target="_blank"
-                     rel="noopener" aria-label="GitHub">
-                    <img src="{{ url_for('static', filename='/images/github.svg') }}" alt="GitHub">
-                  </a>
+                  <a class="btn btn-link nav-link" target="_blank" href="https://github.com/orgs/fermo-metabolomics/discussions/2" aria-label="Maintenance tooltip" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Show scheduled maintenance info"><i class="bi bi-tools" style="font-size: 24px;"></i></a>
                 </li>
               </ul>
             </div>
@@ -66,13 +69,25 @@
       </main>
     {% endblock %}
     {% block footer %}
-      <footer class="container-fluid bg-light text-muted py-3 border-top">
+      <footer class="container-fluid text-muted py-3 border-top">
         <div class="row">
-          <div class="col-md-12">
-            <div class="d-flex flex-column h-100 text-center">
-              <div class="mt-auto px-5">
-                <h6 class="text-uppercase fw-bold mb-1">Fermo v{{version}}</h6>
-                <p class="mb-0">© 2022 - present Mitja M. Zdouc <a class="text-decoration-none" style="color: #116789" target="_blank" href="{{ url_for('routes.about') }}">et al.</a> under the <a rel="license" href="https://opensource.org/license/mit/" class="text-decoration-none" style="color: #116789" target="_blank">MIT License.</a> If you have found this software useful, please <a rel="cite" href="https://doi.org/10.1101/2022.12.21.521422" class="text-decoration-none" style="color: #116789" target="_blank">cite us.</a></p>
+          <div class="col">
+            <div class="d-flex flex-column align-items-center text-center">
+              <div class="mt-auto px-3">
+                <h6 class="text-uppercase fw-bold mb-1 d-flex align-items-center justify-content-center gap-1">
+                  <a rel="fermo repository" href="https://github.com/fermo-metabolomics/fermo" class="custom-link" target="_blank">FERMO</a>
+                  <span>v{{version}}</span>
+                  <a class="d-inline-flex align-items-center p-0 text-reset ms-2" href="https://github.com/fermo-metabolomics" target="_blank" rel="noopener" aria-label="GitHub FERMO Metabolomics Organisation Page">
+                    <i class="bi bi-github"></i>
+                  </a>
+                </h6>
+                <p class="mb-0 small">
+                  © 2022 – present Mitja M. Zdouc
+                  <a class="custom-link" target="_blank" href="{{ url_for('routes.about') }}">et al.</a> under the
+                  <a rel="license" href="https://opensource.org/license/mit/" class="custom-link" target="_blank">MIT License</a>.
+                  If you have found this software useful, please
+                  <a rel="cite" href="https://doi.org/10.1101/2022.12.21.521422" class="custom-link" target="_blank">cite us</a>.
+                </p>
               </div>
             </div>
           </div>
