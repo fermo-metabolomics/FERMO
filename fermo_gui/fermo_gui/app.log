@@ -1,2 +1,0 @@
-2025-04-22 16:36:02,513 - fermo_gui - WARNING - No 'config.py' file found. Default to dev settings.
-2025-04-22 16:36:02,513 - fermo_gui - CRITICAL - INSECURE DEV MODE: DO NOT DEPLOY TO PRODUCTION!

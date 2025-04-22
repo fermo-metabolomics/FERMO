@@ -3,6 +3,7 @@
 fermo_gui/tests/test_fermo_core_manager/example_data_min/results/
 fermo_gui/tests/test_fermo_core_manager/example_invalid_input_data/results/
 fermo_gui/tests/test_fermo_core_manager/results/
+fermo_gui/fermo_gui/app.log
 
 # pycharm
 .idea/
