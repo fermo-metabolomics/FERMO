@@ -2,7 +2,7 @@
 
 {% block content %}
 {% from "_formhelpers.html" import render_help %}
-<div class="container my-5">
+<div class="container my-5" xmlns="http://www.w3.org/1999/html">
   <div class="row">
     <div class="col-auto text-center mx-auto">
       {% if job_id %}
@@ -72,7 +72,7 @@
     </div>
     <div class="row">
       <div class="col btn-group gap-2" role="group" aria-label="Dispatch type group">
-        <input type="radio" class="btn-check" name="btnradio" id="startAnalysis" autocomplete="off">
+        <input type="radio" class="btn-check" name="btnradio" id="startAnalysis" autocomplete="off" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#startAnalysisContent">
         <label class="btn btn-outline-secondary p-2" for="startAnalysis">Start new analysis</label>
         <input type="radio" class="btn-check" name="btnradio" id="loadParams" autocomplete="off">
         <label class="btn btn-outline-secondary p-2" for="loadParams">Load parameter settings</label>
@@ -81,14 +81,56 @@
       </div>
     </div>
 
-<!--    turn into d-none later -->
-    <div class="d-block" id="startAnalysis-content">
+    <div class="collapse" id="startAnalysisContent">
       <div class="border start_box">
-        <div class="row">
-          <div class="col">
-            <h1 class="mt-1 mb-4" style="font-size: 1.4em;">Provide the peak table {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#peaktable") }}</h1>
+        <div class="m-3">
+          <div class="row">
+            <div class="col">
+              <h1 class="mt-1 mb-4" style="font-size: 1.4em;">Provide the peak table {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#peaktable") }}</h1>
+            </div>
           </div>
+          <div class="row mb-4">
+            <div class="col-6">
+              <span><label class="form-label ms-1" for="PeaktableParametersFile">Upload the peak table file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#molecular-feature-peaktable") }}</span>
+              <input class="form-control form-control-sm" id="PeaktableParametersFile" name="PeaktableParametersFile" type="file" accept=".csv" onchange="checkFileExtension('PeaktableParametersFile', 'csv', 'AlertContainerPeaktable')">
+              <div id="AlertContainerPeaktable"></div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-6">
+              <label class="form-label ms-1" for="PeaktableParametersFormat" >Select the formatting of the peak table file</label>
+              <select class="form-select form-select-sm" id="PeaktableParametersFormat" name="PeaktableParametersFormat">
+                <option value="mzmine3" {% if params.get("PeaktableParameters", {}).get("format") == "mzmine3" %}selected{% endif %}>Mzmine 3</option>
+                <option value="mzmine4" {% if params.get("PeaktableParameters", {}).get("format") == 'mzmine4' %}selected{% endif %}>Mzmine 4</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label class="form-label ms-1" for="PeaktableParametersPolarity" >Select the ion polarity mode of the peak table file</label>
+              <select class="form-select form-select-sm" id="PeaktableParametersPolarity" name="PeaktableParametersPolarity">
+                <option value="positive" {% if params.get("PeaktableParameters", {}).get("polarity") == "positive" %}selected{% endif %}>Positive</option>
+                <option value="negative" {% if params.get("PeaktableParameters", {}).get("polarity") == 'negative' %}selected{% endif %}>Negative</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-4">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="AdductAnnotationParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AdductAnnotationParameters" {% if params.get("AdductAnnotationParameters", {}).get("activate_module") %}checked{% endif %}>
+                <label class="form-check-label" for="AdductAnnotationParametersActivate">Activate Adduct Annotation Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.adduct") }}</label>
+              </div>
+              <div class="collapse {% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}show{% endif %}" id="AdductAnnotationParameters">
+                <div class="card card-body m-1">
+                  <label for="AdductAnnotationParametersPpm" class="form-label">Specify the mass accuracy (in ppm)</label>
+                  <input type="number" class="form-control form-control-sm" id="AdductAnnotationParametersPpm" name="AdductAnnotationParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('AdductAnnotationParameters', {}).get('mass_dev_ppm') }}">
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
         </div>
+
 
       </div>
     </div>
