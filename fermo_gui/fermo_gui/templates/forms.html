@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% from "_formhelpers.html" import render_help %}
 <div class="container my-5">
   <div class="row">
     <div class="col-auto text-center mx-auto">
@@ -44,21 +45,25 @@
   {% endif %}
   {% with messages = get_flashed_messages() %}
     {% if messages %}
-      <div class="row">
-      <div class="card card-body">
-        <div class="col text-center mx-auto">
-          <h4 class="fw-semibold lh-2">Error during input validation!</h4>
-          <ul class="lh-base list-unstyled">
-          {% for message in messages %}
-              <li><p class="lead mb-1">{{ message }}</p></li>
-          {% endfor %}
-          </ul>
+    <div class="mx-4 my-2">
+      <div class="alert alert-light" role="alert">
+        <div class="row">
+        <div class="card card-body">
+          <div class="col text-center mx-auto">
+            <h4 class="fw-semibold lh-2">Error during input validation!</h4>
+            <ul class="lh-base list-unstyled">
+            {% for message in messages %}
+                <li><p class="lead mb-1">{{ message }}</p></li>
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
         </div>
       </div>
-      </div>
+    </div>
     {% endif %}
   {% endwith %}
-  <form method="post">
+  <form method="post" enctype="multipart/form-data" action="">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <div class="row">
       <div class="col justify-content-center text-center">
@@ -76,10 +81,26 @@
       </div>
     </div>
 
+<!--    turn into d-none later -->
+    <div class="d-block" id="startAnalysis-content">
+      <div class="border start_box">
+        <div class="row">
+          <div class="col">
+            <h1 class="mt-1 mb-4" style="font-size: 1.4em;">Provide the peak table {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#peaktable") }}</h1>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
   <!--encapsulate in forms tag, vanilla html/js, without wtforms; add the individual form blocks for load, new, from separate html -->
 
 
 
   </form>
 </div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/dispatch_forms.js') }}"></script>
 {% endblock %}

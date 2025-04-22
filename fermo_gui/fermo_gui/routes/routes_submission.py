@@ -32,6 +32,7 @@ from fermo_gui.routes import bp
 def dispatch() -> str | Response:
     """Dispatches request for job start, job load, params loading"""
     if request.method == "POST":
+        # TODO: add here the route handling
         return request.form.to_dict(flat=False)
 
     with open(current_app.config["DEFAULTS"]) as infile:

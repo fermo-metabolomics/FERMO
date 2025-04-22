@@ -23,8 +23,5 @@
 {% endmacro %}
 
 {% macro render_help(url) %}
-  <a href="{{ url }}" target="_blank">
-    <img src="/static/images/question-circle-fill.SVG" width="20" alt="?"
-         style="color: 17,103,137; padding-bottom: 4px; padding-left: 3px;">
-  </a>
+<a class="custom-link" href="{{ url }}" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click to show more information."><i class="bi bi-info-circle"></i></a>
 {% endmacro %}
