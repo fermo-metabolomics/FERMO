@@ -117,52 +117,78 @@
                 </select>
               </div>
             </div>
+
             <div class="row mb-4">
               <div class="col">
-                <div class="card card-body m-1">
-                  <div class="row">
-                    <div class="col">
-                      <div>Specify <b>Feature Filter</b> settings {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/filter.feature/") }}</div>
-                    </div>
-                    <div class="col-auto">
-                      <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FeatureFilteringParametersDetails" aria-controls="FeatureFilteringParametersDetails" aria-expanded="false"></button>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="FeatureFilteringParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FeatureFilteringParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FeatureFilteringParameters" {% if params.get("FeatureFilteringParameters", {}).get("activate_module") %}checked{% endif %}>
+                      <label class="form-check-label" for="FeatureFilteringParametersActivate">Activate <b>Feature Filtering</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/filter.feature/") }}</label>
                     </div>
                   </div>
-                  <div class="collapse" id="FeatureFilteringParametersDetails">
-                    <div class="row mt-2 mx-1">
-                      <div class="col">
-                        <div class="mb-1">Filter <b>Feature Area</b></div>
-                        <div class="text-muted mb-2"><i>Range of relative feature areas to include in analysis</i></div>
-                        <div class="row row-cols-lg-auto g-3 align-items-center">
-                          <div class="col-12">
-                            <div>min</div>
+                </div>
+                <div class="collapse {% if params.get('FeatureFilteringParameters', {}).get('activate_module') %}show{% endif %}" id="FeatureFilteringParameters">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card card-body m-1">
+                        <div class="row">
+                          <div class="col">
+                            <div class="text-muted"><i>Specify parameters</i></div>
                           </div>
-                          <div class="col-12">
-                            <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersAreaMin" name="FeatureFilteringParametersAreaMin" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_area_range_min') }}">
-                          </div>
-                          <div class="col-12">
-                            <div>max</div>
-                          </div>
-                          <div class="col-12">
-                            <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersAreaMax" name="FeatureFilteringParametersAreaMax" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_area_range_max') }}">
+                          <div class="col-auto">
+                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FeatureFilteringParametersDetails" aria-controls="FeatureFilteringParametersDetails" aria-expanded="false"></button>
                           </div>
                         </div>
-                      </div>
-                      <div class="col">
-                        <div class="mb-1">Filter <b>Feature Height/Intensity</b></div>
-                        <div class="text-muted mb-2"><i>Range of relative feature height/intensity to include in analysis</i></div>
-                        <div class="row row-cols-lg-auto g-3 align-items-center">
-                          <div class="col-12">
-                            <div>min</div>
-                          </div>
-                          <div class="col-12">
-                            <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersIntMin" name="FeatureFilteringParametersIntMin" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_int_range_min') }}">
-                          </div>
-                          <div class="col-12">
-                            <div>max</div>
-                          </div>
-                          <div class="col-12">
-                            <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersIntMax" name="FeatureFilteringParametersIntMax" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_int_range_max') }}">
+
+
+
+
+
+
+
+                        <div class="collapse" id="FeatureFilteringParametersDetails">
+                          <div class="row mt-1">
+                            <div class="col">
+                              <div class="mb-1">Filter <b>Feature Area</b></div>
+                              <div class="text-muted mb-2"><i>Range of relative feature areas to include in analysis</i></div>
+                              <div class="row d-flex align-items-center pb-2">
+                                <div class="col-4">
+                                  <div>min</div>
+                                </div>
+                                <div class="col-4">
+                                  <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersAreaMin" name="FeatureFilteringParametersAreaMin" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_area_range_min') }}">
+                                </div>
+                              </div>
+                              <div class="row d-flex align-items-center pb-2">
+                                <div class="col-4">
+                                  <div>max</div>
+                                </div>
+                                <div class="col-4">
+                                  <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersAreaMax" name="FeatureFilteringParametersAreaMax" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_area_range_max') }}">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="mb-1">Filter <b>Feature Height/Intensity</b></div>
+                              <div class="text-muted mb-2"><i>Range of relative feature height/intensity to include in analysis</i></div>
+                              <div class="row d-flex align-items-center pb-2">
+                                <div class="col-4">
+                                  <div>min</div>
+                                </div>
+                                <div class="col-4">
+                                  <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersIntMin" name="FeatureFilteringParametersIntMin" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_int_range_min') }}">
+                                </div>
+                              </div>
+                              <div class="row d-flex align-items-center pb-2">
+                                <div class="col-4">
+                                  <div>max</div>
+                                </div>
+                                <div class="col-4">
+                                  <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersIntMax" name="FeatureFilteringParametersIntMax" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_int_range_max') }}">
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -170,8 +196,8 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row mb-4">
+
+
               <div class="col">
                 <div class="row">
                   <div class="col">
@@ -183,7 +209,7 @@
                 </div>
                 <div class="collapse {% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}show{% endif %}" id="AdductAnnotationParameters">
                   <div class="row">
-                    <div class="col-10">
+                    <div class="col">
                       <div class="card card-body m-1">
                         <div class="row">
                           <div class="col">
@@ -202,82 +228,6 @@
                           <div class="row">
                             <div class="col-8">
                               <input type="number" class="form-control form-control-sm" id="AdductAnnotationParametersPpm" name="AdductAnnotationParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('AdductAnnotationParameters', {}).get('mass_dev_ppm') }}">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="NeutralLossParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('NeutralLossParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#NeutralLossParameters" {% if params.get("NeutralLossParameters", {}).get("activate_module") %}checked{% endif %}>
-                      <label class="form-check-label" for="NeutralLossParametersActivate">Activate <b>Neutral Loss Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.loss") }}</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="collapse {% if params.get('NeutralLossParameters', {}).get('activate_module') %}show{% endif %}" id="NeutralLossParameters">
-                  <div class="row">
-                    <div class="col-10">
-                      <div class="card card-body m-1">
-                        <div class="row">
-                          <div class="col">
-                            <div class="text-muted"><i>Specify parameters</i></div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#NeutralLossParametersDetails" aria-controls="NeutralLossParametersDetails" aria-expanded="false"></button>
-                          </div>
-                        </div>
-                        <div class="collapse" id="NeutralLossParametersDetails">
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="NeutralLossParametersPpm" class="form-label">Mass accuracy tolerance (in ppm)</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="NeutralLossParametersPpm" name="NeutralLossParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('NeutralLossParameters', {}).get('mass_dev_ppm') }}">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="FragmentAnnParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FragmentAnnParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FragmentAnnParameters" {% if params.get("FragmentAnnParameters", {}).get("activate_module") %}checked{% endif %}>
-                      <label class="form-check-label" for="FragmentAnnParametersActivate">Activate <b>MS/MS Fragment Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.fragment") }}</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="collapse {% if params.get('FragmentAnnParameters', {}).get('activate_module') %}show{% endif %}" id="FragmentAnnParameters">
-                  <div class="row">
-                    <div class="col-10">
-                      <div class="card card-body m-1">
-                        <div class="row">
-                          <div class="col">
-                            <div class="text-muted"><i>Specify parameters</i></div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FragmentAnnParametersDetails" aria-controls="FragmentAnnParametersDetails" aria-expanded="false"></button>
-                          </div>
-                        </div>
-                        <div class="collapse" id="FragmentAnnParametersDetails">
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="FragmentAnnParametersPpm" class="form-label">Mass accuracy tolerance (in ppm)</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="FragmentAnnParametersPpm" name="FragmentAnnParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('FragmentAnnParameters', {}).get('mass_dev_ppm') }}">
                             </div>
                           </div>
                         </div>
@@ -318,6 +268,84 @@
               <div class="col-6">
                 <span><label class="form-label ms-1" for="MsmsParametersFormatRelInt">Minimum relative intensity of MS/MS fragments</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/filter.msms/") }}</span>
                 <input type="number" class="form-control form-control-sm" id="MsmsParametersFormatRelInt" name="MsmsParametersFormatRelInt" min="0" max="1" step="0.01" value="{{ params.get('MsmsParameters', {}).get('rel_int_from') }}">
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="NeutralLossParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('NeutralLossParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#NeutralLossParameters" {% if params.get("NeutralLossParameters", {}).get("activate_module") %}checked{% endif %}>
+                      <label class="form-check-label" for="NeutralLossParametersActivate">Activate <b>Neutral Loss Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.loss") }}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="collapse {% if params.get('NeutralLossParameters', {}).get('activate_module') %}show{% endif %}" id="NeutralLossParameters">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card card-body m-1">
+                        <div class="row">
+                          <div class="col">
+                            <div class="text-muted"><i>Specify parameters</i></div>
+                          </div>
+                          <div class="col-auto">
+                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#NeutralLossParametersDetails" aria-controls="NeutralLossParametersDetails" aria-expanded="false"></button>
+                          </div>
+                        </div>
+                        <div class="collapse" id="NeutralLossParametersDetails">
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="NeutralLossParametersPpm" class="form-label">Mass accuracy tolerance (in ppm)</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="NeutralLossParametersPpm" name="NeutralLossParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('NeutralLossParameters', {}).get('mass_dev_ppm') }}">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="FragmentAnnParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FragmentAnnParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FragmentAnnParameters" {% if params.get("FragmentAnnParameters", {}).get("activate_module") %}checked{% endif %}>
+                      <label class="form-check-label" for="FragmentAnnParametersActivate">Activate <b>MS/MS Fragment Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.fragment") }}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="collapse {% if params.get('FragmentAnnParameters', {}).get('activate_module') %}show{% endif %}" id="FragmentAnnParameters">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card card-body m-1">
+                        <div class="row">
+                          <div class="col">
+                            <div class="text-muted"><i>Specify parameters</i></div>
+                          </div>
+                          <div class="col-auto">
+                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FragmentAnnParametersDetails" aria-controls="FragmentAnnParametersDetails" aria-expanded="false"></button>
+                          </div>
+                        </div>
+                        <div class="collapse" id="FragmentAnnParametersDetails">
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="FragmentAnnParametersPpm" class="form-label">Mass accuracy tolerance (in ppm)</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="FragmentAnnParametersPpm" name="FragmentAnnParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('FragmentAnnParameters', {}).get('mass_dev_ppm') }}">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
