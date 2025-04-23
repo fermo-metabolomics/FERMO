@@ -87,7 +87,7 @@
         <div class="m-3">
           <div class="row">
             <div class="col">
-              <h2 class="mt-1" style="font-size: 1.4em;">Peak table parameters {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#peaktable") }}</h2>
+              <h2 class="mt-1" style="font-size: 1.4em;">Peak table file parameters {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#peaktable") }}</h2>
             </div>
             <div class="col-auto">
               <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#PeaktableParametersDetails" aria-controls="PeaktableParametersDetails" aria-expanded="true"></button>
@@ -117,7 +117,6 @@
                 </select>
               </div>
             </div>
-
             <div class="row mb-4">
               <div class="col">
                 <div class="row">
@@ -140,13 +139,6 @@
                             <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FeatureFilteringParametersDetails" aria-controls="FeatureFilteringParametersDetails" aria-expanded="false"></button>
                           </div>
                         </div>
-
-
-
-
-
-
-
                         <div class="collapse" id="FeatureFilteringParametersDetails">
                           <div class="row mt-1">
                             <div class="col">
@@ -196,8 +188,6 @@
                   </div>
                 </div>
               </div>
-
-
               <div class="col">
                 <div class="row">
                   <div class="col">
@@ -244,7 +234,7 @@
         <div class="m-3">
           <div class="row">
             <div class="col">
-              <h2 class="mt-1" style="font-size: 1.4em;">MS/MS parameters {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#msms") }}</h2>
+              <h2 class="mt-1" style="font-size: 1.4em;">MS/MS file parameters {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#msms") }}</h2>
             </div>
             <div class="col-auto">
               <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#MsmsParametersDetails" aria-controls="MsmsParametersDetails" aria-expanded="false"></button>
@@ -348,10 +338,141 @@
                 </div>
               </div>
             </div>
+            <div class="row mb-4">
+              <div class="col">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkCosineParameters" {% if params.get("SpecSimNetworkCosineParameters", {}).get("activate_module") %}checked{% endif %}>
+                      <label class="form-check-label" for="SpecSimNetworkCosineParametersActivate">Activate <b>Spectral/Molecular Networking (Modified Cosine)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="collapse {% if params.get('SpecSimNetworkCosineParameters', {}).get('activate_module') %}show{% endif %}" id="SpecSimNetworkCosineParameters">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card card-body m-1">
+                        <div class="row">
+                          <div class="col">
+                            <div class="text-muted"><i>Specify parameters</i></div>
+                          </div>
+                          <div class="col-auto">
+                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#SpecSimNetworkCosineParametersDetails" aria-controls="SpecSimNetworkCosineParametersDetails" aria-expanded="false"></button>
+                          </div>
+                        </div>
+                        <div class="collapse" id="SpecSimNetworkCosineParametersDetails">
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="SpecSimNetworkCosineParametersMinNr" class="form-label">Filters min nr of fragments per MS/MS spectrum</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersMinNr" name="SpecSimNetworkCosineParametersMinNr" min="1" step="1" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('msms_min_frag_nr') }}">
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="SpecSimNetworkCosineParametersTol" class="form-label">Fragment matching tolerance (in <i>m/z</i>)</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersTol" name="SpecSimNetworkCosineParametersTol" min="0" max="1" step="0.01" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('fragment_tol') }}">
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="SpecSimNetworkCosineParametersScore" class="form-label">Score cutoff for match</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersScore" name="SpecSimNetworkCosineParametersScore" min="0" max="1" step="0.01" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('score_cutoff') }}">
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="SpecSimNetworkCosineParametersLinks" class="form-label">Max nr of edges of any node</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersLinks" name="SpecSimNetworkCosineParametersLinks" min="1" step="1" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('max_nr_links') }}">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkDeepscoreParameters" {% if params.get("SpecSimNetworkDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
+                      <label class="form-check-label" for="SpecSimNetworkDeepscoreParametersActivate">Activate <b>Spectral/Molecular Networking (MS2DeepScore)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="collapse {% if params.get('SpecSimNetworkDeepscoreParameters', {}).get('activate_module') %}show{% endif %}" id="SpecSimNetworkDeepscoreParameters">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card card-body m-1">
+                        <div class="row">
+                          <div class="col">
+                            <div class="text-muted"><i>Specify parameters</i></div>
+                          </div>
+                          <div class="col-auto">
+                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#SpecSimNetworkDeepscoreParametersDetails" aria-controls="SpecSimNetworkDeepscoreParametersDetails" aria-expanded="false"></button>
+                          </div>
+                        </div>
+                        <div class="collapse" id="SpecSimNetworkDeepscoreParametersDetails">
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="SpecSimNetworkDeepscoreParametersMinNr" class="form-label">Filters min nr of fragments per MS/MS spectrum</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkDeepscoreParametersMinNr" name="SpecSimNetworkDeepscoreParametersMinNr" min="1" step="1" value="{{ params.get('SpecSimNetworkDeepscoreParameters', {}).get('msms_min_frag_nr') }}">
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="SpecSimNetworkDeepscoreParametersScore" class="form-label">Score cutoff for match</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkDeepscoreParametersScore" name="SpecSimNetworkDeepscoreParametersScore" min="0" max="1" step="0.01" value="{{ params.get('SpecSimNetworkDeepscoreParameters', {}).get('score_cutoff') }}">
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="SpecSimNetworkDeepscoreParametersLinks" class="form-label">Max nr of edges of any node</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkDeepscoreParametersLinks" name="SpecSimNetworkDeepscoreParametersLinks" min="1" step="1" value="{{ params.get('SpecSimNetworkDeepscoreParameters', {}).get('max_nr_links') }}">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
 
-<!--            Add here the mol networking part-->
+            </div>
+
+
+
+<!--            Add here the mol networking part; columns to msms-->
 
 
 
