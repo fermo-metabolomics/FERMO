@@ -465,17 +465,302 @@
                   </div>
                 </div>
               </div>
-
-
-
             </div>
+          </div>
+        </div>
+      </div>
 
 
+      <div class="border start_box">
+        <div class="m-3">
+          <div class="row">
+            <div class="col">
+              <h2 class="mt-1" style="font-size: 1.4em;">Phenotype data file parameters {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#phenotype-data") }}</h2>
+            </div>
+            <div class="col-auto">
+              <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#PhenotypeParameters" aria-controls="PhenotypeParameters" aria-expanded="false"></button>
+            </div>
+          </div>
+<!--          TODO(MMZ 25.4.25): remove show before production-->
+          <div class="collapse show" id="PhenotypeParameters">
+            <div class="row my-4">
+              <div class="col-6">
+                <span><label class="form-label ms-1" for="PhenotypeParametersFile">Upload the phenotype data file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#phenotype-bioactivity-data") }}</span>
+                <input class="form-control form-control-sm" id="PhenotypeParametersFile" name="PhenotypeParametersFile" type="file" accept=".csv" onchange="checkFileExtension('PhenotypeParametersFile', 'csv', 'AlertContainerPhenotype')">
+                <div id="AlertContainerPhenotype"></div>
+              </div>
+            </div>
+            <div class="row mb-1">
+              <div class="col">
+                <label for="PhenotypeParametersFormat" class="form-label">Select format of phenotype data file</label>
+              </div>
+            </div>
+            <div class="row mb-1">
+              <div class="col-6">
+                <select class="form-select form-select-sm" id="PhenotypeParametersFormat" name="PhenotypeParametersFormat">
+                  <option onclick="collapseOtherPhenoParams('all')" value="false" {% if not params.get("PhenotypeParameters", {})%}selected{% endif %}>Deactivated</option>
+                  <option onclick="collapseOtherPhenoParams('#PhenoQualAssgnParameters')" value="qualitative" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'qualitative' %}selected{% endif %}>Qualitative</option>
+                  <option onclick="collapseOtherPhenoParams('#PhenoQuantPercentAssgnParameters')" value="quantitative-percentage" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'quantitative-percentage' %}selected{% endif %}>Quantitative-percentage</option>
+                  <option onclick="collapseOtherPhenoParams('#PhenoQuantConcAssgnParameters')" value="quantitative-concentration" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'quantitative-concentration' %}selected{% endif %}>Quantitative-concentration</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="collapse" id="PhenoQualAssgnParameters">
+                <div class="col-4">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card card-body m-1">
+                        <div class="row">
+                          <div class="col">
+                            <div><i class="text-muted">Specify parameters Qualitative</i> {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/phenotype.qualitative/") }}</div>
+                          </div>
+                          <div class="col-auto">
+                            <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#PhenoQualAssgnParametersDetails" aria-controls="PhenoQualAssgnParametersDetails" aria-expanded="true"></button>
+                          </div>
+                        </div>
+                        <div class="collapse show" id="PhenoQualAssgnParametersDetails">
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQualAssgnParametersFactor" class="form-label">Min fold difference active/inactive</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="PhenoQualAssgnParametersFactor" name="PhenoQualAssgnParametersFactor" min="0" step="1" value="{{ params.get('PhenoQualAssgnParameters', {}).get('factor') }}">
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQualAssgnParametersAlgorithm" class="form-label" >Algorithm for fold calculation</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="PhenoQualAssgnParametersAlgorithm" name="PhenoQualAssgnParametersAlgorithm">
+                                <option value="minmax" {% if params.get("PhenoQualAssgnParameters", {}).get("algorithm") == "minmax" %}selected{% endif %}>minmax</option>
+                                <option value="median" {% if params.get("PhenoQualAssgnParameters", {}).get("algorithm") == 'median' %}selected{% endif %}>median</option>
+                                <option value="mean" {% if params.get("PhenoQualAssgnParameters", {}).get("algorithm") == 'mean' %}selected{% endif %}>mean</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQualAssgnParametersValue" class="form-label" >Value for fold calculation</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="PhenoQualAssgnParametersValue" name="PhenoQualAssgnParametersValue">
+                                <option value="height" {% if params.get("PhenoQualAssgnParameters", {}).get("value") == "height" %}selected{% endif %}>height/intensity</option>
+                                <option value="area" {% if params.get("PhenoQualAssgnParameters", {}).get("value") == 'area' %}selected{% endif %}>area</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="collapse" id="PhenoQuantPercentAssgnParameters">
+                <div class="col-4">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card card-body m-1">
+                        <div class="row">
+                          <div class="col">
+                            <div><i class="text-muted">Specify parameters Quantitative-percentage</i> {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/phenotype.quant-percent/") }}</div>
+                          </div>
+                          <div class="col-auto">
+                            <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#PhenoQuantPercentAssgnParametersDetails" aria-controls="PhenoQuantPercentAssgnParametersDetails" aria-expanded="true"></button>
+                          </div>
+                        </div>
+                        <div class="collapse show" id="PhenoQuantPercentAssgnParametersDetails">
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantPercentAssgnParametersAvg" class="form-label" >Duplicate phenotype measurement averaging</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersAvg" name="PhenoQuantPercentAssgnParametersAvg">
+                                <option value="median" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("sample_avg") == 'median' %}selected{% endif %}>Median</option>
+                                <option value="mean" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("sample_avg") == 'mean' %}selected{% endif %}>Mean</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantPercentAssgnParametersVal" class="form-label" >Feature property to use for correlation</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersVal" name="PhenoQuantPercentAssgnParametersVal">
+                                <option value="area" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("value") == 'area' %}selected{% endif %}>Area</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantPercentAssgnParametersAlg" class="form-label" >Correlation algorithm</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersAlg" name="PhenoQuantPercentAssgnParametersAlg">
+                                <option value="pearson" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("algorithm") == 'pearson' %}selected{% endif %}>Pearson</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantPercentAssgnParametersFdrAlg" class="form-label" >False discovery rate correction</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersFdrAlg" name="PhenoQuantPercentAssgnParametersFdrAlg">
+                                <option value="bonferroni" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'bonferroni' %}selected{% endif %}>bonferroni: one-step correction</option>
+                                <option value="sidak" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'sidak' %}selected{% endif %}>sidak: one-step correction</option>
+                                <option value="holm-sidak" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'holm-sidak' %}selected{% endif %}>holm-sidak: step down method using Sidak adjustments</option>
+                                <option value="holm" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'holm' %}selected{% endif %}>holm: step-down method using Bonferroni adjustments</option>
+                                <option value="simes-hochberg" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'simes-hochberg' %}selected{% endif %}>simes-hochberg: step-up method (independent)</option>
+                                <option value="hommel" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'hommel' %}selected{% endif %}>hommel: closed method based on Simes tests (non-negative)</option>
+                                <option value="fdr_bh" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_bh' %}selected{% endif %}>fdr_bh: Benjamini/Hochberg (non-negative)</option>
+                                <option value="fdr_by" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_by' %}selected{% endif %}>fdr_by: Benjamini/Yekutieli (negative)</option>
+                                <option value="fdr_tsbh" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbh' %}selected{% endif %}>fdr_tsbh: two stage fdr correction (non-negative)</option>
+                                <option value="fdr_tsbky" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbky' %}selected{% endif %}>fdr_tsbky: two stage fdr correction (non-negative)</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantPercentAssgnParametersPVal" class="form-label">Corrected <i>p</i> value threshold</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="PhenoQuantPercentAssgnParametersPVal" name="PhenoQuantPercentAssgnParametersPVal" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantPercentAssgnParameters', {}).get('p_val_cutoff') }}">
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantPercentAssgnParametersCoeff" class="form-label">Correlation coefficient <i>r</i> threshold</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="PhenoQuantPercentAssgnParametersCoeff" name="PhenoQuantPercentAssgnParametersCoeff" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantPercentAssgnParameters', {}).get('coeff_cutoff') }}">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="collapse" id="PhenoQuantConcAssgnParameters">
+                <div class="col-4">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card card-body m-1">
+                        <div class="row">
+                          <div class="col">
+                            <div><i class="text-muted">Specify parameters Quantitative-concentration</i> {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/phenotype.quant-concentr/") }}</div>
+                          </div>
+                          <div class="col-auto">
+                            <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#PhenoQuantConcAssgnParametersDetails" aria-controls="PhenoQuantConcAssgnParametersDetails" aria-expanded="true"></button>
+                          </div>
+                        </div>
+                        <div class="collapse show" id="PhenoQuantConcAssgnParametersDetails">
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantConcAssgnParametersAvg" class="form-label" >Duplicate phenotype measurement averaging</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersAvg" name="PhenoQuantConcAssgnParametersAvg">
+                                <option value="median" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("sample_avg") == 'median' %}selected{% endif %}>Median</option>
+                                <option value="mean" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("sample_avg") == 'mean' %}selected{% endif %}>Mean</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantConcAssgnParametersVal" class="form-label" >Feature property to use for correlation</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersVal" name="PhenoQuantConcAssgnParametersVal">
+                                <option value="area" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("value") == 'area' %}selected{% endif %}>Area</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantConcAssgnParametersAlg" class="form-label" >Correlation algorithm</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersAlg" name="PhenoQuantConcAssgnParametersAlg">
+                                <option value="pearson" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("algorithm") == 'pearson' %}selected{% endif %}>Pearson</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantConcAssgnParametersFdrAlg" class="form-label" >False discovery rate correction</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersFdrAlg" name="PhenoQuantConcAssgnParametersFdrAlg">
+                                <option value="bonferroni" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'bonferroni' %}selected{% endif %}>bonferroni: one-step correction</option>
+                                <option value="sidak" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'sidak' %}selected{% endif %}>sidak: one-step correction</option>
+                                <option value="holm-sidak" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'holm-sidak' %}selected{% endif %}>holm-sidak: step down method using Sidak adjustments</option>
+                                <option value="holm" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'holm' %}selected{% endif %}>holm: step-down method using Bonferroni adjustments</option>
+                                <option value="simes-hochberg" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'simes-hochberg' %}selected{% endif %}>simes-hochberg: step-up method (independent)</option>
+                                <option value="hommel" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'hommel' %}selected{% endif %}>hommel: closed method based on Simes tests (non-negative)</option>
+                                <option value="fdr_bh" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_bh' %}selected{% endif %}>fdr_bh: Benjamini/Hochberg (non-negative)</option>
+                                <option value="fdr_by" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_by' %}selected{% endif %}>fdr_by: Benjamini/Yekutieli (negative)</option>
+                                <option value="fdr_tsbh" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbh' %}selected{% endif %}>fdr_tsbh: two stage fdr correction (non-negative)</option>
+                                <option value="fdr_tsbky" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbky' %}selected{% endif %}>fdr_tsbky: two stage fdr correction (non-negative)</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantConcAssgnParametersPVal" class="form-label">Corrected <i>p</i> value threshold</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="PhenoQuantConcAssgnParametersPVal" name="PhenoQuantConcAssgnParametersPVal" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantConcAssgnParameters', {}).get('p_val_cutoff') }}">
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="PhenoQuantConcAssgnParametersCoeff" class="form-label">Correlation coefficient <i>r</i> threshold</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="PhenoQuantConcAssgnParametersCoeff" name="PhenoQuantConcAssgnParametersCoeff" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantConcAssgnParameters', {}).get('coeff_cutoff') }}">
+                            </div>
+                          </div>
 
-<!--            Add here the mol networking part; columns to msms-->
-
-
-
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
