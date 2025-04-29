@@ -369,10 +369,8 @@ table th:last-child{
     align-items: center;
 }
 
-
 .form-check-input {
-    width: 1.5rem;
-    height: 1rem;
+    transform: scale(1.2);
 }
 
 .form-check-input:checked {

@@ -63,7 +63,7 @@
     </div>
     {% endif %}
   {% endwith %}
-  <form method="post" enctype="multipart/form-data" action="">
+  <form method="post" enctype="multipart/form-data" action="new">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <div class="row">
       <div class="col justify-content-center text-center">
@@ -80,9 +80,7 @@
         <label class="btn btn-outline-secondary p-2" for="loadSession">Load results of previous session</label>
       </div>
     </div>
-
-<!--    TODO (MMZ 23.4.25): remove show-->
-    <div class="collapse show" id="startAnalysisContent">
+    <div class="collapse mb-4" id="startAnalysisContent">
       <div class="border start_box">
         <div class="m-3">
           <div class="row d-flex align-items-center">
@@ -124,7 +122,7 @@
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="FeatureFilteringParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FeatureFilteringParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FeatureFilteringParameters" {% if params.get("FeatureFilteringParameters", {}).get("activate_module") %}checked{% endif %}>
-                        <label class="form-check-label" for="FeatureFilteringParametersActivate">Activate <b>Feature Filtering</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/filter.feature/") }}</label>
+                        <label class="form-check-label" for="FeatureFilteringParametersActivate"><b>Feature Filtering</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/filter.feature/") }}</label>
                       </div>
                     </div>
                   </div>
@@ -190,7 +188,7 @@
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="AdductAnnotationParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AdductAnnotationParameters" {% if params.get("AdductAnnotationParameters", {}).get("activate_module") %}checked{% endif %}>
-                        <label class="form-check-label" for="AdductAnnotationParametersActivate">Activate <b>Adduct Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.adduct") }}</label>
+                        <label class="form-check-label" for="AdductAnnotationParametersActivate"><b>Adduct Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.adduct") }}</label>
                       </div>
                     </div>
                   </div>
@@ -265,7 +263,7 @@
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="NeutralLossParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('NeutralLossParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#NeutralLossParameters" {% if params.get("NeutralLossParameters", {}).get("activate_module") %}checked{% endif %}>
-                        <label class="form-check-label" for="NeutralLossParametersActivate">Activate <b>Neutral Loss Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.loss") }}</label>
+                        <label class="form-check-label" for="NeutralLossParametersActivate"><b>Neutral Loss Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.loss") }}</label>
                       </div>
                     </div>
                   </div>
@@ -299,7 +297,7 @@
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="FragmentAnnParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FragmentAnnParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FragmentAnnParameters" {% if params.get("FragmentAnnParameters", {}).get("activate_module") %}checked{% endif %}>
-                        <label class="form-check-label" for="FragmentAnnParametersActivate">Activate <b>MS/MS Fragment Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.fragment") }}</label>
+                        <label class="form-check-label" for="FragmentAnnParametersActivate"><b>MS/MS Fragment Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.fragment") }}</label>
                       </div>
                     </div>
                   </div>
@@ -335,7 +333,7 @@
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkCosineParameters" {% if params.get("SpecSimNetworkCosineParameters", {}).get("activate_module") %}checked{% endif %}>
-                        <label class="form-check-label" for="SpecSimNetworkCosineParametersActivate">Activate <b>Spectral/Molecular Networking (Modified Cosine)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
+                        <label class="form-check-label" for="SpecSimNetworkCosineParametersActivate"><b>Spectral/Molecular Networking (Modified Cosine)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
                       </div>
                     </div>
                   </div>
@@ -367,7 +365,7 @@
                         </div>
                         <div class="row">
                           <div class="col-8">
-                            <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersTol" name="SpecSimNetworkCosineParametersTol" min="0" max="1" step="0.01" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('fragment_tol') }}">
+                            <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersTol" name="SpecSimNetworkCosineParametersTol" min="0" step="0.01" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('fragment_tol') }}">
                           </div>
                         </div>
                         <div class="row mt-1">
@@ -399,7 +397,7 @@
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkDeepscoreParameters" {% if params.get("SpecSimNetworkDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
-                        <label class="form-check-label" for="SpecSimNetworkDeepscoreParametersActivate">Activate <b>Spectral/Molecular Networking (MS2DeepScore)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
+                        <label class="form-check-label" for="SpecSimNetworkDeepscoreParametersActivate"><b>Spectral/Molecular Networking (MS2DeepScore)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
                       </div>
                     </div>
                   </div>
@@ -770,7 +768,7 @@
                       <div class="col">
                         <div class="form-check form-switch">
                           <input class="form-check-input" type="checkbox" role="switch" id="GroupFactAssignmentParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('GroupFactAssignmentParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#GroupFactAssignmentParameters" {% if params.get("GroupFactAssignmentParameters", {}).get("activate_module") %}checked{% endif %}>
-                          <label class="form-check-label" for="GroupFactAssignmentParametersActivate">Activate <b>Group Factor Assignment</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/metadata.group_fold/") }}</label>
+                          <label class="form-check-label" for="GroupFactAssignmentParametersActivate"><b>Group Factor Assignment</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/metadata.group_fold/") }}</label>
                         </div>
                       </div>
                     </div>
@@ -821,7 +819,7 @@
                       <div class="col">
                         <div class="form-check form-switch">
                           <input class="form-check-input" type="checkbox" role="switch" id="BlankAssignmentParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('BlankAssignmentParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#BlankAssignmentParameters" {% if params.get("BlankAssignmentParameters", {}).get("activate_module") %}checked{% endif %}>
-                          <label class="form-check-label" for="BlankAssignmentParametersActivate">Activate <b>Blank Assignment</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/metadata.blank/") }}</label>
+                          <label class="form-check-label" for="BlankAssignmentParametersActivate"><b>Blank Assignment</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/metadata.blank/") }}</label>
                         </div>
                       </div>
                     </div>
@@ -893,21 +891,20 @@
               <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FeatureAnnotation" aria-controls="FeatureAnnotation" aria-expanded="false"></button>
             </div>
           </div>
-<!--          TODO: remove "show" in production-->
-          <div class="collapse show" id="FeatureAnnotation">
+          <div class="collapse" id="FeatureAnnotation">
             <div class="row mt-2 mb-4">
               <div class="col">
-                <div class="row">
+                <div class="row mx-1">
                   <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" style="font-size: 1.2em;" type="checkbox" role="switch" id="SpecLibParametersActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#SpecLibParameters">
-                      <label class="form-check-label" for="SpecLibParametersActivate">Activate <b>Spectral Library Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
+                    <div class="form-check form-switch" >
+                      <input class="form-check-input" type="checkbox" role="switch" id="SpecLibParametersActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#SpecLibParameters">
+                      <label class="form-check-label" for="SpecLibParametersActivate"><b>Spectral Library Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
                     </div>
                   </div>
                 </div>
                 <div class="collapse" id="SpecLibParameters">
                   <div class="card card-body m-1">
-                    <div class="row mb-2">
+                    <div class="row mb-3">
                       <div class="col">
                         <div><i class="text-muted">Specify parameters</i></div>
                       </div>
@@ -916,7 +913,7 @@
                       </div>
                     </div>
                     <div class="collapse show" id="SpecLibParametersDetails">
-                      <div class="row mb-2">
+                      <div class="row mb-3">
                         <div class="col">
                           <span><label class="form-label ms-1" for="SpecLibParametersFiles">Upload spectral library files (.mgf)</label>{{ render_help("https://https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#spectral-library") }}</span>
                           <input class="form-control form-control-sm" id="SpecLibParametersFiles" name="SpecLibParametersFiles" type="file" accept=".mgf" onchange="checkFileExtension('SpecLibParametersFiles', 'mgf', 'AlertContainerSpecLib', 'DummyContainerSpecLib')" multiple>
@@ -924,70 +921,113 @@
                           <div class="collapse" id="DummyContainerSpecLib"></div>
                         </div>
                       </div>
-                      <div class="row mb-2">
+                      <div class="row mb-3">
                         <div class="col">
-                          Format specify
+                          <label class="form-label ms-1" for="SpecLibParametersFormat" >Select the formatting of the spectral library files</label>
+                          <select class="form-select form-select-sm" id="SpecLibParametersFormat" name="SpecLibParametersFormat">
+                            <option value="mgf" {% if params.get("SpecLibParameters", {}).get("format") == "mgf" %}selected{% endif %}>mgf</option>
+                          </select>
                         </div>
                       </div>
-                      <div class="row mb-2">
+                      <div class="row mx-0 mb-3">
                         <div class="col">
                           <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="SpectralLibMatchingCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpectralLibMatchingCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpectralLibMatchingCosineParameters" {% if params.get("SpectralLibMatchingCosineParameters", {}).get("activate_module") %}checked{% endif %}>
-                            <label class="form-check-label" for="SpectralLibMatchingCosineParametersActivate">Activate <b>Modified Cosine Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
+                            <label class="form-check-label" for="SpectralLibMatchingCosineParametersActivate"><b>Modified Cosine Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
                           </div>
                         </div>
                       </div>
-                      <div class="collapse" id="SpectralLibMatchingCosineParameters">
-                        <div class="card card-body m-1">
+                      <div class="collapse {% if params.get('SpectralLibMatchingCosineParameters', {}).get('activate_module') %}show{% endif %}" id="SpectralLibMatchingCosineParameters">
+                        <div class="card card-body m-1 mb-3">
                           <div class="row">
                             <div class="col">
                               <div><i class="text-muted">Specify parameters</i></div>
                             </div>
                             <div class="col-auto">
-                              <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#SpectralLibMatchingCosineParametersDetails" aria-controls="SpectralLibMatchingCosineParametersDetails" aria-expanded="true"></button>
+                              <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#SpectralLibMatchingCosineParametersDetails" aria-controls="SpectralLibMatchingCosineParametersDetails" aria-expanded="false"></button>
                             </div>
                           </div>
-                          <div class="collapse show" id="SpectralLibMatchingCosineParametersDetails">
-                            <div class="row">
+                          <div class="collapse" id="SpectralLibMatchingCosineParametersDetails">
+                            <div class="row mt-2">
                               <div class="col">
-                                Label frag tol
+                                <label for="SpectralLibMatchingCosineParametersMinMatched" class="form-label">Min nr of matched MS/MS fragments</label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="SpectralLibMatchingCosineParametersMinMatched" name="SpectralLibMatchingCosineParametersMinMatched" min="1" step="1" value="{{ params.get('SpectralLibMatchingCosineParameters', {}).get('min_nr_matched_peaks') }}">
                               </div>
                             </div>
                             <div class="row">
                               <div class="col">
-                                Field frag tol
+                                <label for="SpectralLibMatchingCosineParametersTol" class="form-label">Fragment matching tolerance (in <i>m/z</i>)</label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="SpectralLibMatchingCosineParametersTol" name="SpectralLibMatchingCosineParametersTol" min="0" step="0.01" value="{{ params.get('SpectralLibMatchingCosineParameters', {}).get('fragment_tol') }}">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <label for="SpectralLibMatchingCosineParametersScore" class="form-label">Score cutoff for match</label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="SpectralLibMatchingCosineParametersScore" name="SpectralLibMatchingCosineParametersScore" min="0" max="1" step="0.01" value="{{ params.get('SpectralLibMatchingCosineParameters', {}).get('score_cutoff') }}">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <label for="SpectralLibMatchingCosineParametersDiff" class="form-label">Max difference between precursor <i>m/z</i></label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="SpectralLibMatchingCosineParametersDiff" name="SpectralLibMatchingCosineParametersDiff" min="0" step="0.5" value="{{ params.get('SpectralLibMatchingCosineParameters', {}).get('max_precursor_mass_diff') }}">
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
+                      <div class="row mx-0 mb-3">
                         <div class="col">
                           <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="SpectralLibMatchingDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpectralLibMatchingDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpectralLibMatchingDeepscoreParameters" {% if params.get("SpectralLibMatchingDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
-                            <label class="form-check-label" for="SpectralLibMatchingDeepscoreParametersActivate">Activate <b>MS2DeepScore Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
+                            <label class="form-check-label" for="SpectralLibMatchingDeepscoreParametersActivate"><b>MS2DeepScore Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
                           </div>
                         </div>
                       </div>
-                      <div class="collapse" id="SpectralLibMatchingDeepscoreParameters">
-                        <div class="card card-body m-1">
+                      <div class="collapse {% if params.get('SpectralLibMatchingDeepscoreParameters', {}).get('activate_module') %}show{% endif %}" id="SpectralLibMatchingDeepscoreParameters">
+                        <div class="card card-body m-1 mb-3">
                           <div class="row">
                             <div class="col">
                               <div><i class="text-muted">Specify parameters</i></div>
                             </div>
                             <div class="col-auto">
-                              <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#SpectralLibMatchingDeepscoreParametersDetails" aria-controls="SpectralLibMatchingDeepscoreParametersDetails" aria-expanded="true"></button>
+                              <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#SpectralLibMatchingDeepscoreParametersDetails" aria-controls="SpectralLibMatchingDeepscoreParametersDetails" aria-expanded="false"></button>
                             </div>
                           </div>
-                          <div class="collapse show" id="SpectralLibMatchingDeepscoreParametersDetails">
-                            <div class="row">
+                          <div class="collapse" id="SpectralLibMatchingDeepscoreParametersDetails">
+                            <div class="row mt-2">
                               <div class="col">
-                                Label frag tol
+                                <label for="SpectralLibMatchingDeepscoreParametersScore" class="form-label">Score cutoff for match</label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="SpectralLibMatchingDeepscoreParametersScore" name="SpectralLibMatchingDeepscoreParametersScore" min="0" max="1" step="0.01" value="{{ params.get('SpectralLibMatchingDeepscoreParameters', {}).get('score_cutoff') }}">
                               </div>
                             </div>
                             <div class="row">
                               <div class="col">
-                                Field frag tol
+                                <label for="SpectralLibMatchingDeepscoreParametersDiff" class="form-label">Max difference between precursor <i>m/z</i></label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="SpectralLibMatchingDeepscoreParametersDiff" name="SpectralLibMatchingDeepscoreParametersDiff" min="0" step="0.5" value="{{ params.get('SpectralLibMatchingDeepscoreParameters', {}).get('max_precursor_mass_diff') }}">
                               </div>
                             </div>
                           </div>
@@ -997,140 +1037,203 @@
                   </div>
                 </div>
               </div>
-
               <div class="col">
-                <div class="row">
+                <div class="row mx-1">
                   <div class="col">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" style="font-size: 1.2em;" type="checkbox" role="switch" id="AsKcbActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#AsKcbParameters">
-                      <label class="form-check-label" for="AsKcbActivate">Activate <b>AntiSMASH Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
+                      <input class="form-check-input" type="checkbox" role="switch" id="AsKcbActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#AsKcbParameters">
+                      <label class="form-check-label" for="AsKcbActivate"><b>AntiSMASH Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
                     </div>
                   </div>
                 </div>
                 <div class="collapse" id="AsKcbParameters">
                   <div class="card card-body m-1">
-                    <div class="row">
+                    <div class="row mb-3">
                       <div class="col">
                         <div><i class="text-muted">Specify parameters</i></div>
                       </div>
                       <div class="col-auto">
-                        <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#AsKcbParametersDetails" aria-controls="AsKcbParametersDetails" aria-expanded="true"></button>
+                        <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#AsResultsParametersDetails" aria-controls="AsResultsParametersDetails" aria-expanded="true"></button>
                       </div>
                     </div>
-                    <div class="collapse show" id="AsKcbParametersDetails">
-                      <div class="row">
+                    <div class="collapse show" id="AsResultsParametersDetails">
+                      <div class="row mb-3">
                         <div class="col">
-                          Job specification
+                          <span><label class="form-label ms-1" for="AsResultsParametersJob">Specify antiSMASH Job ID</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#online-fermo_gui") }}</span>
+                          <input class="form-control form-control-sm" id="AsResultsParametersJob" name="AsResultsParametersJob" type="text" placeholder="taxon-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" pattern="[0-9a-fA-F]{12}$">
                         </div>
                       </div>
-                      <div class="row">
+                      <div class="row mb-3">
                         <div class="col">
-                          Cutoff specification
+                          <label for="AsResultsParametersCutoff" class="form-label">KnownClusterBlast Similarity Cutoff (=%)</label>
+                          <input type="number" class="form-control form-control-sm" id="AsResultsParametersCutoff" name="AsResultsParametersCutoff" min="0" max="1" step="0.01" value="{{ params.get('AsResultsParameters', {}).get('similarity_cutoff') }}">
                         </div>
                       </div>
-                      <div class="row">
+                      <div class="row mx-0 mb-3">
                         <div class="col">
                           <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="AsKcbCosineMatchingParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AsKcbCosineMatchingParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AsKcbCosineMatchingParameters" {% if params.get("AsKcbCosineMatchingParameters", {}).get("activate_module") %}checked{% endif %}>
-                            <label class="form-check-label" for="AsKcbCosineMatchingParametersActivate">Activate <b>Modified Cosine Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
+                            <label class="form-check-label" for="AsKcbCosineMatchingParametersActivate"><b>Modified Cosine Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
                           </div>
                         </div>
                       </div>
-                      <div class="collapse" id="AsKcbCosineMatchingParameters">
-                        <div class="card card-body m-1">
+                      <div class="collapse {% if params.get('AsKcbCosineMatchingParameters', {}).get('activate_module') %}show{% endif %}" id="AsKcbCosineMatchingParameters">
+                        <div class="card card-body m-1 mb-3">
                           <div class="row">
                             <div class="col">
                               <div><i class="text-muted">Specify parameters</i></div>
                             </div>
                             <div class="col-auto">
-                              <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#AsKcbCosineMatchingParametersDetails" aria-controls="AsKcbCosineMatchingParametersDetails" aria-expanded="true"></button>
+                              <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#AsKcbCosineMatchingParametersDetails" aria-controls="AsKcbCosineMatchingParametersDetails" aria-expanded="false"></button>
                             </div>
                           </div>
-                          <div class="collapse show" id="AsKcbCosineMatchingParametersDetails">
-                            <div class="row">
+                          <div class="collapse" id="AsKcbCosineMatchingParametersDetails">
+                            <div class="row mt-2">
                               <div class="col">
-                                Label frag tol
+                                <label for="AsKcbCosineMatchingParametersMinMatched" class="form-label">Min nr of matched MS/MS fragments</label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="AsKcbCosineMatchingParametersMinMatched" name="AsKcbCosineMatchingParametersMinMatched" min="1" step="1" value="{{ params.get('AsKcbCosineMatchingParameters', {}).get('min_nr_matched_peaks') }}">
                               </div>
                             </div>
                             <div class="row">
                               <div class="col">
-                                Field frag tol
+                                <label for="AsKcbCosineMatchingParametersTol" class="form-label">Fragment matching tolerance (in <i>m/z</i>)</label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="AsKcbCosineMatchingParametersTol" name="AsKcbCosineMatchingParametersTol" min="0" step="0.01" value="{{ params.get('AsKcbCosineMatchingParameters', {}).get('fragment_tol') }}">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <label for="AsKcbCosineMatchingParametersScore" class="form-label">Score cutoff for match</label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="AsKcbCosineMatchingParametersScore" name="AsKcbCosineMatchingParametersScore" min="0" max="1" step="0.01" value="{{ params.get('AsKcbCosineMatchingParameters', {}).get('score_cutoff') }}">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <label for="AsKcbCosineMatchingParametersDiff" class="form-label">Max difference between precursor <i>m/z</i></label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="AsKcbCosineMatchingParametersDiff" name="AsKcbCosineMatchingParametersDiff" min="0" step="0.5" value="{{ params.get('AsKcbCosineMatchingParameters', {}).get('max_precursor_mass_diff') }}">
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-
-                      <div class="row">
+                      <div class="row mx-0 mb-3">
                         <div class="col">
                           <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="AsKcbDeepscoreMatchingParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AsKcbDeepscoreMatchingParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AsKcbDeepscoreMatchingParameters" {% if params.get("AsKcbDeepscoreMatchingParameters", {}).get("activate_module") %}checked{% endif %}>
-                            <label class="form-check-label" for="AsKcbDeepscoreMatchingParametersActivate">Activate <b>MS2DeepScore Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
+                            <label class="form-check-label" for="AsKcbDeepscoreMatchingParametersActivate"><b>MS2DeepScore Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
                           </div>
                         </div>
                       </div>
-                      <div class="collapse" id="AsKcbDeepscoreMatchingParameters">
-                        <div class="card card-body m-1">
+                      <div class="collapse {% if params.get('AsKcbDeepscoreMatchingParameters', {}).get('activate_module') %}show{% endif %}" id="AsKcbDeepscoreMatchingParameters">
+                        <div class="card card-body m-1 mb-3">
                           <div class="row">
                             <div class="col">
                               <div><i class="text-muted">Specify parameters</i></div>
                             </div>
                             <div class="col-auto">
-                              <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#AsKcbDeepscoreMatchingParametersDetails" aria-controls="AsKcbDeepscoreMatchingParametersDetails" aria-expanded="true"></button>
+                              <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#AsKcbDeepscoreMatchingParametersDetails" aria-controls="AsKcbDeepscoreMatchingParametersDetails" aria-expanded="false"></button>
                             </div>
                           </div>
-                          <div class="collapse show" id="AsKcbDeepscoreMatchingParametersDetails">
-                            <div class="row">
+                          <div class="collapse" id="AsKcbDeepscoreMatchingParametersDetails">
+                            <div class="row mt-2">
                               <div class="col">
-                                Label frag tol
+                                <label for="AsKcbDeepscoreMatchingParametersScore" class="form-label">Score cutoff for match</label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="AsKcbDeepscoreMatchingParametersScore" name="AsKcbDeepscoreMatchingParametersScore" min="0" max="1" step="0.01" value="{{ params.get('AsKcbDeepscoreMatchingParameters', {}).get('score_cutoff') }}">
                               </div>
                             </div>
                             <div class="row">
                               <div class="col">
-                                Field frag tol
+                                <label for="AsKcbDeepscoreMatchingParametersDiff" class="form-label">Max difference between precursor <i>m/z</i></label>
+                              </div>
+                            </div>
+                            <div class="row mb-1">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="AsKcbDeepscoreMatchingParametersDiff" name="AsKcbDeepscoreMatchingParametersDiff" min="0" step="0.5" value="{{ params.get('AsKcbDeepscoreMatchingParameters', {}).get('max_precursor_mass_diff') }}">
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-
-
-
                     </div>
                   </div>
                 </div>
-
-
               </div>
-
-            </div>
-            <div class="row mt-2 mb-4 border">
-              <div class="col-6 border">
-                row for ms2query matching
+              <div class="col">
+                <div class="row mx-1">
+                  <div class="col">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="MS2QueryActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#MS2QueryResultsParameters">
+                      <label class="form-check-label" for="MS2QueryActivate"><b>MS2Query Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.ms2query/") }}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="collapse" id="MS2QueryResultsParameters">
+                  <div class="card card-body m-1">
+                    <div class="row mb-3">
+                      <div class="col">
+                        <div><i class="text-muted">Specify parameters</i></div>
+                      </div>
+                      <div class="col-auto">
+                        <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#MS2QueryResultsParametersDetails" aria-controls="MS2QueryResultsParametersDetails" aria-expanded="true"></button>
+                      </div>
+                    </div>
+                    <div class="collapse show" id="MS2QueryResultsParametersDetails">
+                      <div class="row mb-3">
+                        <div class="col">
+                          <span><label class="form-label ms-1" for="MS2QueryResultsParametersFile">Upload the MS2Query results file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#ms2query-results-file") }}</span>
+                          <input class="form-control form-control-sm" id="MS2QueryResultsParametersFile" name="MS2QueryResultsParametersFile" type="file" accept=".csv" onchange="checkFileExtension('MS2QueryResultsParametersFile', 'csv', 'AlertContainerMS2QueryFile', 'MS2QueryResultsParametersShow')">
+                          <div id="AlertContainerMS2QueryFile"></div>
+                        </div>
+                      </div>
+                      <div class="row mb-3 collapse" id="MS2QueryResultsParametersShow">
+                        <div class="col">
+                          <label for="MS2QueryResultsParametersCutoff" class="form-label">MS2Query Match Score Cutoff</label>
+                          <input type="number" class="form-control form-control-sm" id="MS2QueryResultsParametersCutoff" name="MS2QueryResultsParametersCutoff" min="0" max="1" step="0.01" value="{{ params.get('MS2QueryResultsParameters', {}).get('score_cutoff') }}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-
-
-
-
-
-
-
-
-  <!--          TODO Add file uploads ms2query etc-->
           </div>
         </div>
       </div>
-
-
-
-
-  <!--encapsulate in forms tag, vanilla html/js, without wtforms; add the individual form blocks for load, new, from separate html -->
-  <div class="col text-center mx-auto">
-    <button id="submit" type="submit" class="btn btn-primary">Start analysis</button>
-  </div>
-
-
+      {% if online %}
+      <div class="row mb-2 d-flex align-items-center justify-content-center">
+        <div class="col-auto">
+          <label for="emailInput" class="form-label mb-0">Provide an email to be notified about the job outcome (optional)</label>
+        </div>
+        <div class="col-auto">
+          <input type="email" class="form-control form-control-sm" id="emailInput" name="email" placeholder="name@provider.com">
+        </div>
+      </div>
+      {% endif %}
+      <div class="row mt-2 d-flex align-items-center justify-content-center">
+        <div class="col-auto text-center">
+          <button id="submit" type="submit" class="btn btn-primary">Start analysis</button>
+        </div>
+      </div>
+    </div>
   </form>
 </div>
 <script type="text/javascript" src="{{ url_for('static', filename='js/dispatch_forms.js') }}"></script>
