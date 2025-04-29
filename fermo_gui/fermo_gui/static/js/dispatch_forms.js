@@ -9,24 +9,36 @@
  * @param {string} id - The selector ID of the file input field
  * @param {string} ext - The extension to check for (e.g. 'csv')
  * @param {string} targetErrorId - The selector ID of the error report field
+ * @param {string} paramId - The selector ID to show parameter field after file upload
  */
-function checkFileExtension(id, ext, targetErrorId) {
+function checkFileExtension(id, ext, targetErrorId, paramId) {
   const fileInput = document.getElementById(id);
-  const file = fileInput.files[0];
+  const files = fileInput.files;
+  const filesArray = Array.from(files);
+  const isValid = filesArray.every(file => file.name.endsWith(ext));
+  const paramEl = document.getElementById(paramId);
+  const alertContainer = document.getElementById(targetErrorId);
 
-  if (file && !file.name.endsWith(ext)) {
-    const alertContainer = document.getElementById(targetErrorId);
-
+  if (!isValid) {
     const alertDiv = document.createElement('div');
     alertDiv.className = 'alert alert-warning alert-dismissible fade show';
     alertDiv.role = 'alert';
     alertDiv.innerHTML = `
-      Invalid file type. Please upload a ${ext} file.
+      Invalid file type. Please upload only <b>${ext}</b> files.
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     `;
-
     alertContainer.appendChild(alertDiv);
-    fileInput.value = ""; // Clear file selection
+    fileInput.value = ""; // Clear invalid selection
+
+    if (paramEl && paramEl.classList.contains("show")) {
+      bootstrap.Collapse.getOrCreateInstance(paramEl).hide();
+    }
+    return;
+  }
+
+  // If valid, show the associated parameter field
+  if (paramEl && !paramEl.classList.contains("show")) {
+    bootstrap.Collapse.getOrCreateInstance(paramEl).show();
   }
 }
 

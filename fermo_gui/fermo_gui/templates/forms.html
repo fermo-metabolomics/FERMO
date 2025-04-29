@@ -85,7 +85,7 @@
     <div class="collapse show" id="startAnalysisContent">
       <div class="border start_box">
         <div class="m-3">
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <div class="col">
               <h2 class="mt-1" style="font-size: 1.4em;">Peak table file parameters {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#peaktable") }}</h2>
             </div>
@@ -97,88 +97,86 @@
             <div class="row my-4">
               <div class="col-6">
                 <span><label class="form-label ms-1" for="PeaktableParametersFile">Upload the peak table file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#molecular-feature-peaktable") }}</span>
-                <input class="form-control form-control-sm" id="PeaktableParametersFile" name="PeaktableParametersFile" type="file" accept=".csv" onchange="checkFileExtension('PeaktableParametersFile', 'csv', 'AlertContainerPeaktable')" required>
+                <input class="form-control form-control-sm" id="PeaktableParametersFile" name="PeaktableParametersFile" type="file" accept=".csv" onchange="checkFileExtension('PeaktableParametersFile', 'csv', 'AlertContainerPeaktable', 'PeaktableParametersShow')" required>
                 <div id="AlertContainerPeaktable"></div>
               </div>
             </div>
-            <div class="row mb-4">
-              <div class="col-6">
-                <label class="form-label ms-1" for="PeaktableParametersFormat" >Select the formatting of the peak table file</label>
-                <select class="form-select form-select-sm" id="PeaktableParametersFormat" name="PeaktableParametersFormat">
-                  <option value="mzmine3" {% if params.get("PeaktableParameters", {}).get("format") == "mzmine3" %}selected{% endif %}>Mzmine 3</option>
-                  <option value="mzmine4" {% if params.get("PeaktableParameters", {}).get("format") == 'mzmine4' %}selected{% endif %}>Mzmine 4</option>
-                </select>
-              </div>
-              <div class="col-6">
-                <label class="form-label ms-1" for="PeaktableParametersPolarity" >Select the ion polarity mode of the peak table file</label>
-                <select class="form-select form-select-sm" id="PeaktableParametersPolarity" name="PeaktableParametersPolarity">
-                  <option value="positive" {% if params.get("PeaktableParameters", {}).get("polarity") == "positive" %}selected{% endif %}>Positive</option>
-                  <option value="negative" {% if params.get("PeaktableParameters", {}).get("polarity") == 'negative' %}selected{% endif %}>Negative</option>
-                </select>
-              </div>
-            </div>
-            <div class="row mb-4">
-              <div class="col">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="FeatureFilteringParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FeatureFilteringParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FeatureFilteringParameters" {% if params.get("FeatureFilteringParameters", {}).get("activate_module") %}checked{% endif %}>
-                      <label class="form-check-label" for="FeatureFilteringParametersActivate">Activate <b>Feature Filtering</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/filter.feature/") }}</label>
-                    </div>
-                  </div>
+            <div class="collapse" id="PeaktableParametersShow">
+              <div class="row mb-4">
+                <div class="col-6">
+                  <label class="form-label ms-1" for="PeaktableParametersFormat" >Select the formatting of the peak table file</label>
+                  <select class="form-select form-select-sm" id="PeaktableParametersFormat" name="PeaktableParametersFormat">
+                    <option value="mzmine3" {% if params.get("PeaktableParameters", {}).get("format") == "mzmine3" %}selected{% endif %}>Mzmine 3</option>
+                    <option value="mzmine4" {% if params.get("PeaktableParameters", {}).get("format") == 'mzmine4' %}selected{% endif %}>Mzmine 4</option>
+                  </select>
                 </div>
-                <div class="collapse {% if params.get('FeatureFilteringParameters', {}).get('activate_module') %}show{% endif %}" id="FeatureFilteringParameters">
+                <div class="col-6">
+                  <label class="form-label ms-1" for="PeaktableParametersPolarity" >Select the ion polarity mode of the peak table file</label>
+                  <select class="form-select form-select-sm" id="PeaktableParametersPolarity" name="PeaktableParametersPolarity">
+                    <option value="positive" {% if params.get("PeaktableParameters", {}).get("polarity") == "positive" %}selected{% endif %}>Positive</option>
+                    <option value="negative" {% if params.get("PeaktableParameters", {}).get("polarity") == 'negative' %}selected{% endif %}>Negative</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col">
                   <div class="row">
                     <div class="col">
-                      <div class="card card-body m-1">
-                        <div class="row">
-                          <div class="col">
-                            <div class="text-muted"><i>Specify parameters</i></div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FeatureFilteringParametersDetails" aria-controls="FeatureFilteringParametersDetails" aria-expanded="false"></button>
-                          </div>
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="FeatureFilteringParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FeatureFilteringParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FeatureFilteringParameters" {% if params.get("FeatureFilteringParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <label class="form-check-label" for="FeatureFilteringParametersActivate">Activate <b>Feature Filtering</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/filter.feature/") }}</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="collapse {% if params.get('FeatureFilteringParameters', {}).get('activate_module') %}show{% endif %}" id="FeatureFilteringParameters">
+                    <div class="card card-body m-1">
+                      <div class="row">
+                        <div class="col">
+                          <div class="text-muted"><i>Specify parameters</i></div>
                         </div>
-                        <div class="collapse" id="FeatureFilteringParametersDetails">
-                          <div class="row mt-1">
-                            <div class="col">
-                              <div class="mb-1">Filter <b>Feature Area</b></div>
-                              <div class="text-muted mb-2"><i>Range of relative feature areas to include in analysis</i></div>
-                              <div class="row d-flex align-items-center pb-2">
-                                <div class="col-4">
-                                  <div>min</div>
-                                </div>
-                                <div class="col-4">
-                                  <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersAreaMin" name="FeatureFilteringParametersAreaMin" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_area_range_min') }}">
-                                </div>
+                        <div class="col-auto">
+                          <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FeatureFilteringParametersDetails" aria-controls="FeatureFilteringParametersDetails" aria-expanded="false"></button>
+                        </div>
+                      </div>
+                      <div class="collapse" id="FeatureFilteringParametersDetails">
+                        <div class="row mt-1">
+                          <div class="col">
+                            <div class="mb-1">Filter <b>Feature Area</b></div>
+                            <div class="text-muted mb-2"><i>Range of relative feature areas to include in analysis</i></div>
+                            <div class="row d-flex align-items-center pb-2">
+                              <div class="col-4">
+                                <div>min</div>
                               </div>
-                              <div class="row d-flex align-items-center pb-2">
-                                <div class="col-4">
-                                  <div>max</div>
-                                </div>
-                                <div class="col-4">
-                                  <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersAreaMax" name="FeatureFilteringParametersAreaMax" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_area_range_max') }}">
-                                </div>
+                              <div class="col-4">
+                                <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersAreaMin" name="FeatureFilteringParametersAreaMin" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_area_range_min') }}">
                               </div>
                             </div>
-                            <div class="col">
-                              <div class="mb-1">Filter <b>Feature Height/Intensity</b></div>
-                              <div class="text-muted mb-2"><i>Range of relative feature height/intensity to include in analysis</i></div>
-                              <div class="row d-flex align-items-center pb-2">
-                                <div class="col-4">
-                                  <div>min</div>
-                                </div>
-                                <div class="col-4">
-                                  <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersIntMin" name="FeatureFilteringParametersIntMin" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_int_range_min') }}">
-                                </div>
+                            <div class="row d-flex align-items-center pb-2">
+                              <div class="col-4">
+                                <div>max</div>
                               </div>
-                              <div class="row d-flex align-items-center pb-2">
-                                <div class="col-4">
-                                  <div>max</div>
-                                </div>
-                                <div class="col-4">
-                                  <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersIntMax" name="FeatureFilteringParametersIntMax" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_int_range_max') }}">
-                                </div>
+                              <div class="col-4">
+                                <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersAreaMax" name="FeatureFilteringParametersAreaMax" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_area_range_max') }}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="mb-1">Filter <b>Feature Height/Intensity</b></div>
+                            <div class="text-muted mb-2"><i>Range of relative feature height/intensity to include in analysis</i></div>
+                            <div class="row d-flex align-items-center pb-2">
+                              <div class="col-4">
+                                <div>min</div>
+                              </div>
+                              <div class="col-4">
+                                <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersIntMin" name="FeatureFilteringParametersIntMin" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_int_range_min') }}">
+                              </div>
+                            </div>
+                            <div class="row d-flex align-items-center pb-2">
+                              <div class="col-4">
+                                <div>max</div>
+                              </div>
+                              <div class="col-4">
+                                <input type="number" class="form-control form-control-sm" id="FeatureFilteringParametersIntMax" name="FeatureFilteringParametersIntMax" min="0" max="1" step="0.01" value="{{ params.get('FeatureFilteringParameters', {}).get('filter_rel_int_range_max') }}">
                               </div>
                             </div>
                           </div>
@@ -187,37 +185,37 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="AdductAnnotationParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AdductAnnotationParameters" {% if params.get("AdductAnnotationParameters", {}).get("activate_module") %}checked{% endif %}>
-                      <label class="form-check-label" for="AdductAnnotationParametersActivate">Activate <b>Adduct Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.adduct") }}</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="collapse {% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}show{% endif %}" id="AdductAnnotationParameters">
+                <div class="col">
                   <div class="row">
                     <div class="col">
-                      <div class="card card-body m-1">
-                        <div class="row">
-                          <div class="col">
-                            <div class="text-muted"><i>Specify parameters</i></div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#AdductAnnotationParametersDetails" aria-controls="AdductAnnotationParametersDetails" aria-expanded="false"></button>
-                          </div>
-                        </div>
-                        <div class="collapse" id="AdductAnnotationParametersDetails">
-                          <div class="row mt-1">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="AdductAnnotationParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AdductAnnotationParameters" {% if params.get("AdductAnnotationParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <label class="form-check-label" for="AdductAnnotationParametersActivate">Activate <b>Adduct Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.adduct") }}</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="collapse {% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}show{% endif %}" id="AdductAnnotationParameters">
+                    <div class="row">
+                      <div class="col">
+                        <div class="card card-body m-1">
+                          <div class="row">
                             <div class="col">
-                              <label for="AdductAnnotationParametersPpm" class="form-label">Mass accuracy tolerance (in ppm)</label>
+                              <div class="text-muted"><i>Specify parameters</i></div>
+                            </div>
+                            <div class="col-auto">
+                              <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#AdductAnnotationParametersDetails" aria-controls="AdductAnnotationParametersDetails" aria-expanded="false"></button>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="AdductAnnotationParametersPpm" name="AdductAnnotationParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('AdductAnnotationParameters', {}).get('mass_dev_ppm') }}">
+                          <div class="collapse" id="AdductAnnotationParametersDetails">
+                            <div class="row mt-1">
+                              <div class="col">
+                                <label for="AdductAnnotationParametersPpm" class="form-label">Mass accuracy tolerance (in ppm)</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="AdductAnnotationParametersPpm" name="AdductAnnotationParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('AdductAnnotationParameters', {}).get('mass_dev_ppm') }}">
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -232,7 +230,7 @@
       </div>
       <div class="border start_box">
         <div class="m-3">
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <div class="col">
               <h2 class="mt-1" style="font-size: 1.4em;">MS/MS file parameters {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#msms") }}</h2>
             </div>
@@ -244,54 +242,86 @@
             <div class="row my-4">
               <div class="col-6">
                 <span><label class="form-label ms-1" for="MsmsParametersFile">Upload the MS/MS file</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#msms-spectrum-information") }}</span>
-                <input class="form-control form-control-sm" id="MsmsParametersFile" name="MsmsParametersFile" type="file" accept=".mgf" onchange="checkFileExtension('MsmsParametersFile', 'mgf', 'AlertContainerMsms')">
+                <input class="form-control form-control-sm" id="MsmsParametersFile" name="MsmsParametersFile" type="file" accept=".mgf" onchange="checkFileExtension('MsmsParametersFile', 'mgf', 'AlertContainerMsms', 'MsmsParametersShow')">
                 <div id="AlertContainerMsms"></div>
               </div>
             </div>
-            <div class="row mb-4">
-              <div class="col-6">
-                <label class="form-label ms-1" for="MsmsParametersFormat" >Select the formatting of the MS/MS file</label>
-                <select class="form-select form-select-sm" id="MsmsParametersFormat" name="MsmsParametersFormat">
-                  <option value="mgf" {% if params.get("MsmsParameters", {}).get("format") == "mgf" %}selected{% endif %}>.mgf (Mzmine 3/4 style)</option>
-                </select>
+            <div class="collapse" id="MsmsParametersShow">
+              <div class="row mb-4">
+                <div class="col-6">
+                  <label class="form-label ms-1" for="MsmsParametersFormat" >Select the formatting of the MS/MS file</label>
+                  <select class="form-select form-select-sm" id="MsmsParametersFormat" name="MsmsParametersFormat">
+                    <option value="mgf" {% if params.get("MsmsParameters", {}).get("format") == "mgf" %}selected{% endif %}>.mgf (Mzmine 3/4 style)</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <span><label class="form-label ms-1" for="MsmsParametersFormatRelInt">Minimum relative intensity of MS/MS fragments</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/filter.msms/") }}</span>
+                  <input type="number" class="form-control form-control-sm" id="MsmsParametersFormatRelInt" name="MsmsParametersFormatRelInt" min="0" max="1" step="0.01" value="{{ params.get('MsmsParameters', {}).get('rel_int_from') }}">
+                </div>
               </div>
-              <div class="col-6">
-                <span><label class="form-label ms-1" for="MsmsParametersFormatRelInt">Minimum relative intensity of MS/MS fragments</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/filter.msms/") }}</span>
-                <input type="number" class="form-control form-control-sm" id="MsmsParametersFormatRelInt" name="MsmsParametersFormatRelInt" min="0" max="1" step="0.01" value="{{ params.get('MsmsParameters', {}).get('rel_int_from') }}">
-              </div>
-            </div>
-            <div class="row mb-4">
-              <div class="col">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="NeutralLossParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('NeutralLossParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#NeutralLossParameters" {% if params.get("NeutralLossParameters", {}).get("activate_module") %}checked{% endif %}>
-                      <label class="form-check-label" for="NeutralLossParametersActivate">Activate <b>Neutral Loss Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.loss") }}</label>
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="NeutralLossParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('NeutralLossParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#NeutralLossParameters" {% if params.get("NeutralLossParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <label class="form-check-label" for="NeutralLossParametersActivate">Activate <b>Neutral Loss Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.loss") }}</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="collapse {% if params.get('NeutralLossParameters', {}).get('activate_module') %}show{% endif %}" id="NeutralLossParameters">
+                    <div class="card card-body m-1">
+                      <div class="row">
+                        <div class="col">
+                          <div class="text-muted"><i>Specify parameters</i></div>
+                        </div>
+                        <div class="col-auto">
+                          <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#NeutralLossParametersDetails" aria-controls="NeutralLossParametersDetails" aria-expanded="false"></button>
+                        </div>
+                      </div>
+                      <div class="collapse" id="NeutralLossParametersDetails">
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="NeutralLossParametersPpm" class="form-label">Mass accuracy tolerance (in ppm)</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="NeutralLossParametersPpm" name="NeutralLossParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('NeutralLossParameters', {}).get('mass_dev_ppm') }}">
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="collapse {% if params.get('NeutralLossParameters', {}).get('activate_module') %}show{% endif %}" id="NeutralLossParameters">
+                <div class="col">
                   <div class="row">
                     <div class="col">
-                      <div class="card card-body m-1">
-                        <div class="row">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="FragmentAnnParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FragmentAnnParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FragmentAnnParameters" {% if params.get("FragmentAnnParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <label class="form-check-label" for="FragmentAnnParametersActivate">Activate <b>MS/MS Fragment Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.fragment") }}</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="collapse {% if params.get('FragmentAnnParameters', {}).get('activate_module') %}show{% endif %}" id="FragmentAnnParameters">
+                    <div class="card card-body m-1">
+                      <div class="row">
+                        <div class="col">
+                          <div class="text-muted"><i>Specify parameters</i></div>
+                        </div>
+                        <div class="col-auto">
+                          <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FragmentAnnParametersDetails" aria-controls="FragmentAnnParametersDetails" aria-expanded="false"></button>
+                        </div>
+                      </div>
+                      <div class="collapse" id="FragmentAnnParametersDetails">
+                        <div class="row mt-1">
                           <div class="col">
-                            <div class="text-muted"><i>Specify parameters</i></div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#NeutralLossParametersDetails" aria-controls="NeutralLossParametersDetails" aria-expanded="false"></button>
+                            <label for="FragmentAnnParametersPpm" class="form-label">Mass accuracy tolerance (in ppm)</label>
                           </div>
                         </div>
-                        <div class="collapse" id="NeutralLossParametersDetails">
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="NeutralLossParametersPpm" class="form-label">Mass accuracy tolerance (in ppm)</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="NeutralLossParametersPpm" name="NeutralLossParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('NeutralLossParameters', {}).get('mass_dev_ppm') }}">
-                            </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="FragmentAnnParametersPpm" name="FragmentAnnParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('FragmentAnnParameters', {}).get('mass_dev_ppm') }}">
                           </div>
                         </div>
                       </div>
@@ -299,164 +329,122 @@
                   </div>
                 </div>
               </div>
-              <div class="col">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="FragmentAnnParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FragmentAnnParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FragmentAnnParameters" {% if params.get("FragmentAnnParameters", {}).get("activate_module") %}checked{% endif %}>
-                      <label class="form-check-label" for="FragmentAnnParametersActivate">Activate <b>MS/MS Fragment Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.fragment") }}</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="collapse {% if params.get('FragmentAnnParameters', {}).get('activate_module') %}show{% endif %}" id="FragmentAnnParameters">
+              <div class="row mb-4">
+                <div class="col">
                   <div class="row">
                     <div class="col">
-                      <div class="card card-body m-1">
-                        <div class="row">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkCosineParameters" {% if params.get("SpecSimNetworkCosineParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <label class="form-check-label" for="SpecSimNetworkCosineParametersActivate">Activate <b>Spectral/Molecular Networking (Modified Cosine)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="collapse {% if params.get('SpecSimNetworkCosineParameters', {}).get('activate_module') %}show{% endif %}" id="SpecSimNetworkCosineParameters">
+                    <div class="card card-body m-1">
+                      <div class="row">
+                        <div class="col">
+                          <div class="text-muted"><i>Specify parameters</i></div>
+                        </div>
+                        <div class="col-auto">
+                          <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#SpecSimNetworkCosineParametersDetails" aria-controls="SpecSimNetworkCosineParametersDetails" aria-expanded="false"></button>
+                        </div>
+                      </div>
+                      <div class="collapse" id="SpecSimNetworkCosineParametersDetails">
+                        <div class="row mt-1">
                           <div class="col">
-                            <div class="text-muted"><i>Specify parameters</i></div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FragmentAnnParametersDetails" aria-controls="FragmentAnnParametersDetails" aria-expanded="false"></button>
+                            <label for="SpecSimNetworkCosineParametersMinNr" class="form-label">Filters min nr of fragments per MS/MS spectrum</label>
                           </div>
                         </div>
-                        <div class="collapse" id="FragmentAnnParametersDetails">
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="FragmentAnnParametersPpm" class="form-label">Mass accuracy tolerance (in ppm)</label>
-                            </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersMinNr" name="SpecSimNetworkCosineParametersMinNr" min="1" step="1" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('msms_min_frag_nr') }}">
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="FragmentAnnParametersPpm" name="FragmentAnnParametersPpm" min="0" max="100" step="0.1" value="{{ params.get('FragmentAnnParameters', {}).get('mass_dev_ppm') }}">
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="SpecSimNetworkCosineParametersTol" class="form-label">Fragment matching tolerance (in <i>m/z</i>)</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersTol" name="SpecSimNetworkCosineParametersTol" min="0" max="1" step="0.01" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('fragment_tol') }}">
+                          </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="SpecSimNetworkCosineParametersScore" class="form-label">Score cutoff for match</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersScore" name="SpecSimNetworkCosineParametersScore" min="0" max="1" step="0.01" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('score_cutoff') }}">
+                          </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="SpecSimNetworkCosineParametersLinks" class="form-label">Max nr of edges of any node</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersLinks" name="SpecSimNetworkCosineParametersLinks" min="1" step="1" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('max_nr_links') }}">
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row mb-4">
-              <div class="col">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkCosineParameters" {% if params.get("SpecSimNetworkCosineParameters", {}).get("activate_module") %}checked{% endif %}>
-                      <label class="form-check-label" for="SpecSimNetworkCosineParametersActivate">Activate <b>Spectral/Molecular Networking (Modified Cosine)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="collapse {% if params.get('SpecSimNetworkCosineParameters', {}).get('activate_module') %}show{% endif %}" id="SpecSimNetworkCosineParameters">
+                <div class="col">
                   <div class="row">
                     <div class="col">
-                      <div class="card card-body m-1">
-                        <div class="row">
-                          <div class="col">
-                            <div class="text-muted"><i>Specify parameters</i></div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#SpecSimNetworkCosineParametersDetails" aria-controls="SpecSimNetworkCosineParametersDetails" aria-expanded="false"></button>
-                          </div>
-                        </div>
-                        <div class="collapse" id="SpecSimNetworkCosineParametersDetails">
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="SpecSimNetworkCosineParametersMinNr" class="form-label">Filters min nr of fragments per MS/MS spectrum</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersMinNr" name="SpecSimNetworkCosineParametersMinNr" min="1" step="1" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('msms_min_frag_nr') }}">
-                            </div>
-                          </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="SpecSimNetworkCosineParametersTol" class="form-label">Fragment matching tolerance (in <i>m/z</i>)</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersTol" name="SpecSimNetworkCosineParametersTol" min="0" max="1" step="0.01" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('fragment_tol') }}">
-                            </div>
-                          </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="SpecSimNetworkCosineParametersScore" class="form-label">Score cutoff for match</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersScore" name="SpecSimNetworkCosineParametersScore" min="0" max="1" step="0.01" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('score_cutoff') }}">
-                            </div>
-                          </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="SpecSimNetworkCosineParametersLinks" class="form-label">Max nr of edges of any node</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkCosineParametersLinks" name="SpecSimNetworkCosineParametersLinks" min="1" step="1" value="{{ params.get('SpecSimNetworkCosineParameters', {}).get('max_nr_links') }}">
-                            </div>
-                          </div>
-                        </div>
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkDeepscoreParameters" {% if params.get("SpecSimNetworkDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <label class="form-check-label" for="SpecSimNetworkDeepscoreParametersActivate">Activate <b>Spectral/Molecular Networking (MS2DeepScore)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkDeepscoreParameters" {% if params.get("SpecSimNetworkDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
-                      <label class="form-check-label" for="SpecSimNetworkDeepscoreParametersActivate">Activate <b>Spectral/Molecular Networking (MS2DeepScore)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="collapse {% if params.get('SpecSimNetworkDeepscoreParameters', {}).get('activate_module') %}show{% endif %}" id="SpecSimNetworkDeepscoreParameters">
-                  <div class="row">
-                    <div class="col">
-                      <div class="card card-body m-1">
-                        <div class="row">
-                          <div class="col">
-                            <div class="text-muted"><i>Specify parameters</i></div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#SpecSimNetworkDeepscoreParametersDetails" aria-controls="SpecSimNetworkDeepscoreParametersDetails" aria-expanded="false"></button>
-                          </div>
-                        </div>
-                        <div class="collapse" id="SpecSimNetworkDeepscoreParametersDetails">
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="SpecSimNetworkDeepscoreParametersMinNr" class="form-label">Filters min nr of fragments per MS/MS spectrum</label>
-                            </div>
-                          </div>
+                  <div class="collapse {% if params.get('SpecSimNetworkDeepscoreParameters', {}).get('activate_module') %}show{% endif %}" id="SpecSimNetworkDeepscoreParameters">
+                    <div class="row">
+                      <div class="col">
+                        <div class="card card-body m-1">
                           <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkDeepscoreParametersMinNr" name="SpecSimNetworkDeepscoreParametersMinNr" min="1" step="1" value="{{ params.get('SpecSimNetworkDeepscoreParameters', {}).get('msms_min_frag_nr') }}">
-                            </div>
-                          </div>
-                          <div class="row mt-1">
                             <div class="col">
-                              <label for="SpecSimNetworkDeepscoreParametersScore" class="form-label">Score cutoff for match</label>
+                              <div class="text-muted"><i>Specify parameters</i></div>
+                            </div>
+                            <div class="col-auto">
+                              <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#SpecSimNetworkDeepscoreParametersDetails" aria-controls="SpecSimNetworkDeepscoreParametersDetails" aria-expanded="false"></button>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkDeepscoreParametersScore" name="SpecSimNetworkDeepscoreParametersScore" min="0" max="1" step="0.01" value="{{ params.get('SpecSimNetworkDeepscoreParameters', {}).get('score_cutoff') }}">
+                          <div class="collapse" id="SpecSimNetworkDeepscoreParametersDetails">
+                            <div class="row mt-1">
+                              <div class="col">
+                                <label for="SpecSimNetworkDeepscoreParametersMinNr" class="form-label">Filters min nr of fragments per MS/MS spectrum</label>
+                              </div>
                             </div>
-                          </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="SpecSimNetworkDeepscoreParametersLinks" class="form-label">Max nr of edges of any node</label>
+                            <div class="row">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="SpecSimNetworkDeepscoreParametersMinNr" name="SpecSimNetworkDeepscoreParametersMinNr" min="1" step="1" value="{{ params.get('SpecSimNetworkDeepscoreParameters', {}).get('msms_min_frag_nr') }}">
+                              </div>
                             </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="SpecSimNetworkDeepscoreParametersLinks" name="SpecSimNetworkDeepscoreParametersLinks" min="1" step="1" value="{{ params.get('SpecSimNetworkDeepscoreParameters', {}).get('max_nr_links') }}">
+                            <div class="row mt-1">
+                              <div class="col">
+                                <label for="SpecSimNetworkDeepscoreParametersScore" class="form-label">Score cutoff for match</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="SpecSimNetworkDeepscoreParametersScore" name="SpecSimNetworkDeepscoreParametersScore" min="0" max="1" step="0.01" value="{{ params.get('SpecSimNetworkDeepscoreParameters', {}).get('score_cutoff') }}">
+                              </div>
+                            </div>
+                            <div class="row mt-1">
+                              <div class="col">
+                                <label for="SpecSimNetworkDeepscoreParametersLinks" class="form-label">Max nr of edges of any node</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-8">
+                                <input type="number" class="form-control form-control-sm" id="SpecSimNetworkDeepscoreParametersLinks" name="SpecSimNetworkDeepscoreParametersLinks" min="1" step="1" value="{{ params.get('SpecSimNetworkDeepscoreParameters', {}).get('max_nr_links') }}">
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -469,11 +457,9 @@
           </div>
         </div>
       </div>
-
-
       <div class="border start_box">
         <div class="m-3">
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <div class="col">
               <h2 class="mt-1" style="font-size: 1.4em;">Phenotype data file parameters {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/#phenotype-data") }}</h2>
             </div>
@@ -481,279 +467,267 @@
               <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#PhenotypeParameters" aria-controls="PhenotypeParameters" aria-expanded="false"></button>
             </div>
           </div>
-<!--          TODO(MMZ 25.4.25): remove show before production-->
-          <div class="collapse show" id="PhenotypeParameters">
+          <div class="collapse" id="PhenotypeParameters">
             <div class="row my-4">
               <div class="col-6">
                 <span><label class="form-label ms-1" for="PhenotypeParametersFile">Upload the phenotype data file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#phenotype-bioactivity-data") }}</span>
-                <input class="form-control form-control-sm" id="PhenotypeParametersFile" name="PhenotypeParametersFile" type="file" accept=".csv" onchange="checkFileExtension('PhenotypeParametersFile', 'csv', 'AlertContainerPhenotype')">
+                <input class="form-control form-control-sm" id="PhenotypeParametersFile" name="PhenotypeParametersFile" type="file" accept=".csv" onchange="checkFileExtension('PhenotypeParametersFile', 'csv', 'AlertContainerPhenotype', 'PhenotypeParametersShow')">
                 <div id="AlertContainerPhenotype"></div>
               </div>
             </div>
-            <div class="row mb-1">
-              <div class="col">
-                <label for="PhenotypeParametersFormat" class="form-label">Select format of phenotype data file</label>
+            <div class="collapse" id="PhenotypeParametersShow">
+              <div class="row mb-1">
+                <div class="col">
+                  <label for="PhenotypeParametersFormat" class="form-label">Select format of phenotype data file</label>
+                </div>
               </div>
-            </div>
-            <div class="row mb-1">
-              <div class="col-6">
-                <select class="form-select form-select-sm" id="PhenotypeParametersFormat" name="PhenotypeParametersFormat">
-                  <option onclick="collapseOtherPhenoParams('all')" value="false" {% if not params.get("PhenotypeParameters", {})%}selected{% endif %}>Deactivated</option>
-                  <option onclick="collapseOtherPhenoParams('#PhenoQualAssgnParameters')" value="qualitative" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'qualitative' %}selected{% endif %}>Qualitative</option>
-                  <option onclick="collapseOtherPhenoParams('#PhenoQuantPercentAssgnParameters')" value="quantitative-percentage" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'quantitative-percentage' %}selected{% endif %}>Quantitative-percentage</option>
-                  <option onclick="collapseOtherPhenoParams('#PhenoQuantConcAssgnParameters')" value="quantitative-concentration" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'quantitative-concentration' %}selected{% endif %}>Quantitative-concentration</option>
-                </select>
+              <div class="row mb-1">
+                <div class="col-6">
+                  <select class="form-select form-select-sm" id="PhenotypeParametersFormat" name="PhenotypeParametersFormat">
+                    <option onclick="collapseOtherPhenoParams('all')" value="false" {% if not params.get("PhenotypeParameters", {})%}selected{% endif %}>Deactivated</option>
+                    <option onclick="collapseOtherPhenoParams('#PhenoQualAssgnParameters')" value="qualitative" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'qualitative' %}selected{% endif %}>Qualitative</option>
+                    <option onclick="collapseOtherPhenoParams('#PhenoQuantPercentAssgnParameters')" value="quantitative-percentage" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'quantitative-percentage' %}selected{% endif %}>Quantitative-percentage</option>
+                    <option onclick="collapseOtherPhenoParams('#PhenoQuantConcAssgnParameters')" value="quantitative-concentration" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'quantitative-concentration' %}selected{% endif %}>Quantitative-concentration</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="row mb-4">
-              <div class="collapse" id="PhenoQualAssgnParameters">
-                <div class="col-4">
-                  <div class="row">
-                    <div class="col">
-                      <div class="card card-body m-1">
-                        <div class="row">
+              <div class="row mb-1">
+                <div class="collapse" id="PhenoQualAssgnParameters">
+                  <div class="col-4">
+                    <div class="card card-body m-1">
+                      <div class="row">
+                        <div class="col">
+                          <div><i class="text-muted">Specify parameters Qualitative</i> {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/phenotype.qualitative/") }}</div>
+                        </div>
+                        <div class="col-auto">
+                          <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#PhenoQualAssgnParametersDetails" aria-controls="PhenoQualAssgnParametersDetails" aria-expanded="true"></button>
+                        </div>
+                      </div>
+                      <div class="collapse show" id="PhenoQualAssgnParametersDetails">
+                        <div class="row mt-1">
                           <div class="col">
-                            <div><i class="text-muted">Specify parameters Qualitative</i> {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/phenotype.qualitative/") }}</div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#PhenoQualAssgnParametersDetails" aria-controls="PhenoQualAssgnParametersDetails" aria-expanded="true"></button>
+                            <label for="PhenoQualAssgnParametersFactor" class="form-label">Min fold difference active/inactive</label>
                           </div>
                         </div>
-                        <div class="collapse show" id="PhenoQualAssgnParametersDetails">
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQualAssgnParametersFactor" class="form-label">Min fold difference active/inactive</label>
-                            </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="PhenoQualAssgnParametersFactor" name="PhenoQualAssgnParametersFactor" min="0" step="1" value="{{ params.get('PhenoQualAssgnParameters', {}).get('factor') }}">
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="PhenoQualAssgnParametersFactor" name="PhenoQualAssgnParametersFactor" min="0" step="1" value="{{ params.get('PhenoQualAssgnParameters', {}).get('factor') }}">
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQualAssgnParametersAlgorithm" class="form-label" >Algorithm for fold calculation</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQualAssgnParametersAlgorithm" class="form-label" >Algorithm for fold calculation</label>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <select class="form-select form-select-sm" id="PhenoQualAssgnParametersAlgorithm" name="PhenoQualAssgnParametersAlgorithm">
+                              <option value="minmax" {% if params.get("PhenoQualAssgnParameters", {}).get("algorithm") == "minmax" %}selected{% endif %}>minmax</option>
+                              <option value="median" {% if params.get("PhenoQualAssgnParameters", {}).get("algorithm") == 'median' %}selected{% endif %}>median</option>
+                              <option value="mean" {% if params.get("PhenoQualAssgnParameters", {}).get("algorithm") == 'mean' %}selected{% endif %}>mean</option>
+                            </select>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <select class="form-select form-select-sm" id="PhenoQualAssgnParametersAlgorithm" name="PhenoQualAssgnParametersAlgorithm">
-                                <option value="minmax" {% if params.get("PhenoQualAssgnParameters", {}).get("algorithm") == "minmax" %}selected{% endif %}>minmax</option>
-                                <option value="median" {% if params.get("PhenoQualAssgnParameters", {}).get("algorithm") == 'median' %}selected{% endif %}>median</option>
-                                <option value="mean" {% if params.get("PhenoQualAssgnParameters", {}).get("algorithm") == 'mean' %}selected{% endif %}>mean</option>
-                              </select>
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQualAssgnParametersValue" class="form-label" >Value for fold calculation</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQualAssgnParametersValue" class="form-label" >Value for fold calculation</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <select class="form-select form-select-sm" id="PhenoQualAssgnParametersValue" name="PhenoQualAssgnParametersValue">
-                                <option value="height" {% if params.get("PhenoQualAssgnParameters", {}).get("value") == "height" %}selected{% endif %}>height/intensity</option>
-                                <option value="area" {% if params.get("PhenoQualAssgnParameters", {}).get("value") == 'area' %}selected{% endif %}>area</option>
-                              </select>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <select class="form-select form-select-sm" id="PhenoQualAssgnParametersValue" name="PhenoQualAssgnParametersValue">
+                              <option value="height" {% if params.get("PhenoQualAssgnParameters", {}).get("value") == "height" %}selected{% endif %}>height/intensity</option>
+                              <option value="area" {% if params.get("PhenoQualAssgnParameters", {}).get("value") == 'area' %}selected{% endif %}>area</option>
+                            </select>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="collapse" id="PhenoQuantPercentAssgnParameters">
-                <div class="col-4">
-                  <div class="row">
-                    <div class="col">
-                      <div class="card card-body m-1">
-                        <div class="row">
+                <div class="collapse" id="PhenoQuantPercentAssgnParameters">
+                  <div class="col-4">
+                    <div class="card card-body m-1">
+                      <div class="row">
+                        <div class="col">
+                          <div><i class="text-muted">Specify parameters Quantitative-percentage</i> {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/phenotype.quant-percent/") }}</div>
+                        </div>
+                        <div class="col-auto">
+                          <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#PhenoQuantPercentAssgnParametersDetails" aria-controls="PhenoQuantPercentAssgnParametersDetails" aria-expanded="true"></button>
+                        </div>
+                      </div>
+                      <div class="collapse show" id="PhenoQuantPercentAssgnParametersDetails">
+                        <div class="row mt-1">
                           <div class="col">
-                            <div><i class="text-muted">Specify parameters Quantitative-percentage</i> {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/phenotype.quant-percent/") }}</div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#PhenoQuantPercentAssgnParametersDetails" aria-controls="PhenoQuantPercentAssgnParametersDetails" aria-expanded="true"></button>
+                            <label for="PhenoQuantPercentAssgnParametersAvg" class="form-label" >Duplicate phenotype measurement averaging</label>
                           </div>
                         </div>
-                        <div class="collapse show" id="PhenoQuantPercentAssgnParametersDetails">
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantPercentAssgnParametersAvg" class="form-label" >Duplicate phenotype measurement averaging</label>
-                            </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersAvg" name="PhenoQuantPercentAssgnParametersAvg">
+                              <option value="median" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("sample_avg") == 'median' %}selected{% endif %}>Median</option>
+                              <option value="mean" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("sample_avg") == 'mean' %}selected{% endif %}>Mean</option>
+                            </select>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersAvg" name="PhenoQuantPercentAssgnParametersAvg">
-                                <option value="median" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("sample_avg") == 'median' %}selected{% endif %}>Median</option>
-                                <option value="mean" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("sample_avg") == 'mean' %}selected{% endif %}>Mean</option>
-                              </select>
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQuantPercentAssgnParametersVal" class="form-label" >Feature property to use for correlation</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantPercentAssgnParametersVal" class="form-label" >Feature property to use for correlation</label>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersVal" name="PhenoQuantPercentAssgnParametersVal">
+                              <option value="area" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("value") == 'area' %}selected{% endif %}>Area</option>
+                            </select>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersVal" name="PhenoQuantPercentAssgnParametersVal">
-                                <option value="area" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("value") == 'area' %}selected{% endif %}>Area</option>
-                              </select>
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQuantPercentAssgnParametersAlg" class="form-label" >Correlation algorithm</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantPercentAssgnParametersAlg" class="form-label" >Correlation algorithm</label>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersAlg" name="PhenoQuantPercentAssgnParametersAlg">
+                              <option value="pearson" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("algorithm") == 'pearson' %}selected{% endif %}>Pearson</option>
+                            </select>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersAlg" name="PhenoQuantPercentAssgnParametersAlg">
-                                <option value="pearson" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("algorithm") == 'pearson' %}selected{% endif %}>Pearson</option>
-                              </select>
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQuantPercentAssgnParametersFdrAlg" class="form-label" >False discovery rate correction</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantPercentAssgnParametersFdrAlg" class="form-label" >False discovery rate correction</label>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersFdrAlg" name="PhenoQuantPercentAssgnParametersFdrAlg">
+                              <option value="bonferroni" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'bonferroni' %}selected{% endif %}>bonferroni: one-step correction</option>
+                              <option value="sidak" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'sidak' %}selected{% endif %}>sidak: one-step correction</option>
+                              <option value="holm-sidak" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'holm-sidak' %}selected{% endif %}>holm-sidak: step down method using Sidak adjustments</option>
+                              <option value="holm" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'holm' %}selected{% endif %}>holm: step-down method using Bonferroni adjustments</option>
+                              <option value="simes-hochberg" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'simes-hochberg' %}selected{% endif %}>simes-hochberg: step-up method (independent)</option>
+                              <option value="hommel" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'hommel' %}selected{% endif %}>hommel: closed method based on Simes tests (non-negative)</option>
+                              <option value="fdr_bh" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_bh' %}selected{% endif %}>fdr_bh: Benjamini/Hochberg (non-negative)</option>
+                              <option value="fdr_by" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_by' %}selected{% endif %}>fdr_by: Benjamini/Yekutieli (negative)</option>
+                              <option value="fdr_tsbh" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbh' %}selected{% endif %}>fdr_tsbh: two stage fdr correction (non-negative)</option>
+                              <option value="fdr_tsbky" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbky' %}selected{% endif %}>fdr_tsbky: two stage fdr correction (non-negative)</option>
+                            </select>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <select class="form-select form-select-sm" id="PhenoQuantPercentAssgnParametersFdrAlg" name="PhenoQuantPercentAssgnParametersFdrAlg">
-                                <option value="bonferroni" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'bonferroni' %}selected{% endif %}>bonferroni: one-step correction</option>
-                                <option value="sidak" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'sidak' %}selected{% endif %}>sidak: one-step correction</option>
-                                <option value="holm-sidak" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'holm-sidak' %}selected{% endif %}>holm-sidak: step down method using Sidak adjustments</option>
-                                <option value="holm" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'holm' %}selected{% endif %}>holm: step-down method using Bonferroni adjustments</option>
-                                <option value="simes-hochberg" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'simes-hochberg' %}selected{% endif %}>simes-hochberg: step-up method (independent)</option>
-                                <option value="hommel" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'hommel' %}selected{% endif %}>hommel: closed method based on Simes tests (non-negative)</option>
-                                <option value="fdr_bh" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_bh' %}selected{% endif %}>fdr_bh: Benjamini/Hochberg (non-negative)</option>
-                                <option value="fdr_by" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_by' %}selected{% endif %}>fdr_by: Benjamini/Yekutieli (negative)</option>
-                                <option value="fdr_tsbh" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbh' %}selected{% endif %}>fdr_tsbh: two stage fdr correction (non-negative)</option>
-                                <option value="fdr_tsbky" {% if params.get("PhenoQuantPercentAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbky' %}selected{% endif %}>fdr_tsbky: two stage fdr correction (non-negative)</option>
-                              </select>
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQuantPercentAssgnParametersPVal" class="form-label">Corrected <i>p</i> value threshold</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantPercentAssgnParametersPVal" class="form-label">Corrected <i>p</i> value threshold</label>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="PhenoQuantPercentAssgnParametersPVal" name="PhenoQuantPercentAssgnParametersPVal" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantPercentAssgnParameters', {}).get('p_val_cutoff') }}">
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="PhenoQuantPercentAssgnParametersPVal" name="PhenoQuantPercentAssgnParametersPVal" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantPercentAssgnParameters', {}).get('p_val_cutoff') }}">
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQuantPercentAssgnParametersCoeff" class="form-label">Correlation coefficient <i>r</i> threshold</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantPercentAssgnParametersCoeff" class="form-label">Correlation coefficient <i>r</i> threshold</label>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="PhenoQuantPercentAssgnParametersCoeff" name="PhenoQuantPercentAssgnParametersCoeff" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantPercentAssgnParameters', {}).get('coeff_cutoff') }}">
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="PhenoQuantPercentAssgnParametersCoeff" name="PhenoQuantPercentAssgnParametersCoeff" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantPercentAssgnParameters', {}).get('coeff_cutoff') }}">
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="collapse" id="PhenoQuantConcAssgnParameters">
-                <div class="col-4">
-                  <div class="row">
-                    <div class="col">
-                      <div class="card card-body m-1">
-                        <div class="row">
+                <div class="collapse" id="PhenoQuantConcAssgnParameters">
+                  <div class="col-4">
+                    <div class="card card-body m-1">
+                      <div class="row">
+                        <div class="col">
+                          <div><i class="text-muted">Specify parameters Quantitative-concentration</i> {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/phenotype.quant-concentr/") }}</div>
+                        </div>
+                        <div class="col-auto">
+                          <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#PhenoQuantConcAssgnParametersDetails" aria-controls="PhenoQuantConcAssgnParametersDetails" aria-expanded="true"></button>
+                        </div>
+                      </div>
+                      <div class="collapse show" id="PhenoQuantConcAssgnParametersDetails">
+                        <div class="row mt-1">
                           <div class="col">
-                            <div><i class="text-muted">Specify parameters Quantitative-concentration</i> {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/phenotype.quant-concentr/") }}</div>
-                          </div>
-                          <div class="col-auto">
-                            <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#PhenoQuantConcAssgnParametersDetails" aria-controls="PhenoQuantConcAssgnParametersDetails" aria-expanded="true"></button>
+                            <label for="PhenoQuantConcAssgnParametersAvg" class="form-label" >Duplicate phenotype measurement averaging</label>
                           </div>
                         </div>
-                        <div class="collapse show" id="PhenoQuantConcAssgnParametersDetails">
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantConcAssgnParametersAvg" class="form-label" >Duplicate phenotype measurement averaging</label>
-                            </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersAvg" name="PhenoQuantConcAssgnParametersAvg">
+                              <option value="median" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("sample_avg") == 'median' %}selected{% endif %}>Median</option>
+                              <option value="mean" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("sample_avg") == 'mean' %}selected{% endif %}>Mean</option>
+                            </select>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersAvg" name="PhenoQuantConcAssgnParametersAvg">
-                                <option value="median" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("sample_avg") == 'median' %}selected{% endif %}>Median</option>
-                                <option value="mean" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("sample_avg") == 'mean' %}selected{% endif %}>Mean</option>
-                              </select>
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQuantConcAssgnParametersVal" class="form-label" >Feature property to use for correlation</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantConcAssgnParametersVal" class="form-label" >Feature property to use for correlation</label>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersVal" name="PhenoQuantConcAssgnParametersVal">
+                              <option value="area" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("value") == 'area' %}selected{% endif %}>Area</option>
+                            </select>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersVal" name="PhenoQuantConcAssgnParametersVal">
-                                <option value="area" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("value") == 'area' %}selected{% endif %}>Area</option>
-                              </select>
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQuantConcAssgnParametersAlg" class="form-label" >Correlation algorithm</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantConcAssgnParametersAlg" class="form-label" >Correlation algorithm</label>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersAlg" name="PhenoQuantConcAssgnParametersAlg">
+                              <option value="pearson" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("algorithm") == 'pearson' %}selected{% endif %}>Pearson</option>
+                            </select>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersAlg" name="PhenoQuantConcAssgnParametersAlg">
-                                <option value="pearson" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("algorithm") == 'pearson' %}selected{% endif %}>Pearson</option>
-                              </select>
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQuantConcAssgnParametersFdrAlg" class="form-label" >False discovery rate correction</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantConcAssgnParametersFdrAlg" class="form-label" >False discovery rate correction</label>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersFdrAlg" name="PhenoQuantConcAssgnParametersFdrAlg">
+                              <option value="bonferroni" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'bonferroni' %}selected{% endif %}>bonferroni: one-step correction</option>
+                              <option value="sidak" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'sidak' %}selected{% endif %}>sidak: one-step correction</option>
+                              <option value="holm-sidak" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'holm-sidak' %}selected{% endif %}>holm-sidak: step down method using Sidak adjustments</option>
+                              <option value="holm" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'holm' %}selected{% endif %}>holm: step-down method using Bonferroni adjustments</option>
+                              <option value="simes-hochberg" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'simes-hochberg' %}selected{% endif %}>simes-hochberg: step-up method (independent)</option>
+                              <option value="hommel" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'hommel' %}selected{% endif %}>hommel: closed method based on Simes tests (non-negative)</option>
+                              <option value="fdr_bh" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_bh' %}selected{% endif %}>fdr_bh: Benjamini/Hochberg (non-negative)</option>
+                              <option value="fdr_by" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_by' %}selected{% endif %}>fdr_by: Benjamini/Yekutieli (negative)</option>
+                              <option value="fdr_tsbh" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbh' %}selected{% endif %}>fdr_tsbh: two stage fdr correction (non-negative)</option>
+                              <option value="fdr_tsbky" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbky' %}selected{% endif %}>fdr_tsbky: two stage fdr correction (non-negative)</option>
+                            </select>
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <select class="form-select form-select-sm" id="PhenoQuantConcAssgnParametersFdrAlg" name="PhenoQuantConcAssgnParametersFdrAlg">
-                                <option value="bonferroni" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'bonferroni' %}selected{% endif %}>bonferroni: one-step correction</option>
-                                <option value="sidak" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'sidak' %}selected{% endif %}>sidak: one-step correction</option>
-                                <option value="holm-sidak" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'holm-sidak' %}selected{% endif %}>holm-sidak: step down method using Sidak adjustments</option>
-                                <option value="holm" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'holm' %}selected{% endif %}>holm: step-down method using Bonferroni adjustments</option>
-                                <option value="simes-hochberg" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'simes-hochberg' %}selected{% endif %}>simes-hochberg: step-up method (independent)</option>
-                                <option value="hommel" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'hommel' %}selected{% endif %}>hommel: closed method based on Simes tests (non-negative)</option>
-                                <option value="fdr_bh" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_bh' %}selected{% endif %}>fdr_bh: Benjamini/Hochberg (non-negative)</option>
-                                <option value="fdr_by" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_by' %}selected{% endif %}>fdr_by: Benjamini/Yekutieli (negative)</option>
-                                <option value="fdr_tsbh" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbh' %}selected{% endif %}>fdr_tsbh: two stage fdr correction (non-negative)</option>
-                                <option value="fdr_tsbky" {% if params.get("PhenoQuantConcAssgnParameters", {}).get("fdr_corr") == 'fdr_tsbky' %}selected{% endif %}>fdr_tsbky: two stage fdr correction (non-negative)</option>
-                              </select>
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQuantConcAssgnParametersPVal" class="form-label">Corrected <i>p</i> value threshold</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantConcAssgnParametersPVal" class="form-label">Corrected <i>p</i> value threshold</label>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="PhenoQuantConcAssgnParametersPVal" name="PhenoQuantConcAssgnParametersPVal" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantConcAssgnParameters', {}).get('p_val_cutoff') }}">
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="PhenoQuantConcAssgnParametersPVal" name="PhenoQuantConcAssgnParametersPVal" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantConcAssgnParameters', {}).get('p_val_cutoff') }}">
-                            </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQuantConcAssgnParametersCoeff" class="form-label">Correlation coefficient <i>r</i> threshold</label>
                           </div>
-                          <div class="row mt-1">
-                            <div class="col">
-                              <label for="PhenoQuantConcAssgnParametersCoeff" class="form-label">Correlation coefficient <i>r</i> threshold</label>
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="PhenoQuantConcAssgnParametersCoeff" name="PhenoQuantConcAssgnParametersCoeff" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantConcAssgnParameters', {}).get('coeff_cutoff') }}">
                           </div>
-                          <div class="row">
-                            <div class="col-8">
-                              <input type="number" class="form-control form-control-sm" id="PhenoQuantConcAssgnParametersCoeff" name="PhenoQuantConcAssgnParametersCoeff" min="0" max="1" step="0.01" value="{{ params.get('PhenoQuantConcAssgnParameters', {}).get('coeff_cutoff') }}">
-                            </div>
-                          </div>
-
                         </div>
                       </div>
                     </div>
@@ -764,13 +738,397 @@
           </div>
         </div>
       </div>
-    </div>
+      <div class="border start_box">
+        <div class="m-3">
+          <div class="row d-flex align-items-center">
+            <div class="col">
+              <h2 class="mt-1" style="font-size: 1.4em;">Sample metadata file parameters {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#group-metadata") }}</h2>
+            </div>
+            <div class="col-auto">
+              <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#GroupMetadataParameters" aria-controls="GroupMetadataParameters" aria-expanded="false"></button>
+            </div>
+          </div>
+          <div class="collapse" id="GroupMetadataParameters">
+            <div class="row my-4">
+              <div class="col-6">
+                <span><label class="form-label ms-1" for="GroupMetadataParametersFile">Upload the sample group metadata file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#fermo") }}</span>
+                <input class="form-control form-control-sm" id="GroupMetadataParametersFile" name="GroupMetadataParametersFile" type="file" accept=".csv" onchange="checkFileExtension('GroupMetadataParametersFile', 'csv', 'AlertContainerGroupMetadata', 'GroupMetadataParametersShow')">
+                <div id="AlertContainerGroupMetadata"></div>
+              </div>
+              <div class="collapse" id="GroupMetadataParametersShow">
+                <div class="row my-4">
+                  <div class="col-6">
+                    <label class="form-label ms-1" for="GroupMetadataParametersFormat" >Select the formatting of the sample group metadata file</label>
+                    <select class="form-select form-select-sm" id="GroupMetadataParametersFormat" name="GroupMetadataParametersFormat">
+                      <option value="fermo" {% if params.get("GroupMetadataParameters", {}).get("format") == "fermo" %}selected{% endif %}>fermo-style</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" role="switch" id="GroupFactAssignmentParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('GroupFactAssignmentParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#GroupFactAssignmentParameters" {% if params.get("GroupFactAssignmentParameters", {}).get("activate_module") %}checked{% endif %}>
+                          <label class="form-check-label" for="GroupFactAssignmentParametersActivate">Activate <b>Group Factor Assignment</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/metadata.group_fold/") }}</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="collapse {% if params.get('GroupFactAssignmentParameters', {}).get('activate_module') %}show{% endif %}" id="GroupFactAssignmentParameters">
+                      <div class="card card-body m-1">
+                        <div class="row">
+                          <div class="col">
+                            <div class="text-muted"><i>Specify parameters</i></div>
+                          </div>
+                          <div class="col-auto">
+                            <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#GroupFactAssignmentParametersDetails" aria-controls="GroupFactAssignmentParametersDetails" aria-expanded="false"></button>
+                          </div>
+                        </div>
+                        <div class="collapse" id="GroupFactAssignmentParametersDetails">
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="GroupFactAssignmentParametersAlgorithm" class="form-label" >Algorithm for fold calculation</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="GroupFactAssignmentParametersAlgorithm" name="GroupFactAssignmentParametersAlgorithm">
+                                <option value="maximum" {% if params.get("GroupFactAssignmentParameters", {}).get("algorithm") == "maximum" %}selected{% endif %}>Maximum</option>
+                                <option value="median" {% if params.get("GroupFactAssignmentParameters", {}).get("algorithm") == 'median' %}selected{% endif %}>Median</option>
+                                <option value="mean" {% if params.get("GroupFactAssignmentParameters", {}).get("algorithm") == 'mean' %}selected{% endif %}>Mean</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="GroupFactAssignmentParametersValue" class="form-label" >Value for fold calculation</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="GroupFactAssignmentParametersValue" name="GroupFactAssignmentParametersValue">
+                                <option value="height" {% if params.get("GroupFactAssignmentParameters", {}).get("value") == "height" %}selected{% endif %}>Height/Intensity</option>
+                                <option value="area" {% if params.get("GroupFactAssignmentParameters", {}).get("value") == 'area' %}selected{% endif %}>Area</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" role="switch" id="BlankAssignmentParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('BlankAssignmentParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#BlankAssignmentParameters" {% if params.get("BlankAssignmentParameters", {}).get("activate_module") %}checked{% endif %}>
+                          <label class="form-check-label" for="BlankAssignmentParametersActivate">Activate <b>Blank Assignment</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/metadata.blank/") }}</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="collapse {% if params.get('BlankAssignmentParameters', {}).get('activate_module') %}show{% endif %}" id="BlankAssignmentParameters">
+                      <div class="card card-body m-1">
+                        <div class="row">
+                          <div class="col">
+                            <div><i class="text-muted">Specify parameters</i></div>
+                          </div>
+                          <div class="col-auto">
+                            <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#BlankAssignmentParametersDetails" aria-controls="BlankAssignmentParametersDetails" aria-expanded="false"></button>
+                          </div>
+                        </div>
+                        <div class="collapse" id="BlankAssignmentParametersDetails">
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="BlankAssignmentParametersFactor" class="form-label">Min fold difference blank/sample</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <input type="number" class="form-control form-control-sm" id="BlankAssignmentParametersFactor" name="BlankAssignmentParametersFactor" min="0" step="1" value="{{ params.get('BlankAssignmentParameters', {}).get('factor') }}">
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="BlankAssignmentParametersAlgorithm" class="form-label" >Algorithm for fold calculation</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="BlankAssignmentParametersAlgorithm" name="BlankAssignmentParametersAlgorithm">
+                                <option value="maximum" {% if params.get("BlankAssignmentParameters", {}).get("algorithm") == "maximum" %}selected{% endif %}>Maximum</option>
+                                <option value="median" {% if params.get("BlankAssignmentParameters", {}).get("algorithm") == 'median' %}selected{% endif %}>Median</option>
+                                <option value="mean" {% if params.get("BlankAssignmentParameters", {}).get("algorithm") == 'mean' %}selected{% endif %}>Mean</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row mt-1">
+                            <div class="col">
+                              <label for="BlankAssignmentParametersValue" class="form-label" >Value for fold calculation</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-8">
+                              <select class="form-select form-select-sm" id="BlankAssignmentParametersValue" name="BlankAssignmentParametersValue">
+                                <option value="height" {% if params.get("BlankAssignmentParameters", {}).get("value") == "height" %}selected{% endif %}>height/intensity</option>
+                                <option value="area" {% if params.get("BlankAssignmentParameters", {}).get("value") == 'area' %}selected{% endif %}>area</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border start_box">
+        <div class="m-3">
+          <div class="row d-flex align-items-center">
+            <div class="col">
+              <h2 class="mt-1" style="font-size: 1.4em;">Feature identity annotation parameters</h2>
+            </div>
+            <div class="col-auto">
+              <button class="accordion-button-info collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#FeatureAnnotation" aria-controls="FeatureAnnotation" aria-expanded="false"></button>
+            </div>
+          </div>
+<!--          TODO: remove "show" in production-->
+          <div class="collapse show" id="FeatureAnnotation">
+            <div class="row mt-2 mb-4">
+              <div class="col">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" style="font-size: 1.2em;" type="checkbox" role="switch" id="SpecLibParametersActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#SpecLibParameters">
+                      <label class="form-check-label" for="SpecLibParametersActivate">Activate <b>Spectral Library Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="collapse" id="SpecLibParameters">
+                  <div class="card card-body m-1">
+                    <div class="row mb-2">
+                      <div class="col">
+                        <div><i class="text-muted">Specify parameters</i></div>
+                      </div>
+                      <div class="col-auto">
+                        <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#SpecLibParametersDetails" aria-controls="SpecLibParametersDetails" aria-expanded="true"></button>
+                      </div>
+                    </div>
+                    <div class="collapse show" id="SpecLibParametersDetails">
+                      <div class="row mb-2">
+                        <div class="col">
+                          <span><label class="form-label ms-1" for="SpecLibParametersFiles">Upload spectral library files (.mgf)</label>{{ render_help("https://https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#spectral-library") }}</span>
+                          <input class="form-control form-control-sm" id="SpecLibParametersFiles" name="SpecLibParametersFiles" type="file" accept=".mgf" onchange="checkFileExtension('SpecLibParametersFiles', 'mgf', 'AlertContainerSpecLib', 'DummyContainerSpecLib')" multiple>
+                          <div id="AlertContainerSpecLib"></div>
+                          <div class="collapse" id="DummyContainerSpecLib"></div>
+                        </div>
+                      </div>
+                      <div class="row mb-2">
+                        <div class="col">
+                          Format specify
+                        </div>
+                      </div>
+                      <div class="row mb-2">
+                        <div class="col">
+                          <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="SpectralLibMatchingCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpectralLibMatchingCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpectralLibMatchingCosineParameters" {% if params.get("SpectralLibMatchingCosineParameters", {}).get("activate_module") %}checked{% endif %}>
+                            <label class="form-check-label" for="SpectralLibMatchingCosineParametersActivate">Activate <b>Modified Cosine Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="collapse" id="SpectralLibMatchingCosineParameters">
+                        <div class="card card-body m-1">
+                          <div class="row">
+                            <div class="col">
+                              <div><i class="text-muted">Specify parameters</i></div>
+                            </div>
+                            <div class="col-auto">
+                              <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#SpectralLibMatchingCosineParametersDetails" aria-controls="SpectralLibMatchingCosineParametersDetails" aria-expanded="true"></button>
+                            </div>
+                          </div>
+                          <div class="collapse show" id="SpectralLibMatchingCosineParametersDetails">
+                            <div class="row">
+                              <div class="col">
+                                Label frag tol
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                Field frag tol
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="SpectralLibMatchingDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpectralLibMatchingDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpectralLibMatchingDeepscoreParameters" {% if params.get("SpectralLibMatchingDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
+                            <label class="form-check-label" for="SpectralLibMatchingDeepscoreParametersActivate">Activate <b>MS2DeepScore Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="collapse" id="SpectralLibMatchingDeepscoreParameters">
+                        <div class="card card-body m-1">
+                          <div class="row">
+                            <div class="col">
+                              <div><i class="text-muted">Specify parameters</i></div>
+                            </div>
+                            <div class="col-auto">
+                              <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#SpectralLibMatchingDeepscoreParametersDetails" aria-controls="SpectralLibMatchingDeepscoreParametersDetails" aria-expanded="true"></button>
+                            </div>
+                          </div>
+                          <div class="collapse show" id="SpectralLibMatchingDeepscoreParametersDetails">
+                            <div class="row">
+                              <div class="col">
+                                Label frag tol
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                Field frag tol
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" style="font-size: 1.2em;" type="checkbox" role="switch" id="AsKcbActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#AsKcbParameters">
+                      <label class="form-check-label" for="AsKcbActivate">Activate <b>AntiSMASH Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="collapse" id="AsKcbParameters">
+                  <div class="card card-body m-1">
+                    <div class="row">
+                      <div class="col">
+                        <div><i class="text-muted">Specify parameters</i></div>
+                      </div>
+                      <div class="col-auto">
+                        <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#AsKcbParametersDetails" aria-controls="AsKcbParametersDetails" aria-expanded="true"></button>
+                      </div>
+                    </div>
+                    <div class="collapse show" id="AsKcbParametersDetails">
+                      <div class="row">
+                        <div class="col">
+                          Job specification
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          Cutoff specification
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="AsKcbCosineMatchingParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AsKcbCosineMatchingParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AsKcbCosineMatchingParameters" {% if params.get("AsKcbCosineMatchingParameters", {}).get("activate_module") %}checked{% endif %}>
+                            <label class="form-check-label" for="AsKcbCosineMatchingParametersActivate">Activate <b>Modified Cosine Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="collapse" id="AsKcbCosineMatchingParameters">
+                        <div class="card card-body m-1">
+                          <div class="row">
+                            <div class="col">
+                              <div><i class="text-muted">Specify parameters</i></div>
+                            </div>
+                            <div class="col-auto">
+                              <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#AsKcbCosineMatchingParametersDetails" aria-controls="AsKcbCosineMatchingParametersDetails" aria-expanded="true"></button>
+                            </div>
+                          </div>
+                          <div class="collapse show" id="AsKcbCosineMatchingParametersDetails">
+                            <div class="row">
+                              <div class="col">
+                                Label frag tol
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                Field frag tol
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="AsKcbDeepscoreMatchingParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AsKcbDeepscoreMatchingParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AsKcbDeepscoreMatchingParameters" {% if params.get("AsKcbDeepscoreMatchingParameters", {}).get("activate_module") %}checked{% endif %}>
+                            <label class="form-check-label" for="AsKcbDeepscoreMatchingParametersActivate">Activate <b>MS2DeepScore Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="collapse" id="AsKcbDeepscoreMatchingParameters">
+                        <div class="card card-body m-1">
+                          <div class="row">
+                            <div class="col">
+                              <div><i class="text-muted">Specify parameters</i></div>
+                            </div>
+                            <div class="col-auto">
+                              <button class="accordion-button-info" type="button" data-bs-toggle="collapse" data-bs-target="#AsKcbDeepscoreMatchingParametersDetails" aria-controls="AsKcbDeepscoreMatchingParametersDetails" aria-expanded="true"></button>
+                            </div>
+                          </div>
+                          <div class="collapse show" id="AsKcbDeepscoreMatchingParametersDetails">
+                            <div class="row">
+                              <div class="col">
+                                Label frag tol
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                Field frag tol
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+
+            </div>
+            <div class="row mt-2 mb-4 border">
+              <div class="col-6 border">
+                row for ms2query matching
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+  <!--          TODO Add file uploads ms2query etc-->
+          </div>
+        </div>
+      </div>
 
 
 
 
   <!--encapsulate in forms tag, vanilla html/js, without wtforms; add the individual form blocks for load, new, from separate html -->
-
+  <div class="col text-center mx-auto">
+    <button id="submit" type="submit" class="btn btn-primary">Start analysis</button>
+  </div>
 
 
   </form>
