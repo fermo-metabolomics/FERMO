@@ -63,23 +63,23 @@
     </div>
     {% endif %}
   {% endwith %}
-  <form method="post" enctype="multipart/form-data" action="new">
+  <div class="row">
+    <div class="col justify-content-center text-center">
+      <h1 class="mt-1 mb-4 fw-semibold" style="font-size: 1.3em;">Select one of the following options to start your <i>FERMO</i> analysis:</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col btn-group gap-2" role="group" aria-label="Dispatch type group">
+      <input type="radio" class="btn-check" name="btnradio" id="startAnalysis" autocomplete="off" onclick="selectAnalysis('#startAnalysisContent')">
+      <label class="btn btn-outline-secondary p-2" for="startAnalysis">Start new analysis</label>
+      <input type="radio" class="btn-check" name="btnradio" id="loadParams" autocomplete="off" onclick="selectAnalysis('#loadParamsContent')">
+      <label class="btn btn-outline-secondary p-2" for="loadParams">Load parameter settings</label>
+      <input type="radio" class="btn-check" name="btnradio" id="loadSession" autocomplete="off" onclick="selectAnalysis('#loadSessionContent')">
+      <label class="btn btn-outline-secondary p-2" for="loadSession">Load results of previous session</label>
+    </div>
+  </div>
+  <form method="post" enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <div class="row">
-      <div class="col justify-content-center text-center">
-        <h1 class="mt-1 mb-4 fw-semibold" style="font-size: 1.3em;">Select one of the following options to start your <i>FERMO</i> analysis:</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col btn-group gap-2" role="group" aria-label="Dispatch type group">
-        <input type="radio" class="btn-check" name="btnradio" id="startAnalysis" autocomplete="off" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#startAnalysisContent">
-        <label class="btn btn-outline-secondary p-2" for="startAnalysis">Start new analysis</label>
-        <input type="radio" class="btn-check" name="btnradio" id="loadParams" autocomplete="off">
-        <label class="btn btn-outline-secondary p-2" for="loadParams">Load parameter settings</label>
-        <input type="radio" class="btn-check" name="btnradio" id="loadSession" autocomplete="off">
-        <label class="btn btn-outline-secondary p-2" for="loadSession">Load results of previous session</label>
-      </div>
-    </div>
     <div class="collapse mb-4" id="startAnalysisContent">
       <div class="border start_box">
         <div class="m-3">
@@ -1230,7 +1230,7 @@
       {% endif %}
       <div class="row mt-2 d-flex align-items-center justify-content-center">
         <div class="col-auto text-center">
-          <button id="submit" type="submit" class="btn btn-primary">Start analysis</button>
+          <button id="submit" type="submit" class="btn btn-primary" value="newAnalysis">Start new analysis</button>
         </div>
       </div>
     </div>

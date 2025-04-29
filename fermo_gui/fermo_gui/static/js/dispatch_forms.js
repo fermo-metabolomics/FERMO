@@ -1,5 +1,28 @@
+/**
+ * Shows a analysis section and hides others.
+ * If 'all' is passed, all sections are hidden.
+ * @param {string} id - The selector ID of the element to show (e.g. '#PhenoQualAssgnParameters') OR 'all'
+ */
+function selectAnalysis(id) {
+  const collapseTargets = [
+    "#startAnalysisContent",
+    "#loadParamsContent",
+    "#loadSessionContent"
+  ];
 
-//Checks wich analysis dispatch was selected TODO(MMZ 25.4.25)
+  collapseTargets.forEach(selector => {
+    const el = document.querySelector(selector);
+    if (el && el.classList.contains("show")) {
+      bootstrap.Collapse.getOrCreateInstance(el).hide();
+    }
+  });
+
+  const selected = document.querySelector(id);
+  if (selected) {
+    bootstrap.Collapse.getOrCreateInstance(selected).show();
+  }
+}
+
 
 
 
