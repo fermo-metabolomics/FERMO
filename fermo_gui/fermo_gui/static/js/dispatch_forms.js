@@ -24,6 +24,42 @@ function selectAnalysis(id) {
 }
 
 
+/**
+ * Checks FERMO session ID and opens submit field
+ * @param {string} id - the input field ID
+ * @param {string} targetErrorId - The selector ID of the error report field
+ * @param {string} submitId - The selector ID to show submission field after file upload
+ */
+function checkSessionId(id, targetErrorId, submitId) {
+  const inputEl = document.getElementById(id);
+  const alertContainer = document.getElementById(targetErrorId);
+  const submitEl = document.getElementById(submitId);
+  const regex = /^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/;
+
+  // Hide submission element
+  if (submitEl && submitEl.classList.contains("show")) {
+    bootstrap.Collapse.getOrCreateInstance(submitEl).hide();
+  }
+
+  // check for value and raise alert
+  if (!regex.test(inputEl.value)) {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'alert alert-warning alert-dismissible fade show';
+    alertDiv.role = 'alert';
+    alertDiv.innerHTML = `
+      Invalid session id. Please specify a valid <i>FERMO</i> session ID.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    alertContainer.appendChild(alertDiv);
+    inputEl.value = ""; // Clear invalid selection
+    return;
+  }
+
+  // If valid, show the associated parameter field
+  if (submitEl && !submitEl.classList.contains("show")) {
+    bootstrap.Collapse.getOrCreateInstance(submitEl).show();
+  }
+}
 
 
 //Checks file extension client-side

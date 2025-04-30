@@ -78,6 +78,96 @@
       <label class="btn btn-outline-secondary p-2" for="loadSession">Load results of previous session</label>
     </div>
   </div>
+  <div class="collapse mb-4" id="loadSessionContent">
+    <div class="border start_box">
+      <div class="m-3">
+        <div class="row">
+          <div class="col">
+            <h2 class="mt-1" style="font-size: 1.4em;"><i>FERMO</i> session reload {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.load/") }}</h2>
+          </div>
+        </div>
+        <div class="row my-4">
+            <div class="col">
+              <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <span><label class="form-label ms-1" for="SessionId">Copy-paste a <i>FERMO</i> session ID</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.load/") }}</span>
+                <input class="form-control form-control-sm" id="SessionId" oninput="checkSessionId('SessionId', 'AlertContainerSessionId', 'SessionIdSubmit')" name="SessionId" type="text" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" required>
+                <div id="AlertContainerSessionId"></div>
+                <div id="SessionIdSubmit" class="collapse mb-2">
+                  <div class="row my-4 d-flex justify-content-center">
+                    <div class="col-auto text-center">
+                      <button id="loadSessionId" type="submit" class="btn btn-primary" value="loadSessionId">Load <i>FERMO</i> session</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col">
+              <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<!--                TODO: fix link to documentation-->
+                <span><label class="form-label ms-1" for="SessionFile">Upload the session file (.json)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/") }}</span>
+                <input class="form-control form-control-sm" id="SessionFile" name="SessionFile" type="file" accept=".json" onchange="checkFileExtension('SessionFile', 'json', 'AlertContainerSessionFile', 'SessionFileSubmit')" required>
+                <div id="AlertContainerSessionFile"></div>
+                <div id="SessionFileSubmit" class="collapse mb-2">
+                  <div class="row my-4 d-flex justify-content-center">
+                    <div class="col-auto text-center">
+                      <button id="loadSessionFile" type="submit" class="btn btn-primary" value="loadSessionFile">Load <i>FERMO</i> session</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="collapse mb-4" id="loadParamsContent">
+    <div class="border start_box">
+      <div class="m-3">
+        <div class="row">
+          <div class="col">
+            <h2 class="mt-1" style="font-size: 1.4em;"><i>FERMO</i> parameter settings reload {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/") }}</h2>
+          </div>
+        </div>
+        <div class="row my-4">
+            <div class="col">
+              <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <span><label class="form-label ms-1" for="ParameterId">Copy-paste a <i>FERMO</i> session ID</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/gui.start/") }}</span>
+                <input class="form-control form-control-sm" id="ParameterId" name="ParameterId" oninput="checkSessionId('ParameterId', 'AlertContainerParameterId', 'ParameterIdSubmit')" type="text" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" required>
+                <div id="AlertContainerParameterId"></div>
+                <div id="ParameterIdSubmit" class="collapse mb-2">
+                  <div class="row my-4 d-flex justify-content-center">
+                    <div class="col-auto text-center">
+                      <button id="loadParameterId" type="submit" class="btn btn-primary" value="loadParameterId">Load <i>FERMO</i> parameters</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col">
+              <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <!--                TODO: fix link to documentation-->
+                <span><label class="form-label ms-1" for="ParameterFile">Load parameters from a <i>FERMO</i> session file (.json)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/") }}</span>
+                <input class="form-control form-control-sm" id="ParameterFile" name="ParameterFile" type="file" accept=".json" onchange="checkFileExtension('ParameterFile', 'json', 'AlertContainerParameterFile', 'ParameterFileSubmit')" required>
+                <div id="AlertContainerParameterFile"></div>
+                <div id="ParameterFileSubmit" class="collapse mb-2">
+                  <div class="row my-4 d-flex justify-content-center">
+                    <div class="col-auto text-center">
+                      <button id="loadParameterFile" type="submit" class="btn btn-primary" value="loadParameterFile">Load <i>FERMO</i> parameters</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <form method="post" enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <div class="collapse mb-4" id="startAnalysisContent">
@@ -482,7 +572,7 @@
               <div class="row mb-1">
                 <div class="col-6">
                   <select class="form-select form-select-sm" id="PhenotypeParametersFormat" name="PhenotypeParametersFormat">
-                    <option onclick="collapseOtherPhenoParams('all')" value="false" {% if not params.get("PhenotypeParameters", {})%}selected{% endif %}>Deactivated</option>
+                    <option onclick="collapseOtherPhenoParams('all')" value="false" {% if not params.get("PhenotypeParameters", {})%}selected{% endif %}>Specify the file format</option>
                     <option onclick="collapseOtherPhenoParams('#PhenoQualAssgnParameters')" value="qualitative" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'qualitative' %}selected{% endif %}>Qualitative</option>
                     <option onclick="collapseOtherPhenoParams('#PhenoQuantPercentAssgnParameters')" value="quantitative-percentage" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'quantitative-percentage' %}selected{% endif %}>Quantitative-percentage</option>
                     <option onclick="collapseOtherPhenoParams('#PhenoQuantConcAssgnParameters')" value="quantitative-concentration" {% if params.get("PhenoQualAssgnParameters", {}).get("format") == 'quantitative-concentration' %}selected{% endif %}>Quantitative-concentration</option>
@@ -1230,7 +1320,7 @@
       {% endif %}
       <div class="row mt-2 d-flex align-items-center justify-content-center">
         <div class="col-auto text-center">
-          <button id="submit" type="submit" class="btn btn-primary" value="newAnalysis">Start new analysis</button>
+          <button id="submitNewAnalysis" type="submit" class="btn btn-primary" value="newAnalysis">Start new analysis</button>
         </div>
       </div>
     </div>

@@ -41,6 +41,7 @@ class SessionLoadForm(FlaskForm):
         description=("Reload an existing FERMO job."),
         validators=[Optional()],
         render_kw={"placeholder": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"},
+        # render_kw={"placeholder": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"},
     )
 
     load_session = SubmitField("Load Session")
