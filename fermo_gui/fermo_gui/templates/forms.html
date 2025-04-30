@@ -105,8 +105,7 @@
             <div class="col">
               <form method="post" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-<!--                TODO: fix link to documentation-->
-                <span><label class="form-label ms-1" for="SessionFile">Upload the session file (.json)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/") }}</span>
+                <span><label class="form-label ms-1" for="SessionFile">Upload the session file (.json)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#fermo-session-file") }}</span>
                 <input class="form-control form-control-sm" id="SessionFile" name="SessionFile" type="file" accept=".json" onchange="checkFileExtension('SessionFile', 'json', 'AlertContainerSessionFile', 'SessionFileSubmit')" required>
                 <div id="AlertContainerSessionFile"></div>
                 <div id="SessionFileSubmit" class="collapse mb-2">
@@ -149,8 +148,7 @@
             <div class="col">
               <form method="post" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <!--                TODO: fix link to documentation-->
-                <span><label class="form-label ms-1" for="ParameterFile">Load parameters from a <i>FERMO</i> session file (.json)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/") }}</span>
+                <span><label class="form-label ms-1" for="ParameterFile">Load parameters from a <i>FERMO</i> session file (.json)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#fermo-session-file") }}</span>
                 <input class="form-control form-control-sm" id="ParameterFile" name="ParameterFile" type="file" accept=".json" onchange="checkFileExtension('ParameterFile', 'json', 'AlertContainerParameterFile', 'ParameterFileSubmit')" required>
                 <div id="AlertContainerParameterFile"></div>
                 <div id="ParameterFileSubmit" class="collapse mb-2">
