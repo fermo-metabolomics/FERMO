@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+import json
 from pathlib import Path
 from typing import Union
 
@@ -71,7 +72,10 @@ def job_not_found(job_id: str) -> str:
     """
     root_url = str(request.base_url.partition(f"/results/job_not_found/{job_id}/")[0])
     root_url = root_url.replace("http://thornton", "https://fermo", 1)
-    job_data = {"task_id": job_id, "root_url": root_url, }
+    job_data = {
+        "task_id": job_id,
+        "root_url": root_url,
+    }
     return render_template("job_not_found.html", job_data=job_data)
 
 
@@ -86,20 +90,17 @@ def task_result(job_id: str) -> Union[str, Response]:
         The dashboard page or the job_not_found page
     """
     try:
-        f_sess = GeneralManager().read_data_from_json(
-            location=str(
-                Path(current_app.config.get("UPLOAD_FOLDER"))
-                .joinpath(job_id)
-                .joinpath("results")
-            ),
-            filename="out.fermo.session.json",
-        )
-    except FileNotFoundError:
+        uploads = Path(current_app.config.get("UPLOAD_FOLDER"))
+        location = uploads.joinpath(f"{job_id}/results/out.fermo.session.json")
+        with open(location) as infile:
+            session = json.load(infile)
+    except Exception as e:
+        current_app.logger.error(e)
         return redirect(url_for("routes.job_not_found", job_id=job_id))
 
     if request.method == "GET":
         manager = DashboardManager()
-        manager.prepare_data_get(f_sess)
+        manager.prepare_data_get(session)
         return render_template(
             "dashboard.html", data=manager.provide_data_get(), job_id=job_id
         )
