@@ -166,8 +166,6 @@
       </div>
     </div>
   </div>
-
-
   <form method="post" enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <div class="collapse mb-4" id="startAnalysisContent">
@@ -208,7 +206,7 @@
               </div>
               <div class="row mb-4">
                 <div class="col">
-                  <div class="row">
+                  <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="FeatureFilteringParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FeatureFilteringParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FeatureFilteringParameters" {% if params.get("FeatureFilteringParameters", {}).get("activate_module") %}checked{% endif %}>
@@ -274,7 +272,7 @@
                   </div>
                 </div>
                 <div class="col">
-                  <div class="row">
+                  <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="AdductAnnotationParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AdductAnnotationParameters" {% if params.get("AdductAnnotationParameters", {}).get("activate_module") %}checked{% endif %}>
@@ -349,7 +347,7 @@
               </div>
               <div class="row mb-4">
                 <div class="col">
-                  <div class="row">
+                  <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="NeutralLossParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('NeutralLossParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#NeutralLossParameters" {% if params.get("NeutralLossParameters", {}).get("activate_module") %}checked{% endif %}>
@@ -383,7 +381,7 @@
                   </div>
                 </div>
                 <div class="col">
-                  <div class="row">
+                  <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="FragmentAnnParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FragmentAnnParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FragmentAnnParameters" {% if params.get("FragmentAnnParameters", {}).get("activate_module") %}checked{% endif %}>
@@ -419,7 +417,7 @@
               </div>
               <div class="row mb-4">
                 <div class="col">
-                  <div class="row">
+                  <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkCosineParameters" {% if params.get("SpecSimNetworkCosineParameters", {}).get("activate_module") %}checked{% endif %}>
@@ -483,7 +481,7 @@
                   </div>
                 </div>
                 <div class="col">
-                  <div class="row">
+                  <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkDeepscoreParameters" {% if params.get("SpecSimNetworkDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
@@ -854,7 +852,7 @@
                 </div>
                 <div class="row mb-4">
                   <div class="col">
-                    <div class="row">
+                    <div class="row mx-0">
                       <div class="col">
                         <div class="form-check form-switch">
                           <input class="form-check-input" type="checkbox" role="switch" id="GroupFactAssignmentParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('GroupFactAssignmentParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#GroupFactAssignmentParameters" {% if params.get("GroupFactAssignmentParameters", {}).get("activate_module") %}checked{% endif %}>
@@ -905,7 +903,7 @@
                     </div>
                   </div>
                   <div class="col">
-                    <div class="row">
+                    <div class="row mx-0">
                       <div class="col">
                         <div class="form-check form-switch">
                           <input class="form-check-input" type="checkbox" role="switch" id="BlankAssignmentParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('BlankAssignmentParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#BlankAssignmentParameters" {% if params.get("BlankAssignmentParameters", {}).get("activate_module") %}checked{% endif %}>
@@ -984,7 +982,7 @@
           <div class="collapse" id="FeatureAnnotation">
             <div class="row mt-2 mb-4">
               <div class="col">
-                <div class="row mx-1">
+                <div class="row mx-0">
                   <div class="col">
                     <div class="form-check form-switch" >
                       <input class="form-check-input" type="checkbox" role="switch" id="SpecLibParametersActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#SpecLibParameters">
@@ -1128,7 +1126,7 @@
                 </div>
               </div>
               <div class="col">
-                <div class="row mx-1">
+                <div class="row mx-0">
                   <div class="col">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" role="switch" id="AsKcbActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#AsKcbParameters">
@@ -1268,7 +1266,7 @@
                 </div>
               </div>
               <div class="col">
-                <div class="row mx-1">
+                <div class="row mx-0">
                   <div class="col">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" role="switch" id="MS2QueryActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#MS2QueryResultsParameters">
@@ -1320,7 +1318,10 @@
       {% endif %}
       <div class="row mt-2 d-flex align-items-center justify-content-center">
         <div class="col-auto text-center">
-          <button id="submitNewAnalysis" type="submit" class="btn btn-primary" value="newAnalysis">Start new analysis</button>
+          <button id="submitNewAnalysis" type="submit" class="btn btn-primary" value="newAnalysis" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Start FERMO analysis run.">Start new analysis</button>
+        </div>
+        <div class="col-auto text-center">
+          <button id="generateParamsFile" type="submit" class="btn btn-secondary btm-sm" value="generateParamsFile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Generates 'parameter.json' file for offline use in fermo_core."><i>Generate parameter file</i></button>
         </div>
       </div>
     </div>
