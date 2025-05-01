@@ -27,6 +27,7 @@ import shutil
 import uuid
 from pathlib import Path
 from typing import Any
+from venv import logger
 
 import jsonschema
 from flask import (
@@ -38,7 +39,10 @@ from flask import (
     url_for,
 )
 from pydantic import BaseModel
+from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
+
+# class InputValidator(BaseModel):
 
 
 class InputParser(BaseModel):
@@ -97,8 +101,8 @@ class InputParser(BaseModel):
         return session
 
     @staticmethod
-    def store_valid_file(file: Any, save_path: Path) -> bool:
-        """Check file size before dumping and delete if too big
+    def store_valid_file(file: FileStorage, save_path: Path) -> bool:
+        """Check file size before dumping
 
         Args:
             file: a Werkzeug file object
@@ -193,7 +197,7 @@ class InputParser(BaseModel):
         else:
             return self.return_error()
 
-    def load_session_file(self, file: Any) -> Response | str:
+    def load_session_file(self, file: FileStorage) -> Response | str:
         """Store session file, redirect to dashboard"""
         self.create_unique_dir()
         save_path = self.uploads / self.uuid / "results" / "out.fermo.session.json"
@@ -208,7 +212,7 @@ class InputParser(BaseModel):
             shutil.rmtree(self.uploads.joinpath(self.uuid))
             return self.return_error()
 
-    def load_param_file(self, file: Any) -> str:
+    def load_param_file(self, file: FileStorage) -> str:
         """Load parameters from an uploaded session file
 
         Arguments:
@@ -235,12 +239,61 @@ class InputParser(BaseModel):
             return self.return_error()
 
     def new_analysis(self, files: Any) -> Response | str:
-        """Init a new analysis
+        """Prepare input params, init new analysis
 
         Arguments:
             files: a dict of Werkzeug file objects
         """
 
+        def _check_content(f) -> int:
+            file.seek(0, os.SEEK_END)
+            size = file.tell()
+            file.seek(0)
+            return size
+
+        self.create_unique_dir()
+        save_path = self.uploads / self.uuid
+        mapping = {
+            "PeaktableParametersFile": "PeaktableParameters",
+            "MsmsParametersFile": "MsmsParameters",
+            "PhenotypeParametersFile": "PhenotypeParameters",
+            "GroupMetadataParametersFile": "GroupMetadataParameters",
+            "MS2QueryResultsParametersFile": "MS2QueryResultsParameters",
+        }
+        for key, val in mapping.items():
+            if key in files:
+                file = files.get(key)
+
+                if _check_content(file) == 0:
+                    continue
+
+                filepath = save_path / secure_filename(file.filename)
+                self.params[val]["filepath"] = filepath.resolve()
+                if not self.store_valid_file(file, filepath):
+                    shutil.rmtree(save_path)
+                    return self.return_error()
+
+        speclibs = files.getlist("SpecLibParametersFiles")
+        if any(secure_filename(f.filename) for f in speclibs):
+            speclibpath = save_path / "spec_lib"
+            speclibpath.mkdir()
+            self.params["SpecLibParameters"]["dirpath"] = speclibpath.resolve()
+
+            for file in speclibs:
+                if _check_content(file) == 0:
+                    continue
+
+                filepath = speclibpath / secure_filename(file.filename)
+                if not self.store_valid_file(file, filepath):
+                    shutil.rmtree(save_path)
+                    return self.return_error()
+
+        # TODO: reorganize into two functions
+
+        print(self.params)
+
+        return self.return_error()
+
         # validate files and dump - separate function with a map for renaming and recognizing, check size
-        # parse params and dump
+        # redo validation but take as much from input_processor as possible
         # redirect to job init

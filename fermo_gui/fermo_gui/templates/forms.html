@@ -182,7 +182,7 @@
             <div class="row my-4">
               <div class="col-6">
                 <span><label class="form-label ms-1" for="PeaktableParametersFile">Upload the peak table file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#molecular-feature-peaktable") }}</span>
-                <input class="form-control form-control-sm" id="PeaktableParametersFile" name="PeaktableParametersFile" type="file" accept=".csv" onchange="checkFile('PeaktableParametersFile', 'csv', 'AlertContainerPeaktable', 'PeaktableParametersShow')" required>
+                <input class="form-control form-control-sm" id="PeaktableParametersFile" name="PeaktableParametersFile" type="file" accept=".csv" onchange="checkFile('PeaktableParametersFile', 'csv', 'AlertContainerPeaktable', 'PeaktableParametersShow', {{ max_size }})" required>
                 <div id="AlertContainerPeaktable"></div>
               </div>
             </div>
