@@ -27,7 +27,6 @@ import shutil
 import uuid
 from pathlib import Path
 from typing import Any
-from venv import logger
 
 import jsonschema
 from flask import (
@@ -101,34 +100,47 @@ class InputParser(BaseModel):
         return session
 
     @staticmethod
-    def store_valid_file(file: FileStorage, save_path: Path) -> bool:
-        """Check file size before dumping
+    def determine_file_size(f: FileStorage) -> int:
+        """Determine the size in bytes
 
         Args:
-            file: a Werkzeug file object
-            save_path: a Path to save the file to
+            f: A Werkzeug Filestorage object
+
+        Returns:
+            The size in bytes as integer
+        """
+        f.seek(0, os.SEEK_END)
+        size = f.tell()
+        f.seek(0)
+        return size
+
+    @staticmethod
+    def valid_file_size(size: int, name: str):
+        """Check allowed file fize
+
+        Args:
+            size: the size in bytes
+            name: the file name
 
         Returns:
             Bool indicating outcome for route handling
+
+        Raises:
+            RuntimeError: File empty or exceeding allowed size
         """
-        if current_app.config.get("ONLINE"):
-            file.seek(0, os.SEEK_END)
-            size = file.tell()
-            file.seek(0)
-            if size > current_app.config.get("MAX_CONTENT_LENGTH"):
-                e = (
-                    f'File {file.filename} is bigger than the allowed '
-                    f'{current_app.config.get("MAX_CONTENT_LENGTH")} bytes '
-                    f'(found "{size}" bytes).'
-                )
-                current_app.logger.error(e)
-                flash(e)
-                return False
+        if current_app.config.get("ONLINE") and size > current_app.config.get(
+            "MAX_CONTENT_LENGTH"
+        ):
+            e = (
+                f'File {name} is bigger than the allowed '
+                f'{current_app.config.get("MAX_CONTENT_LENGTH")} bytes '
+                f'(found "{size}" bytes).'
+            )
+            current_app.logger.error(e)
+            flash(e)
+            raise RuntimeError(e)
 
-        file.save(save_path)
-        return True
-
-    def check_session_id(self, s_id: str) -> bool:
+    def check_session_id(self, s_id: str):
         """Check if job ID exists and sanitize the session file
 
         Also writes parameters from session file to self
@@ -136,9 +148,9 @@ class InputParser(BaseModel):
         Args:
             s_id: a FERMO session UID
 
-        Returns:
-            A boolean
-
+        Raises:
+            FileNotFoundError: session ID not found
+            RunTimeError: invalid session file format
         """
         session_path = self.uploads.joinpath(f"{s_id}/results/out.fermo.session.json")
         with open(self.sess_schema) as infile:
@@ -165,28 +177,24 @@ class InputParser(BaseModel):
                 raise FileNotFoundError(f"Could not find session ID on server: {s_id}")
         except jsonschema.exceptions.ValidationError as e:
             msg = f"Incorrect FERMO session file formatting: {str(e).splitlines()[0]}"
-            current_app.logger.error(msg)
-            flash(f"{msg!s}")
-            return False
-        except Exception as e:
-            current_app.logger.error(e)
-            flash(f"{e!s}")
-            return False
-
-        return True
+            raise RuntimeError(msg) from e
 
     def load_session_id(self) -> Response | str:
         """Load session present on server"""
-        if self.check_session_id(self.data.get("SessionId")):
+        try:
+            self.check_session_id(self.data.get("SessionId"))
             return redirect(
                 url_for("routes.task_result", job_id=self.data.get("SessionId"))
             )
-        else:
+        except Exception as e:
+            current_app.logger.error(e)
+            flash(f"{e!s}")
             return self.return_error()
 
     def load_param_id(self) -> str:
         """Load parameters from a session file present on server"""
-        if self.check_session_id(self.data.get("ParameterId")):
+        try:
+            self.check_session_id(self.data.get("ParameterId"))
             return render_template(
                 template_name_or_list="forms.html",
                 job_id=self.data.get("ParameterId"),
@@ -194,7 +202,9 @@ class InputParser(BaseModel):
                 params=self.params,
                 max_size=current_app.config.get("MAX_CONTENT_LENGTH") or 0,
             )
-        else:
+        except Exception as e:
+            current_app.logger.error(e)
+            flash(f"{e!s}")
             return self.return_error()
 
     def load_session_file(self, file: FileStorage) -> Response | str:
@@ -202,13 +212,15 @@ class InputParser(BaseModel):
         self.create_unique_dir()
         save_path = self.uploads / self.uuid / "results" / "out.fermo.session.json"
 
-        if not self.store_valid_file(file, save_path):
-            shutil.rmtree(self.uploads.joinpath(self.uuid))
-            return self.return_error()
-
-        if self.check_session_id(self.uuid):
+        try:
+            size = self.determine_file_size(file)
+            self.valid_file_size(size, secure_filename(file.filename))
+            file.save(save_path)
+            self.check_session_id(self.uuid)
             return redirect(url_for("routes.task_result", job_id=self.uuid))
-        else:
+        except Exception as e:
+            current_app.logger.error(e)
+            flash(f"{e!s}")
             shutil.rmtree(self.uploads.joinpath(self.uuid))
             return self.return_error()
 
@@ -222,11 +234,11 @@ class InputParser(BaseModel):
         self.create_unique_dir()
         save_path = self.uploads / self.uuid / "results" / "out.fermo.session.json"
 
-        if not self.store_valid_file(file, save_path):
-            shutil.rmtree(self.uploads.joinpath(self.uuid))
-            return self.return_error()
-
-        if self.check_session_id(self.uuid):
+        try:
+            size = self.determine_file_size(file)
+            self.valid_file_size(size, secure_filename(file.filename))
+            file.save(save_path)
+            self.check_session_id(self.uuid)
             return render_template(
                 template_name_or_list="forms.html",
                 job_id=secure_filename(file.filename),
@@ -234,7 +246,9 @@ class InputParser(BaseModel):
                 params=self.params,
                 max_size=current_app.config.get("MAX_CONTENT_LENGTH") or 0,
             )
-        else:
+        except Exception as e:
+            current_app.logger.error(e)
+            flash(f"{e!s}")
             shutil.rmtree(self.uploads.joinpath(self.uuid))
             return self.return_error()
 
@@ -244,53 +258,77 @@ class InputParser(BaseModel):
         Arguments:
             files: a dict of Werkzeug file objects
         """
-
-        def _check_content(f) -> int:
-            file.seek(0, os.SEEK_END)
-            size = file.tell()
-            file.seek(0)
-            return size
-
         self.create_unique_dir()
         save_path = self.uploads / self.uuid
-        mapping = {
-            "PeaktableParametersFile": "PeaktableParameters",
-            "MsmsParametersFile": "MsmsParameters",
-            "PhenotypeParametersFile": "PhenotypeParameters",
-            "GroupMetadataParametersFile": "GroupMetadataParameters",
-            "MS2QueryResultsParametersFile": "MS2QueryResultsParameters",
-        }
-        for key, val in mapping.items():
-            if key in files:
-                file = files.get(key)
+        save_path_speclib = self.uploads / self.uuid / "spec_lib"
 
-                if _check_content(file) == 0:
+        try:
+            for f_id in files:
+                if f_id == "SpecLibParametersFiles":
                     continue
-
-                filepath = save_path / secure_filename(file.filename)
-                self.params[val]["filepath"] = filepath.resolve()
-                if not self.store_valid_file(file, filepath):
-                    shutil.rmtree(save_path)
-                    return self.return_error()
-
-        speclibs = files.getlist("SpecLibParametersFiles")
-        if any(secure_filename(f.filename) for f in speclibs):
-            speclibpath = save_path / "spec_lib"
-            speclibpath.mkdir()
-            self.params["SpecLibParameters"]["dirpath"] = speclibpath.resolve()
-
-            for file in speclibs:
-                if _check_content(file) == 0:
+                file = files.get(f_id)
+                size = self.determine_file_size(file)
+                if size == 0:
                     continue
+                self.valid_file_size(size, secure_filename(file.filename))
+                filepath = save_path.joinpath(secure_filename(file.filename))
+                file.save(filepath)
+                key = f_id.removesuffix("File")
+                self.params[key]["filepath"] = filepath.resolve()
 
-                filepath = speclibpath / secure_filename(file.filename)
-                if not self.store_valid_file(file, filepath):
-                    shutil.rmtree(save_path)
-                    return self.return_error()
+            speclibs = files.getlist("SpecLibParametersFiles")
+            if any(secure_filename(f.filename) for f in speclibs):
+                save_path_speclib.mkdir()
+                self.params["SpecLibParameters"]["dirpath"] = (
+                    save_path_speclib.resolve()
+                )
 
-        # TODO: reorganize into two functions
+                for file in speclibs:
+                    size = self.determine_file_size(file)
+                    if size == 0:
+                        continue
+                    self.valid_file_size(size, secure_filename(file.filename))
+                    filepath = save_path_speclib.joinpath(
+                        secure_filename(file.filename)
+                    )
+                    file.save(filepath)
 
-        print(self.params)
+        except Exception as e:
+            current_app.logger.error(e)
+            flash(f"{e!s}")
+            shutil.rmtree(self.uploads.joinpath(self.uuid))
+            return self.return_error()
+
+        # TODO: parse the settings into params file, run validation, start job, redirect
+
+        # # TODO: run validation functions on the params file, possibly fermo_core-like
+        #
+        # mapping = {
+        #     "PeaktableParametersFile": "PeaktableParameters",
+        #     "MsmsParametersFile": "MsmsParameters",
+        #     "PhenotypeParametersFile": "PhenotypeParameters",
+        #     "GroupMetadataParametersFile": "GroupMetadataParameters",
+        #     "MS2QueryResultsParametersFile": "MS2QueryResultsParameters",
+        # }
+        # for key, val in mapping.items():
+        #     if key in files:
+        #         file = files.get(key)
+        #
+        #         if _check_content(file) == 0:
+        #             continue
+        #
+        #         filepath = save_path / secure_filename(file.filename)
+        #
+        #         if not self.store_valid_file(file, filepath):
+        #             shutil.rmtree(save_path)
+        #             return self.return_error()
+        #
+
+        #
+        # # TODO: reorganize into two functions
+        # # implement input file validation (rework function
+        #
+        # print(self.params)
 
         return self.return_error()
 
