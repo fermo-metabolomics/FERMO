@@ -121,19 +121,17 @@ class InputParser(BaseModel):
                 )
 
             self.create_unique_dir()
-            save_path = self.uploads.joinpath(self.uuid).joinpath(
-                "results/out.fermo.session.json"
-            )
-            file.save(save_path)
 
-            with open(save_path) as infile:
-                session = json.load(infile)
+            session = json.load(file)
 
             with open(self.sess_schema) as infile:
                 schema = json.load(infile)
 
             jsonschema.validate(instance=session, schema=schema)
+
             session = self.convert_session_current(session)
+
+            save_path = self.uploads / self.uuid / "results" / "out.fermo.session.json"
 
             with open(save_path, "w") as out:
                 json.dump(session, out, indent=2)
@@ -141,8 +139,7 @@ class InputParser(BaseModel):
             return redirect(url_for("routes.task_result", job_id=self.uuid))
 
         except jsonschema.exceptions.ValidationError as e:
-            lines = str(e).splitlines()
-            msg = f"Error in session file: {lines[0]}"
+            msg = f"Incorrect FERMO session file formatting: {str(e).splitlines()[0]}"
             current_app.logger.error(msg)
             flash(f"{msg!s}")
             return self.return_error()
