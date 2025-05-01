@@ -82,6 +82,10 @@ def configure_app(app: Flask) -> Flask:
         app.logger.warning("No 'config.py' file found. Default to dev settings.")
         app.logger.critical("INSECURE DEV MODE: DO NOT DEPLOY TO PRODUCTION!")
 
+    if app.config["ONLINE"]:
+        app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024
+        app.config["MAXFEATURENR"] = 3000
+
     csrf = CSRFProtect()
     csrf.init_app(app)
 

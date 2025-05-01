@@ -34,7 +34,7 @@
         <p class="mb-0">Further, the <b>online version of <i>FERMO</i></b> has a few <b>restrictions</b>
           due to computational restrains:</p>
         <ul class="lh-base my-2">
-          <li><p>A file size limit of <b>7 MB</b>, with a maximum of <b>3000</b> molecular features in the peaktable.</p></li>
+          <li><p>A file size limit of <b>9 MB</b>, with a maximum of <b>3000</b> molecular features in the peaktable.</p></li>
           <li><p>A maximum total job run time of <b>60 minutes</b>.</p></li>
           <li><p>The maximum job storage time is limited to <b>30 days</b>. Make sure to <b>download</b> your results!</p></li>
         </ul>
@@ -107,7 +107,7 @@
             <form method="post" enctype="multipart/form-data">
               <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
               <span><label class="form-label ms-1" for="SessionFile">Upload the session file (.json)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#fermo-session-file") }}</span>
-              <input class="form-control form-control-sm" id="SessionFile" name="SessionFile" type="file" accept=".json" onchange="checkFileExtension('SessionFile', 'json', 'AlertContainerSessionFile', 'SessionFileSubmit')" required>
+              <input class="form-control form-control-sm" id="SessionFile" name="SessionFile" type="file" accept=".json" onchange="checkFile('SessionFile', 'json', 'AlertContainerSessionFile', 'SessionFileSubmit', {{ max_size }})" required>
               <div id="AlertContainerSessionFile"></div>
               <div id="SessionFileSubmit" class="collapse mb-2">
                 <div class="row my-4 d-flex justify-content-center">
@@ -150,7 +150,7 @@
               <form method="post" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <span><label class="form-label ms-1" for="ParameterFile">Load parameters from a <i>FERMO</i> session file (.json)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#fermo-session-file") }}</span>
-                <input class="form-control form-control-sm" id="ParameterFile" name="ParameterFile" type="file" accept=".json" onchange="checkFileExtension('ParameterFile', 'json', 'AlertContainerParameterFile', 'ParameterFileSubmit')" required>
+                <input class="form-control form-control-sm" id="ParameterFile" name="ParameterFile" type="file" accept=".json" onchange="checkFile('ParameterFile', 'json', 'AlertContainerParameterFile', 'ParameterFileSubmit', {{ max_size }})" required>
                 <div id="AlertContainerParameterFile"></div>
                 <div id="ParameterFileSubmit" class="collapse mb-2">
                   <div class="row my-4 d-flex justify-content-center">
@@ -182,7 +182,7 @@
             <div class="row my-4">
               <div class="col-6">
                 <span><label class="form-label ms-1" for="PeaktableParametersFile">Upload the peak table file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#molecular-feature-peaktable") }}</span>
-                <input class="form-control form-control-sm" id="PeaktableParametersFile" name="PeaktableParametersFile" type="file" accept=".csv" onchange="checkFileExtension('PeaktableParametersFile', 'csv', 'AlertContainerPeaktable', 'PeaktableParametersShow')" required>
+                <input class="form-control form-control-sm" id="PeaktableParametersFile" name="PeaktableParametersFile" type="file" accept=".csv" onchange="checkFile('PeaktableParametersFile', 'csv', 'AlertContainerPeaktable', 'PeaktableParametersShow')" required>
                 <div id="AlertContainerPeaktable"></div>
               </div>
             </div>
@@ -327,7 +327,7 @@
             <div class="row my-4">
               <div class="col-6">
                 <span><label class="form-label ms-1" for="MsmsParametersFile">Upload the MS/MS file</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#msms-spectrum-information") }}</span>
-                <input class="form-control form-control-sm" id="MsmsParametersFile" name="MsmsParametersFile" type="file" accept=".mgf" onchange="checkFileExtension('MsmsParametersFile', 'mgf', 'AlertContainerMsms', 'MsmsParametersShow')">
+                <input class="form-control form-control-sm" id="MsmsParametersFile" name="MsmsParametersFile" type="file" accept=".mgf" onchange="checkFile('MsmsParametersFile', 'mgf', 'AlertContainerMsms', 'MsmsParametersShow', {{ max_size }})">
                 <div id="AlertContainerMsms"></div>
               </div>
             </div>
@@ -556,7 +556,7 @@
             <div class="row my-4">
               <div class="col-6">
                 <span><label class="form-label ms-1" for="PhenotypeParametersFile">Upload the phenotype data file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#phenotype-bioactivity-data") }}</span>
-                <input class="form-control form-control-sm" id="PhenotypeParametersFile" name="PhenotypeParametersFile" type="file" accept=".csv" onchange="checkFileExtension('PhenotypeParametersFile', 'csv', 'AlertContainerPhenotype', 'PhenotypeParametersShow')">
+                <input class="form-control form-control-sm" id="PhenotypeParametersFile" name="PhenotypeParametersFile" type="file" accept=".csv" onchange="checkFile('PhenotypeParametersFile', 'csv', 'AlertContainerPhenotype', 'PhenotypeParametersShow', {{ max_size }})">
                 <div id="AlertContainerPhenotype"></div>
               </div>
             </div>
@@ -837,7 +837,7 @@
             <div class="row my-4">
               <div class="col-6">
                 <span><label class="form-label ms-1" for="GroupMetadataParametersFile">Upload the sample group metadata file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#fermo") }}</span>
-                <input class="form-control form-control-sm" id="GroupMetadataParametersFile" name="GroupMetadataParametersFile" type="file" accept=".csv" onchange="checkFileExtension('GroupMetadataParametersFile', 'csv', 'AlertContainerGroupMetadata', 'GroupMetadataParametersShow')">
+                <input class="form-control form-control-sm" id="GroupMetadataParametersFile" name="GroupMetadataParametersFile" type="file" accept=".csv" onchange="checkFile('GroupMetadataParametersFile', 'csv', 'AlertContainerGroupMetadata', 'GroupMetadataParametersShow', {{ max_size }})">
                 <div id="AlertContainerGroupMetadata"></div>
               </div>
               <div class="collapse" id="GroupMetadataParametersShow">
@@ -1003,7 +1003,7 @@
                       <div class="row mb-3">
                         <div class="col">
                           <span><label class="form-label ms-1" for="SpecLibParametersFiles">Upload spectral library files (.mgf)</label>{{ render_help("https://https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#spectral-library") }}</span>
-                          <input class="form-control form-control-sm" id="SpecLibParametersFiles" name="SpecLibParametersFiles" type="file" accept=".mgf" onchange="checkFileExtension('SpecLibParametersFiles', 'mgf', 'AlertContainerSpecLib', 'DummyContainerSpecLib')" multiple>
+                          <input class="form-control form-control-sm" id="SpecLibParametersFiles" name="SpecLibParametersFiles" type="file" accept=".mgf" onchange="checkFile('SpecLibParametersFiles', 'mgf', 'AlertContainerSpecLib', 'DummyContainerSpecLib', {{ max_size }})" multiple>
                           <div id="AlertContainerSpecLib"></div>
                           <div class="collapse" id="DummyContainerSpecLib"></div>
                         </div>
@@ -1287,7 +1287,7 @@
                       <div class="row mb-3">
                         <div class="col">
                           <span><label class="form-label ms-1" for="MS2QueryResultsParametersFile">Upload the MS2Query results file (.csv)</label>{{ render_help("https://fermo-metabolomics.github.io/fermo_docs/home/input_output/#ms2query-results-file") }}</span>
-                          <input class="form-control form-control-sm" id="MS2QueryResultsParametersFile" name="MS2QueryResultsParametersFile" type="file" accept=".csv" onchange="checkFileExtension('MS2QueryResultsParametersFile', 'csv', 'AlertContainerMS2QueryFile', 'MS2QueryResultsParametersShow')">
+                          <input class="form-control form-control-sm" id="MS2QueryResultsParametersFile" name="MS2QueryResultsParametersFile" type="file" accept=".csv" onchange="checkFile('MS2QueryResultsParametersFile', 'csv', 'AlertContainerMS2QueryFile', 'MS2QueryResultsParametersShow', {{ max_size }})">
                           <div id="AlertContainerMS2QueryFile"></div>
                         </div>
                       </div>

@@ -93,21 +93,28 @@ function checkSessionId(id, targetErrorId, submitId) {
  * @param {string} ext - The extension to check for (e.g. 'csv')
  * @param {string} targetErrorId - The selector ID of the error report field
  * @param {string} paramId - The selector ID to show parameter field after file upload
+ * @param {number} maxSize - the maximum upload size in bytes (if 0, == offline)
  */
-function checkFileExtension(id, ext, targetErrorId, paramId) {
+function checkFile(id, ext, targetErrorId, paramId, maxSize) {
+  const maxSizeHuman = maxSize / 1024 / 1024;
   const fileInput = document.getElementById(id);
   const files = fileInput.files;
   const filesArray = Array.from(files);
-  const isValid = filesArray.every(file => file.name.endsWith(ext));
+  const isValidExt = filesArray.every(file => file.name.endsWith(ext));
+  var isValidSize = filesArray.every(file => file.size < maxSize);
   const paramEl = document.getElementById(paramId);
   const alertContainer = document.getElementById(targetErrorId);
 
-  if (!isValid) {
+  if (maxSize === 0) {
+    isValidSize = true;
+  }
+
+  function showFileAlert(message) {
     const alertDiv = document.createElement('div');
     alertDiv.className = 'alert alert-warning alert-dismissible fade show';
     alertDiv.role = 'alert';
     alertDiv.innerHTML = `
-      Invalid file type. Please upload only <b>${ext}</b> files.
+      ${message}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     `;
     alertContainer.appendChild(alertDiv);
@@ -116,6 +123,15 @@ function checkFileExtension(id, ext, targetErrorId, paramId) {
     if (paramEl && paramEl.classList.contains("show")) {
       bootstrap.Collapse.getOrCreateInstance(paramEl).hide();
     }
+  }
+
+  if (!isValidExt) {
+    showFileAlert(`Invalid file type. Please upload only <b>${ext}</b> files.`);
+    return;
+  }
+
+  if (!isValidSize) {
+    showFileAlert(`Invalid file size. Please upload files smaller than <b>${maxSizeHuman}</b> MB.`);
     return;
   }
 
