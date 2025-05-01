@@ -13,6 +13,7 @@
     "SpecLibParameters": {
         "format": "mgf"
     },
+    "PhenotypeParameters": {},
     "MS2QueryResultsParameters": {
         "score_cutoff": 0.7
     },

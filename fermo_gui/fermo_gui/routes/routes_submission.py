@@ -38,6 +38,7 @@ from flask import (
     url_for,
 )
 from pydantic import BaseModel
+from werkzeug.utils import secure_filename
 
 from fermo_gui.routes import bp
 
@@ -48,7 +49,7 @@ class InputParser(BaseModel):
     Attributes:
         uuid: the job uuid
         data: the user-submitted data
-        params: the default params, to be updated with new values from data
+        params: the default params, to be updated
         uploads: the Path to the uploads dir
         sess_schema: Path to the session file JSON Schema
     """
@@ -80,7 +81,7 @@ class InputParser(BaseModel):
                 self.uuid = str(uuid.uuid4())
 
     @staticmethod
-    def convert_session_current(session: dict) -> dict:
+    def update_keys(session: dict) -> dict:
         """Converts legacy parameter keys to current format"""
         mapping = {
             "PhenoQualAssgnParams": "PhenoQualAssgnParameters",
@@ -96,56 +97,101 @@ class InputParser(BaseModel):
 
         return session
 
-    def load_session_id(self) -> Response | str:
-        """Load session present on server"""
+    def check_session_id(self, s_id: str) -> bool:
+        """Check if job ID exists and sanitize the session file
+
+        Also writes parameters from session file to self
+
+        Args:
+            s_id: a FERMO session UID
+
+        Returns:
+            A boolean
+
+        """
+        session_path = self.uploads.joinpath(f"{s_id}/results/out.fermo.session.json")
+        with open(self.sess_schema) as infile:
+            schema = json.load(infile)
+
         try:
-            if self.uploads.joinpath(self.data.get("SessionId")).exists():
-                return redirect(
-                    url_for("routes.task_result", job_id=self.data.get("SessionId"))
-                )
+            if session_path.exists():
+                with open(session_path) as infile:
+                    session = json.load(infile)
+
+                jsonschema.validate(instance=session, schema=schema)
+                session = self.update_keys(session)
+
+                for key, val in session.get("parameters").items():
+                    if key in self.params:
+                        if val.get("activate_module"):
+                            self.params[key] = val
+                        else:
+                            self.params[key]["activate_module"] = False
+
+                with open(session_path, "w") as out:
+                    json.dump(session, out, indent=2)
             else:
-                raise FileNotFoundError(
-                    f'Could not find session ID on server: {self.data.get("SessionId")}'
-                )
-        except Exception as e:
-            current_app.logger.error(e)
-            flash(f"{e!s}")
-            return self.return_error()
-
-    def load_session_file(self, file: Any) -> Response | str:
-        """Store session file, redirect to dashboard"""
-        try:
-            if not file:
-                raise FileNotFoundError(
-                    "Did not find session file - were there issues during the upload?"
-                )
-
-            self.create_unique_dir()
-
-            session = json.load(file)
-
-            with open(self.sess_schema) as infile:
-                schema = json.load(infile)
-
-            jsonschema.validate(instance=session, schema=schema)
-
-            session = self.convert_session_current(session)
-
-            save_path = self.uploads / self.uuid / "results" / "out.fermo.session.json"
-
-            with open(save_path, "w") as out:
-                json.dump(session, out, indent=2)
-
-            return redirect(url_for("routes.task_result", job_id=self.uuid))
-
+                raise FileNotFoundError(f"Could not find session ID on server: {s_id}")
         except jsonschema.exceptions.ValidationError as e:
             msg = f"Incorrect FERMO session file formatting: {str(e).splitlines()[0]}"
             current_app.logger.error(msg)
             flash(f"{msg!s}")
-            return self.return_error()
+            return False
         except Exception as e:
             current_app.logger.error(e)
             flash(f"{e!s}")
+            return False
+
+        return True
+
+    def load_session_id(self) -> Response | str:
+        """Load session present on server"""
+        if self.check_session_id(self.data.get("SessionId")):
+            return redirect(
+                url_for("routes.task_result", job_id=self.data.get("SessionId"))
+            )
+        else:
+            return self.return_error()
+
+    def load_param_id(self) -> str:
+        """Load parameters from a session file present on server"""
+        if self.check_session_id(self.data.get("ParameterId")):
+            return render_template(
+                template_name_or_list="forms.html",
+                job_id=self.data.get("ParameterId"),
+                online=current_app.config.get("ONLINE"),
+                params=self.params,
+            )
+        else:
+            return self.return_error()
+
+    def load_session_file(self, file: Any) -> Response | str:
+        """Store session file, redirect to dashboard"""
+        self.create_unique_dir()
+        save_path = self.uploads / self.uuid / "results" / "out.fermo.session.json"
+        file.save(save_path)
+
+        if self.check_session_id(self.uuid):
+            return redirect(url_for("routes.task_result", job_id=self.uuid))
+        else:
+            os.rmdir(self.uploads.joinpath(self.uuid))
+            return self.return_error()
+
+    def load_param_file(self, file: Any) -> str:
+        """Load parameters from an uploaded session file"""
+        self.create_unique_dir()
+        save_path = self.uploads / self.uuid / "results" / "out.fermo.session.json"
+        file.save(save_path)
+
+        if self.check_session_id(self.uuid):
+            return render_template(
+                template_name_or_list="forms.html",
+                job_id=secure_filename(file.filename),
+                online=current_app.config.get("ONLINE"),
+                params=self.params,
+            )
+        else:
+            os.rmdir(self.uploads.joinpath(self.uuid))
             return self.return_error()
 
 

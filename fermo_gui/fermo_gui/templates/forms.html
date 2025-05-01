@@ -7,7 +7,7 @@
     <div class="col-auto text-center mx-auto">
       {% if job_id %}
         <h1 class="fw-semibold lh-2">Loaded parameters of job ID: {{ job_id }}</h1>
-        <p class="main-text">Adjust any parameters and select the "start analysis" button to visualize the results.</p>
+        <p class="main-text">Adjust any parameters and select the "Start new analysis" button to visualize the results.</p>
       {% else %}
         <h1 class="mt-1 mb-3 fw-semibold d-flex justify-content-center">Start analysis</h1>
         <p class="main-text">Upload your data, set your preferred parameters, and you are good to go!
@@ -71,7 +71,7 @@
   </div>
   <div class="row">
     <div class="col btn-group gap-2" role="group" aria-label="Dispatch type group">
-      <input type="radio" class="btn-check" name="btnradio" id="startAnalysis" autocomplete="off" onclick="selectAnalysis('#startAnalysisContent')">
+      <input type="radio" class="btn-check" name="btnradio" id="startAnalysis" autocomplete="off" onclick="selectAnalysis('#startAnalysisContent')" {% if job_id %}checked{% endif %}>
       <label class="btn btn-outline-secondary p-2" for="startAnalysis">Start new analysis</label>
       <input type="radio" class="btn-check" name="btnradio" id="loadParams" autocomplete="off" onclick="selectAnalysis('#loadParamsContent')">
       <label class="btn btn-outline-secondary p-2" for="loadParams">Load parameter settings</label>
@@ -167,7 +167,7 @@
   </div>
   <form method="post" enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <div class="collapse mb-4" id="startAnalysisContent">
+    <div class="collapse mb-4 {% if job_id %}show{% endif %}" id="startAnalysisContent">
       <div class="border start_box">
         <div class="m-3">
           <div class="row d-flex align-items-center">
