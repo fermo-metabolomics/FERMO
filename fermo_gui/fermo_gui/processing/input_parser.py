@@ -41,8 +41,6 @@ from pydantic import BaseModel
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 
-# class InputValidator(BaseModel):
-
 
 class InputParser(BaseModel):
     """Converts raw user input into parameters file
@@ -179,8 +177,60 @@ class InputParser(BaseModel):
             msg = f"Incorrect FERMO session file formatting: {str(e).splitlines()[0]}"
             raise RuntimeError(msg) from e
 
-    def parse_forms(self) -> None | str:
-        """Parse parameters from form fields"""
+    def save_files(self, files: Any):
+        """Save the input files
+
+        Args:
+            files: a dict of Werkzeug Filestorage ojects
+
+        Raises:
+            RuntimeError: issues during file saving
+
+        Notes:
+            speclibs must be parsed separately; else, only one speclibfile is stored
+
+        """
+        save_path = self.uploads / self.uuid
+        save_path_speclib = self.uploads / self.uuid / "spec_lib"
+
+        try:
+            speclibs = files.getlist("SpecLibParametersFiles")
+            if any(secure_filename(f.filename) for f in speclibs):
+                save_path_speclib.mkdir()
+                self.params["SpecLibParameters"]["dirpath"] = str(save_path_speclib)
+                for file in speclibs:
+                    size = self.determine_file_size(file)
+                    if size == 0:
+                        continue
+                    self.valid_file_size(size, secure_filename(file.filename))
+                    file.save(
+                        save_path_speclib.joinpath(secure_filename(file.filename))
+                    )
+
+            for f_id in files:
+                file = files.get(f_id)
+                size = self.determine_file_size(file)
+                if size == 0:
+                    continue
+                self.valid_file_size(size, secure_filename(file.filename))
+                if f_id == "SpecLibParametersFiles":
+                    continue
+                file.save(save_path.joinpath(secure_filename(file.filename)))
+                key = f_id.removesuffix("File")
+                self.params[key]["filepath"] = str(
+                    save_path.joinpath(secure_filename(file.filename))
+                )
+
+        except Exception as e:
+            msg = f"An error occurred during the upload file storage: {e!s}"
+            raise RuntimeError(msg) from e
+
+    def parse_forms(self):
+        """Parse parameters from form fields
+
+        Raises:
+            RuntimeError: error occurred during input parsing
+        """
         try:
             for key, val in self.data.items():
                 match key:
@@ -445,10 +495,11 @@ class InputParser(BaseModel):
                     case _:
                         pass
         except Exception as e:
-            msg = f"An error occurred during parameter assignment: {e}"
-            current_app.logger.error(msg)
-            flash(f"{msg}")
-            return self.return_error()
+            msg = f"An error occurred during parameter assignment: {e!s}"
+            raise RuntimeError(msg) from e
+
+    def valid_params(self):
+        """Validate submitted files and parameters with fermo_core"""
 
     def load_session_id(self) -> Response | str:
         """Load session present on server"""
@@ -531,36 +582,17 @@ class InputParser(BaseModel):
         """
         self.create_unique_dir()
         save_path = self.uploads / self.uuid
-        save_path_speclib = self.uploads / self.uuid / "spec_lib"
 
         try:
-            for f_id in files:
-                if f_id == "SpecLibParametersFiles":
-                    continue
-                file = files.get(f_id)
-                size = self.determine_file_size(file)
-                if size == 0:
-                    continue
-                self.valid_file_size(size, secure_filename(file.filename))
-                filepath = save_path.joinpath(secure_filename(file.filename))
-                file.save(filepath)
-                key = f_id.removesuffix("File")
-                self.params[key]["filepath"] = str(filepath)
+            self.save_files(files)
+            self.parse_forms()
+            self.valid_params()
 
-            speclibs = files.getlist("SpecLibParametersFiles")
-            if any(secure_filename(f.filename) for f in speclibs):
-                save_path_speclib.mkdir()
-                self.params["SpecLibParameters"]["dirpath"] = str(save_path_speclib)
+            with open(save_path.joinpath(f"{self.uuid}.parameters.json"), "w") as out:
+                json.dump(self.params, out, indent=2)
 
-                for file in speclibs:
-                    size = self.determine_file_size(file)
-                    if size == 0:
-                        continue
-                    self.valid_file_size(size, secure_filename(file.filename))
-                    filepath = save_path_speclib.joinpath(
-                        secure_filename(file.filename)
-                    )
-                    file.save(filepath)
+            # TODO: remove in production
+            return self.return_error()
 
         except Exception as e:
             current_app.logger.error(e)
@@ -568,49 +600,8 @@ class InputParser(BaseModel):
             shutil.rmtree(self.uploads.joinpath(self.uuid))
             return self.return_error()
 
-        self.parse_forms()
-
-        print(self.params)
-
-        # loop over self.data, use match case to assign to correct place in self.params
-        # perform validations
-        # write to file
-        # do more complex validation (files) in separate function in ValidationManager
         # follow up with antismash job downloading
 
         # TODO: parse the settings into params file, run validation, start job, redirect
 
         # # TODO: run validation functions on the params file, possibly fermo_core-like
-        #
-        # mapping = {
-        #     "PeaktableParametersFile": "PeaktableParameters",
-        #     "MsmsParametersFile": "MsmsParameters",
-        #     "PhenotypeParametersFile": "PhenotypeParameters",
-        #     "GroupMetadataParametersFile": "GroupMetadataParameters",
-        #     "MS2QueryResultsParametersFile": "MS2QueryResultsParameters",
-        # }
-        # for key, val in mapping.items():
-        #     if key in files:
-        #         file = files.get(key)
-        #
-        #         if _check_content(file) == 0:
-        #             continue
-        #
-        #         filepath = save_path / secure_filename(file.filename)
-        #
-        #         if not self.store_valid_file(file, filepath):
-        #             shutil.rmtree(save_path)
-        #             return self.return_error()
-        #
-
-        #
-        # # TODO: reorganize into two functions
-        # # implement input file validation (rework function
-        #
-        # print(self.params)
-
-        return self.return_error()
-
-        # validate files and dump - separate function with a map for renaming and recognizing, check size
-        # redo validation but take as much from input_processor as possible
-        # redirect to job init
