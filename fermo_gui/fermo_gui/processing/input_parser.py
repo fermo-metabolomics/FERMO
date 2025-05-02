@@ -71,7 +71,7 @@ class InputParser(BaseModel):
             max_size=current_app.config.get("MAX_CONTENT_LENGTH") or 0,
         )
 
-    def create_unique_dir(self):
+    def create_unique_dir(self) -> None:
         """Create unique job dir for file storage"""
         while True:
             path = self.uploads.joinpath(self.uuid)
@@ -115,7 +115,7 @@ class InputParser(BaseModel):
         return size
 
     @staticmethod
-    def valid_file_size(size: int, name: str):
+    def valid_file_size(size: int, name: str) -> None:
         """Check allowed file fize
 
         Args:
@@ -140,7 +140,7 @@ class InputParser(BaseModel):
             flash(e)
             raise RuntimeError(e)
 
-    def check_session_id(self, s_id: str):
+    def check_session_id(self, s_id: str) -> None:
         """Check if job ID exists and sanitize the session file
 
         Also writes parameters from session file to self
@@ -178,6 +178,277 @@ class InputParser(BaseModel):
         except jsonschema.exceptions.ValidationError as e:
             msg = f"Incorrect FERMO session file formatting: {str(e).splitlines()[0]}"
             raise RuntimeError(msg) from e
+
+    def parse_forms(self) -> None | str:
+        """Parse parameters from form fields"""
+        try:
+            for key, val in self.data.items():
+                match key:
+                    case "PeaktableParametersFormat":
+                        self.params["PeaktableParameters"]["format"] = str(val)
+                    case "PeaktableParametersPolarity":
+                        self.params["PeaktableParameters"]["polarity"] = str(val)
+                    case "FeatureFilteringParametersActivate":
+                        self.params["FeatureFilteringParameters"]["activate_module"] = (
+                            val == "on"
+                        )
+                    case "FeatureFilteringParametersAreaMin":
+                        self.params["FeatureFilteringParameters"][
+                            "filter_rel_area_range_min"
+                        ] = float(val)
+                    case "FeatureFilteringParametersAreaMax":
+                        self.params["FeatureFilteringParameters"][
+                            "filter_rel_area_range_max"
+                        ] = float(val)
+                    case "FeatureFilteringParametersIntMin":
+                        self.params["FeatureFilteringParameters"][
+                            "filter_rel_int_range_min"
+                        ] = float(val)
+                    case "FeatureFilteringParametersIntMax":
+                        self.params["FeatureFilteringParameters"][
+                            "filter_rel_int_range_max"
+                        ] = float(val)
+                    case "AdductAnnotationParametersActivate":
+                        self.params["AdductAnnotationParameters"]["activate_module"] = (
+                            val == "on"
+                        )
+                    case "AdductAnnotationParametersPpm":
+                        self.params["AdductAnnotationParameters"]["mass_dev_ppm"] = (
+                            float(val)
+                        )
+                    case "MsmsParametersFormat":
+                        self.params["MsmsParameters"]["format"] = str(val)
+                    case "MsmsParametersFormatRelInt":
+                        self.params["MsmsParameters"]["rel_int_from"] = float(val)
+                    case "NeutralLossParametersActivate":
+                        self.params["NeutralLossParameters"]["activate_module"] = (
+                            val == "on"
+                        )
+                    case "NeutralLossParametersPpm":
+                        self.params["NeutralLossParameters"]["mass_dev_ppm"] = float(
+                            val
+                        )
+                    case "FragmentAnnParametersActivate":
+                        self.params["FragmentAnnParameters"]["activate_module"] = (
+                            val == "on"
+                        )
+                    case "FragmentAnnParametersPpm":
+                        self.params["FragmentAnnParameters"]["mass_dev_ppm"] = float(
+                            val
+                        )
+                    case "SpecSimNetworkCosineParametersActivate":
+                        self.params["SpecSimNetworkCosineParameters"][
+                            "activate_module"
+                        ] = val == "on"
+                    case "SpecSimNetworkCosineParametersMinNr":
+                        self.params["SpecSimNetworkCosineParameters"][
+                            "msms_min_frag_nr"
+                        ] = int(val)
+                    case "SpecSimNetworkCosineParametersTol":
+                        self.params["SpecSimNetworkCosineParameters"][
+                            "fragment_tol"
+                        ] = float(val)
+                    case "SpecSimNetworkCosineParametersScore":
+                        self.params["SpecSimNetworkCosineParameters"][
+                            "score_cutoff"
+                        ] = float(val)
+                    case "SpecSimNetworkCosineParametersLinks":
+                        self.params["SpecSimNetworkCosineParameters"][
+                            "max_nr_links"
+                        ] = int(val)
+                    case "SpecSimNetworkDeepscoreParametersActivate":
+                        self.params["SpecSimNetworkDeepscoreParameters"][
+                            "activate_module"
+                        ] = val == "on"
+                    case "SpecSimNetworkDeepscoreParametersMinNr":
+                        self.params["SpecSimNetworkDeepscoreParameters"][
+                            "msms_min_frag_nr"
+                        ] = int(val)
+                    case "SpecSimNetworkDeepscoreParametersScore":
+                        self.params["SpecSimNetworkDeepscoreParameters"][
+                            "score_cutoff"
+                        ] = float(val)
+                    case "SpecSimNetworkDeepscoreParametersLinks":
+                        self.params["SpecSimNetworkDeepscoreParameters"][
+                            "max_nr_links"
+                        ] = int(val)
+                    case "PhenotypeParametersFormat":
+                        if val != "false":
+                            self.params["PhenotypeParameters"]["format"] = str(val)
+                            if val == "qualitative":
+                                self.params["PhenoQualAssgnParameters"][
+                                    "activate_module"
+                                ] = True
+                            elif val == "quantitative-percentage":
+                                self.params["PhenoQuantPercentAssgnParameters"][
+                                    "activate_module"
+                                ] = True
+                            elif val == "quantitative-concentration":
+                                self.params["PhenoQuantConcAssgnParameters"][
+                                    "activate_module"
+                                ] = True
+                            else:
+                                raise ValueError(
+                                    f"Phenotype file format: '{val}' is not an allowed value"
+                                )
+                    case "PhenoQualAssgnParametersFactor":
+                        self.params["PhenoQualAssgnParameters"]["factor"] = int(val)
+                    case "PhenoQualAssgnParametersAlgorithm":
+                        self.params["PhenoQualAssgnParameters"]["algorithm"] = str(val)
+                    case "PhenoQualAssgnParametersValue":
+                        self.params["PhenoQualAssgnParameters"]["value"] = str(val)
+                    case "PhenoQuantPercentAssgnParametersAvg":
+                        self.params["PhenoQuantPercentAssgnParameters"][
+                            "sample_avg"
+                        ] = str(val)
+                    case "PhenoQuantPercentAssgnParametersVal":
+                        self.params["PhenoQuantPercentAssgnParameters"]["value"] = str(
+                            val
+                        )
+                    case "PhenoQuantPercentAssgnParametersAlg":
+                        self.params["PhenoQuantPercentAssgnParameters"]["algorithm"] = (
+                            str(val)
+                        )
+                    case "PhenoQuantPercentAssgnParametersFdrAlg":
+                        self.params["PhenoQuantPercentAssgnParameters"]["fdr_corr"] = (
+                            str(val)
+                        )
+                    case "PhenoQuantPercentAssgnParametersPVal":
+                        self.params["PhenoQuantPercentAssgnParameters"][
+                            "p_val_cutoff"
+                        ] = float(val)
+                    case "PhenoQuantPercentAssgnParametersCoeff":
+                        self.params["PhenoQuantPercentAssgnParameters"][
+                            "coeff_cutoff"
+                        ] = float(val)
+                    case "PhenoQuantConcAssgnParametersAvg":
+                        self.params["PhenoQuantConcAssgnParameters"]["sample_avg"] = (
+                            str(val)
+                        )
+                    case "PhenoQuantConcAssgnParametersVal":
+                        self.params["PhenoQuantConcAssgnParameters"]["value"] = str(val)
+                    case "PhenoQuantConcAssgnParametersAlg":
+                        self.params["PhenoQuantConcAssgnParameters"]["algorithm"] = str(
+                            val
+                        )
+                    case "PhenoQuantConcAssgnParametersFdrAlg":
+                        self.params["PhenoQuantConcAssgnParameters"]["fdr_corr"] = str(
+                            val
+                        )
+                    case "PhenoQuantConcAssgnParametersPVal":
+                        self.params["PhenoQuantConcAssgnParameters"]["p_val_cutoff"] = (
+                            float(val)
+                        )
+                    case "PhenoQuantConcAssgnParametersCoeff":
+                        self.params["PhenoQuantConcAssgnParameters"]["coeff_cutoff"] = (
+                            float(val)
+                        )
+                    case "GroupMetadataParametersFormat":
+                        self.params["GroupMetadataParameters"]["format"] = str(val)
+                    case "GroupFactAssignmentParametersActivate":
+                        self.params["GroupFactAssignmentParameters"][
+                            "activate_module"
+                        ] = val == "on"
+                    case "GroupFactAssignmentParametersAlgorithm":
+                        self.params["GroupFactAssignmentParameters"]["algorithm"] = str(
+                            val
+                        )
+                    case "GroupFactAssignmentParametersValue":
+                        self.params["GroupFactAssignmentParameters"]["value"] = str(val)
+                    case "BlankAssignmentParametersActivate":
+                        self.params["BlankAssignmentParameters"]["activate_module"] = (
+                            val == "on"
+                        )
+                    case "BlankAssignmentParametersFactor":
+                        self.params["BlankAssignmentParameters"]["factor"] = int(val)
+                    case "BlankAssignmentParametersAlgorithm":
+                        self.params["BlankAssignmentParameters"]["algorithm"] = str(val)
+                    case "BlankAssignmentParametersValue":
+                        self.params["BlankAssignmentParameters"]["value"] = str(val)
+                    case "SpecLibParametersFormat":
+                        self.params["SpecLibParameters"]["format"] = str(val)
+                    case "SpectralLibMatchingCosineParametersActivate":
+                        self.params["SpectralLibMatchingCosineParameters"][
+                            "activate_module"
+                        ] = val == "on"
+                    case "SpectralLibMatchingCosineParametersMinMatched":
+                        self.params["SpectralLibMatchingCosineParameters"][
+                            "min_nr_matched_peaks"
+                        ] = int(val)
+                    case "SpectralLibMatchingCosineParametersTol":
+                        self.params["SpectralLibMatchingCosineParameters"][
+                            "fragment_tol"
+                        ] = float(val)
+                    case "SpectralLibMatchingCosineParametersScore":
+                        self.params["SpectralLibMatchingCosineParameters"][
+                            "score_cutoff"
+                        ] = float(val)
+                    case "SpectralLibMatchingCosineParametersDiff":
+                        self.params["SpectralLibMatchingCosineParameters"][
+                            "max_precursor_mass_diff"
+                        ] = float(val)
+                    case "SpectralLibMatchingDeepscoreParametersActivate":
+                        self.params["SpectralLibMatchingDeepscoreParameters"][
+                            "activate_module"
+                        ] = val == "on"
+                    case "SpectralLibMatchingDeepscoreParametersScore":
+                        self.params["SpectralLibMatchingDeepscoreParameters"][
+                            "score_cutoff"
+                        ] = float(val)
+                    case "SpectralLibMatchingDeepscoreParametersDiff":
+                        self.params["SpectralLibMatchingDeepscoreParameters"][
+                            "max_precursor_mass_diff"
+                        ] = float(val)
+                    case "AsResultsParametersJob":
+                        if val != "":
+                            self.params["AsResultsParameters"]["job_id"] = str(val)
+                    case "AsResultsParametersCutoff":
+                        self.params["AsResultsParameters"]["similarity_cutoff"] = float(
+                            val
+                        )
+                    case "AsKcbCosineMatchingParametersActivate":
+                        self.params["AsKcbCosineMatchingParameters"][
+                            "activate_module"
+                        ] = val == "on"
+                    case "AsKcbCosineMatchingParametersMinMatched":
+                        self.params["AsKcbCosineMatchingParameters"][
+                            "min_nr_matched_peaks"
+                        ] = int(val)
+                    case "AsKcbCosineMatchingParametersTol":
+                        self.params["AsKcbCosineMatchingParameters"]["fragment_tol"] = (
+                            float(val)
+                        )
+                    case "AsKcbCosineMatchingParametersScore":
+                        self.params["AsKcbCosineMatchingParameters"]["score_cutoff"] = (
+                            float(val)
+                        )
+                    case "AsKcbCosineMatchingParametersDiff":
+                        self.params["AsKcbCosineMatchingParameters"][
+                            "max_precursor_mass_diff"
+                        ] = float(val)
+                    case "AsKcbDeepscoreMatchingParametersActivate":
+                        self.params["AsKcbDeepscoreMatchingParameters"][
+                            "activate_module"
+                        ] = val == "on"
+                    case "AsKcbDeepscoreMatchingParametersScore":
+                        self.params["AsKcbDeepscoreMatchingParameters"][
+                            "score_cutoff"
+                        ] = float(val)
+                    case "AsKcbDeepscoreMatchingParametersDiff":
+                        self.params["AsKcbDeepscoreMatchingParameters"][
+                            "max_precursor_mass_diff"
+                        ] = float(val)
+                    case "MS2QueryResultsParametersCutoff":
+                        self.params["MS2QueryResultsParameters"]["score_cutoff"] = (
+                            float(val)
+                        )
+                    case _:
+                        pass
+        except Exception as e:
+            msg = f"An error occurred during parameter assignment: {e}"
+            current_app.logger.error(msg)
+            flash(f"{msg}")
+            return self.return_error()
 
     def load_session_id(self) -> Response | str:
         """Load session present on server"""
@@ -274,14 +545,12 @@ class InputParser(BaseModel):
                 filepath = save_path.joinpath(secure_filename(file.filename))
                 file.save(filepath)
                 key = f_id.removesuffix("File")
-                self.params[key]["filepath"] = filepath.resolve()
+                self.params[key]["filepath"] = str(filepath)
 
             speclibs = files.getlist("SpecLibParametersFiles")
             if any(secure_filename(f.filename) for f in speclibs):
                 save_path_speclib.mkdir()
-                self.params["SpecLibParameters"]["dirpath"] = (
-                    save_path_speclib.resolve()
-                )
+                self.params["SpecLibParameters"]["dirpath"] = str(save_path_speclib)
 
                 for file in speclibs:
                     size = self.determine_file_size(file)
@@ -298,6 +567,16 @@ class InputParser(BaseModel):
             flash(f"{e!s}")
             shutil.rmtree(self.uploads.joinpath(self.uuid))
             return self.return_error()
+
+        self.parse_forms()
+
+        print(self.params)
+
+        # loop over self.data, use match case to assign to correct place in self.params
+        # perform validations
+        # write to file
+        # do more complex validation (files) in separate function in ValidationManager
+        # follow up with antismash job downloading
 
         # TODO: parse the settings into params file, run validation, start job, redirect
 

@@ -208,8 +208,9 @@
                   <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="FeatureFilteringParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FeatureFilteringParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FeatureFilteringParameters" {% if params.get("FeatureFilteringParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" role="switch" id="FeatureFilteringParametersActivate" name="FeatureFilteringParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FeatureFilteringParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FeatureFilteringParameters" {% if params.get("FeatureFilteringParameters", {}).get("activate_module") %}checked{% endif %}>
                         <label class="form-check-label" for="FeatureFilteringParametersActivate"><b>Feature Filtering</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/filter.feature/") }}</label>
+                        <input type="hidden" name="FeatureFilteringParametersActivate" value="off">
                       </div>
                     </div>
                   </div>
@@ -274,8 +275,9 @@
                   <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="AdductAnnotationParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AdductAnnotationParameters" {% if params.get("AdductAnnotationParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" role="switch" id="AdductAnnotationParametersActivate" name="AdductAnnotationParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AdductAnnotationParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AdductAnnotationParameters" {% if params.get("AdductAnnotationParameters", {}).get("activate_module") %}checked{% endif %}>
                         <label class="form-check-label" for="AdductAnnotationParametersActivate"><b>Adduct Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.adduct") }}</label>
+                        <input type="hidden" name="AdductAnnotationParametersActivate" value="off">
                       </div>
                     </div>
                   </div>
@@ -349,8 +351,9 @@
                   <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="NeutralLossParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('NeutralLossParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#NeutralLossParameters" {% if params.get("NeutralLossParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" role="switch" id="NeutralLossParametersActivate" name="NeutralLossParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('NeutralLossParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#NeutralLossParameters" {% if params.get("NeutralLossParameters", {}).get("activate_module") %}checked{% endif %}>
                         <label class="form-check-label" for="NeutralLossParametersActivate"><b>Neutral Loss Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.loss") }}</label>
+                        <input type="hidden" name="NeutralLossParametersActivate" value="off">
                       </div>
                     </div>
                   </div>
@@ -383,8 +386,9 @@
                   <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="FragmentAnnParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FragmentAnnParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FragmentAnnParameters" {% if params.get("FragmentAnnParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" role="switch" id="FragmentAnnParametersActivate" name="FragmentAnnParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('FragmentAnnParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#FragmentAnnParameters" {% if params.get("FragmentAnnParameters", {}).get("activate_module") %}checked{% endif %}>
                         <label class="form-check-label" for="FragmentAnnParametersActivate"><b>MS/MS Fragment Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.fragment") }}</label>
+                        <input type="hidden" name="FragmentAnnParametersActivate" value="off">
                       </div>
                     </div>
                   </div>
@@ -419,8 +423,9 @@
                   <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkCosineParameters" {% if params.get("SpecSimNetworkCosineParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkCosineParametersActivate" name="SpecSimNetworkCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkCosineParameters" {% if params.get("SpecSimNetworkCosineParameters", {}).get("activate_module") %}checked{% endif %}>
                         <label class="form-check-label" for="SpecSimNetworkCosineParametersActivate"><b>Spectral/Molecular Networking (Modified Cosine)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
+                        <input type="hidden" name="SpecSimNetworkCosineParametersActivate" value="off">
                       </div>
                     </div>
                   </div>
@@ -483,8 +488,9 @@
                   <div class="row mx-0">
                     <div class="col">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkDeepscoreParameters" {% if params.get("SpecSimNetworkDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
+                        <input class="form-check-input" type="checkbox" role="switch" id="SpecSimNetworkDeepscoreParametersActivate" name="SpecSimNetworkDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpecSimNetworkDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpecSimNetworkDeepscoreParameters" {% if params.get("SpecSimNetworkDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
                         <label class="form-check-label" for="SpecSimNetworkDeepscoreParametersActivate"><b>Spectral/Molecular Networking (MS2DeepScore)</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/networking/") }}</label>
+                        <input type="hidden" name="SpecSimNetworkDeepscoreParametersActivate" value="off">
                       </div>
                     </div>
                   </div>
@@ -854,8 +860,9 @@
                     <div class="row mx-0">
                       <div class="col">
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" role="switch" id="GroupFactAssignmentParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('GroupFactAssignmentParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#GroupFactAssignmentParameters" {% if params.get("GroupFactAssignmentParameters", {}).get("activate_module") %}checked{% endif %}>
+                          <input class="form-check-input" type="checkbox" role="switch" id="GroupFactAssignmentParametersActivate" name="GroupFactAssignmentParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('GroupFactAssignmentParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#GroupFactAssignmentParameters" {% if params.get("GroupFactAssignmentParameters", {}).get("activate_module") %}checked{% endif %}>
                           <label class="form-check-label" for="GroupFactAssignmentParametersActivate"><b>Group Factor Assignment</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/metadata.group_fold/") }}</label>
+                          <input type="hidden" name="GroupFactAssignmentParametersActivate" value="off">
                         </div>
                       </div>
                     </div>
@@ -905,8 +912,9 @@
                     <div class="row mx-0">
                       <div class="col">
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" role="switch" id="BlankAssignmentParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('BlankAssignmentParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#BlankAssignmentParameters" {% if params.get("BlankAssignmentParameters", {}).get("activate_module") %}checked{% endif %}>
+                          <input class="form-check-input" type="checkbox" role="switch" id="BlankAssignmentParametersActivate" name="BlankAssignmentParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('BlankAssignmentParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#BlankAssignmentParameters" {% if params.get("BlankAssignmentParameters", {}).get("activate_module") %}checked{% endif %}>
                           <label class="form-check-label" for="BlankAssignmentParametersActivate"><b>Blank Assignment</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/metadata.blank/") }}</label>
+                          <input type="hidden" name="BlankAssignmentParametersActivate" value="off">
                         </div>
                       </div>
                     </div>
@@ -984,8 +992,9 @@
                 <div class="row mx-0">
                   <div class="col">
                     <div class="form-check form-switch" >
-                      <input class="form-check-input" type="checkbox" role="switch" id="SpecLibParametersActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#SpecLibParameters">
+                      <input class="form-check-input" type="checkbox" role="switch" id="SpecLibParametersActivate" name="SpecLibParametersActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#SpecLibParameters">
                       <label class="form-check-label" for="SpecLibParametersActivate"><b>Spectral Library Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
+                      <input type="hidden" name="SpecLibParametersActivate" value="off">
                     </div>
                   </div>
                 </div>
@@ -1019,8 +1028,9 @@
                       <div class="row mx-0 mb-3">
                         <div class="col">
                           <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="SpectralLibMatchingCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpectralLibMatchingCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpectralLibMatchingCosineParameters" {% if params.get("SpectralLibMatchingCosineParameters", {}).get("activate_module") %}checked{% endif %}>
+                            <input class="form-check-input" type="checkbox" role="switch" id="SpectralLibMatchingCosineParametersActivate" name="SpectralLibMatchingCosineParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpectralLibMatchingCosineParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpectralLibMatchingCosineParameters" {% if params.get("SpectralLibMatchingCosineParameters", {}).get("activate_module") %}checked{% endif %}>
                             <label class="form-check-label" for="SpectralLibMatchingCosineParametersActivate"><b>Modified Cosine Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
+                            <input type="hidden" name="SpectralLibMatchingCosineParametersActivate" value="off">
                           </div>
                         </div>
                       </div>
@@ -1081,8 +1091,9 @@
                       <div class="row mx-0 mb-3">
                         <div class="col">
                           <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="SpectralLibMatchingDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpectralLibMatchingDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpectralLibMatchingDeepscoreParameters" {% if params.get("SpectralLibMatchingDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
+                            <input class="form-check-input" type="checkbox" role="switch" id="SpectralLibMatchingDeepscoreParametersActivate" name="SpectralLibMatchingDeepscoreParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('SpectralLibMatchingDeepscoreParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#SpectralLibMatchingDeepscoreParameters" {% if params.get("SpectralLibMatchingDeepscoreParameters", {}).get("activate_module") %}checked{% endif %}>
                             <label class="form-check-label" for="SpectralLibMatchingDeepscoreParametersActivate"><b>MS2DeepScore Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.userlib/") }}</label>
+                            <input type="hidden" name="SpectralLibMatchingDeepscoreParametersActivate" value="off">
                           </div>
                         </div>
                       </div>
@@ -1128,8 +1139,9 @@
                 <div class="row mx-0">
                   <div class="col">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="AsKcbActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#AsKcbParameters">
+                      <input class="form-check-input" type="checkbox" role="switch" id="AsKcbActivate" name="AsKcbActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#AsKcbParameters">
                       <label class="form-check-label" for="AsKcbActivate"><b>AntiSMASH Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
+                      <input type="hidden" name="AsKcbActivate" value="off">
                     </div>
                   </div>
                 </div>
@@ -1159,8 +1171,9 @@
                       <div class="row mx-0 mb-3">
                         <div class="col">
                           <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="AsKcbCosineMatchingParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AsKcbCosineMatchingParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AsKcbCosineMatchingParameters" {% if params.get("AsKcbCosineMatchingParameters", {}).get("activate_module") %}checked{% endif %}>
+                            <input class="form-check-input" type="checkbox" role="switch" id="AsKcbCosineMatchingParametersActivate" name="AsKcbCosineMatchingParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AsKcbCosineMatchingParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AsKcbCosineMatchingParameters" {% if params.get("AsKcbCosineMatchingParameters", {}).get("activate_module") %}checked{% endif %}>
                             <label class="form-check-label" for="AsKcbCosineMatchingParametersActivate"><b>Modified Cosine Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
+                            <input type="hidden" name="AsKcbCosineMatchingParametersActivate" value="off">
                           </div>
                         </div>
                       </div>
@@ -1221,8 +1234,9 @@
                       <div class="row mx-0 mb-3">
                         <div class="col">
                           <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="AsKcbDeepscoreMatchingParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AsKcbDeepscoreMatchingParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AsKcbDeepscoreMatchingParameters" {% if params.get("AsKcbDeepscoreMatchingParameters", {}).get("activate_module") %}checked{% endif %}>
+                            <input class="form-check-input" type="checkbox" role="switch" id="AsKcbDeepscoreMatchingParametersActivate" name="AsKcbDeepscoreMatchingParametersActivate" data-bs-toggle="collapse" aria-expanded="{% if params.get('AsKcbDeepscoreMatchingParameters', {}).get('activate_module') %}true{% else %}false{% endif %}" data-bs-target="#AsKcbDeepscoreMatchingParameters" {% if params.get("AsKcbDeepscoreMatchingParameters", {}).get("activate_module") %}checked{% endif %}>
                             <label class="form-check-label" for="AsKcbDeepscoreMatchingParametersActivate"><b>MS2DeepScore Matching</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.as_kcb/") }}</label>
+                            <input type="hidden" name="AsKcbDeepscoreMatchingParametersActivate" value="off">
                           </div>
                         </div>
                       </div>
@@ -1268,8 +1282,9 @@
                 <div class="row mx-0">
                   <div class="col">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="MS2QueryActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#MS2QueryResultsParameters">
+                      <input class="form-check-input" type="checkbox" role="switch" id="MS2QueryActivate" name="MS2QueryActivate" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#MS2QueryResultsParameters">
                       <label class="form-check-label" for="MS2QueryActivate"><b>MS2Query Annotation</b> Module {{ render_help("https://fermo-metabolomics.github.io/fermo_docs/modules/annotation.ms2query/") }}</label>
+                      <input type="hidden" name="MS2QueryActivate" value="off">
                     </div>
                   </div>
                 </div>
