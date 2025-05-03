@@ -26,9 +26,6 @@ from pathlib import Path
 
 from celery import uuid
 from flask import render_template
-from flask_mail import Message
-
-from fermo_gui.config.extensions import mail
 
 
 class GeneralManager:
@@ -61,37 +58,3 @@ class GeneralManager:
         with open(location.joinpath(filename)) as infile:
             params = json.load(infile)
         return params
-
-    @staticmethod
-    def email_notify_success(root_url: str, address: str, job_id: str):
-        """Notify user if job completed successfully
-
-        Arguments:
-            root_url: URL to construct link
-            address: the user-provided email address
-            job_id: the job identifier
-        """
-        msg = Message()
-        msg.recipients = [address]
-        msg.subject = "Fermo Job Success (NOREPLY)"
-        msg.html = render_template(
-            "email_success.html", job_id=job_id, root_url=root_url
-        )
-        mail.send(msg)
-
-    @staticmethod
-    def email_notify_fail(root_url: str, address: str, job_id: str):
-        """Notify user that job failed
-
-        Arguments:
-            root_url: URL to construct link
-            address: the user-provided email address
-            job_id: the job identifier
-        """
-        msg = Message()
-        msg.recipients = [address]
-        msg.subject = "Fermo Job Failure (NOREPLY)"
-        msg.html = render_template(
-            "email_failure.html", job_id=job_id, root_url=root_url
-        )
-        mail.send(msg)

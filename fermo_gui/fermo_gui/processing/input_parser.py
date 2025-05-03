@@ -22,14 +22,20 @@ SOFTWARE.
 """
 
 import json
+import logging
 import os
 import shutil
 import uuid
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 import jsonschema
+import pandas as pd
 import requests
+from celery import shared_task
+from celery.exceptions import SoftTimeLimitExceeded
+from fermo_core.input_output.class_parameter_manager import ParameterManager
 from fermo_core.input_output.class_validation_manager import ValidationManager
 from fermo_core.input_output.param_handlers import (
     AdductAnnotationParameters,
@@ -54,6 +60,7 @@ from fermo_core.input_output.param_handlers import (
     SpectralLibMatchingCosineParameters,
     SpectralLibMatchingDeepscoreParameters,
 )
+from fermo_core.main import main
 from flask import (
     Response,
     current_app,
@@ -62,10 +69,140 @@ from flask import (
     render_template,
     url_for,
 )
+from flask_mail import Message
 from pydantic import BaseModel
 from requests.exceptions import Timeout
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
+
+from fermo_gui.config.extensions import mail
+
+
+class JobManager(BaseModel):
+    """Manages async jobs
+
+    Attributes:
+        params: job run parameters
+        email: an optional email
+        job_id: the job uuid
+
+    """
+
+    params: dict
+    email: str | None = None
+    job_id: str
+
+    # path to job
+    # root URL (
+
+    # logic: read in parameters file, load into fermo core async, return to caller
+
+    # TODO: fix the url root_url = request.url_root
+    @staticmethod
+    def email_notify_success(root_url: str, address: str, job_id: str):
+        """Notify user if job completed successfully
+
+        Arguments:
+            root_url: URL to construct link
+            address: the user-provided email address
+            job_id: the job identifier
+        """
+        msg = Message()
+        msg.recipients = [address]
+        msg.subject = "Fermo Job Success (NOREPLY)"
+        msg.html = render_template(
+            "email_success.html", job_id=job_id, root_url=root_url
+        )
+        mail.send(msg)
+
+    # TODO: fix the url root_url = request.url_root
+    @staticmethod
+    def email_notify_fail(root_url: str, address: str, job_id: str):
+        """Notify user that job failed
+
+        Arguments:
+            root_url: URL to construct link
+            address: the user-provided email address
+            job_id: the job identifier
+        """
+        msg = Message()
+        msg.recipients = [address]
+        msg.subject = "Fermo Job Failure (NOREPLY)"
+        msg.html = render_template(
+            "email_failure.html", job_id=job_id, root_url=root_url
+        )
+        mail.send(msg)
+
+    def download_antismash_job(self):
+        pass
+
+    def configure_logger(self) -> logging.Logger:
+        """Set up logging parameters"""
+        logger = logging.getLogger("fermo_core")
+        logger.setLevel(logging.DEBUG)
+
+        file_handler = logging.FileHandler(
+            current_app.config.get("UPLOAD_FOLDER").joinpath(
+                f"{self.job_id}/results/out.fermo.log"
+            ),
+            mode="w",
+        )
+        file_handler.setLevel(logging.DEBUG)
+        file_handler.setFormatter(
+            logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+        )
+
+        logger.addHandler(file_handler)
+        return logger
+
+    def run_fermo_core(self):
+        """Run fermo_core on the respective job id"""
+        start_time = datetime.now()
+        logger = self.configure_logger()
+        logger.debug(f"Started 'fermo_core' on job_id '{self.job_id}'.")
+
+        param_manager = ParameterManager()
+        param_manager.assign_parameters_cli(self.params)
+
+        main(param_manager, start_time, logger)
+
+
+@shared_task(ignore_result=False)
+def start_job(job_id: str, email: str | None) -> bool:
+    """Wrapper to start fermo_core jobs asynchronously.
+
+    Args:
+        job_id: the uuid job reference
+        email: an email address or None
+
+    Returns: A bool signaling job outcome to Celery
+    """
+    job_path = Path(f'{current_app.config.get("UPLOAD_FOLDER")}/{job_id}')
+    with open(job_path.joinpath(f"{job_id}.parameters.json")) as infile:
+        params = json.load(infile)
+
+    try:
+        manager = JobManager(params=params, job_id=job_id, email=email)
+        manager.run_fermo_core()
+
+        # send email
+        return True
+    except SoftTimeLimitExceeded as e:
+        # _write_to_log(
+        #     f"Job surpassed maximum time limit of '{metadata.get('max_runtime')}' "
+        #     f"seconds: {e}"
+        # )
+        # _send_mail_fail()
+        return False
+    except Exception as e:
+        # _write_to_log(f"An error occurred: {e}")
+        # _send_mail_fail()
+        return False
+
+    # logic: errors write additionally an error file, then return false
+
+    # logic: all steps should be methods in JobManager
+    # TODO: follow up with antismash job downloading
 
 
 class InputParser(BaseModel):
@@ -556,10 +693,22 @@ class InputParser(BaseModel):
 
         AsResultsParameters separate: job not downloaded yet
 
+        Raises:
+            ValueError: number of features too high
         """
+        PeaktableParameters(**self.params.get("PeaktableParameters"))
+
+        if current_app.config.get("ONLINE"):
+            df = pd.read_csv(
+                self.params.get("PeaktableParameters").get("filepath"), sep=","
+            )
+            if len(df) > current_app.config.get("MAXFEATURENR"):
+                raise ValueError(
+                    f"Too many features in peaktable (max: {self.max_features}). "
+                    f"Please reduce or run FERMO offline "
+                )
 
         map_files = {
-            "PeaktableParameters": PeaktableParameters,
             "MsmsParameters": MsmsParameters,
             "GroupMetadataParameters": GroupMetadataParameters,
             "SpecLibParameters": SpecLibParameters,
@@ -692,8 +841,9 @@ class InputParser(BaseModel):
             with open(save_path.joinpath(f"{self.uuid}.parameters.json"), "w") as out:
                 json.dump(self.params, out, indent=2)
 
-            # TODO: remove in production
-            return self.return_error()
+            email = None
+            if self.data.get("emailInput") and self.data.get("emailInput") != "":
+                email = str(self.data.get("emailInput"))
 
         except Exception as e:
             current_app.logger.error(e)
@@ -701,8 +851,6 @@ class InputParser(BaseModel):
             shutil.rmtree(self.uploads.joinpath(self.uuid))
             return self.return_error()
 
-        # follow up with antismash job downloading
+        start_job.apply_async(kwargs={"job_id": self.uuid, "email": email})
 
-        # TODO: parse the settings into params file, run validation, start job, redirect
-
-        # # TODO: run validation functions on the params file, possibly fermo_core-like
+        return redirect(url_for("routes.job_submitted", job_id=self.uuid))
