@@ -29,6 +29,31 @@ from pathlib import Path
 from typing import Any
 
 import jsonschema
+import requests
+from fermo_core.input_output.class_validation_manager import ValidationManager
+from fermo_core.input_output.param_handlers import (
+    AdductAnnotationParameters,
+    AsKcbCosineMatchingParams,
+    AsKcbDeepscoreMatchingParams,
+    BlankAssignmentParameters,
+    FeatureFilteringParameters,
+    FragmentAnnParameters,
+    GroupFactAssignmentParameters,
+    GroupMetadataParameters,
+    MS2QueryResultsParameters,
+    MsmsParameters,
+    NeutralLossParameters,
+    PeaktableParameters,
+    PhenoQualAssgnParams,
+    PhenoQuantConcAssgnParams,
+    PhenoQuantPercentAssgnParams,
+    PhenotypeParameters,
+    SpecLibParameters,
+    SpecSimNetworkCosineParameters,
+    SpecSimNetworkDeepscoreParameters,
+    SpectralLibMatchingCosineParameters,
+    SpectralLibMatchingDeepscoreParameters,
+)
 from flask import (
     Response,
     current_app,
@@ -38,6 +63,7 @@ from flask import (
     url_for,
 )
 from pydantic import BaseModel
+from requests.exceptions import Timeout
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 
@@ -498,8 +524,82 @@ class InputParser(BaseModel):
             msg = f"An error occurred during parameter assignment: {e!s}"
             raise RuntimeError(msg) from e
 
+    def valid_antismash_id(self):
+        """Validate antiSMASH job on antiSMASH website
+
+        Raises:
+            ValueError: antiSMASH JobID not found
+            RuntimeError: timeout of connection
+        """
+        as_id = self.params["AsResultsParameters"].get("job_id")
+        if not as_id:
+            return
+
+        try:
+            url = f"https://antismash.secondarymetabolites.org/upload" f"/{as_id}/"
+            response = requests.get(url, timeout=5)
+            zips = [
+                line.split('"')[1]
+                for line in response.text.splitlines()
+                if ".zip" in line
+            ]
+
+            if not zips:
+                raise ValueError("antiSMASH JobID not found on antiSMASH server.")
+        except Timeout as e:
+            raise RuntimeError(
+                f"Connection to antiSMASH server timed out: {e!s}"
+            ) from e
+
     def valid_params(self):
-        """Validate submitted files and parameters with fermo_core"""
+        """Validate submitted files and parameters with fermo_core
+
+        AsResultsParameters separate: job not downloaded yet
+
+        """
+
+        map_files = {
+            "PeaktableParameters": PeaktableParameters,
+            "MsmsParameters": MsmsParameters,
+            "GroupMetadataParameters": GroupMetadataParameters,
+            "SpecLibParameters": SpecLibParameters,
+            "PhenotypeParameters": PhenotypeParameters,
+            "MS2QueryResultsParameters": MS2QueryResultsParameters,
+        }
+
+        for key, val in map_files.items():
+            if self.params.get(key, {}).get("filepath") or self.params.get(key, {}).get(
+                "dipath"
+            ):
+                val(**self.params.get(key))
+
+        as_id = self.params["AsResultsParameters"].get("job_id")
+        if as_id:
+            ValidationManager().validate_float_zero_one(
+                self.params["AsResultsParameters"].get("similarity_cutoff")
+            )
+
+        map_modules = {
+            "AdductAnnotationParameters": AdductAnnotationParameters,
+            "NeutralLossParameters": NeutralLossParameters,
+            "FragmentAnnParameters": FragmentAnnParameters,
+            "SpecSimNetworkCosineParameters": SpecSimNetworkCosineParameters,
+            "SpecSimNetworkDeepscoreParameters": SpecSimNetworkDeepscoreParameters,
+            "FeatureFilteringParameters": FeatureFilteringParameters,
+            "BlankAssignmentParameters": BlankAssignmentParameters,
+            "GroupFactAssignmentParameters": GroupFactAssignmentParameters,
+            "PhenoQualAssgnParameters": PhenoQualAssgnParams,
+            "PhenoQuantConcAssgnParameters": PhenoQuantConcAssgnParams,
+            "PhenoQuantPercentAssgnParameters": PhenoQuantPercentAssgnParams,
+            "SpectralLibMatchingCosineParameters": SpectralLibMatchingCosineParameters,
+            "SpectralLibMatchingDeepscoreParameters": SpectralLibMatchingDeepscoreParameters,
+            "AsKcbCosineMatchingParameters": AsKcbCosineMatchingParams,
+            "AsKcbDeepscoreMatchingParameters": AsKcbDeepscoreMatchingParams,
+        }
+
+        for key, val in map_modules.items():
+            if self.params.get(key, {}).get("activate_module"):
+                val(**self.params.get(key))
 
     def load_session_id(self) -> Response | str:
         """Load session present on server"""
@@ -586,6 +686,7 @@ class InputParser(BaseModel):
         try:
             self.save_files(files)
             self.parse_forms()
+            self.valid_antismash_id()
             self.valid_params()
 
             with open(save_path.joinpath(f"{self.uuid}.parameters.json"), "w") as out:
