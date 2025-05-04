@@ -72,6 +72,7 @@ def configure_app(app: Flask) -> Flask:
     )
     app.config["ALLOWED_EXTENSIONS"] = {"json", "csv", "mgf", "session"}
     app.config["ONLINE"] = False
+    app.config["ROOTURL"] = "fermo"
     app.config["MAX_RUN_TIME"] = None
 
     config_file = Path(__file__).parent.parent.joinpath("instance/config.py")

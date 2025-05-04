@@ -26,6 +26,7 @@ import logging
 import os
 import shutil
 import uuid
+import zipfile
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -67,6 +68,7 @@ from flask import (
     flash,
     redirect,
     render_template,
+    request,
     url_for,
 )
 from flask_mail import Message
@@ -83,7 +85,7 @@ class JobManager(BaseModel):
 
     Attributes:
         params: job run parameters
-        email: an optional email
+        email: an optional email for notification
         job_id: the job uuid
 
     """
@@ -92,49 +94,90 @@ class JobManager(BaseModel):
     email: str | None = None
     job_id: str
 
-    # path to job
-    # root URL (
+    def email_fail(self):
+        """Notify user that job failed"""
+        if not current_app.config.get("ONLINE") or not self.email:
+            return
 
-    # logic: read in parameters file, load into fermo core async, return to caller
+        root_url = request.url_root
+        root_url.replace(
+            "http://thornton", f"https://{current_app.config.get('ROOTURL')}"
+        )
 
-    # TODO: fix the url root_url = request.url_root
-    @staticmethod
-    def email_notify_success(root_url: str, address: str, job_id: str):
-        """Notify user if job completed successfully
-
-        Arguments:
-            root_url: URL to construct link
-            address: the user-provided email address
-            job_id: the job identifier
-        """
         msg = Message()
-        msg.recipients = [address]
-        msg.subject = "Fermo Job Success (NOREPLY)"
+        msg.recipients = [self.email]
+        msg.subject = "FERMO JOB FAILED (NOREPLY)"
         msg.html = render_template(
-            "email_success.html", job_id=job_id, root_url=root_url
+            "email_failure.html", job_id=self.job_id, root_url=root_url
         )
         mail.send(msg)
 
-    # TODO: fix the url root_url = request.url_root
-    @staticmethod
-    def email_notify_fail(root_url: str, address: str, job_id: str):
-        """Notify user that job failed
+    def email_success(self):
+        """Notify user that job failed"""
+        if not current_app.config.get("ONLINE") or not self.email:
+            return
 
-        Arguments:
-            root_url: URL to construct link
-            address: the user-provided email address
-            job_id: the job identifier
-        """
+        root_url = request.url_root
+        root_url.replace(
+            "http://thornton", f"https://{current_app.config.get('ROOTURL')}"
+        )
+
         msg = Message()
-        msg.recipients = [address]
-        msg.subject = "Fermo Job Failure (NOREPLY)"
+        msg.recipients = [self.email]
+        msg.subject = "FERMO JOB SUCCESS (NOREPLY)"
         msg.html = render_template(
-            "email_failure.html", job_id=job_id, root_url=root_url
+            "email_success.html", job_id=self.job_id, root_url=root_url
         )
         mail.send(msg)
 
     def download_antismash_job(self):
-        pass
+        """Download antiSMASH job from antiSMASH website
+
+        Raises:
+            ValueError: antiSMASH JobID not found
+            RuntimeError: timeout of connection
+        """
+        as_id = self.params["AsResultsParameters"].get("job_id")
+        if not as_id:
+            return
+
+        try:
+            url = f"https://antismash.secondarymetabolites.org/upload/{as_id}/"
+            response = requests.get(url, timeout=5)
+            zips = [
+                line.split('"')[1]
+                for line in response.text.splitlines()
+                if ".zip" in line
+            ]
+
+            if not zips:
+                raise ValueError("antiSMASH JobID not found on antiSMASH server.")
+            else:
+                for zip_file in zips:
+                    response = requests.get(os.path.join(url, zip_file), timeout=120)
+
+                    job_path = current_app.config.get("UPLOAD_FOLDER").joinpath(
+                        f"{self.job_id}"
+                    )
+                    with open(job_path.joinpath(f"{zip_file}"), "wb") as f:
+                        f.write(response.content)
+
+                    with zipfile.ZipFile(job_path.joinpath(f"{zip_file}"), "r") as out:
+                        out.extractall(job_path.joinpath(f"{zip_file.split('.')[0]}"))
+
+                    if not Path(
+                        self.params["AsResultsParameters"].get("directory_path")
+                    ).exists():
+                        raise FileNotFoundError(
+                            "AntiSMASH results were not downloaded in the expected location - TERMINATE"
+                        )
+
+                    os.remove(job_path.joinpath(f"{zip_file}"))
+
+        except Timeout as e:
+            raise RuntimeError(
+                f"Connection to antiSMASH server timed out: {e!s}"
+            ) from e
 
     def configure_logger(self) -> logging.Logger:
         """Set up logging parameters"""
@@ -181,28 +224,26 @@ def start_job(job_id: str, email: str | None) -> bool:
     with open(job_path.joinpath(f"{job_id}.parameters.json")) as infile:
         params = json.load(infile)
 
-    try:
-        manager = JobManager(params=params, job_id=job_id, email=email)
-        manager.run_fermo_core()
+    def _write_fail_file(m: str):
+        with open(job_path.joinpath(f"results/out.failed.txt")) as f:
+            f.write(m)
 
-        # send email
+    manager = JobManager(params=params, job_id=job_id, email=email)
+    try:
+        manager.download_antismash_job()
+        manager.run_fermo_core()
+        manager.email_success()
         return True
     except SoftTimeLimitExceeded as e:
-        # _write_to_log(
-        #     f"Job surpassed maximum time limit of '{metadata.get('max_runtime')}' "
-        #     f"seconds: {e}"
-        # )
-        # _send_mail_fail()
+        msg = f"Job surpassed maximum time limit and was terminated: {e!s}"
+        _write_fail_file(msg)
+        manager.email_fail()
         return False
     except Exception as e:
-        # _write_to_log(f"An error occurred: {e}")
-        # _send_mail_fail()
+        msg = f"Job encountered an error and was terminated: {e!s}"
+        _write_fail_file(msg)
+        manager.email_fail()
         return False
-
-    # logic: errors write additionally an error file, then return false
-
-    # logic: all steps should be methods in JobManager
-    # TODO: follow up with antismash job downloading
 
 
 class InputParser(BaseModel):
@@ -673,7 +714,7 @@ class InputParser(BaseModel):
             return
 
         try:
-            url = f"https://antismash.secondarymetabolites.org/upload" f"/{as_id}/"
+            url = f"https://antismash.secondarymetabolites.org/upload/{as_id}/"
             response = requests.get(url, timeout=5)
             zips = [
                 line.split('"')[1]
@@ -683,6 +724,13 @@ class InputParser(BaseModel):
 
             if not zips:
                 raise ValueError("antiSMASH JobID not found on antiSMASH server.")
+            else:
+                for zip_file in zips:
+                    save_path = self.uploads / self.uuid / zip_file.split(".")[0]
+                    self.params["AsResultsParameters"]["directory_path"] = str(
+                        save_path
+                    )
+
         except Timeout as e:
             raise RuntimeError(
                 f"Connection to antiSMASH server timed out: {e!s}"
@@ -705,7 +753,7 @@ class InputParser(BaseModel):
             if len(df) > current_app.config.get("MAXFEATURENR"):
                 raise ValueError(
                     f"Too many features in peaktable (max: {self.max_features}). "
-                    f"Please reduce or run FERMO offline "
+                    f"Please reduce or run FERMO in offline mode."
                 )
 
         map_files = {
