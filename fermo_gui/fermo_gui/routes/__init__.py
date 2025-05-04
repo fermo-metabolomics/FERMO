@@ -27,8 +27,6 @@ bp = Blueprint("routes", __name__)
 
 from fermo_gui.routes import (
     routes_general,
-    routes_load_session,
     routes_results,
-    routes_start_analysis,
     routes_submission,
 )

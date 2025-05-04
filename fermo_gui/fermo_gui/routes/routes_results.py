@@ -28,34 +28,34 @@ from typing import Union
 from flask import Response, current_app, redirect, render_template, request, url_for
 
 from fermo_gui.analysis.dashboard_manager import DashboardManager
-from fermo_gui.analysis.general_manager import GeneralManager
 from fermo_gui.routes import bp
 
 
 @bp.route("/results/job_failed/<job_id>/")
-def job_failed(job_id: str) -> Union[str, Response]:
+def job_failed(job_id: str) -> str | Response:
     """Render the job_failed html.
 
-    Assumes that every failed job should have a logfile; if not found, redirect to
-    'job_not_found' page.
 
     Arguments:
         job_id: the job identifier, provided by the URL variable
 
     Returns:
-        The job_failed page for the job ID or a redirect to 'job_not_found' page.
+        The job_failed page.
     """
-    try:
-        with open(
-            Path(current_app.config.get("UPLOAD_FOLDER"))
-            .joinpath(job_id)
-            .joinpath("results")
-            .joinpath("out.fermo.log"),
-        ) as logfile:
-            log = logfile.read().split("\n")
-        return render_template("job_failed.html", data={"task_id": job_id, "log": log})
-    except FileNotFoundError:
+    job_path = current_app.config.get("UPLOAD_FOLDER") / job_id
+    fail_path = job_path / "results" / "out.failed.txt"
+    log_path = job_path / "results" / "out.fermo.log"
+
+    if not fail_path.exists():
         return redirect(url_for("routes.job_not_found", job_id=job_id))
+
+    try:
+        with open(log_path) as f:
+            log = f.read().split("\n")
+    except FileNotFoundError:
+        log = []
+
+    return render_template("job_failed.html", job_id=job_id, log=log)
 
 
 @bp.route("/results/job_not_found/<job_id>/")
@@ -89,19 +89,25 @@ def task_result(job_id: str) -> Union[str, Response]:
     Returns:
         The dashboard page or the job_not_found page
     """
-    try:
-        sess_path = Path(current_app.config.get("UPLOAD_FOLDER")).joinpath(
-            f"{job_id}/results/out.fermo.session.json"
-        )
+    job_path = current_app.config.get("UPLOAD_FOLDER") / job_id
+    sess_path = job_path / "results" / "out.fermo.session.json"
+    fail_path = job_path / "results" / "out.failed.txt"
+    log_path = job_path / "results" / "out.fermo.log"
+
+    if sess_path.exists() and request.method == "GET":
         with open(sess_path) as infile:
             session = json.load(infile)
-    except Exception as e:
-        current_app.logger.error(e)
-        return redirect(url_for("routes.job_not_found", job_id=job_id))
-
-    if request.method == "GET":
         manager = DashboardManager()
         manager.prepare_data_get(session)
         return render_template(
             "dashboard.html", data=manager.provide_data_get(), job_id=job_id
         )
+    else:
+        if fail_path.exists():
+            redirect(url_for("routes.job_failed", job_id=job_id))
+
+        # first check if job failed, send to job failed page
+        # else, job still running, send to the waiting page
+
+        current_app.logger.error(e)
+        return redirect(url_for("routes.job_not_found", job_id=job_id))
