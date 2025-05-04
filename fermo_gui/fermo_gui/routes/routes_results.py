@@ -22,7 +22,6 @@ SOFTWARE.
 """
 
 import json
-from pathlib import Path
 from typing import Union
 
 from flask import Response, current_app, redirect, render_template, request, url_for
@@ -33,15 +32,7 @@ from fermo_gui.routes import bp
 
 @bp.route("/results/job_failed/<job_id>/")
 def job_failed(job_id: str) -> str | Response:
-    """Render the job_failed html.
-
-
-    Arguments:
-        job_id: the job identifier, provided by the URL variable
-
-    Returns:
-        The job_failed page.
-    """
+    """Render the job_failed html."""
     job_path = current_app.config.get("UPLOAD_FOLDER") / job_id
     fail_path = job_path / "results" / "out.failed.txt"
     log_path = job_path / "results" / "out.fermo.log"
@@ -58,25 +49,29 @@ def job_failed(job_id: str) -> str | Response:
     return render_template("job_failed.html", job_id=job_id, log=log)
 
 
+@bp.route("/results/job_running/<job_id>/")
+def job_running(job_id: str) -> str | Response:
+    """Render the job_running html."""
+    job_path = current_app.config.get("UPLOAD_FOLDER") / job_id
+    log_path = job_path / "results" / "out.fermo.log"
+
+    if not log_path.exists():
+        return redirect(url_for("routes.job_not_found", job_id=job_id))
+
+    try:
+        with open(log_path) as f:
+            log = f.read().split("\n")
+    except FileNotFoundError:
+        log = []
+
+    return render_template("job_running.html", job_id=job_id, log=log)
+
+
 @bp.route("/results/job_not_found/<job_id>/")
 def job_not_found(job_id: str) -> str:
-    """Render the job_not_found page.
-
-    Logical end-point of job routes.
-
-    Arguments:
-        job_id: the job identifier, provided by the URL variable
-
-    Returns:
-        The job_not_found page for the job ID
-    """
-    root_url = str(request.base_url.partition(f"/results/job_not_found/{job_id}/")[0])
-    root_url = root_url.replace("http://thornton", "https://fermo", 1)
-    job_data = {
-        "task_id": job_id,
-        "root_url": root_url,
-    }
-    return render_template("job_not_found.html", job_data=job_data)
+    """Logical end-point of job routes."""
+    online = current_app.config.get("ONLINE")
+    return render_template("job_not_found.html", job_id=job_id, online=online)
 
 
 @bp.route("/results/<job_id>/", methods=["GET", "POST"])
@@ -94,20 +89,18 @@ def task_result(job_id: str) -> Union[str, Response]:
     fail_path = job_path / "results" / "out.failed.txt"
     log_path = job_path / "results" / "out.fermo.log"
 
-    if sess_path.exists() and request.method == "GET":
-        with open(sess_path) as infile:
-            session = json.load(infile)
-        manager = DashboardManager()
-        manager.prepare_data_get(session)
-        return render_template(
-            "dashboard.html", data=manager.provide_data_get(), job_id=job_id
-        )
-    else:
-        if fail_path.exists():
-            redirect(url_for("routes.job_failed", job_id=job_id))
-
-        # first check if job failed, send to job failed page
-        # else, job still running, send to the waiting page
-
-        current_app.logger.error(e)
-        return redirect(url_for("routes.job_not_found", job_id=job_id))
+    if request.method == "GET":
+        if sess_path.exists():
+            with open(sess_path) as infile:
+                session = json.load(infile)
+            manager = DashboardManager()
+            manager.prepare_data_get(session)
+            return render_template(
+                "dashboard.html", data=manager.provide_data_get(), job_id=job_id
+            )
+        elif fail_path.exists():
+            return redirect(url_for("routes.job_failed", job_id=job_id))
+        elif log_path.exists():
+            return redirect(url_for("routes.job_running", job_id=job_id))
+        else:
+            return redirect(url_for("routes.job_not_found", job_id=job_id))
