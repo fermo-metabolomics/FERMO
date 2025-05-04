@@ -73,3 +73,10 @@ def dispatch() -> str | Response:
         params=defaults,
         max_size=current_app.config.get("MAX_CONTENT_LENGTH") or 0,
     )
+
+
+@bp.route("/analysis/job_submitted/<job_id>/", methods=["GET"])
+def job_submitted(job_id: str) -> str:
+    """Placeholder during calculation."""
+    online = current_app.config.get("ONLINE")
+    return render_template("job_submitted.html", job_id=job_id, online=online)

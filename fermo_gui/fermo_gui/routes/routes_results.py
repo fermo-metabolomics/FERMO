@@ -90,9 +90,10 @@ def task_result(job_id: str) -> Union[str, Response]:
         The dashboard page or the job_not_found page
     """
     try:
-        uploads = Path(current_app.config.get("UPLOAD_FOLDER"))
-        location = uploads.joinpath(f"{job_id}/results/out.fermo.session.json")
-        with open(location) as infile:
+        sess_path = Path(current_app.config.get("UPLOAD_FOLDER")).joinpath(
+            f"{job_id}/results/out.fermo.session.json"
+        )
+        with open(sess_path) as infile:
             session = json.load(infile)
     except Exception as e:
         current_app.logger.error(e)

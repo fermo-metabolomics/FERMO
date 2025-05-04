@@ -648,7 +648,7 @@ class InputParser(BaseModel):
                     case "SpectralLibMatchingCosineParametersDiff":
                         self.params["SpectralLibMatchingCosineParameters"][
                             "max_precursor_mass_diff"
-                        ] = float(val)
+                        ] = int(float(val))
                     case "SpectralLibMatchingDeepscoreParametersActivate":
                         self.params["SpectralLibMatchingDeepscoreParameters"][
                             "activate_module"
@@ -660,7 +660,7 @@ class InputParser(BaseModel):
                     case "SpectralLibMatchingDeepscoreParametersDiff":
                         self.params["SpectralLibMatchingDeepscoreParameters"][
                             "max_precursor_mass_diff"
-                        ] = float(val)
+                        ] = int(float(val))
                     case "AsResultsParametersJob":
                         if val != "":
                             self.params["AsResultsParameters"]["job_id"] = str(val)
@@ -687,7 +687,7 @@ class InputParser(BaseModel):
                     case "AsKcbCosineMatchingParametersDiff":
                         self.params["AsKcbCosineMatchingParameters"][
                             "max_precursor_mass_diff"
-                        ] = float(val)
+                        ] = int(float(val))
                     case "AsKcbDeepscoreMatchingParametersActivate":
                         self.params["AsKcbDeepscoreMatchingParameters"][
                             "activate_module"
@@ -699,7 +699,7 @@ class InputParser(BaseModel):
                     case "AsKcbDeepscoreMatchingParametersDiff":
                         self.params["AsKcbDeepscoreMatchingParameters"][
                             "max_precursor_mass_diff"
-                        ] = float(val)
+                        ] = int(float(val))
                     case "MS2QueryResultsParametersCutoff":
                         self.params["MS2QueryResultsParameters"]["score_cutoff"] = (
                             float(val)
@@ -894,6 +894,9 @@ class InputParser(BaseModel):
             self.valid_antismash_id()
             self.valid_params()
 
+            ValidationManager().validate_file_vs_jsonschema(
+                self.params, f"{self.uuid}.parameters.json"
+            )
             with open(save_path.joinpath(f"{self.uuid}.parameters.json"), "w") as out:
                 json.dump(self.params, out, indent=2)
 

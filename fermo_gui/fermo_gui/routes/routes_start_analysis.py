@@ -184,22 +184,3 @@ def load_settings(job_id: str) -> Union[str, Response]:
         job_id=exist_job_id,
         online=current_app.config.get("ONLINE"),
     )
-
-
-@bp.route("/analysis/job_submitted/<job_id>/", methods=["GET"])
-def job_submitted(job_id: str) -> str:
-    """Serves as placeholder during calculation.
-
-    Arguments:
-        job_id: the job identifier, provided by the URL variable
-
-    Returns:
-        The rendered "job_submitted.html" page
-    """
-    root_url = str(request.base_url.partition("/analysis/job_submitted/")[0])
-    root_url = root_url.replace("http://thornton", "https://fermo", 1)
-    job_data = {
-        "task_id": job_id,
-        "root_url": root_url,
-    }
-    return render_template("job_submitted.html", job_data=job_data)
