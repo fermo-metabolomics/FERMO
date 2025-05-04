@@ -198,16 +198,24 @@ class JobManager(BaseModel):
         logger.addHandler(file_handler)
         return logger
 
-    def run_fermo_core(self):
-        """Run fermo_core on the respective job id"""
+    def run_fermo(self):
+        """Run fermo_core on the respective job id
+
+        Raises:
+            RuntimeError: fermo_core run failed unexpectedly
+        """
         start_time = datetime.now()
         logger = self.configure_logger()
         logger.debug(f"Started 'fermo_core' on job_id '{self.job_id}'.")
 
-        param_manager = ParameterManager()
-        param_manager.assign_parameters_cli(self.params)
-
-        main(param_manager, start_time, logger)
+        try:
+            param_manager = ParameterManager()
+            param_manager.assign_parameters_cli(self.params)
+            main(param_manager, start_time, logger)
+        except Exception as e:
+            msg = f"FERMO run failed: {e!s}"
+            logger.error(msg)
+            raise RuntimeError(msg) from e
 
 
 @shared_task(ignore_result=False)
@@ -225,25 +233,25 @@ def start_job(job_id: str, email: str | None) -> bool:
         params = json.load(infile)
 
     def _write_fail_file(m: str):
-        with open(job_path.joinpath(f"results/out.failed.txt")) as f:
+        with open(job_path.joinpath(f"results/out.failed.txt"), "w") as f:
             f.write(m)
 
     manager = JobManager(params=params, job_id=job_id, email=email)
     try:
         manager.download_antismash_job()
-        manager.run_fermo_core()
+        manager.run_fermo()
         manager.email_success()
         return True
     except SoftTimeLimitExceeded as e:
-        msg = f"Job surpassed maximum time limit and was terminated: {e!s}"
+        msg = f"Job {job_id} surpassed maximum time limit and was terminated: {e!s}"
         _write_fail_file(msg)
         manager.email_fail()
-        return False
+        raise
     except Exception as e:
-        msg = f"Job encountered an error and was terminated: {e!s}"
+        msg = f"Job {job_id} encountered an error and was terminated: {e!s}"
         _write_fail_file(msg)
         manager.email_fail()
-        return False
+        raise
 
 
 class InputParser(BaseModel):
