@@ -1,5 +1,3 @@
-version: '3.3'
-
 services:
   fermo_gui:
     build:
