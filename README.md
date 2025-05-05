@@ -1,5 +1,6 @@
-fermo_gui
-=========
+<img src="./readme_assets/Fermo_logo_blue.svg" style="max-width: 50vw;"/>
+
+[![DOI](https://zenodo.org/badge/580868123.svg)](https://doi.org/10.5281/zenodo.7565700)
 
 `fermo_gui` is the graphical user interface for the metabolomics data analysis pipeline [`fermo_core`](https://github.com/fermo-metabolomics/fermo_core). It allows to start new analysis jobs, load existing session files, and visualize results.
 

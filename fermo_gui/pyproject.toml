@@ -3,10 +3,9 @@ name = "fermo_gui"
 version = "1.1.0"
 description = "Visalization part of program FERMO"
 requires-python = ">=3.11,<3.12"
-license = {file = "LICENSE.md"}
 authors = [
     { name = "Mitja M. Zdouc", email = "zdoucmm@gmail.com" },
-    { name = "Hannah E. Augustijn", email = "hannah.augustijn@gmail.com"}
+    { name = "Hannah E. Augustijn" }
 ]
 keywords = [
     "cheminformatics",
