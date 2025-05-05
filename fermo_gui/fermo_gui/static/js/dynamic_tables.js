@@ -318,7 +318,7 @@ function createExtraInfoRow(data, extraColumns, colspan) {
         if (column.title === "Link to MIBiG") {
             if (typeof cellData === 'string' && cellData.includes("|")) {
                 let mibigLink = document.createElement('a');
-                mibigLink.href = `https://mibig.secondarymetabolites.org/repository/${cellData.split("|")[1]}`;
+                mibigLink.href = `https://bioregistry.io/mibig:${cellData.split("|")[1]}`;
                 mibigLink.textContent = cellData.split("|")[1];
                 mibigLink.target = "_blank";
                 valueCell.appendChild(mibigLink);
