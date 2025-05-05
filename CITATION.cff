@@ -1,0 +1,86 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: fermo
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: 'Mitja M.'
+    family-names: Zdouc
+    email: zdoucmm@gmail.com
+    orcid: 'https://orcid.org/0000-0001-6534-6609'
+    affiliation: Wageningen University and Research
+  - given-names: 'Hannah E.'
+    family-names: Augustijn
+    orcid: 'https://orcid.org/0000-0002-1862-6699'
+    affiliation: Wageningen University and Research
+repository-code: 'https://github.com/fermo-metabolomics/fermo'
+url: 'https://fermo.bioinformatics.nl'
+abstract: >-
+  FERMO ia a metabolomics dashboard  designed to facilitate
+  hypothesis-driven prioritization of molecules and samples,
+  and integrates LC-MS metabolomics data with phenotype
+  information, sample grouping, and genomic data. FERMO
+  is free open source and written in Python.
+keywords:
+  - Python3
+  - Metabolomics
+  - LC-MS
+  - liquid chromatography mass spectrometry
+  - prioritization
+  - bioactivity
+  - phenotype
+  - genomics
+  - mzmine
+  - antismash
+license: MIT
+preferred-citation:
+  type: preprint
+  authors:
+    - address: 'Droevendaalsesteeg 1, 6708 PB Wageningen, the Netherlands'
+      affiliation: 'Wageningen University and Research'
+      family-names: Zdouc
+      given-names: Mitja M.
+      orcid: 'https://orcid.org/0000-0001-6534-6609'
+    - address: 'Sylviusweg 72, 2333 BE Leiden, The Netherlands'
+      affiliation: 'Institute of Biology, Leiden University'
+      family-names: Bayona Maldonado
+      given-names: Lina M.
+    - address: 'Sylviusweg 72, 2333 BE Leiden, The Netherlands'
+      affiliation: 'Institute of Biology, Leiden University'
+      family-names: Augustijn
+      given-names: Hannah E.
+    - address: 'Old Aberdeen, AB24 3DT, Scotland, United Kingdom'
+      affiliation: 'Marine Biodiscovery Centre, Department of Chemistry, University of Aberdeen'
+      family-names: Soldatou
+      given-names: Sylvia
+    - address: 'Droevendaalsesteeg 1, 6708 PB Wageningen, the Netherlands'
+      affiliation: 'Wageningen University and Research'
+      family-names: De Jonge
+      given-names: Niek
+    - address: 'Old Aberdeen, AB24 3DT, Scotland, United Kingdom'
+      affiliation: 'Marine Biodiscovery Centre, Department of Chemistry, University of Aberdeen'
+      family-names: Jaspars
+      given-names: Marcel
+    - address: 'Sylviusweg 72, 2333 BE Leiden, The Netherlands'
+      affiliation: 'Institute of Biology, Leiden University'
+      family-names: van Wezel
+      given-names: Gilles P.
+    - address: 'Droevendaalsesteeg 1, 6708 PB Wageningen, the Netherlands'
+      affiliation: 'Wageningen University and Research'
+      family-names: Medema
+      given-names: Marnix H.
+      orcid: 'https://orcid.org/0000-0002-2191-2821'
+    - address: 'Droevendaalsesteeg 1, 6708 PB Wageningen, the Netherlands'
+      affiliation: 'Wageningen University and Research'
+      family-names: Hooft
+      name-particle: van der
+      given-names: Justin J. J.
+      orcid: 'https://orcid.org/0000-0002-9340-5511'
+  title: FERMO: a Dashboard for Streamlined Rationalized Prioritization of Molecular Features from Mass Spectrometry Data.
+  journal: BioRxiv
+  year: 2022
+  doi: 10.1101/2022.12.21.521422

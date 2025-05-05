@@ -1,4 +1,4 @@
-<img src="./readme_assets/Fermo_logo_blue.svg" style="max-width: 50vw;"/>
+<img src="./fermo_gui/fermo_gui/static/images/Fermo_logo_blue.svg" style="max-width: 50vw;"/>
 
 [![DOI](https://zenodo.org/badge/580868123.svg)](https://doi.org/10.5281/zenodo.7565700)
 
@@ -19,6 +19,7 @@ Table of Contents
 ## Installation and Quickstart
 
 ### With docker from GitHub
+
 - Install `docker` and `docker-compose`
 - Download or clone the [repository](https://github.com/fermo-metabolomics/fermo)
 - (Change into the fermo_gui base directory if not already present)
@@ -30,24 +31,13 @@ Table of Contents
 
 For more information about *FERMO*, `fermo_gui`, or `fermo_core`, see the [Documentation](https://fermo-metabolomics.github.io/fermo_docs/).
 
-## Attribution
+## Note for running offline
 
-### License
-
-FERMO is licensed under the [MIT License](LICENSE.md).
-
-### Authors
-- Mitja M. Zdouc <zdoucmm@gmail.com>
-- Hannah E. Augustijn
+*The [cleanup_jobs.py](fermo_gui/cleanup_jobs.py) deletes jos older than 30 days and is automatically started by the [entrypoint_docker.sh](fermo_gui/entrypoint_docker.sh) script. If necessary, disable manually.
 
 ### Publications
 
 See [FERMO online](https://fermo.bioinformatics.nl/) for information on citing `fermo_gui`.
-
-### Versions
-
-All previous version of FERMO can be accessed via its [Zenodo repository](https://zenodo.org/doi/10.5281/zenodo.7565700).
-
 
 ## For Developers
 
@@ -74,23 +64,23 @@ If not available, `fermo_gui` will employ default settings, assuming that the ap
 These default settings must not be used if the application is to be deployed to production. 
 The following default settings are used:
 
-```python
-SECRET_KEY: str
-ONLINE: bool = True
-MAX_RUN_TIME: int = 3600
+```python config.py
+SECRET_KEY: str # Security
+ONLINE: bool = True # Flag for online/offline functionality
 CELERY: dict = {
     "broker_url": "redis://localhost",
     "result_backend": "redis://localhost",
     "task_ignore_result": True,
     "task_soft_time_limit": 3600
-}
-MAIL_USERNAME: str
-MAIL_PASSWORD: str
-MAIL_DEFAULT_SENDER: str
+} # settings for async job handling
+ROOTURL = "fermo" # subdomain, only used for email
+MAIL_DEFAULT_SENDER: str # settings for postgres mail
 MAIL_SERVER: str
 MAIL_PORT: int
 MAIL_USE_TLS: bool
 MAIL_USE_SSL: bool
 ```
 
-Further, the number of workers can be adjusted in the [`entrypoint_docker.sh`](fermo_gui/entrypoint_docker.sh) script.
+
+
+The number of workers can be adjusted in the [`entrypoint_docker.sh`](fermo_gui/entrypoint_docker.sh) script.
