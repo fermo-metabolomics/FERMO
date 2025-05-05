@@ -99,7 +99,7 @@ class JobManager(BaseModel):
         if not current_app.config.get("ONLINE") or not self.email:
             return
 
-        root_url = f"https://{current_app.config.get('ROOTURL')}"
+        root_url = f"https://{current_app.config.get('ROOTURL')}.bioinformatics.nl"
 
         msg = Message()
         msg.recipients = [self.email]
@@ -114,7 +114,7 @@ class JobManager(BaseModel):
         if not current_app.config.get("ONLINE") or not self.email:
             return
 
-        root_url = f"https://{current_app.config.get('ROOTURL')}"
+        root_url = f"https://{current_app.config.get('ROOTURL')}.bioinformatics.nl"
 
         msg = Message()
         msg.recipients = [self.email]
