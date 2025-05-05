@@ -156,7 +156,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixed:
 
-- Bugfix in quantitative biological data parsing related to issue [Cannot upload quantitative biological data (*.csv) file](https://github.com/mmzdouc/FERMO/issues/1)
+- Bugfix in quantitative biological data parsing related to issue [Cannot upload quantitative biological data (*.csv) file](https://github.com/fermo-metabolomics/FERMO/issues/1)
 
 ## [0.8.5] - 2022-12-23
 

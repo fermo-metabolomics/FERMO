@@ -1,9 +1,9 @@
 fermo_gui
 =========
 
-`fermo_gui` is the graphical user interface for the metabolomics data analysis pipeline [`fermo_core`](https://github.com/mmzdouc/fermo_core). It allows to start new analysis jobs, load existing session files, and visualize results.
+`fermo_gui` is the graphical user interface for the metabolomics data analysis pipeline [`fermo_core`](https://github.com/fermo-metabolomics/fermo_core). It allows to start new analysis jobs, load existing session files, and visualize results.
 
-For more information about *FERMO*, `fermo_gui`, or `fermo_core`, see the [Documentation](https://mmzdouc.github.io/fermo_docs/).
+For more information about *FERMO*, `fermo_gui`, or `fermo_core`, see the [Documentation](https://fermo-metabolomics.github.io/fermo_docs/).
 
 *Nota bene*: `fermo_gui` has only been tested on Linux systems. While the Docker-installation is likely to work on other systems as well, they are not officially supported. See [*Fermo Online*](https://fermo.bioinformatics.nl/) for a user-friendly installation-free version.
 
@@ -19,7 +19,7 @@ Table of Contents
 
 ### With docker from GitHub
 - Install `docker` and `docker-compose`
-- Download or clone the [repository](https://github.com/mmzdouc/fermo)
+- Download or clone the [repository](https://github.com/fermo-metabolomics/fermo)
 - (Change into the fermo_gui base directory if not already present)
 - Run `docker-compose up --build`. This will compose the docker container, install all dependencies and start the application.
 - Open the application in any browser with the URL `http://0.0.0.0:8001/`
@@ -27,7 +27,7 @@ Table of Contents
 
 ## Usage
 
-For more information about *FERMO*, `fermo_gui`, or `fermo_core`, see the [Documentation](https://mmzdouc.github.io/fermo_docs/).
+For more information about *FERMO*, `fermo_gui`, or `fermo_core`, see the [Documentation](https://fermo-metabolomics.github.io/fermo_docs/).
 
 ## Attribution
 
@@ -37,7 +37,7 @@ FERMO is licensed under the [MIT License](LICENSE.md).
 
 ### Authors
 - Mitja M. Zdouc <zdoucmm@gmail.com>
-- Hannah E. Augustijn <hannah.augustijn@gmail.com>
+- Hannah E. Augustijn
 
 ### Publications
 
@@ -93,9 +93,3 @@ MAIL_USE_SSL: bool
 ```
 
 Further, the number of workers can be adjusted in the [`entrypoint_docker.sh`](fermo_gui/entrypoint_docker.sh) script.
-
-### Contributing
-
-Contributions, whether filing an issue, making a pull request, or forking, are appreciated. Please see [Contributing](CONTRIBUTING.md) for more information on getting involved.
-Contributors agree to adhere to the specified [Code of Conduct](CODE_OF_CONDUCT.md).
-For technical details, see the For Developers pages in the [Documentation](https://mmzdouc.github.io/fermo_docs/for_devs/overview/).

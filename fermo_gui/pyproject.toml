@@ -49,8 +49,8 @@ dev = [
 
 [project.urls]
 "Website" = "https://fermo.bioinformatics.nl/"
-"Repository" = "https://github.com/mmzdouc/fermo"
-"Documentation" = "https://mmzdouc.github.io/fermo_docs/"
+"Repository" = "https://github.com/fermo-metabolomics/fermo"
+"Documentation" = "https://fermo-metabolomics.github.io/fermo_docs/"
 
 
 [build-system]
