@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="fw-semibold mb-4">Warning - large job</h1>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col mr-5">
+            <p class="lead mb-3">The job with ID <b>{{ job_id }}</b> has generated a session file of <b>{{ size }}</b> MB.</p>
+            <p class="lead mb-3">Most web browsers struggle to load files of this size without timing out. To help prevent crashes or other issues, we've provided this warning page.</p>
+            <p class="lead mb-3">You can download all generated files here and process them using downstream tools better suited for large datasets (e.g., Cytoscape).</p>
+        </div>
+        <div class="col-auto">
+            <div class="card card-body m.1">
+                <div class="lead mb-2">Downloads</div>
+                <div class="list-group">
+                <a href="{{ url_for('routes.download', job_id=job_id, identifier='session') }}"><button type="button" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> Download FERMO Session file</button></a>
+                {% if log %}
+                <a href="{{ url_for('routes.download', job_id=job_id, identifier='peak_mod') }}"><button type="button" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> Modified peak table</button></a>
+                <a href="{{ url_for('routes.download', job_id=job_id, identifier='summary') }}"><button type="button" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> Job summary file</button></a>
+                <a href="{{ url_for('routes.download', job_id=job_id, identifier='log') }}"><button type="button" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> Log file</button></a>
+                <a href="{{ url_for('routes.download', job_id=job_id, identifier='peak_abbr') }}"><button type="button" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> Annotations file (for e.g. Cytoscape)</button></a>
+                {% endif %}
+                {% if sim_cosine %}
+                <a href="{{ url_for('routes.download', job_id=job_id, identifier='sim_cosine') }}"><button type="button" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> Spectral network (mod cosine) for Cytoscape</button></a>
+                {% endif %}
+                {% if sim_deep %}
+                <a href="{{ url_for('routes.download', job_id=job_id, identifier='sim_deep') }}"><button type="button" class="list-group-item list-group-item-action"><i class="bi bi-download"></i> Spectral network (MS2DeepScore) for Cytoscape</button></a>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 class="fw-semibold mb-4">Attempt loading</h1>
+            <p class="lead mb-3">Alternatively, you may still attempt to load the session file directly. In our experience, Firefox tends to handle large files more reliably than other browsers.</p>
+        </div>
+    </div>
+    <div class="row justify-content-center ">
+        <div class="col-auto">
+            <form method="post" action="{{ url_for('routes.task_result', job_id=job_id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="btn btn-primary" value="dummy">Load <i>FERMO</i> session</button>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+<!-- TODO Add the button leading to post-->
+
+
+{% endblock %}

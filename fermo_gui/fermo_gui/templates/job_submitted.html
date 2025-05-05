@@ -7,10 +7,16 @@
             <div class="row my-4 d-flex align-items-center">
                 <div class="col-auto"><h1 class="fw-semibold lh-2">Job submitted</h1></div>
             </div>
-            <p class="lead mb-3">Your job with the ID <b>'{{ job_data.get("task_id") }}'</b> was successfully submitted.</p>
-            <p class="lead mb-3">Once the job finishes, you can use the following link to access your results:</p>
-            <p class="lead mb-3"><a href="{{ job_data.get('root_url') }}/results/{{ job_data.get('task_id') }}/">{{ job_data.get('root_url') }}/results/{{ job_data.get('task_id') }}/</a></p>
-            <p class="lead mb-3">If you have specified an email address, you will be notified about the job outcome (online version only).</p>
+            <div class="row">
+                <div class="col">
+                    <p class="lead mb-3">Your job with the ID <b>{{ job_id }}</b> was successfully submitted.</p>
+                    <p class="lead mb-3">Once the job finishes, you can click <a class="custom-link" href="{{ url_for('routes.task_result', job_id=job_id) }}"><b>HERE</b></a> to access your results.</p>
+                    <p class="lead mb-3"></p>
+                    {% if online%}
+                    <p class="lead mb-3">If you have specified an email address, you will be notified about the job outcome.</p>
+                    {% endif %}
+                </div>
+            </div>
       </div>
     </div>
 </div>

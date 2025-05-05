@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.1.0] - UNRELEASED
+
+### Added
+
+- Added additional examples
+- Added support for mzmine4 and antismash8
+- Implemented download page for large sessions
+
+### Changed
+
+- Changed install build from `hatch` to `uv`
+- Reworked Start Analysis page
+- Cosmetic changes to all frontend pages
+- Reworked job dispatching and running
+- Moved repo to fermo-metabolomics GitHub page
+
+### Fixed
+
+- Updated documentation links
+- Updated dependency versions (nginx, fermo_core)
+
 ## [1.0.9] - 2024-07-24
 
 ### Fixed
@@ -143,7 +164,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixed:
 
-- Bugfix in quantitative biological data parsing related to issue [Cannot upload quantitative biological data (*.csv) file](https://github.com/mmzdouc/FERMO/issues/1)
+- Bugfix in quantitative biological data parsing related to issue [Cannot upload quantitative biological data (*.csv) file](https://github.com/fermo-metabolomics/FERMO/issues/1)
 
 ## [0.8.5] - 2022-12-23
 

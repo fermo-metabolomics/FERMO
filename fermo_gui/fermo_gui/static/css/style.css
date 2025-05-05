@@ -36,12 +36,6 @@ footer {
 a:not(.footer a) {
   text-decoration: none;
 }
-/* Limit the width of the images for screen size scaling */
-.custom-footer-image {
-  width:  100%;
-  max-width:  190px;
-  height: auto; /* Maintain aspect ratio */
-}
 
 /* input forms */
 .btn-primary {
@@ -375,10 +369,8 @@ table th:last-child{
     align-items: center;
 }
 
-
 .form-check-input {
-    width: 1.5rem;
-    height: 1rem;
+    transform: scale(1.2);
 }
 
 .form-check-input:checked {
@@ -442,4 +434,27 @@ table th:last-child{
 
 .info-button:hover {
     transform: scale(1.2);
+}
+
+.navbar-custom {
+    background-color: rgb(var(--bs-primary-rgb));
+    color: white;
+}
+
+.navbar-font-size {
+    font-size: 18px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.custom-bold {
+    font-weight: bold;
+}
+
+.custom-link {
+    text-decoration: none;
+    color: rgb(var(--bs-primary-rgb));
 }

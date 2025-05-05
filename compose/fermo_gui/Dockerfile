@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y redis-server
 
 COPY ./fermo_gui .
 
-RUN pip install --upgrade pip
-RUN pip install .
+RUN pip install uv
+RUN uv sync
 
 RUN chmod +x ./entrypoint_docker.sh
 

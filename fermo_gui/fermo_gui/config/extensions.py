@@ -21,6 +21,44 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+from celery import Celery, Task
+from flask import Flask
 from flask_mail import Mail
 
 mail = Mail()
+
+
+def configure_celery(app: Flask) -> Flask:
+    """Configure the celery task manager.
+
+    Arguments:
+        app: The Flask app instance
+
+    Returns:
+        The Flask app instance with added extension Celery
+    """
+    if app.config.get("ONLINE"):
+        app.config.from_pyfile("config.py", silent=True)
+    else:
+        app.config.from_mapping(
+            CELERY={
+                "broker_url": "redis://localhost",
+                "result_backend": "redis://localhost",
+                "task_ignore_result": True,
+            },
+        )
+
+    app.config.from_prefixed_env()
+
+    class FlaskTask(Task):
+        """Configure Celery Task to work with app Factory."""
+
+        def __call__(self, *args: object, **kwargs: object) -> object:
+            with app.app_context():
+                return self.run(*args, **kwargs)
+
+    celery_app = Celery(app.name, task_cls=FlaskTask)
+    celery_app.config_from_object(app.config["CELERY"])
+    celery_app.set_default()
+    app.extensions["celery"] = celery_app
+    return app

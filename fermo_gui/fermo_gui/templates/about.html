@@ -1,95 +1,97 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="mx-4">
-        <div class="container-fluid">
-            <div class="row my-4 d-flex align-items-center">
-                <div class="col-auto"><h1 class="fw-semibold lh-2">About</h1></div>
-            </div>
-            <p class="lead mb-3"><i>FERMO</i> is a dashboard for metabolomics data analysis, with automated integration of genomics, phenotypical, and environmental (meta)data. It aims to make the prioritization of molecules of interest convenient, fast, and reproducible.</p>
-            <p class="lead mb-5"><i>FERMO</i> integrates and cross-links with a number of other tools. For a list of dependencies, see <a target="_blank" href="https://github.com/mmzdouc/fermo_core">here</a> and <a target="_blank" href="https://github.com/mmzdouc/fermo">here</a>.</p>
-      </div>
+
+<div class="container mt-5 bd-gutter">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="fw-semibold lh-lg mb-4">About</h1>
+            <p class="lead"><i>FERMO</i> is a dashboard for metabolomics data analysis, with automated integration of genomics, phenotypical, and environmental (meta)data. It aims to make the prioritization of molecules of interest convenient, fast, and reproducible.</p>
+            <p class="lead"><i>FERMO</i> integrates and cross-links with a number of other tools. For a list of dependencies, see <a target="_blank" href="https://github.com/fermo-metabolomics/fermo"><b>here</b></a> and <a target="_blank" href="https://github.com/fermo-metabolomics/fermo_core"><b>here</b></a>.</p>
+            <p class="lead"><i>FERMO</i> is full free open source. If you found the tool useful and want to get involved with its development, please do not hesitate to get in touch! Visit the <a title="FERMO Metabolimis GitHub Organization page" href="https://github.com/fermo-metabolomics" class="custom-link" target="_blank"><i>FERMO</i> Metabolomics</a> GitHub Organisation page to learn more.</p>
+        </div>
     </div>
-    <div class="mx-4">
-        <div class="container-fluid">
-            <section class="row my-4 d-flex">
-                <div class="col-auto">
-                    <h2 class="fw-semibold lh-2">How to cite <i>FERMO</i></h2>
-                    <p class="lead mb-4">
-                        The manuscript for the new version of <i>FERMO</i> is currently under preparation. For the previous beta version, a preprint is available on <a target="_blank" href="https://doi.org/10.1101/2022.12.21.521422 ">bioRxiv</a>.
-                    </p>
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="fw-semibold lh-base mb-4">How to cite</h1>
+            <p class="lead">If you have found <i>FERMO</i> useful for your analysis, please cite our <a rel="cite" href="https://doi.org/10.1101/2022.12.21.521422" class="custom-link" target="_blank">publication</a>.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="fw-semibold lh-base mb-4">Meet the Developers</h1>
+            <p class="lead">MITE is being developed by the following people</p>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-auto">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ url_for('static', filename='images/profile.mmz.JPG') }}" style="max-width: 90%; height: auto;" class="card-img-top mx-auto" alt="Mitja M. Zdouc">
+                <div class="card-body">
+                    <h5 class="card-title">Mitja M. Zdouc</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Project Lead and Lead Developer</h6>
+                    <p class="card-text">Mitja is a pharmaceutical scientist from Austria, interested in method development for natural product biosynthesis and discovery using genomics and metabolomics.</p>
+                    <a title="Email" href="mailto:mitja.zdouc@wur.nl" class="custom-link card-link"><i class="bi bi-envelope"></i></a>
+                    <a title="GitHub Personal Page" href="https://github.com/mmzdouc" class="custom-link card-link" target="_blank"><i class="bi bi-github"></i></a>
+                    <a title="LinkedIn Account" href="https://nl.linkedin.com/in/mitja-zdouc-phd-05aa9116b" class="custom-link card-link" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a title="ORCID" href="https://orcid.org/0000-0001-6534-6609" class="custom-link card-link" target="_blank"><i class="fa-brands fa-orcid"></i></a>
+                    <a title="Bluesky" href="https://bsky.app/profile/mmzdouc.bsky.social" class="custom-link card-link" target="_blank"><i class="fa-brands fa-bluesky"></i></a>
                 </div>
-            </section>
-            <section class="row my-4 d-flex">
-                <div class="col-auto">
-                    <h2 class="fw-semibold lh-2 mb-2">Developers</h2>
-                    <p class="lead mb-2">
-                        <i>FERMO</i> is being developed by the following people:
-                    </p>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ url_for('static', filename='images/profile.hea.JPG') }}" style="max-width: 90%; height: auto;" class="card-img-top mx-auto" alt="Hannah E. Augustijn">
+                <div class="card-body">
+                    <h5 class="card-title">Hannah E. Augustijn</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Developer</h6>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <p class="card-text">Hannah is a bioinformatician from the Netherlands, interested in method development to explore the regulatory mechanisms influencing the expression of natural products in microorganisms.</p>
+                    <a title="GitHub Personal Page" href="https://github.com/haugustijn" class="custom-link card-link" target="_blank"><i class="bi bi-github"></i></a>
+                    <a title="LinkedIn Account" href="https://nl.linkedin.com/in/hannah-augustijn" class="custom-link card-link" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a title="ORCID" href="https://orcid.org/0000-0002-1862-6699" class="custom-link card-link" target="_blank"><i class="fa-brands fa-orcid"></i></a>
                 </div>
-            </section>
-            <section class="row g-3 g-md-5 mb-5 pb-5 justify-content-center">
-                <div class="col-lg-6 py-lg-4 pe-lg-5 justify-content-center d-flex">
-                    <img class="d-none d-sm-block" style="max-width: 9vw;" src="{{ url_for('static', filename='/images/profile.mmz.JPG') }}" alt="Profile picture MMZ">
-                    <div class="mx-2">
-                        <p class="lead">Mitja M. Zdouc</p>
-                        <p class="lead">Lead developer</p>
-                        <p class="lead">Wageningen University & Research</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 py-lg-4 pe-lg-5 justify-content-center d-flex">
-                    <img class="d-none d-sm-block" style="max-width: 9vw;" src="{{ url_for('static', filename='/images/profile.hea.JPG') }}" alt="Profile picture HEA">
-                    <div class="mx-2">
-                        <p class="lead">Hannah E. Augustijn</p>
-                        <p class="lead">Interface design</p>
-                        <p class="lead">Wageningen University & Research</p>
-                        <p class="lead">Leiden University</p>
-                    </div>
-                </div>
-            </section>
-            <section class="row my-4 d-flex">
-                <div class="col-auto">
-                    <h2 class="fw-semibold lh-2">Acknowledgements</h2>
-                    <p class="lead my-3">The following people contributed during the development of <i>FERMO</i>:</p>
-                    <ul>
-                        <li><p class="lead mb-2">Justin J.J. van der Hooft - academic project supervision</p></li>
-                        <li><p class="lead mb-2">Marnix H. Medema - academic project supervision</p></li>
-                        <li><p class="lead mb-2">Sarah Habicht - co-developed a first prototype of the online version of <i>FERMO</i> in the scope of her <a target="_blank" href="https://edepot.wur.nl/633364">master thesis</a> (2023).</p></li>
-                        <li><p class="lead mb-2">Koen van Ingen - supported the development of the antiSMASH KnownClusterBlast compatibility module in the scope of his bachelor thesis (2024).</p></li>
-                        <li><p class="lead mb-2">Beta testers in alphabetical order: Bayona Maldonado, Lina M. and Dell, Maria and Iorio, Marianna and de Jonge, Niek and Khatib, Soliman and Lund, George and Maffioli, Sonia and Padva, Leo and Schink, Julia and Simone, Matteo and Soldatou, Sylvia.</li>
-                    </ul>
-                </div>
-            </section>
-            <section class="row my-4 d-flex">
-                <div class="col-auto">
-                    <h2 class="fw-semibold lh-2">Institutions and Funding</h2>
-                    <p class="lead my-3">The development of <i>FERMO</i> is supported by the following institutions:</p>
-                    <table style="border-collapse: collapse; width: 80%;">
-                      <tr>
-                        <td style="border: none; width: 45%;"><img src="{{ url_for('static', filename='/images/Marbles_logo.svg') }}" alt="Logo Marbles EU" style="width: 100%;"></td>
-                          <td style="border: none; width: 5%;"></td>
-                        <td style="border: none; width: 45%;"><img src="{{ url_for('static', filename='/images/WUR_logo.png') }}" alt="Logo Wageningen University" style="width: 100%;"></td>
-                      </tr>
-                      <tr>
-                        <td style="border: none; width: 45%; text-align: justify;">This work was funded by the European Union Horizon 2020 project MARBLES [101000392]</td>
-                          <td style="border: none; width: 5%;"></td>
-                        <td style="border: none; width: 45%; text-align: justify;">This work was supported by the Netherlands Organization for Scientific Research (NWO) KIC grant KICH1.LWV04.21.013</td>
-                      </tr>
-                </table>
-                </div>
-            </section>
-            <section class="row my-4 d-flex">
-                <div class="col-auto">
-                    <h2 class="fw-semibold lh-2">License and Terms</h2>
-                    <p class="lead my-3">
-                        <i>FERMO</i> is licensed under the MIT license and is free to use. There is no login requirement. We ask users to be reasonable in their usage, and limit themselves to 5 concurrent jobs. For large-scale analyses, <i>FERMO</i> can be installed offline.
-                    </p>
-                    <p class="lead mb-2">
-                        For documents and software available from this server, the <i>FERMO</i> team does not warrant or assume any legal liability or responsibility for the accuracy, completeness, or usefulness of any information, apparatus, product, or process disclosed. The anonymity of uploaded data cannot be guaranteed. All data and existing jobs are deleted regularly and without warning.
-                    </p>
-                </div>
-            </section>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="fw-semibold lh-base mb-4">Acknowledgements</h1>
+            <p class="lead"><i>FERMO</i> acknowledges the support of the following people:</p>
+            <ul class="lh-base my-3">
+                <li><p class="lead my-1">Justin J.J. van der Hooft - academic project supervision</p></li>
+                <li><p class="lead my-1">Marnix H. Medema - academic project supervision</p></li>
+                <li><p class="lead my-1">Sarah Habicht - supported the development in the scope of her <a target="_blank" href="https://edepot.wur.nl/633364">master thesis</a> (2023).</p></li>
+                <li><p class="lead my-1">Koen van Ingen - supported the development in the scope of his bachelor thesis (2024).</p></li>
+            </ul>
+            <p class="lead my-3">The following people supported <i>FERMO</i> as beta-testers (in alphabetical order):</p>
+            <ul class="lh-base my-3">
+                <li><p class="lead my-1">Maria Dell, Marianna Iorio, Soliman Khatib, George Lund, Sonia Maffioli, Leo Padva, Matteo Simone.</p></li>
+            </ul>
+            <p class="lead my-3"><i>FERMO</i> further acknowledges the support of the following institutions:</p>
+            <ul class="lh-base my-3">
+                <li><p class="lead my-1">This work was funded by the European Union Horizon 2020 project MARBLES [101000392].</p></li>
+                <li><p class="lead my-1">This work was supported by the Netherlands Organization for Scientific Research (NWO) KIC grant KICH1.LWV04.21.013.</p></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="fw-semibold lh-base mb-4">Site Notice</h1>
+            <p class="lead"><i>FERMO</i> is licensed under the <a rel="license" href="https://opensource.org/license/mit/" class="custom-link" target="_blank">MIT License</a> and is free to use for users from both academia and industry. There is no login requirement. We ask users to be reasonable in their usage, and limit themselves to 5 concurrent jobs. For large-scale analyses, <i>FERMO</i> can be installed offline, as described <a target="_blank" href="https://github.com/fermo-metabolomics/fermo"><b>here</b></a>.</p>
+            <p class="lead">This website is non-commercial and serves purely informative purposes. We strive to provide accurate information; however, no responsibility is taken for the accuracy of the information displayed. For documents and software available from this website, the <i>FERMO</i> team does not warrant or assume any legal liability or responsibility for the accuracy, completeness, or usefulness of any information, apparatus, product, or process disclosed. The anonymity of uploaded data cannot be guaranteed. All data and existing jobs are deleted regularly and without warning. The <i>FERMO</i> team does not take any responsibility for the content of external sites linked from this website.</p>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="fw-semibold lh-base mb-4">Contact</h1>
+            <p class="lead">Contact person: <a class="custom-link"  href="mailto:mitja.zdouc@wur.nl">Mitja M. Zdouc</a></p>
+            <p class="lead">Telephone: +31317484706</p>
+            <p class="lead">Address: Bioinformatics Group, Wageningen University & Research, Droevendaalsesteeg 1, 6708PB Wageningen, the Netherlands.</p>
         </div>
     </div>
 </div>

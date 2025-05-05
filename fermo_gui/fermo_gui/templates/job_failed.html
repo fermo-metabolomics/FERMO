@@ -2,27 +2,31 @@
 
 {% block content %}
 <div class="container mt-5">
-    <div class="mx-4">
-        <div class="container-fluid">
-            <div class="row my-4 d-flex align-items-center">
-                <div class="col-auto"><h1 class="fw-semibold lh-2">Job failed</h1></div>
-            </div>
-            <p class="lead mb-3">The job with the ID <b>'{{ data.get("task_id") }}'</b> failed.</p>
-            <p class="lead mb-3">For more details, see the log below:</p>
-      </div>
+    <div class="row">
+        <div class="col">
+            <h1 class="fw-semibold lh-2 mb-5">Job failed</h1>
+            <p class="lead mb-3">The job with ID <b>{{ job_id }}</b> failed unexpectedly.</p>
+            <p class="lead mb-3">For details, see the logs below.</p>
+            <p class="lead mb-3">Please consider opening an <a class="custom-link" target="_blank" href="https://github.com/fermo-metabolomics/fermo/issues"><b>Issue</b></a> to help us improve <i>FERMO</i>.</p>
+        </div>
     </div>
-    <div class="mx-4">
-        <div class="container-fluid">
-            <textarea class="form-control code-box" style="height: 400px; overflow-y: scroll;" readonly>
-                {% if data.log %}
-                    {% for entry in data.log %}
-                        {{ entry }}
-                    {% endfor %}
+    <div class="row mt-4">
+        <div class="col">
+            <div class="bg-dark text-light p-3 rounded position-relative" style="max-height: 400px; overflow-y: auto; font-family: monospace; font-size: 0.9rem;">
+                <button class="btn btn-sm btn-outline-light position-absolute top-0 end-0 m-2" data-clipboard-target="#logContent" id="logContentButton" >Copy to clipboard</button>
+                <pre class="m-0 p-0"><code class="d-block" id="logContent">
+                {% if log %}
+                {% for entry in log %}
+                {{ entry }}
+                {% endfor %}
                 {% else %}
-                    <p>No log entries available.</p>
+                No log entries available.
                 {% endif %}
-            </textarea>
+                </code></pre>
+            </div>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/copy_clipboard.js') }}" defer></script>
+
 {% endblock %}
