@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - Added additional examples
 - Added support for mzmine4 and antismash8
+- Implemented download page for large sessions
 
 ### Changed
 
@@ -23,6 +24,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixed
 
+- Updated documentation links
 - Updated dependency versions (nginx, fermo_core)
 
 ## [1.0.9] - 2024-07-24
