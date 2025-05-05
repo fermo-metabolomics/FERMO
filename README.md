@@ -48,14 +48,11 @@ A list of dependencies can be found in the file [pyproject.toml](fermo_gui/pypro
 ### Installation and Setup
 
 - Clone the repository to your local machine and enter the `fermo_gui` [source directory](fermo_gui/)
-- Install `python 3.11`
-- Install `pip install pipx`
-- Install `pipx install hatch`
-- Run `hatch -v env create dev`
-- Run `hatch run dev:pre-commit install`
+- Install `uv` as described [here](https://docs.astral.sh/uv/getting-started/installation/)
+- Run `uv sync` to install dependencies in a virtual environment
 - Install redis-server with `sudo apt-get install redis-server`
-- Run the application with `hatch run dev:flask --app fermo_gui run --debug`
-- In a separate command line window, run `hatch run dev:celery -A make_celery worker --loglevel ERROR`
+- Run the app with `uv run flask --app fermo_gui run --debug`
+- In a separate command line window, run `uv run celery -A make_celery worker --loglevel ERROR`
 
 ### Config file
 

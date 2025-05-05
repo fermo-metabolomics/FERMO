@@ -11,13 +11,19 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Added
 
 - Added additional examples
+- Added support for mzmine4 and antismash8
 
 ### Changed
+
+- Changed install build from `hatch` to `uv`
+- Reworked Start Analysis page
+- Cosmetic changes to all frontend pages
+- Reworked job dispatching and running
+- Moved repo to fermo-metabolomics GitHub page
 
 ### Fixed
 
 - Updated dependency versions (nginx, fermo_core)
-
 
 ## [1.0.9] - 2024-07-24
 
