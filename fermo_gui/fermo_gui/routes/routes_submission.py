@@ -60,8 +60,6 @@ def dispatch() -> str | Response:
             return parser.load_param_file(file=request.files.get("ParameterFile"))
         elif parser.data.get("submitNewAnalysis"):
             return parser.new_analysis(files=request.files)
-        elif parser.data.get("generateParamsFile"):
-            return parser.return_params()
         else:
             current_app.logger.error("Invalid dispatch route")
             flash("Unknown dispatch route: please contact the FERMO developers")
