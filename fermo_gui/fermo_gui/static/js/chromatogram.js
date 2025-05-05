@@ -52,7 +52,7 @@ export function visualizeData(sampleData, networkType = "modified_cosine",
             sampleCount: sampleData.samples?.[i].length ?? null,
             foldChange: sampleData.fGroupData?.[i]?.[foldSelectGroup] ?? [],
             featureGroups: Object(statsFIdGroups)?.[sampleData.featureId[i]] ?? [],
-            networkFIds: sampleData.fNetwork?.[i] ?? []
+            networkFIds: networkType === 'modified_cosine' ? sampleData.fNetworkCosine?.[i] ?? [] : sampleData.fNetworkDeepScore?.[i] ?? []
         })).sort((a, b) => b.maxPeak - a.maxPeak);
 
         combinedData.forEach(dataItem => {
@@ -89,8 +89,8 @@ export function visualizeData(sampleData, networkType = "modified_cosine",
                     }
                 }
             }
-
-            const groupFilterValid = groupFilterValues ? groupFilterValues.some(value => dataItem.featureGroups.includes(value)) : true;
+            const groupFilterValid = groupFilterValues ?
+            groupFilterValues.some(value => dataItem.featureGroups.includes(value)) : true;
 
             const featureIdToBlankId = Object.fromEntries(
                 sampleData.featureId.map((id, index) => [id, sampleData.blankAs?.[index]])

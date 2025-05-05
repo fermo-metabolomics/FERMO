@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #545454;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M8,14.4c-3.6,0-6.5-2.9-6.5-6.5S4.4,1.4,8,1.4s6.5,2.9,6.5,6.5-2.9,6.5-6.5,6.5M8,15.9c4.4,0,7.9-3.6,7.9-7.9S12.4,0,8,0,0,3.6,0,8s3.6,7.9,7.9,7.9"/>
+  <path class="cls-1" d="M8,4c.3,0,.5.2.5.5v3h3c.3,0,.5.2.5.5s-.2.5-.5.5h-3v3c0,.3-.2.5-.5.5s-.5-.2-.5-.5v-3h-3c-.3,0-.5-.2-.5-.5s.2-.5.5-.5h3v-3c0-.3.2-.5.5-.5"/>
 </svg>

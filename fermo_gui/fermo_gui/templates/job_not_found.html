@@ -2,18 +2,17 @@
 
 {% block content %}
 <div class="container mt-5">
-    <div class="mx-4">
-        <div class="container-fluid">
-            <div class="row my-4 d-flex align-items-center">
-                <div class="col-auto"><h1 class="fw-semibold lh-2">Job results not found</h1></div>
-            </div>
-            <p class="lead mb-3">Results for the job with the ID <b>'{{ job_data.get("task_id") }}'</b> could not be found. Possible reasons are:</p>
+    <div class="row">
+        <div class="col">
+            <h1 class="fw-semibold lh-2 mb-5">Job not found</h1>
+            <p class="lead mb-3">Results for the job with ID <b>'{{ job_id }}'</b> could not be found. Possible reasons are:</p>
             <ul>
-                <li><p class="lead mb-2">The job has not yet completed running - click <a href="{{ job_data.get('root_url') }}/results/{{ job_data.get('task_id') }}/"><b>here</b></a> to reload the page.</p></li>
                 <li><p class="lead mb-2">The job ID is incorrect (i.e. contains a typo).</p></li>
-                <li><p class="lead mb-2">The job was deleted (in the online version, jobs are only retained for 30 days).</p></li>
+                {% if online %}
+                <li><p class="lead mb-2">The job is older than 30 days and was deleted.</p></li>
+                {% endif %}
             </ul>
-      </div>
+        </div>
     </div>
 </div>
 {% endblock %}

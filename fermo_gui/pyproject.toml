@@ -1,12 +1,11 @@
 [project]
 name = "fermo_gui"
-version = "1.0.9"
+version = "1.1.0"
 description = "Visalization part of program FERMO"
 requires-python = ">=3.11,<3.12"
-license = {file = "LICENSE.md"}
 authors = [
     { name = "Mitja M. Zdouc", email = "zdoucmm@gmail.com" },
-    { name = "Hannah E. Augustijn", email = "hannah.augustijn@gmail.com"}
+    { name = "Hannah E. Augustijn" }
 ]
 keywords = [
     "cheminformatics",
@@ -17,100 +16,36 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX :: Linux",
-    "Development Status :: 4 - Beta",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
     "Topic :: Scientific/Engineering :: Chemistry"
 ]
 dependencies = [
     "celery[redis]==5.2.7",
     "coloredlogs==15.0.1",
-    "email-validator==2.1.0.post1",
-    "fermo_core==0.4.3",
+    "fermo_core==0.6.3",
     "Flask==3.0.1",
     "Flask-WTF==1.2.1",
     "Flask-Mail==0.9.1",
     "gevent==24.2.1",
-    "gunicorn==22.0.0",
+    "gunicorn~=23.0",
     "jsonschema==4.19.0",
     "pandas==2.0.3",
+    "pre-commit~=3.4.0",
     "pydantic==2.5.2",
     "requests==2.32.3"
-]
-[project.optional-dependencies]
-dev = [
-    "black~=24.4.2",
-    "isort~=5.13.2",
-    "pre-commit~=3.4.0",
-    "pytest~=7.4.2",
-    "pytest-cov~=4.1.0",
-    "pytest-flask~=1.3.0",
-    "ruff~=0.4.4"
 ]
 
 [project.urls]
 "Website" = "https://fermo.bioinformatics.nl/"
-"Repository" = "https://github.com/mmzdouc/fermo"
-"Documentation" = "https://mmzdouc.github.io/fermo_docs/"
-
+"Repository" = "https://github.com/fermo-metabolomics/fermo"
+"Documentation" = "https://fermo-metabolomics.github.io/fermo_docs/"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.hatch.envs.dev]
-features = [
-    "dev"
-]
-
-[tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "-ra -q"
-testpaths = [
-    "tests",
-]
-pythonpath = [
-  "fermo_gui"
-]
-filterwarnings = [
-    'ignore:Please use \`get_index_dtype\` from the \`scipy.sparse\` namespace:DeprecationWarning'
-]
-
-[tool.coverage.run]
-omit = [
-    "tests/*"
-]
-
-[tool.coverage.report]
-show_missing = true
-ignore_errors = true
-
-
-[tool.coverage.html]
-directory = "coverage_html_report"
-
-
-[tool.black]
-line-length = 88
-target-version = ["py311"]
-exclude = '''
-/(
-    \.git
-  | \.lib
-)/
-'''
-
-
-[tool.isort]
-profile = "black"
-multi_line_output = 3
-line_length = 88
-include_trailing_comma = true
-reverse_relative = true
-
-
 [tool.ruff]
 line-length = 88
-
 
 [tool.ruff.lint]
 select = [

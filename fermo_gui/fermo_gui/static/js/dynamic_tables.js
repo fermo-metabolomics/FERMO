@@ -34,7 +34,7 @@ export function updateFeatureTables(featureId, sampleData, filteredSampleData) {
             const networkType = document.getElementById('networkSelect').value;
             visualizeData(filteredSampleData, networkType, true, 0, 1);
             addBoxVisualization(sampleData.traceInt[i], sampleData.traceRt[i]);
-            updateTableWithFeatureData(i, sampleData);
+            updateTableWithFeatureData(i, sampleData, networkType);
             updateTableWithGroupData(sampleData.fGroupData[i]);
             updateTableWithSampleData(sampleData.fSampleData[i], sampleData.aSampleData[i]);
             updateTableWithAnnotationData(sampleData.annotations[i]);
@@ -44,14 +44,16 @@ export function updateFeatureTables(featureId, sampleData, filteredSampleData) {
     }
 }
 
-function updateTableWithFeatureData(fId, sampleData) {
+function updateTableWithFeatureData(fId, sampleData, networkType) {
     document.getElementById('featureIdCell').textContent = sampleData.featureId[fId];
     document.getElementById('precMzCell').textContent = sampleData.precMz[fId];
     document.getElementById('retTimeCell').textContent = sampleData.retTime[fId];
     document.getElementById('relIntCell').textContent = sampleData.relInt[fId];
     document.getElementById('absIntCell').textContent = sampleData.absInt[fId];
     document.getElementById('NovScore').textContent = sampleData.novScore[fId];
-    document.getElementById('BlankAs').textContent = sampleData.blankAs[fId];
+    document.getElementById('BlankAs').textContent = sampleData.blankAs[fId]
+    const networkId = networkType === 'modified_cosine' ? sampleData.idNetCos[fId] : sampleData.idNetMs[fId];
+    document.getElementById('NetworkId').textContent = networkId;
 }
 
 
@@ -316,7 +318,7 @@ function createExtraInfoRow(data, extraColumns, colspan) {
         if (column.title === "Link to MIBiG") {
             if (typeof cellData === 'string' && cellData.includes("|")) {
                 let mibigLink = document.createElement('a');
-                mibigLink.href = `https://mibig.secondarymetabolites.org/repository/${cellData.split("|")[1]}`;
+                mibigLink.href = `https://bioregistry.io/mibig:${cellData.split("|")[1]}`;
                 mibigLink.textContent = cellData.split("|")[1];
                 mibigLink.target = "_blank";
                 valueCell.appendChild(mibigLink);
@@ -446,17 +448,23 @@ function showTables() {
 }
 
 export function hideTables() {
-    document.getElementById('matchTable').style.display = 'none';
-    document.getElementById('phenotypeTable').style.display = 'none';
-    document.getElementById('adductTable').style.display = 'none';
-    document.getElementById('fragmentTable').style.display = 'none';
-    document.getElementById('lossesTable').style.display = 'none';
-    document.getElementById('featureIdCell').textContent = 'none';
-    document.getElementById('precMzCell').textContent = 'none';
-    document.getElementById('retTimeCell').textContent = 'none';
+    // Feature annotation table
+    document.getElementById('matchTable').style.display = 'None';
+    document.getElementById('phenotypeTable').style.display = 'None';
+    document.getElementById('adductTable').style.display = 'None';
+    document.getElementById('fragmentTable').style.display = 'None';
+    document.getElementById('lossesTable').style.display = 'None';
+    // Feature info across samples table
+    document.getElementById("sampleCell").innerHTML =
+    "<tr><td></td><td>Click on any feature in the main chromatogram overview.</td><td></td></tr>";
+    // General feature info table
+    document.getElementById('featureIdCell').textContent = '';
+    document.getElementById('precMzCell').textContent = '';
+    document.getElementById('retTimeCell').textContent = '';
     document.getElementById('relIntCell').innerHTML =
     'Click on any feature in the main chromatogram overview.';
-    document.getElementById('absIntCell').textContent = 'none';
-    document.getElementById('NovScore').textContent = 'none';
-    document.getElementById('BlankAs').textContent = 'none';
+    document.getElementById('absIntCell').textContent = '';
+    document.getElementById('NovScore').textContent = '';
+    document.getElementById('BlankAs').textContent = '';
+    document.getElementById('NetworkId').textContent = '';
 }

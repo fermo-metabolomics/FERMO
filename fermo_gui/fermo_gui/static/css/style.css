@@ -8,6 +8,24 @@ body {
     font-size: 13px;
 }
 
+h1, .h1 {
+  font-size: 2em;
+}
+
+h3, .h3 {
+  font-size: 1.6em;
+}
+
+.start_box {
+    border-radius: 5px;
+    padding: 0.6rem;
+    margin: 0.6rem;
+}
+
+.main-text {
+  font-size: 1.1em;
+}
+
 /* Footer style elements */
 footer {
   margin-top: auto;
@@ -17,12 +35,6 @@ footer {
 /* This will remove underline from all links in the footer */
 a:not(.footer a) {
   text-decoration: none;
-}
-/* Limit the width of the images for screen size scaling */
-.custom-footer-image {
-  width:  100%;
-  max-width:  190px;
-  height: auto; /* Maintain aspect ratio */
 }
 
 /* input forms */
@@ -43,6 +55,18 @@ a:not(.footer a) {
     --bs-btn-active-border-color: #83a688;
     color: #5c7860;
     font-size: 12px;
+    font-weight: bold;
+}
+
+.btn-outline-secondary {
+    --bs-btn-border-color: #116789;
+    --bs-btn-hover-bg: #116789;
+    --bs-btn-hover-border-color: #116789;
+    --bs-btn-color: #116789;
+    --bs-btn-active-bg: #116789;
+    --bs-btn-active-border-color: #116789;
+    color: #116789;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -176,6 +200,31 @@ table th:last-child{
     display: inline-block;
     width: 16px;
     height: 16px;
+}
+
+.accordion-button-info-l {
+    color: #000;
+    background-color: transparent;
+    border: none;
+}
+
+.accordion-button-info-l::after {
+    order: -1;
+    background-image: url("/static/images/collapse_icon_info.svg");
+    background-color: transparent;
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+}
+
+.accordion-button-info-l:not(.collapsed)::after {
+    background-image: url("/static/images/collapse_icon_info.svg");
+    transform: rotate(-45deg);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
 }
 
 #cy {
@@ -320,10 +369,8 @@ table th:last-child{
     align-items: center;
 }
 
-
 .form-check-input {
-    width: 1.5rem;
-    height: 1rem;
+    transform: scale(1.2);
 }
 
 .form-check-input:checked {
@@ -387,4 +434,27 @@ table th:last-child{
 
 .info-button:hover {
     transform: scale(1.2);
+}
+
+.navbar-custom {
+    background-color: rgb(var(--bs-primary-rgb));
+    color: white;
+}
+
+.navbar-font-size {
+    font-size: 18px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.custom-bold {
+    font-weight: bold;
+}
+
+.custom-link {
+    text-decoration: none;
+    color: rgb(var(--bs-primary-rgb));
 }

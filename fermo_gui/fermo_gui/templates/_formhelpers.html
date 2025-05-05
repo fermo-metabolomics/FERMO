@@ -19,9 +19,9 @@
 {% endmacro %}
 
 {% macro render_activate_toggle(field) %}
-  <div style="transform: scale(1.7);" class="form-check form-switch">{{ field(class_='form-check-input') }}</div>
+  <div style="transform: scale(1.1);" class="form-check form-switch">{{ field(class_='form-check-input') }}</div>
 {% endmacro %}
 
 {% macro render_help(url) %}
-  <a href="{{ url }}" target="_blank"><img src="/static/images/question-circle-fill.SVG" width="25" alt="?" style="color: 17,103,137;"></a>
+<a class="custom-link" href="{{ url }}" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click to show more information."><i class="bi bi-info-circle"></i></a>
 {% endmacro %}

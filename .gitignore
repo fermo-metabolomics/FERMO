@@ -3,6 +3,7 @@
 fermo_gui/tests/test_fermo_core_manager/example_data_min/results/
 fermo_gui/tests/test_fermo_core_manager/example_invalid_input_data/results/
 fermo_gui/tests/test_fermo_core_manager/results/
+fermo_gui/fermo_gui/app.log
 
 # pycharm
 .idea/
@@ -10,7 +11,7 @@ fermo_gui/tests/test_fermo_core_manager/results/
 # Flask app
 instance/
 fermo_gui/fermo_gui/upload/*
-!fermo_gui/fermo_gui/upload/example
+!fermo_gui/fermo_gui/upload/example*
 
 # Project files
 .ruff_cache
@@ -75,7 +76,6 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal

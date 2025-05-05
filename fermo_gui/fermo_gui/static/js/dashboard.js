@@ -26,7 +26,7 @@ import { updateFeatureTables, hideTables, clearHeatmaps } from './dynamic_tables
 import { visualizeData, addBoxVisualization } from './chromatogram.js';
 import { visualizeNetwork, hideNetwork } from './network.js';
 import { enableDragAndDrop, disableDragAndDrop } from './dragdrop.js';
-import { initializeFilters, getFeaturesWithinRange, getFilterGroupSelectionFields, populateDropdown } from './filters.js';
+import { getFeaturesWithinRange, getFilterGroupSelectionFields, populateDropdown } from './filters.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     let dragged;
@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let statsChromatogram;
     let statsNetwork;
     let statsGroups;
+    let clickedOnPoint = false;
 
     const getCurrentBoxParams = () => currentBoxParams;
 
@@ -62,33 +63,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const networkType = 'modified_cosine';
 
-        getFilterGroupSelectionFields(statsGroups)
-        populateDropdown(statsGroups)
+        getFilterGroupSelectionFields(statsGroups);
+        populateDropdown(statsGroups);
 
-        Plotly.newPlot(chromatogramElement, []);
-        chromatogramElement.on('plotly_click', handleChromatogramClick);
-        document.getElementById('networkSelect').addEventListener('change', handleNetworkTypeChange);
-        document.getElementById('showBlankFeatures').addEventListener('change', updateRange);
-        document.getElementById('findInput').addEventListener('input', updateRange);
-        document.getElementById('mz1Input').addEventListener('input', updateRange);
-        document.getElementById('mz2Input').addEventListener('input', updateRange);
-        document.getElementById('sample1Input').addEventListener('input', updateRange);
-        document.getElementById('sample2Input').addEventListener('input', updateRange);
-        document.getElementById('foldInput').addEventListener('input', updateRange);
-        document.getElementById('group1FoldInput').addEventListener('input', updateRange);
-        document.getElementById('group2FoldInput').addEventListener('input', updateRange);
-        document.getElementById('selectFoldInput').addEventListener('change', updateRange);
-        document.getElementById('groupFilter').addEventListener('change', updateRange);
-        document.getElementById('networkFilter').addEventListener('change', updateRange);
-        document.getElementById('showAnnotationFeatures').addEventListener('change', function() {
-            const isChecked = this.checked;
-            updateRange();
-            document.querySelectorAll('.annotation-related').forEach(container => {
-                container.style.display = isChecked ? 'block' : 'none';
+        Plotly.newPlot(chromatogramElement, []).then(() => {
+
+            chromatogramElement.addEventListener('click', function(evt) {
+                var bb = evt.target.getBoundingClientRect();
+                var x = chromatogramElement._fullLayout.xaxis.p2d(evt.clientX - bb.left);
+                var y = chromatogramElement._fullLayout.yaxis.p2d(evt.clientY - bb.top);
+
+                if (!clickedOnPoint) {
+                    unselectFeature();
+                }
+                clickedOnPoint = false;
             });
-        });
 
-        updateRange();
+            document.getElementById('networkSelect').addEventListener('change', handleNetworkTypeChange);
+            document.getElementById('showBlankFeatures').addEventListener('change', updateRange);
+            document.getElementById('findInput').addEventListener('input', updateRange);
+            document.getElementById('mz1Input').addEventListener('input', updateRange);
+            document.getElementById('mz2Input').addEventListener('input', updateRange);
+            document.getElementById('sample1Input').addEventListener('input', updateRange);
+            document.getElementById('sample2Input').addEventListener('input', updateRange);
+            document.getElementById('foldInput').addEventListener('input', updateRange);
+            document.getElementById('group1FoldInput').addEventListener('input', updateRange);
+            document.getElementById('group2FoldInput').addEventListener('input', updateRange);
+            document.getElementById('selectFoldInput').addEventListener('change', updateRange);
+            document.getElementById('groupFilter').addEventListener('change', updateRange);
+            document.getElementById('networkFilter').addEventListener('change', updateRange);
+            document.getElementById('showAnnotationFeatures').addEventListener('change', function() {
+                const isChecked = this.checked;
+                updateRange();
+                document.querySelectorAll('.annotation-related').forEach(container => {
+                    container.style.display = isChecked ? 'block' : 'none';
+                });
+            });
+
+            document.getElementById('resetFilters').addEventListener('click', resetFilters);
+
+            updateRange();
+        });
     }
 
     function handleChromatogramClick(data) {
@@ -100,6 +115,19 @@ document.addEventListener('DOMContentLoaded', function() {
         currentBoxParams = { traceInt: sampleData.traceInt[sampleId], traceRt: sampleData.traceRt[sampleId] };
         addBoxVisualization(currentBoxParams.traceInt, currentBoxParams.traceRt);
         visualizeNetwork(featureId, statsNetwork, filteredSampleData, sampleData, sampleId, statsChromatogram, networkType);
+    }
+
+    function unselectFeature() {
+        clearHeatmaps();
+        hideNetwork();
+        hideTables();
+        document.getElementById('feature-general-info').textContent =
+        'Click on any feature in the main chromatogram overview.';
+        document.getElementById('feature-annotation').textContent =
+        'Click on any feature in the main chromatogram overview.';
+        currentBoxParams = null;
+        Plotly.purge('featureChromatogram');
+        Plotly.relayout(chromatogramElement, { shapes: [] });
     }
 
     function handleNetworkTypeChange() {
@@ -176,29 +204,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('feature-annotation').textContent =
             'Click on any feature in the main chromatogram overview.';
             clearHeatmaps();
-            document.getElementById("sampleCell").innerHTML =
-            "<tr><td>Click on any feature in the main chromatogram overview.</td><td></td></tr>";
-
             const networkType = 'modified_cosine';
             currentBoxParams = null;
-
-            chromatogramElement.removeAllListeners('plotly_click');
-            chromatogramElement.on('plotly_click', handleChromatogramClick);
-            document.getElementById('networkSelect').removeEventListener('change', handleNetworkTypeChange);
-            document.getElementById('networkSelect').addEventListener('change', handleNetworkTypeChange);
-            document.getElementById('showAnnotationFeatures').addEventListener('change', updateRange);
-            document.getElementById('showBlankFeatures').addEventListener('change', updateRange);
-            document.getElementById('showBlankFeatures').addEventListener('input', updateRange);
-            document.getElementById('mz1Input').addEventListener('input', updateRange);
-            document.getElementById('mz2Input').addEventListener('input', updateRange);
-            document.getElementById('sample1Input').addEventListener('input', updateRange);
-            document.getElementById('sample2Input').addEventListener('input', updateRange);
-            document.getElementById('foldInput').addEventListener('input', updateRange);
-            document.getElementById('group1FoldInput').addEventListener('input', updateRange);
-            document.getElementById('group2FoldInput').addEventListener('input', updateRange);
-            document.getElementById('selectFoldInput').addEventListener('change', updateRange);
-            document.getElementById('groupFilter').addEventListener('change', updateRange);
-            document.getElementById('networkFilter').addEventListener('change', updateRange);
 
             initializeFilters(visualizeData, handleChromatogramClick, addBoxVisualization, updateRetainedFeatures,
                 sampleData, chromatogramElement, getCurrentBoxParams);
@@ -208,6 +215,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function updateRange() {
+        const chromatogramElement = document.getElementById('mainChromatogram');
+        let currentXRange = chromatogramElement.layout.xaxis.range;
+        let currentYRange = chromatogramElement.layout.yaxis.range;
+
         const minScore = parseFloat(document.getElementById('noveltyRange1').value);
         const maxScore = parseFloat(document.getElementById('noveltyRange2').value);
         const minPhenotypeScore = parseFloat(document.getElementById('phenotypeRange1').value);
@@ -246,7 +257,23 @@ document.addEventListener('DOMContentLoaded', function() {
                       foldScoreInputsFilled ? foldScore : null, foldGroup1, foldGroup2, foldSelectGroup,
                       groupFilterValues.length ? groupFilterValues : null,
                       networkFilterValues.length ? networkFilterValues : null, statsFIdGroups);
-        chromatogramElement.on('plotly_click', handleChromatogramClick);
+
+        if (currentXRange[0] < 0) {
+            currentXRange = chromatogramElement.layout.xaxis.range;
+            currentYRange = chromatogramElement.layout.yaxis.range;
+        }
+
+        chromatogramElement.on('plotly_click', function(data) {
+            clickedOnPoint = true;
+            handleChromatogramClick(data);
+        });
+
+        const featureId = document.getElementById('activeFeature').textContent.split(': ')[1];
+        for (var i = 0; i < sampleData.featureId.length; i++) {
+            if (sampleData.featureId[i] == featureId) {
+                var currentBoxParams = { traceInt: sampleData.traceInt[i], traceRt: sampleData.traceRt[i] };
+            }
+        }
 
         if (currentBoxParams) {
             addBoxVisualization(currentBoxParams.traceInt, currentBoxParams.traceRt);
@@ -260,6 +287,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                foldScoreInputsFilled ? foldScore : null, foldGroup1, foldGroup2, foldSelectGroup,
                                groupFilterValues.length ? groupFilterValues : null,
                                networkFilterValues.length ? networkFilterValues : null, statsFIdGroups);
+
+        Plotly.relayout(chromatogramElement, {
+            'xaxis.range': currentXRange,
+            'yaxis.range': currentYRange
+        });
     }
 
     function updateRetainedFeatures(minScore, maxScore, findFeatureId,
@@ -281,6 +313,109 @@ document.addEventListener('DOMContentLoaded', function() {
                 groupFilterValues, networkFilterValues, statsFIdGroups);
             row.children[2].textContent = featuresWithinRange;
         });
+    }
+
+    function initializeFilters(visualizeData, handleChromatogramClick, addBoxVisualization, updateRetainedFeatures,
+                                  sampleData, chromatogramElement, getCurrentBoxParams) {
+        const elements = {
+            noveltyRange1: document.getElementById('noveltyRange1'),
+            noveltyRange2: document.getElementById('noveltyRange2'),
+            noveltyRange1Input: document.getElementById('noveltyRange1Input'),
+            noveltyRange2Input: document.getElementById('noveltyRange2Input'),
+            phenotypeRange1: document.getElementById('phenotypeRange1'),
+            phenotypeRange2: document.getElementById('phenotypeRange2'),
+            phenotypeRange1Input: document.getElementById('phenotypeRange1Input'),
+            phenotypeRange2Input: document.getElementById('phenotypeRange2Input'),
+            showPhenotypeFeatures: document.getElementById('showPhenotypeFeatures'),
+            matchRange1: document.getElementById('matchRange1'),
+            matchRange2: document.getElementById('matchRange2'),
+            matchRange1Input: document.getElementById('matchRange1Input'),
+            matchRange2Input: document.getElementById('matchRange2Input'),
+            showMatchFeatures: document.getElementById('showMatchFeatures'),
+            showAnnotationFeatures: document.getElementById('showAnnotationFeatures'),
+            showBlankFeatures: document.getElementById('showBlankFeatures')
+        };
+
+        function enforceConstraints() {
+            if (parseFloat(elements.noveltyRange1Input.value) > parseFloat(elements.noveltyRange2Input.value)) {
+                elements.noveltyRange1Input.value = elements.noveltyRange2Input.value;
+            }
+            if (parseFloat(elements.noveltyRange2Input.value) < parseFloat(elements.noveltyRange1Input.value)) {
+                elements.noveltyRange2Input.value = elements.noveltyRange1Input.value;
+            }
+            if (parseFloat(elements.phenotypeRange1Input.value) > parseFloat(elements.phenotypeRange2Input.value)) {
+                elements.phenotypeRange1Input.value = elements.phenotypeRange2Input.value;
+            }
+            if (parseFloat(elements.phenotypeRange2Input.value) < parseFloat(elements.phenotypeRange1Input.value)) {
+                elements.phenotypeRange2Input.value = elements.phenotypeRange1Input.value;
+            }
+            if (parseFloat(elements.matchRange1Input.value) > parseFloat(elements.matchRange2Input.value)) {
+                elements.matchRange1Input.value = elements.matchRange2Input.value;
+            }
+            if (parseFloat(elements.matchRange2Input.value) < parseFloat(elements.matchRange1Input.value)) {
+                elements.matchRange2Input.value = elements.matchRange1Input.value;
+            }
+            updateRange();
+        }
+
+        const rangeElements = [
+            { slider: elements.noveltyRange1, input: elements.noveltyRange1Input },
+            { slider: elements.noveltyRange2, input: elements.noveltyRange2Input },
+            { slider: elements.phenotypeRange1, input: elements.phenotypeRange1Input },
+            { slider: elements.phenotypeRange2, input: elements.phenotypeRange2Input },
+            { slider: elements.matchRange1, input: elements.matchRange1Input },
+            { slider: elements.matchRange2, input: elements.matchRange2Input }
+        ];
+
+        rangeElements.forEach(({ slider, input }) => {
+            slider.addEventListener('input', () => {
+                input.value = slider.value;
+                updateRange();
+            });
+            input.addEventListener('input', () => {
+                slider.value = input.value;
+                updateRange();
+            });
+            input.addEventListener('blur', enforceConstraints);
+        });
+
+        elements.showPhenotypeFeatures.addEventListener('change', updateRange);
+        elements.showMatchFeatures.addEventListener('change', updateRange);
+
+        updateRange();
+    }
+
+
+    function resetFilters() {
+        // Reset all filter inputs to their default values
+        document.getElementById('noveltyRange1').value = 0;
+        document.getElementById('noveltyRange2').value = 10;
+        document.getElementById('noveltyRange1Input').value = 0;
+        document.getElementById('noveltyRange2Input').value = 1;
+        document.getElementById('phenotypeRange1').value = 0;
+        document.getElementById('phenotypeRange2').value = 1;
+        document.getElementById('phenotypeRange1Input').value = 0;
+        document.getElementById('phenotypeRange2Input').value = 1;
+        document.getElementById('showPhenotypeFeatures').checked = false;
+        document.getElementById('matchRange1').value = 0;
+        document.getElementById('matchRange2').value = 1;
+        document.getElementById('matchRange1Input').value = 0;
+        document.getElementById('matchRange2Input').value = 1;
+        document.getElementById('showMatchFeatures').checked = false;
+        document.getElementById('showAnnotationFeatures').checked = false;
+        document.getElementById('showBlankFeatures').checked = false;
+        document.getElementById('findInput').value = '';
+        document.getElementById('mz1Input').value = 0;
+        document.getElementById('mz2Input').value = 10000;
+        document.getElementById('sample1Input').value = 0;
+        document.getElementById('sample2Input').value = 100;
+        document.getElementById('foldInput').value = '';
+        document.getElementById('group1FoldInput').value = '';
+        document.getElementById('group2FoldInput').value = '';
+        document.getElementById('selectFoldInput').value = 'null';
+        document.getElementById('groupFilter').selectedIndex = -1;
+        document.getElementById('networkFilter').selectedIndex = -1;
+        updateRange();
     }
 
     initializeFilters(visualizeData, handleChromatogramClick, addBoxVisualization, updateRetainedFeatures,
