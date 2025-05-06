@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+CELERYCONCURRENCY=${CELERYCONCURRENCY:-4}
+
+uv run celery -A make_celery worker --concurrency="$CELERYCONCURRENCY" --loglevel INFO

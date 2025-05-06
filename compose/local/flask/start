@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+WORKERS=${WORKERS:-1}
+
+uv run gunicorn --worker-class gevent --workers "$WORKERS" "fermo_gui:create_app()" --bind "0.0.0.0:8001"

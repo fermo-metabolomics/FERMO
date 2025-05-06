@@ -77,7 +77,7 @@ from requests.exceptions import Timeout
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 
-from fermo_gui.config.extensions import mail
+from fermo_gui.extensions import mail
 
 
 class JobManager(BaseModel):

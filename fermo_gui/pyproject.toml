@@ -26,6 +26,7 @@ dependencies = [
     "Flask==3.0.1",
     "Flask-WTF==1.2.1",
     "Flask-Mail==0.9.1",
+    "flower~=2.0",
     "gevent==24.2.1",
     "gunicorn~=23.0",
     "jsonschema==4.19.0",

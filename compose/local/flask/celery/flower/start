@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+worker_ready() {
+    uv run celery -A make_celery inspect ping
+}
+
+until worker_ready; do
+  >&2 echo 'Celery workers not available'
+  sleep 1
+done
+>&2 echo 'Celery workers is available'
+
+uv run celery --app=make_celery flower \
+    --broker="${CELERY_BROKER_URL}" \
+    --port=5555

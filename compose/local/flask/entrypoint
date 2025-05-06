@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# ensures service readiness of redis
+
+# if any of the commands in your code fails for any reason, the entire script fails
+set -o errexit
+# fail exit if one of your pipe command fails
+set -o pipefail
+# exits if any of your variables is not set
+set -o nounset
+
+until nc -z -v -w30 redis 6379; do
+  >&2 echo "Waiting for Redis..."
+  sleep 1
+done
+>&2 echo "Redis is available"
+
+exec "$@"

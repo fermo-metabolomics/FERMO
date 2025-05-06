@@ -21,7 +21,25 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from fermo_gui import create_app
+import os
 
-flask_app = create_app()
-celery_app = flask_app.extensions["celery"]
+from celery import Celery
+
+
+def make_celery() -> Celery:
+    instance = Celery(
+        __name__,
+        broker=os.getenv("CELERY_BROKER_URL", "redis://redis:6379/0"),
+        backend=os.getenv("CELERY_RESULT_BACKEND", "redis://redis:6379/0"),
+    )
+    instance.conf.update(
+        task_ignore_result=True,
+        task_serializer="json",
+        accept_content=["json"],
+        timezone="UTC",
+        enable_utc=True,
+    )
+    return instance
+
+
+celery = make_celery()

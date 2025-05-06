@@ -3,3 +3,4 @@ fermo_gui/.venv
 fermo_gui/tests
 fermo_gui/.pre-commit-config.yaml
 .idea/
+usr_data

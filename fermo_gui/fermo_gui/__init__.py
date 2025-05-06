@@ -32,8 +32,9 @@ import coloredlogs
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
 
-from fermo_gui.config.extensions import configure_celery, mail
+from fermo_gui.extensions import mail
 from fermo_gui.routes import bp
+from make_celery import celery
 
 
 def create_app() -> Flask:
@@ -51,7 +52,15 @@ def create_app() -> Flask:
     app.register_blueprint(bp)
 
     mail.init_app(app)
-    app = configure_celery(app)
+
+    class ContextTask(celery.Task):
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return self.run(*args, **kwargs)
+
+    celery.Task = ContextTask
+    celery.config_from_object(app.config, namespace="CELERY")
+    app.extensions["celery"] = celery
 
     return app
 
@@ -86,6 +95,7 @@ def configure_app(app: Flask) -> Flask:
     if app.config["ONLINE"]:
         app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024
         app.config["MAXFEATURENR"] = 3000
+        app.config["CELERY_TASK_SOFT_TIME_LIMIT"] = 3600
 
     csrf = CSRFProtect()
     csrf.init_app(app)

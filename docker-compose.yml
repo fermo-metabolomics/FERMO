@@ -1,11 +1,4 @@
 services:
-  fermo_gui:
-    build:
-      context: .
-      dockerfile: ./compose/fermo_gui/Dockerfile
-    restart: unless-stopped
-    ports:
-      - 8001:8001
   nginx:
     build:
       context: .
@@ -14,4 +7,64 @@ services:
     ports:
       - 1338:80
     depends_on:
-      - fermo_gui
+      - web
+
+  web:
+    build:
+      context: .
+      dockerfile: ./compose/local/flask/Dockerfile
+    command: /start
+    volumes:
+      - ./usr_data:/fermo_gui/fermo_gui/upload
+    ports:
+      - 8001:8001
+    restart: unless-stopped
+    env_file:
+      - .env/.env.docker
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: ./compose/local/flask/Dockerfile
+    command: /start-celeryworker
+    volumes:
+      - ./usr_data:/fermo_gui/fermo_gui/upload
+    env_file:
+      - .env/.env.docker
+    depends_on:
+      - redis
+
+  celery_beat:
+    build:
+      context: .
+      dockerfile: ./compose/local/flask/Dockerfile
+    command: /start-celerybeat
+    volumes:
+      - ./usr_data:/fermo_gui/fermo_gui/upload
+    env_file:
+      - .env/.env.docker
+    depends_on:
+      - redis
+
+  flower:
+    build:
+      context: .
+      dockerfile: ./compose/local/flask/Dockerfile
+    command: /start-flower
+    volumes:
+      - ./usr_data:/fermo_gui/fermo_gui/upload
+    env_file:
+      - .env/.env.docker
+    ports:
+      - 5555:5555
+    depends_on:
+      - redis
+
+volumes:
+  usr_data:
+    driver: local
