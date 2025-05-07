@@ -1,4 +1,4 @@
-FROM python:3.11-slim-buster
+FROM python:3.11-bookworm
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -9,12 +9,15 @@ WORKDIR $INSTALL_PATH
 
 RUN addgroup --system appuser && adduser --system --ingroup appuser appuser
 
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends build-essential \
+  && apt-get install -y netcat-openbsd \
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+  && rm -rf /var/lib/apt/lists/*
+
 COPY ./fermo_gui .
 
-RUN apt-get update && apt-get install -y netcat
-
-RUN pip install uv
-RUN uv sync --verbose
+RUN pip install .
 
 COPY ./compose/local/flask/entrypoint /entrypoint
 COPY ./compose/local/flask/start /start

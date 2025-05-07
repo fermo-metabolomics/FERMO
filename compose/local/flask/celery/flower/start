@@ -13,6 +13,6 @@ until worker_ready; do
 done
 >&2 echo 'Celery workers is available'
 
-uv run celery --app=make_celery flower \
+celery --app=make_celery flower \
     --broker="${CELERY_BROKER_URL}" \
     --port=5555

@@ -4,4 +4,4 @@ set -o errexit
 set -o nounset
 
 rm -f './celerybeat.pid'
-uv run celery -A make_celery beat -l info
+celery -A make_celery beat -l info
