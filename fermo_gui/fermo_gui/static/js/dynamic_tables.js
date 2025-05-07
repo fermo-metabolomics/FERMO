@@ -132,7 +132,9 @@ function updateTableWithAnnotationData(annotations, sample) {
         { title: "Mz", field: "mz" },
         { title: "Difference in mz", field: "diff_mz" },
         { title: "SMILES", field: "smiles" },
-        { title: "Link to MIBiG", field: "id" }
+        { title: "Link to MIBiG BGC", field: "id" },
+        { title: "antiSMASH BGC ID", field: "id" },
+        { title: "Sim MIBiG BGC (%)", field: "id" }
     ];
 
     let phenoHeaders = ["Phenotype description", "Score", "More info"];
@@ -315,13 +317,28 @@ function createExtraInfoRow(data, extraColumns, colspan) {
         infoRow.appendChild(titleCell);
 
         let valueCell = document.createElement("td");
-        if (column.title === "Link to MIBiG") {
+
+        if (column.title === "Link to MIBiG BGC") {
             if (typeof cellData === 'string' && cellData.includes("|")) {
                 let mibigLink = document.createElement('a');
                 mibigLink.href = `https://bioregistry.io/mibig:${cellData.split("|")[1]}`;
                 mibigLink.textContent = cellData.split("|")[1];
                 mibigLink.target = "_blank";
                 valueCell.appendChild(mibigLink);
+            } else {
+                return;
+            }
+        } else if (column.title === "Sim MIBiG BGC (%)") {
+            if (typeof cellData === 'string' && cellData.includes("|")) {
+                let askcb = cellData.split("|");
+                valueCell.textContent = askcb[2].split(":")[1];
+            } else {
+                return;
+            }
+        } else if (column.title === "antiSMASH BGC ID") {
+            if (typeof cellData === 'string' && cellData.includes("|")) {
+                let askcb = cellData.split("|");
+                valueCell.textContent = askcb[3];
             } else {
                 return;
             }
