@@ -29,8 +29,8 @@ from celery import Celery
 def make_celery() -> Celery:
     instance = Celery(
         __name__,
-        broker=os.getenv("CELERY_BROKER_URL", "redis://redis:6379/0"),
-        backend=os.getenv("CELERY_RESULT_BACKEND", "redis://redis:6379/0"),
+        broker=os.getenv("CELERY_BROKER_URL", "redis://localhost"),
+        backend=os.getenv("CELERY_RESULT_BACKEND", "redis://localhost"),
     )
     instance.conf.update(
         task_ignore_result=True,
@@ -43,3 +43,6 @@ def make_celery() -> Celery:
 
 
 celery = make_celery()
+
+# registers task with celery
+import fermo_gui.processing.input_parser

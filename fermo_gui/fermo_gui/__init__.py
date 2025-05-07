@@ -75,8 +75,8 @@ def configure_app(app: Flask) -> Flask:
 
     app.config["SECRET_KEY"] = "dev"
 
-    app.config["UPLOAD_FOLDER"] = Path(__file__).parent.joinpath("upload/")
-    app.config["DEFAULTS"] = Path(__file__).parent.joinpath(
+    app.config["UPLOAD_FOLDER"] = Path(app.root_path).parent.joinpath("upload/")
+    app.config["DEFAULTS"] = Path(app.root_path).parent.joinpath(
         "static/params/default_params.json"
     )
     app.config["ALLOWED_EXTENSIONS"] = {"json", "csv", "mgf", "session"}
