@@ -59,6 +59,7 @@ Building the Docker-container should take no more than a few minutes.
 
 - Open Docker Desktop
 - Open the terminal and pull image: `docker pull ghcr.io/fermo-metabolomics/fermo:main`
+- The newly downloaded image should appear under `Images`
 - Click Run, expose port 8001
 - Access in any browser at the URL [http://0.0.0.0:8001/](http://0.0.0.0:8001/)
 
