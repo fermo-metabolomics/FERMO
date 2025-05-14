@@ -38,7 +38,10 @@ The official documentation can be found [HERE](https://fermo-metabolomics.github
 
 #### OS Requirements
 
-Local installation of this package is only supported for Linux (tested on Ubuntu 20.04 and 22.04).
+Local installation of the Docker container was tested on:
+
+- Windows 10 (Docker Desktop)
+- Ubuntu Linux 20.04 and 22.04 (command line)
 
 #### Python dependencies
 
@@ -50,15 +53,21 @@ Building the Docker-container should take no more than a few minutes.
 
 *Note: the Docker-container automatically runs the script [cleanup_jobs.py](fermo_gui/cleanup_jobs.py), which automatically deletes jobs older than 30 days. If you plan to run the container for a long time, you need to disable this in [entrypoint_docker.sh](fermo_gui/entrypoint_docker.sh).*
 
+### With Docker Desktop
+
+*Assumes that Docker Desktop is installed*
+
+- Open Docker Desktop
+- Open the terminal and pull image: `docker pull ghcr.io/fermo-metabolomics/fermo:main`
+- Click Run, expose port 8001
+- Access in any browser at the URL [http://0.0.0.0:8001/](http://0.0.0.0:8001/)
+
 ### With `docker` from GitHub
 
 *Assumes that you have `docker` and `git` installed on your machine*
 
 ```commandline
-git clone git@github.com:fermo-metabolomics/FERMO.git
-cd FERMO
-docker build -t fermo_gui .
-docker run -p 8001:8001 fermo_gui
+docker run -it --rm -p 8001:8001 ghcr.io/fermo-metabolomics/fermo:main
 ```
 
 Once started, FERMO can be accessed in any browser at the URL [http://0.0.0.0:8001/](http://0.0.0.0:8001/).
