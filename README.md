@@ -48,7 +48,19 @@ Dependencies including exact versions are specified in the [pyproject.toml](./fe
 
 Building the Docker-container should take no more than a few minutes.
 
-### With Docker from GitHub
+*Note: the Docker-container automatically runs the script [cleanup_jobs.py](fermo_gui/cleanup_jobs.py), which automatically deletes jobs older than 30 days. If you plan to run the container for a long time, you need to disable this in [entrypoint_docker.sh](fermo_gui/entrypoint_docker.sh).*
+
+### With `docker` from GitHub
+
+*Assumes that you have `docker` installed on your machine*
+
+```commandline
+docker build -t fermo_gui .
+docker run -p 8001:8001 fermo_gui
+```
+
+
+### With `docker-compose` from GitHub
 
 *Assumes that you have `git`, `docker` and `docker-compose` installed on your machine.*
 
@@ -60,7 +72,6 @@ docker-compose up --build
 
 Once started, FERMO can be accessed in any browser at the URL [http://0.0.0.0:8001/](http://0.0.0.0:8001/).
 
-*Note: the [cleanup_jobs.py](fermo_gui/cleanup_jobs.py) script deletes jobs older than 30 days and is automatically started by the [entrypoint_docker.sh](fermo_gui/entrypoint_docker.sh) script. If you plan to run the container for a long time, you need to disable this script manually.*
 
 
 ## Quick Start
