@@ -35,9 +35,9 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Examples</a>
                   <ul class="dropdown-menu">
-                    <li><span class="dropdown-item"><a class="custom-link" href="{{ url_for('routes.task_result', job_id='example1') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Integrates metabolomics data with antiviral bioactivity."><i>Euphorbia dendroides </i></a><a class="custom-link" href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#euphorbia-dendroides" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click to show more information."><i class="bi bi-info-circle"></i></a></span></li>
-                    <li><span class="dropdown-item"><a class="custom-link" href="{{ url_for('routes.task_result', job_id='example2') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Integrates OSMAC study with antibacterial bioactivity."><i>Streptomyces</i> sp. MBT27 </a><a class="custom-link" href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#streptomyces-sp-mbt27" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click to show more information."><i class="bi bi-info-circle"></i></a></span></li>
-                    <li><span class="dropdown-item"><a class="custom-link" href="{{ url_for('routes.task_result', job_id='example3') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Integrates phylogenetic and antibacterial bioactivity."><i>Planomonospora </i></a><a class="custom-link" href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#planomonospora" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click to show more information."><i class="bi bi-info-circle"></i></a></span></li>
+                    <li><span class="dropdown-item"><a class="custom-link" href="{{ url_for('routes.task_result', job_id='example1') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Integrates metabolomics data with antiviral bioactivity."><i>Euphorbia dendroides</i></a></span></li>
+                    <li><span class="dropdown-item"><a class="custom-link" href="{{ url_for('routes.task_result', job_id='example2') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Integrates OSMAC study with antibacterial bioactivity."><i>Streptomyces</i> sp. MBT27</a></span></li>
+                    <li><span class="dropdown-item"><a class="custom-link" href="{{ url_for('routes.task_result', job_id='example3') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Integrates phylogenetic and antibacterial bioactivity."><i>Planomonospora</i></a></span></li>
                   </ul>
                 </li>
                 <li class="nav-item">
@@ -64,26 +64,27 @@
     {% endblock %}
     {% block footer %}
       <footer class="container-fluid text-muted py-3 border-top">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <h6 class="text-uppercase fw-bold mb-1 d-flex align-items-center justify-content-center gap-1">
+              <a rel="fermo repository" href="https://github.com/fermo-metabolomics/fermo" class="custom-link" target="_blank">FERMO</a>
+              v{{version}}
+            </h6>
+          </div>
+          <div class="col-auto">
+            <a class="text-reset" href="https://github.com/fermo-metabolomics" target="_blank" rel="noopener" aria-label="GitHub FERMO Metabolomics Organisation Page"><i class="bi bi-github"></i></a>
+          </div>
+          <div class="col-auto">Completed jobs: {{ jobcount }}</div>
+        </div>
         <div class="row">
-          <div class="col">
-            <div class="d-flex flex-column align-items-center text-center">
-              <div class="mt-auto px-3">
-                <h6 class="text-uppercase fw-bold mb-1 d-flex align-items-center justify-content-center gap-1">
-                  <a rel="fermo repository" href="https://github.com/fermo-metabolomics/fermo" class="custom-link" target="_blank">FERMO</a>
-                  <span>v{{version}}</span>
-                  <a class="d-inline-flex align-items-center p-0 text-reset ms-2" href="https://github.com/fermo-metabolomics" target="_blank" rel="noopener" aria-label="GitHub FERMO Metabolomics Organisation Page">
-                    <i class="bi bi-github"></i>
-                  </a>
-                </h6>
-                <p class="mb-0 small">
-                  © 2022 – present Mitja M. Zdouc
-                  <a class="custom-link" target="_blank" href="{{ url_for('routes.about') }}">et al.</a> under the
-                  <a rel="license" href="https://opensource.org/license/mit/" class="custom-link" target="_blank">MIT License</a>.
-                  If you have found this software useful, please
-                  <a rel="cite" href="https://doi.org/10.1101/2022.12.21.521422" class="custom-link" target="_blank">cite us</a>.
-                </p>
-              </div>
-            </div>
+          <div class="col text-center">
+            <p class="mb-0 small">
+              © 2022 – present Mitja M. Zdouc
+              <a class="custom-link" target="_blank" href="{{ url_for('routes.about') }}">et al.</a> under the
+              <a rel="license" href="https://opensource.org/license/mit/" class="custom-link" target="_blank">MIT License</a>.
+              If you have found this software useful, please
+              <a rel="cite" href="https://doi.org/10.1101/2022.12.21.521422" class="custom-link" target="_blank">cite us</a>.
+            </p>
           </div>
         </div>
       </footer>

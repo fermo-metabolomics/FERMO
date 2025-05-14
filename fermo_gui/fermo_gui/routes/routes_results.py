@@ -136,6 +136,8 @@ def download(job_id: str, identifier: str) -> Response:
 def task_result(job_id: str) -> Union[str, Response]:
     """Render the result dashboard page for the given job id if found.
 
+    If the response is POST, force-load the results
+
     Arguments:
         job_id: the job identifier, provided by the URL variable
 

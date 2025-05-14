@@ -1,6 +1,6 @@
 [project]
 name = "fermo_gui"
-version = "1.1.1"
+version = "1.1.2"
 description = "Visalization part of program FERMO"
 requires-python = ">=3.11,<3.12"
 authors = [
@@ -22,7 +22,7 @@ classifiers = [
 dependencies = [
     "celery[redis]==5.2.7",
     "coloredlogs==15.0.1",
-    "fermo_core==0.6.3",
+    "fermo_core==0.6.4",
     "Flask==3.0.1",
     "Flask-WTF==1.2.1",
     "Flask-Mail==0.9.1",

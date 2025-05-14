@@ -20,7 +20,7 @@ authors:
 repository-code: 'https://github.com/fermo-metabolomics/fermo'
 url: 'https://fermo.bioinformatics.nl'
 abstract: >-
-  FERMO ia a metabolomics dashboard  designed to facilitate
+  FERMO is a metabolomics dashboard  designed to facilitate
   hypothesis-driven prioritization of molecules and samples,
   and integrates LC-MS metabolomics data with phenotype
   information, sample grouping, and genomic data. FERMO
@@ -80,7 +80,7 @@ preferred-citation:
       name-particle: van der
       given-names: Justin J. J.
       orcid: 'https://orcid.org/0000-0002-9340-5511'
-  title: FERMO: a Dashboard for Streamlined Rationalized Prioritization of Molecular Features from Mass Spectrometry Data.
+  title: "FERMO: a Dashboard for Streamlined Rationalized Prioritization of Molecular Features from Mass Spectrometry Data."
   journal: BioRxiv
   year: 2022
   doi: 10.1101/2022.12.21.521422

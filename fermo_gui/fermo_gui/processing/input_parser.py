@@ -87,19 +87,22 @@ class JobManager(BaseModel):
         params: job run parameters
         email: an optional email for notification
         job_id: the job uuid
-
+        base: the resolved path where __init__.py resides
+        root_url: the root url to construct the correct path
     """
 
     params: dict
     email: str | None = None
     job_id: str
+    base: str
+    root_url: str
 
     def email_fail(self):
         """Notify user that job failed"""
-        if not current_app.config.get("ONLINE") or not self.email:
+        if not self.email:
             return
 
-        root_url = f"https://{current_app.config.get('ROOTURL')}.bioinformatics.nl"
+        root_url = f"https://{self.root_url}.bioinformatics.nl"
 
         msg = Message()
         msg.recipients = [self.email]
@@ -111,10 +114,10 @@ class JobManager(BaseModel):
 
     def email_success(self):
         """Notify user that job failed"""
-        if not current_app.config.get("ONLINE") or not self.email:
+        if not self.email:
             return
 
-        root_url = f"https://{current_app.config.get('ROOTURL')}.bioinformatics.nl"
+        root_url = f"https://{self.root_url}.bioinformatics.nl"
 
         msg = Message()
         msg.recipients = [self.email]
@@ -150,9 +153,7 @@ class JobManager(BaseModel):
                 for zip_file in zips:
                     response = requests.get(os.path.join(url, zip_file), timeout=120)
 
-                    job_path = current_app.config.get("UPLOAD_FOLDER").joinpath(
-                        f"{self.job_id}"
-                    )
+                    job_path = Path(self.base).joinpath(f"upload/{self.job_id}")
                     with open(job_path.joinpath(f"{zip_file}"), "wb") as f:
                         f.write(response.content)
 
@@ -179,9 +180,7 @@ class JobManager(BaseModel):
         logger.setLevel(logging.DEBUG)
 
         file_handler = logging.FileHandler(
-            current_app.config.get("UPLOAD_FOLDER").joinpath(
-                f"{self.job_id}/results/out.fermo.log"
-            ),
+            Path(self.base).joinpath(f"upload/{self.job_id}/results/out.fermo.log"),
             mode="w",
         )
         file_handler.setLevel(logging.DEBUG)
@@ -191,6 +190,16 @@ class JobManager(BaseModel):
 
         logger.addHandler(file_handler)
         return logger
+
+    def write_job_counter(self):
+        """Write job ID to disk"""
+        location = Path(self.base).joinpath("job_counter.txt")
+
+        if not location.exists():
+            return
+
+        with open(location, "a") as f:
+            f.write(f"{self.job_id}\n")
 
     def run_fermo(self):
         """Run fermo_core on the respective job id
@@ -213,16 +222,18 @@ class JobManager(BaseModel):
 
 
 @shared_task(ignore_result=False)
-def start_job(job_id: str, email: str | None) -> bool:
+def start_job(job_id: str, email: str | None, base: str, root_url: str) -> bool:
     """Wrapper to start fermo_core jobs asynchronously.
 
     Args:
         job_id: the uuid job reference
         email: an email address or None
+        base: the full path of the dir the __init__ resides in
+        root_url: the url reference for emailing
 
     Returns: A bool signaling job outcome to Celery
     """
-    job_path = Path(f'{current_app.config.get("UPLOAD_FOLDER")}/{job_id}')
+    job_path = Path(base).joinpath(f"upload/{job_id}")
     with open(job_path.joinpath(f"{job_id}.parameters.json")) as infile:
         params = json.load(infile)
 
@@ -230,10 +241,13 @@ def start_job(job_id: str, email: str | None) -> bool:
         with open(job_path.joinpath(f"results/out.failed.txt"), "w") as f:
             f.write(m)
 
-    manager = JobManager(params=params, job_id=job_id, email=email)
+    manager = JobManager(
+        params=params, job_id=job_id, email=email, base=base, root_url=root_url
+    )
     try:
         manager.download_antismash_job()
         manager.run_fermo()
+        manager.write_job_counter()
         manager.email_success()
         return True
     except SoftTimeLimitExceeded as e:
@@ -904,6 +918,13 @@ class InputParser(BaseModel):
             shutil.rmtree(self.uploads.joinpath(self.uuid))
             return self.return_error()
 
-        start_job.apply_async(kwargs={"job_id": self.uuid, "email": email})
+        start_job.apply_async(
+            kwargs={
+                "job_id": self.uuid,
+                "email": email,
+                "base": str(current_app.config.get("UPLOAD_FOLDER").parent),
+                "root_url": str(current_app.config.get("ROOTURL")),
+            }
+        )
 
         return redirect(url_for("routes.job_submitted", job_id=self.uuid))

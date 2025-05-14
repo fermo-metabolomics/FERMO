@@ -4,7 +4,7 @@
 <div class="container-xxl bd-gutter text-center">
     <div class="row my-5">
         <div class="col">
-            <img class="d-block mx-auto" style="max-width: 18vw;" src="{{ url_for('static', filename='/images/Fermo_logo_blue.svg') }}" alt="FERMO logo" >
+            <img class="d-none d-sm-block mx-auto" style="max-width: 18vw;" src="{{ url_for('static', filename='/images/Fermo_logo_blue.svg') }}" alt="FERMO logo" >
         </div>
     </div>
     <div class="row mb-3 mx-2">
@@ -20,10 +20,10 @@
         </div>
     </div>
     <div class="row mb-5 mx-2 justify-content-center">
-        <div class="col-auto">
+        <div class="col-auto mb-1">
             <a class="btn btn-lg btn-primary fw-semibold" href="{{ url_for('routes.dispatch') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Go to the Analysis page">Start Analysis</a>
         </div>
-        <div class="col-auto">
+        <div class="col-auto mb-1">
             <a class="btn btn-lg btn-secondary fw-semibold" href="{{ url_for('routes.task_result', job_id='example1') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Re-analysis of the Euphorbia dendroides dataset originally reported by Bioactivity-based Molecular Networking">Show example</a>
         </div>
     </div>

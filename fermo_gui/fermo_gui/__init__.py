@@ -152,6 +152,13 @@ def register_context_processors(app: Flask):
         app: The Flask app instance
     """
 
+    def get_job_count():
+        try:
+            with open(Path(__file__).parent.joinpath("job_counter.txt")) as f:
+                return sum(1 for _ in f)
+        except (FileNotFoundError, ValueError):
+            return 0
+
     @app.context_processor
     def set_version() -> dict:
-        return {"version": metadata.version("fermo_gui")}
+        return {"version": metadata.version("fermo_gui"), "jobcount": get_job_count()}
