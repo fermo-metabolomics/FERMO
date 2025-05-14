@@ -52,27 +52,16 @@ Building the Docker-container should take no more than a few minutes.
 
 ### With `docker` from GitHub
 
-*Assumes that you have `docker` installed on your machine*
-
-```commandline
-docker build -t fermo_gui .
-docker run -p 8001:8001 fermo_gui
-```
-
-
-### With `docker-compose` from GitHub
-
-*Assumes that you have `git`, `docker` and `docker-compose` installed on your machine.*
+*Assumes that you have `docker` and `git` installed on your machine*
 
 ```commandline
 git clone git@github.com:fermo-metabolomics/FERMO.git
 cd FERMO
-docker-compose up --build
+docker build -t fermo_gui .
+docker run -p 8001:8001 fermo_gui
 ```
 
 Once started, FERMO can be accessed in any browser at the URL [http://0.0.0.0:8001/](http://0.0.0.0:8001/).
-
-
 
 ## Quick Start
 
@@ -83,7 +72,7 @@ For an installation-free version, please see [*FERMO Online*](https://fermo.bioi
 As minimal requirement, FERMO takes LC-MS(/MS) metabolomics data, which it can integrate with a range of optional orthogonal data formats.
 Compatible formats are described in the [Documentation](https://fermo-metabolomics.github.io/fermo_docs/home/input_output/).
 
-For a step-by-step guide, please refer to our [Documentation](https://fermo-metabolomics.github.io/fermo_docs/home/gui.overview/).
+For a step-by-step guide, please refer to our [Tutorial](https://fermo-metabolomics.github.io/fermo_docs/home/gui.overview/).
 
 ## Demo
 

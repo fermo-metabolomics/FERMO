@@ -2,6 +2,45 @@
 
 {% block content %}
 <div class="container-fluid">
+    {% if job_id.startswith("example") %}
+    <div class="alert alert-light mx-4 my-2" role="alert">
+        <div class="row">
+            <div class="col-8">
+                {% if job_id == "example1" %}
+                <h1 class="alert-heading" style="font-size: 1.4em;">Background information on the <i>Euphorbia dendroides</i> example</h1>
+                {% endif %}
+                {% if job_id == "example2" %}
+                <h1 class="alert-heading" style="font-size: 1.4em;">Background information on the <i>Streptomyces</i> sp. MBT27 example</h1>
+                {% endif %}
+                {% if job_id == "example3" %}
+                <h1 class="alert-heading" style="font-size: 1.4em;">Background information on the <i>Planomonospora</i> example</h1>
+                {% endif %}
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {% if job_id == "example1" %}
+                <p class="mb-1">This example re-analyzes the <i>Euphorbia dendroides</i> dataset previously featured in the <a class="custom-link" target="_blank" href="https://doi.org/10.1021/acs.jnatprod.7b00737">Bioactivity-Based Molecular Networking</a> publication, showing antiviral activity against the chikungunya virus.</p>
+                <p class="mb-1">By using the <b>Phenotype score filter</b>, we see that FERMO prioritizes molecular features consistent with the results of the original study (e.g. <i>m/z</i> 563.296 at RT 21.6 min).</p>
+                <p class="mb-1">For more information, see the <a href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#euphorbia-dendroides" target="_blank">Documentation</a>.</p>
+                {% endif %}
+                {% if job_id == "example2" %}
+                <p class="mb-1">This example shows a OSMAC study on <i>Streptomyces</i> sp. MBT27 with <b>differential antibiotic activity</b> against <i>Staphylococcus aureus</i> resulting from cultivation on different carbon sources (originally described <a href="https://doi.org/10.1038/s41598-022-06736-0" target="_blank">here</a>).</p>
+                <p class="mb-1">By using the <b>Phenotype score filter</b>, we see that antibiotic activity is associated with <b>actinomycin D</b>, a known antibacterial compound.</p>
+                <p class="mb-1">For more information, see the <a href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#streptomyces-sp-mbt27" target="_blank">Documentation</a>.</p>
+                {% endif %}
+                {% if job_id == "example3" %}
+                <p class="mb-1">This example analyzes a subset of 10 <i>Planomonospora</i> strains showing <b>differential antibiotic activity</b> against <i>Staphylococcus aureus</i> (originally described <a class="custom-link" href="https://www.biorxiv.org/content/10.1101/2022.12.21.521422v1" target="_blank">here</a>).</p>
+                <p class="mb-1">By using the <b>Phenotype score filter</b>, we see that antibiotic activity is associated with a <b>single phylogroup ("S")</b>. Closer inspection shows that activity is likely associated with <b>siomycin A</b>, a known antibacterial compound.</p>
+                <p class="mb-1">For more information, see the <a class="custom-link" href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#planomonospora" target="_blank">Documentation</a>.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 pe-md-0 pe-sm-3">
             <div class="dropzone">
