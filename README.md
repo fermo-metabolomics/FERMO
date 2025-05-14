@@ -186,10 +186,12 @@ The number of workers can be adjusted in the [`entrypoint_docker.sh`](fermo_gui/
 
 ```commandline
 docker cp fermo-fermo_gui-1:/fermo_gui/fermo_gui/upload .
+docker cp fermo-fermo_gui-1:/fermo_gui/fermo_gui/job_counter.txt .
 docker-commpose stop
 git pull
 docker-compose build --no-cache
 docker-compose up -d
 docker cp ./upload fermo-fermo_gui-1:/fermo_gui/fermo_gui/
+docker cp ./job_counter.txt fermo-fermo_gui-1:/fermo_gui/fermo_gui/
 docker exec fermo-fermo_gui-1 ls fermo_gui/upload | wc -l
 ```

@@ -64,26 +64,27 @@
     {% endblock %}
     {% block footer %}
       <footer class="container-fluid text-muted py-3 border-top">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <h6 class="text-uppercase fw-bold mb-1 d-flex align-items-center justify-content-center gap-1">
+              <a rel="fermo repository" href="https://github.com/fermo-metabolomics/fermo" class="custom-link" target="_blank">FERMO</a>
+              v{{version}}
+            </h6>
+          </div>
+          <div class="col-auto">
+            <a class="text-reset" href="https://github.com/fermo-metabolomics" target="_blank" rel="noopener" aria-label="GitHub FERMO Metabolomics Organisation Page"><i class="bi bi-github"></i></a>
+          </div>
+          <div class="col-auto">Completed jobs: {{ jobcount }}</div>
+        </div>
         <div class="row">
-          <div class="col">
-            <div class="d-flex flex-column align-items-center text-center">
-              <div class="mt-auto px-3">
-                <h6 class="text-uppercase fw-bold mb-1 d-flex align-items-center justify-content-center gap-1">
-                  <a rel="fermo repository" href="https://github.com/fermo-metabolomics/fermo" class="custom-link" target="_blank">FERMO</a>
-                  <span>v{{version}}</span>
-                  <a class="d-inline-flex align-items-center p-0 text-reset ms-2" href="https://github.com/fermo-metabolomics" target="_blank" rel="noopener" aria-label="GitHub FERMO Metabolomics Organisation Page">
-                    <i class="bi bi-github"></i>
-                  </a>
-                </h6>
-                <p class="mb-0 small">
-                  © 2022 – present Mitja M. Zdouc
-                  <a class="custom-link" target="_blank" href="{{ url_for('routes.about') }}">et al.</a> under the
-                  <a rel="license" href="https://opensource.org/license/mit/" class="custom-link" target="_blank">MIT License</a>.
-                  If you have found this software useful, please
-                  <a rel="cite" href="https://doi.org/10.1101/2022.12.21.521422" class="custom-link" target="_blank">cite us</a>.
-                </p>
-              </div>
-            </div>
+          <div class="col text-center">
+            <p class="mb-0 small">
+              © 2022 – present Mitja M. Zdouc
+              <a class="custom-link" target="_blank" href="{{ url_for('routes.about') }}">et al.</a> under the
+              <a rel="license" href="https://opensource.org/license/mit/" class="custom-link" target="_blank">MIT License</a>.
+              If you have found this software useful, please
+              <a rel="cite" href="https://doi.org/10.1101/2022.12.21.521422" class="custom-link" target="_blank">cite us</a>.
+            </p>
           </div>
         </div>
       </footer>

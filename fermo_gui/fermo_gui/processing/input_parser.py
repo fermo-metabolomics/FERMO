@@ -192,6 +192,16 @@ class JobManager(BaseModel):
         logger.addHandler(file_handler)
         return logger
 
+    def write_job_counter(self):
+        """Write job ID to disk"""
+        location = Path(__file__).parent.parent.joinpath("job_counter.txt")
+
+        if not location.exists():
+            return
+
+        with open(location, "a") as f:
+            f.write(f"{self.job_id}\n")
+
     def run_fermo(self):
         """Run fermo_core on the respective job id
 
@@ -234,6 +244,7 @@ def start_job(job_id: str, email: str | None) -> bool:
     try:
         manager.download_antismash_job()
         manager.run_fermo()
+        manager.write_job_counter()
         manager.email_success()
         return True
     except SoftTimeLimitExceeded as e:
