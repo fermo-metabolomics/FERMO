@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Frontend fixes
 - Fixed visualization cross-reference antismash ID -> mibig ID
 - Added docker container building -> GitHub Packages
+- Added job counter
 
 ## [1.1.1] - 2025-05-05
 
