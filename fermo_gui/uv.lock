@@ -302,7 +302,7 @@ wheels = [
 
 [[package]]
 name = "fermo-core"
-version = "0.6.3"
+version = "0.6.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "argparse" },
@@ -316,9 +316,9 @@ dependencies = [
     { name = "pyteomics" },
     { name = "statsmodels" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/44/1e/0af360800b6fc99bb1a55bc74f5e303a570e1ee230b5149a012ea7165ac0/fermo_core-0.6.3.tar.gz", hash = "sha256:d1de93fada54645e3fe3f784fd17f7e0d5eb61a1b0258bac97f4a881a38fa8f0", size = 8761630, upload-time = "2025-04-16T12:22:14.458Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/92/cc/602ebf6fe279de0778d1562f07f9ad0fdfea45d98445be2b7b659cd2b543/fermo_core-0.6.4.tar.gz", hash = "sha256:13d10c0bd8441fc51c87bbae13e0d092025f1a372996d92fd0cee7567f4ad81a", size = 8762842, upload-time = "2025-05-13T19:02:47.05Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9b/13/6d68eb952f2fc92ea3cfb3d0798f136e6ddaace7a6cfd6e6e7db240134ca/fermo_core-0.6.3-py3-none-any.whl", hash = "sha256:74b082489fd73378fd78da4272252616e8b9078363ac1647009cfd3f9c30e478", size = 8845355, upload-time = "2025-04-16T12:22:11.862Z" },
+    { url = "https://files.pythonhosted.org/packages/79/48/1766668a35c6168b92d54b62b0d0e7749a641e63ba0b5fd698aa7db7ccf6/fermo_core-0.6.4-py3-none-any.whl", hash = "sha256:23b6b10da869cb9e547837ba7ac73ecf6e6b6dabc4d454eb0ee8109a68c7d34c", size = 8846563, upload-time = "2025-05-13T19:02:44.77Z" },
 ]
 
 [[package]]
@@ -345,7 +345,7 @@ dependencies = [
 requires-dist = [
     { name = "celery", extras = ["redis"], specifier = "==5.2.7" },
     { name = "coloredlogs", specifier = "==15.0.1" },
-    { name = "fermo-core", specifier = "==0.6.3" },
+    { name = "fermo-core", specifier = "==0.6.4" },
     { name = "flask", specifier = "==3.0.1" },
     { name = "flask-mail", specifier = "==0.9.1" },
     { name = "flask-wtf", specifier = "==1.2.1" },

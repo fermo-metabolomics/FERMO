@@ -10,7 +10,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Fixed
 
 - Frontend fixes
-- Fixed visualization cross-reference antismash ID - mibig ID
+- Fixed visualization cross-reference antismash ID -> mibig ID
 
 ## [1.1.1] - 2025-05-05
 
