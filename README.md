@@ -32,7 +32,7 @@ The official documentation can be found [HERE](https://fermo-metabolomics.github
 
 ### Hardware requirements
 
-`fermo_core` can be run on a standard computer and does not have any special requirements.
+FERMO can be run on a standard computer and does not have any special requirements.
 
 ### Software requirements
 
@@ -195,13 +195,11 @@ The number of workers can be adjusted in the [`entrypoint_docker.sh`](fermo_gui/
 ### FERMO Online update procedure
 
 ```commandline
-docker cp fermo-fermo_gui-1:/fermo_gui/fermo_gui/upload .
-docker cp fermo-fermo_gui-1:/fermo_gui/fermo_gui/job_counter.txt .
-docker-commpose stop
+docker cp fermo-fermo_gui-1:/fermo_gui/fermo_gui/upload . && docker cp fermo-fermo_gui-1:/fermo_gui/fermo_gui/job_counter.txt .
+docker-compose stop
 git pull
 docker-compose build --no-cache
 docker-compose up -d
-docker cp ./upload fermo-fermo_gui-1:/fermo_gui/fermo_gui/
-docker cp ./job_counter.txt fermo-fermo_gui-1:/fermo_gui/fermo_gui/
+docker cp ./upload fermo-fermo_gui-1:/fermo_gui/fermo_gui/ && docker cp ./job_counter.txt fermo-fermo_gui-1:/fermo_gui/fermo_gui/
 docker exec fermo-fermo_gui-1 ls fermo_gui/upload | wc -l
 ```
