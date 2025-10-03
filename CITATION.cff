@@ -47,12 +47,16 @@ preferred-citation:
       orcid: 'https://orcid.org/0000-0001-6534-6609'
     - address: 'Sylviusweg 72, 2333 BE Leiden, The Netherlands'
       affiliation: 'Institute of Biology, Leiden University'
-      family-names: Bayona Maldonado
-      given-names: Lina M.
-    - address: 'Sylviusweg 72, 2333 BE Leiden, The Netherlands'
-      affiliation: 'Institute of Biology, Leiden University'
       family-names: Augustijn
       given-names: Hannah E.
+    - address: 'Sylviusweg 72, 2333 BE Leiden, The Netherlands'
+      affiliation: 'Institute of Biology, Leiden University'
+      family-names: Machushynets
+      given-names: Nataliia V.
+    - address: 'Sylviusweg 72, 2333 BE Leiden, The Netherlands'
+      affiliation: 'Institute of Biology, Leiden University'
+      family-names: Bayona Maldonado
+      given-names: Lina M.
     - address: 'Old Aberdeen, AB24 3DT, Scotland, United Kingdom'
       affiliation: 'Marine Biodiscovery Centre, Department of Chemistry, University of Aberdeen'
       family-names: Soldatou
@@ -61,6 +65,10 @@ preferred-citation:
       affiliation: 'Wageningen University and Research'
       family-names: De Jonge
       given-names: Niek
+    - address: 'Droevendaalsesteeg 1, 6708 PB Wageningen, the Netherlands'
+      affiliation: 'Wageningen University and Research'
+      family-names: Casu
+      given-names: Sarah
     - address: 'Old Aberdeen, AB24 3DT, Scotland, United Kingdom'
       affiliation: 'Marine Biodiscovery Centre, Department of Chemistry, University of Aberdeen'
       family-names: Jaspars
@@ -80,7 +88,7 @@ preferred-citation:
       name-particle: van der
       given-names: Justin J. J.
       orcid: 'https://orcid.org/0000-0002-9340-5511'
-  title: "FERMO: a Dashboard for Streamlined Rationalized Prioritization of Molecular Features from Mass Spectrometry Data."
+  title: "FERMO: a Dashboard for Automated Prioritization of Molecular Features from Mass Spectral Data."
   journal: BioRxiv
-  year: 2022
-  doi: 10.1101/2022.12.21.521422
+  year: 2025
+  doi: 10.1101/2022.12.21.521422v2
