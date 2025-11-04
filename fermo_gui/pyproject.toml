@@ -1,6 +1,6 @@
 [project]
 name = "fermo_gui"
-version = "1.1.2"
+version = "1.1.3"
 description = "Visalization part of program FERMO"
 requires-python = ">=3.11,<3.12"
 authors = [
