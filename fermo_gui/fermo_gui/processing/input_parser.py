@@ -567,6 +567,10 @@ class InputParser(BaseModel):
                         self.params["PhenoQualAssgnParameters"]["algorithm"] = str(val)
                     case "PhenoQualAssgnParametersValue":
                         self.params["PhenoQualAssgnParameters"]["value"] = str(val)
+                    case "PhenoQualAssgnParametersPThreshold":
+                        self.params["PhenoQualAssgnParameters"]["p_val_cutoff"] = float(
+                            val
+                        )
                     case "PhenoQuantPercentAssgnParametersAvg":
                         self.params["PhenoQuantPercentAssgnParameters"][
                             "sample_avg"
