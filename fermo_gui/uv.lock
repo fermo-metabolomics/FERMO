@@ -302,7 +302,7 @@ wheels = [
 
 [[package]]
 name = "fermo-core"
-version = "0.6.4"
+version = "0.7.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "argparse" },
@@ -316,14 +316,14 @@ dependencies = [
     { name = "pyteomics" },
     { name = "statsmodels" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/92/cc/602ebf6fe279de0778d1562f07f9ad0fdfea45d98445be2b7b659cd2b543/fermo_core-0.6.4.tar.gz", hash = "sha256:13d10c0bd8441fc51c87bbae13e0d092025f1a372996d92fd0cee7567f4ad81a", size = 8762842, upload-time = "2025-05-13T19:02:47.05Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/48/24/72fa52fa3d29b873e01c6a94952742dd8aade7c3db965c3f4840b01815bd/fermo_core-0.7.0.tar.gz", hash = "sha256:1335087c42cd028716c0bb9580e97c5b41d97357e8ae41ae4ca615be3e41630c", size = 8765239, upload-time = "2026-01-29T19:11:57.885Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/79/48/1766668a35c6168b92d54b62b0d0e7749a641e63ba0b5fd698aa7db7ccf6/fermo_core-0.6.4-py3-none-any.whl", hash = "sha256:23b6b10da869cb9e547837ba7ac73ecf6e6b6dabc4d454eb0ee8109a68c7d34c", size = 8846563, upload-time = "2025-05-13T19:02:44.77Z" },
+    { url = "https://files.pythonhosted.org/packages/73/4d/adb70792c3b9a3631cc61982098f5f830a8246a3746f9ddb2cca383a71a1/fermo_core-0.7.0-py3-none-any.whl", hash = "sha256:c1bc6ef34cf8609eb627a00dbaa698776c9305429d373e6dc383e0020c340d14", size = 8848295, upload-time = "2026-01-29T19:11:54.906Z" },
 ]
 
 [[package]]
 name = "fermo-gui"
-version = "1.1.2"
+version = "1.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "celery", extra = ["redis"] },
@@ -345,7 +345,7 @@ dependencies = [
 requires-dist = [
     { name = "celery", extras = ["redis"], specifier = "==5.2.7" },
     { name = "coloredlogs", specifier = "==15.0.1" },
-    { name = "fermo-core", specifier = "==0.6.4" },
+    { name = "fermo-core", specifier = "==0.7.0" },
     { name = "flask", specifier = "==3.0.1" },
     { name = "flask-mail", specifier = "==0.9.1" },
     { name = "flask-wtf", specifier = "==1.2.1" },
