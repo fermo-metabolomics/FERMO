@@ -6,7 +6,7 @@ ENV INSTALL_PATH /fermo_gui
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
-RUN apt-get update && apt-get install -y redis-server
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --fix-missing redis-server
 
 COPY ./fermo_gui .
 
