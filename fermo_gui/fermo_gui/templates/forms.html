@@ -628,12 +628,26 @@
                         </div>
                         <div class="row mt-1">
                           <div class="col">
-                            <label for="PhenoQualAssgnParametersPThreshold" class="form-label" >P-value threshold for Welsh's t-test</label>
+                            <label for="PhenoQualAssgnParametersTest" class="form-label" >Type of statistical test</label>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-8">
-                            <input type="number" class="form-control form-control-sm" id="PhenoQualAssgnParametersPThreshold" name="PhenoQualAssgnParametersPThreshold" min="0" max="1" step="0.01" value="{{ params.get('PhenoQualAssgnParams', {}).get('p_val_cutoff') }}">
+                            <select class="form-select form-select-sm" id="PhenoQualAssgnParametersTest" name="PhenoQualAssgnParametersTest">
+                              <option value="None" {% if params.get("PhenoQualAssgnParameters", {}).get("test") == 'None' %}selected{% endif %}>None</option>
+                              <option value="Welsh" {% if params.get("PhenoQualAssgnParameters", {}).get("test") == 'Welsh' %}selected{% endif %}>Welsh's t-test</option>
+                              <option value="Wilcoxon" {% if params.get("PhenoQualAssgnParameters", {}).get("test") == 'Wilcoxon' %}selected{% endif %}>Wilcoxon signed-rank test</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col">
+                            <label for="PhenoQualAssgnParametersPThreshold" class="form-label" >P-value threshold for statistical testing</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="number" class="form-control form-control-sm" id="PhenoQualAssgnParametersPThreshold" name="PhenoQualAssgnParametersPThreshold" min="0" max="1" step="0.01" value="{{ params.get('PhenoQualAssgnParams', {}).get('p_val_cutoff', 0.05) }}">
                           </div>
                         </div>
                       </div>
