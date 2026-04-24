@@ -17,8 +17,8 @@ Contents
 ## Overview
 
 FERMO is a dashboard for metabolomics data analysis. 
-FERMO integrates metabolomics data with orthogonal data such as phenotype information for rapid, hypothesis-driven prioritization.
-To perform data anlysis, FERMO utilizes the [fermo_core](https://github.com/fermo-metabolomics/fermo_core) package.
+FERMO integrates metabolomics data with orthogonal data such as phenotype information for rapid, biochemometric, hypothesis-driven prioritization.
+To perform data anlysis, FERMO utilizes the [fermo_core](https://github.com/fermo-metabolomics/fermo_core) library.
 
 FERMO can be freely accessed online at [*FERMO Online*](https://fermo.bioinformatics.nl/). For a local installation, see the description below.
 
@@ -41,7 +41,7 @@ FERMO can be run on a standard computer and does not have any special requiremen
 Local installation of the Docker container was tested on:
 
 - Windows 10 (Docker Desktop)
-- Ubuntu Linux 20.04 and 22.04 (command line)
+- Ubuntu Linux 20.04, 22.04, 24.04 (command line)
 
 #### Python dependencies
 
@@ -55,7 +55,7 @@ Building the Docker-container should take no more than a few minutes.
 
 ### With Docker Desktop
 
-*Assumes that Docker Desktop is installed*
+*Nota bene: assumes that Docker Desktop is installed*
 
 - Open Docker Desktop
 - Open the terminal and pull image: `docker pull ghcr.io/fermo-metabolomics/fermo:main`
@@ -140,7 +140,7 @@ See [CITATION.cff](CITATION.cff) or [FERMO online](https://fermo.bioinformatics.
 
 ### Package Installation
 
-*Please note that the development installation is only tested and supported on (Ubuntu) Linux.*
+*Nota bene: please note that the development installation is only tested and supported on (Ubuntu) Linux.*
 
 #### With `uv` from GitHub
 
