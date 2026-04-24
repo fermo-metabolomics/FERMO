@@ -315,7 +315,8 @@
                                                         showticklabels: false
                                                     },
                                                     yaxis: {
-                                                        showticklabels: false
+                                                        showticklabels: false,
+                                                        type: "log"
                                                     }
                                                 };
                                                 Plotly.newPlot("novelty_dist_plot", [dist_novelty_trace], dist_novelty_layout, { responsive: true });
@@ -390,7 +391,8 @@
                                                         showticklabels: false
                                                     },
                                                     yaxis: {
-                                                        showticklabels: false
+                                                        showticklabels: false,
+                                                        type: "log"
                                                     }
                                                 };
                                                 Plotly.newPlot("match_dist_plot", [dist_match_trace], dist_match_layout, { responsive: true });
@@ -447,7 +449,8 @@
                                                         showticklabels: false
                                                     },
                                                     yaxis: {
-                                                        showticklabels: false
+                                                        showticklabels: false,
+                                                        type: "log"
                                                     }
                                                 };
                                                 Plotly.newPlot("phenotype_dist_plot", [dist_phenotype_trace], dist_phenotype_layout, { responsive: true });
