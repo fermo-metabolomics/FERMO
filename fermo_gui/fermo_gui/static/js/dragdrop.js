@@ -76,6 +76,12 @@ function handleDrop(event) {
         } else {
             toContainer.appendChild(draggedAcc);
         }
+
+        setTimeout(() => {
+            document.querySelectorAll('.js-plotly-plot').forEach(el => {
+                Plotly.Plots.resize(el);
+            });
+        }, 50);
     }
 }
 

@@ -386,8 +386,7 @@ function createHeatmap(data, groupName) {
                     x: groupValues[j],
                     y: reversedGroupValues[i],
                     text: reversedMatrix[i][j].toFixed(2),
-                    showarrow: false,
-                    font: { size: 7 }
+                    showarrow: false
                 });
             }
         }
@@ -413,37 +412,37 @@ function createHeatmap(data, groupName) {
     // Define layout options
     const layout = {
         title: {
-            text: `Fold-differences of <br><b>${groupName}</b>`,
-            font: { size: 12 },
+            text: `Fold-differences of <b>${groupName}</b>`,
             x: 0.5,
             xanchor: 'center',
         },
-        width: 250,
-        height: 250,
+        autosize: true,
+        margin: { l: 50, r: 50, t: 50, b: 50 },
         xaxis: {
             ticks: '',
-            ticksuffix: ' ',
-            autosize: false,
-            font: { size: 7 },
+            ticksuffix: ' '
         },
         yaxis: {
             ticks: '',
             ticksuffix: ' ',
-            autosize: false,
-            font: { size: 7 },
         },
-        annotations: annotations,
-        margin: { l: 50, r: 50, t: 50, b: 50 },
+        annotations: annotations
     };
 
     // Create a new container for this heatmap
     const heatmapDiv = document.createElement('div');
     heatmapDiv.classList.add('heatmap-item');
+    heatmapDiv.style.width = "100%";
+    heatmapDiv.style.maxWidth = "100%";
     document.getElementById('heatmap-container').appendChild(heatmapDiv);
     heatmapDivs.push(heatmapDiv);
 
     // Create the heatmap
-    Plotly.newPlot(heatmapDiv, [trace], layout);
+    Plotly.newPlot(heatmapDiv, [trace], layout, { responsive: true }).then(() => {
+        requestAnimationFrame(() => {
+            Plotly.Plots.resize(heatmapDiv);
+        });
+    });
 }
 
 let heatmapDivs = [];
