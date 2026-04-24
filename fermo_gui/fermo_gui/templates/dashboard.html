@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/plotly-2.18.2.min.js') }}"></script>
+
 <div class="container-fluid">
     {% if job_id.startswith("example") %}
     <div class="alert alert-light mx-4 my-2" role="alert">
@@ -286,34 +288,62 @@
                         <div class="accordion-body overflow-auto">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="slidecontainer w-50">
-                                        <label class="form-label bold-label">
-                                            <a href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#novelty-score-filter" target="_blank" class="info-button"></a>
-                                            Novelty score filter
-                                        </label>
-                                        <div class="multirange">
-                                            <div class="track"></div>
-                                            <input type="range"
-                                                   min="0.0" max="1.0" value="0.0" step="0.02"
-                                                   class="slider" id="noveltyRange1">
-                                            <input type="range"
-                                                   min="0.0" max="1.0" value="1.0" step="0.02"
-                                                   class="slider" id="noveltyRange2">
-                                        </div>
-                                        <div class="range-inputs">
-                                            <div class="form-outline">
-                                                <input type="text" id="noveltyRange1Input"
+                                    <div class="col-8 p-0">
+                                        <div class="slidecontainer">
+                                            <label class="form-label bold-label">
+                                                <a href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#novelty-score-filter" target="_blank" class="info-button"></a>
+                                                Novelty score filter
+                                            </label>
+                                            <div id="novelty_dist_plot" style="width:100%; height:100px;"></div>
+                                            <script>
+                                                const dist_novelty = {{ data.stats_distplots.novelty | tojson }};
+                                                const dist_novelty_trace = {
+                                                    x: dist_novelty,
+                                                    type: "histogram",
+                                                    histnorm: "probability density",
+                                                    xbins: {
+                                                        start: 0,
+                                                        end: 1.05,
+                                                        size: 0.05
+                                                    }
+                                                };
+                                                const dist_novelty_layout = {
+                                                    autosize: true,
+                                                    margin: { l: 0, r: 0, t: 0, b: 0 },
+                                                    xaxis: {
+                                                        range: [0, 1.05],
+                                                        showticklabels: false
+                                                    },
+                                                    yaxis: {
+                                                        showticklabels: false
+                                                    }
+                                                };
+                                                Plotly.newPlot("novelty_dist_plot", [dist_novelty_trace], dist_novelty_layout, { responsive: true });
+                                            </script>
+                                            <div class="multirange">
+                                                <div class="track"></div>
+                                                <input type="range"
                                                        min="0.0" max="1.0" value="0.0" step="0.02"
-                                                       class="form-control form-icon-trailing" />
-                                            </div>
-                                            <div class="form-outline">
-                                                <input type="text" id="noveltyRange2Input"
+                                                       class="slider" id="noveltyRange1">
+                                                <input type="range"
                                                        min="0.0" max="1.0" value="1.0" step="0.02"
-                                                       class="form-control form-icon-trailing" />
+                                                       class="slider" id="noveltyRange2">
+                                            </div>
+                                            <div class="range-inputs">
+                                                <div class="form-outline">
+                                                    <input type="text" id="noveltyRange1Input"
+                                                           min="0.0" max="1.0" value="0.0" step="0.02"
+                                                           class="form-control form-icon-trailing" />
+                                                </div>
+                                                <div class="form-outline">
+                                                    <input type="text" id="noveltyRange2Input"
+                                                           min="0.0" max="1.0" value="1.0" step="0.02"
+                                                           class="form-control form-icon-trailing" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6 p-0">
+                                    <div class="col-4">
                                         <div class="slidecontainer mt-4 pb-0 pe-4">
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" id="showBlankFeatures">
@@ -724,10 +754,16 @@
 
 
 <script type="module" src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/plotly-2.18.2.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/cytoscape.min.js') }}"></script>
 <script>
     var statsChromatogram = {{ data.stats_chromatogram | tojson | safe }};
+    document.getElementById('filters')
+        .addEventListener('shown.bs.collapse', function () {
+            Plotly.Plots.resize("novelty_dist_plot");
+            Plotly.Plots.resize("match_dist_plot");
+    });
 </script>
+
+
 
 {% endblock %}
