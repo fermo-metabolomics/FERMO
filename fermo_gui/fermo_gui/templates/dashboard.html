@@ -294,7 +294,7 @@
                                                 <a href="https://fermo-metabolomics.github.io/fermo_docs/home/gui.dashboard/#novelty-score-filter" target="_blank" class="info-button"></a>
                                                 Novelty score filter
                                             </label>
-                                            <div id="novelty_dist_plot" style="width:100%; height:100px;"></div>
+                                            <div id="novelty_dist_plot" style="width:100%; height:80px;"></div>
                                             <script>
                                                 const dist_novelty = {{ data.stats_distplots.novelty | tojson }};
                                                 const dist_novelty_trace = {
@@ -305,7 +305,8 @@
                                                         start: 0,
                                                         end: 1.05,
                                                         size: 0.05
-                                                    }
+                                                    },
+                                                    marker: { color: "#116789" }
                                                 };
                                                 const dist_novelty_layout = {
                                                     autosize: true,
@@ -352,7 +353,7 @@
                                         </div>
                                         <div class="slidecontainer py-0 pe-4">
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="showAnnotationFeatures">
+                                                <input class="form-check-input" type="checkbox" id="showAnnotationFeatures" checked>
                                                 <label class="form-check-label" for="showAnnotationFeatures">
                                                     Show additional filters
                                                 </label>
@@ -369,6 +370,33 @@
                                                     Match score filter
                                                 </label>
                                             </div>
+                                            <div id="match_dist_plot" style="width:100%; height:80px;"></div>
+                                            <script>
+                                                const dist_match = {{ data.stats_distplots.match | tojson }};
+                                                const dist_match_trace = {
+                                                    x: dist_match,
+                                                    type: "histogram",
+                                                    histnorm: "probability density",
+                                                    xbins: {
+                                                        start: 0,
+                                                        end: 1.05,
+                                                        size: 0.05
+                                                    },
+                                                    marker: { color: "#116789" }
+                                                };
+                                                const dist_match_layout = {
+                                                    autosize: true,
+                                                    margin: { l: 0, r: 0, t: 0, b: 0 },
+                                                    xaxis: {
+                                                        range: [0, 1.05],
+                                                        showticklabels: false
+                                                    },
+                                                    yaxis: {
+                                                        showticklabels: false
+                                                    }
+                                                };
+                                                Plotly.newPlot("match_dist_plot", [dist_match_trace], dist_match_layout, { responsive: true });
+                                            </script>
                                             <div class="multirange">
                                                 <div class="track"></div>
                                                 <input type="range"
@@ -400,6 +428,33 @@
                                                     Phenotype score filter
                                                 </label>
                                             </div>
+                                            <div id="phenotype_dist_plot" style="width:100%; height:80px;"></div>
+                                            <script>
+                                                const dist_phenotype = {{ data.stats_distplots.phenotype | tojson }};
+                                                const dist_phenotype_trace = {
+                                                    x: dist_phenotype,
+                                                    type: "histogram",
+                                                    histnorm: "probability density",
+                                                    xbins: {
+                                                        start: 0,
+                                                        end: 1.05,
+                                                        size: 0.05
+                                                    },
+                                                    marker: { color: "#116789" }
+                                                };
+                                                const dist_phenotype_layout = {
+                                                    autosize: true,
+                                                    margin: { l: 0, r: 0, t: 0, b: 0 },
+                                                    xaxis: {
+                                                        range: [0, 1.05],
+                                                        showticklabels: false
+                                                    },
+                                                    yaxis: {
+                                                        showticklabels: false
+                                                    }
+                                                };
+                                                Plotly.newPlot("phenotype_dist_plot", [dist_phenotype_trace], dist_phenotype_layout, { responsive: true });
+                                            </script>
                                             <div class="multirange">
                                                 <div class="track"></div>
                                                 <input type="range"
@@ -761,6 +816,7 @@
         .addEventListener('shown.bs.collapse', function () {
             Plotly.Plots.resize("novelty_dist_plot");
             Plotly.Plots.resize("match_dist_plot");
+            Plotly.Plots.resize("phenotype_dist_plot");
     });
 </script>
 

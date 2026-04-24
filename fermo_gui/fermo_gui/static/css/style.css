@@ -391,7 +391,7 @@ table th:last-child{
 }
 
 .annotation-related {
-    display: none;
+    display: block;
 }
 
 .dropdown-menu {
