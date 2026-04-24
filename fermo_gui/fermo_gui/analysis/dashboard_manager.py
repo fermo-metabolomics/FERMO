@@ -43,6 +43,11 @@ class DashboardManager(BaseModel):
     stats_network: dict = {}
     stats_groups: dict = {}
     stats_fgroups: dict = {}
+    stats_distplots: dict = {
+        "novelty": [],
+        "match": [],
+        "phenotype": [],
+    }
 
     def prepare_data_get(self: Self, f_sess: dict):
         """Run methods to prepare the data required by GET method
@@ -54,6 +59,7 @@ class DashboardManager(BaseModel):
         self.extract_stats_samples_dyn(f_sess)
         self.extract_network(f_sess)
         self.create_chromatogram(f_sess)
+        self.collect_distplot(f_sess)
 
     def provide_data_get(self: Self) -> dict:
         """Return data required by GET method
@@ -67,6 +73,7 @@ class DashboardManager(BaseModel):
             "stats_network": self.stats_network,
             "stats_groups": self.stats_groups,
             "stats_fgroups": self.stats_fgroups,
+            "stats_distplots": self.stats_distplots,
         }
 
     def extract_stats_analysis(self: Self, f_sess: dict):
@@ -280,3 +287,25 @@ class DashboardManager(BaseModel):
 
         except TypeError:
             self.stats_network = {"error": "error during parsing of session file"}
+
+    def collect_distplot(self: Self, f_sess: dict):
+        """Parse values for distribution plots"""
+        try:
+            features = f_sess.get("general_features", {})
+            for _k, v in features.items():
+                if v.get("scores"):
+                    self.stats_distplots["novelty"].append(
+                        v["scores"].get("novelty", 0.0)
+                    )
+                    self.stats_distplots["phenotype"].append(
+                        v["scores"].get("phenotype", 0.0)
+                    )
+
+                if matches := v.get("annotations", {}).get("matches"):
+                    for m in matches:
+                        self.stats_distplots["match"].append(m.get("score", 0.0))
+                else:
+                    self.stats_distplots["match"].append(0.0)
+
+        except TypeError:
+            self.stats_distplots = {"error": "error during parsing of session file"}
