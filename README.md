@@ -147,7 +147,7 @@ See [CITATION.cff](CITATION.cff) or [FERMO online](https://fermo.bioinformatics.
 *Note: assumes that `uv` and `redis-server` are installed locally*
 
 ```commandline
-git clone git@github.com:fermo-metabolomics/FERMO.git && cd FERMO
+git clone git@github.com:fermo-metabolomics/FERMO.git && cd FERMO/fermo_gui
 uv sync
 uv run flask --app fermo_gui run --debug
 ```
